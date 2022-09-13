@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Superadmin",
+    "slug": "superadmin",
+    "level": 0
+  },
+  {
+    "name": "Admin",
+    "slug": "Admin",
+    "level": 127
+  },
+  {
+    "name": "Customer",
+    "slug": "customer",
+    "level": 255
+  },
+  {
+    "name": "Regular",
+    "slug": "regular",
+    "level": 255
+  }
+]

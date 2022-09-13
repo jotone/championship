@@ -1,0 +1,173 @@
+@import "variables", "buttons", "content-table", "form", "notifications", "pagination", "popup", "side-menu";
+
+* {
+  font: 400 14px/20px 'Roboto', sans-serif;
+}
+
+.col-100 {width: 100%}
+.col-70 {width: 70%}
+.col-50 {width: 50%}
+.col-30 {width: 30%}
+
+header {
+  background-color: $paragraph;
+
+  ul {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    li {
+      a {
+        color: $secondary;
+        display: block;
+        padding: 5px 10px;
+        text-decoration: none;
+
+        &:hover {color: $highlight}
+      }
+    }
+  }
+}
+
+.center-box {
+  align-items: stretch;
+  display: flex;
+  justify-content: space-between;
+
+  > aside {width: 250px}
+
+  > main {
+    background-color: $main;
+    padding: 20px 20px 0 40px;
+    width: 100%
+  }
+}
+
+.page-top-elements {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  .page-title h1 {font-size: 24px; margin: 20px 0}
+
+  .breadcrumbs-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    li {
+      margin-right: 10px;
+      position: relative;
+
+      a, span {
+        color: $paragraph;
+        cursor: pointer;
+        display: block;
+        padding: 5px 10px;
+        text-decoration: none;
+
+        &:hover {text-decoration: underline}
+      }
+
+      &:after {
+        content: '>';
+        position: absolute;
+        right: -10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:last-child:after {content: none}
+    }
+  }
+}
+
+
+
+.page-controls-wrap {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+
+  .page-controls-buttons-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .page-controls-navigation {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .search-form-wrap {
+    position: relative;
+    width: 100%;
+
+    input {
+      background-color: $main;
+      border: 1px solid $headline;
+      border-radius: 5px;
+      padding: 5px 30px 5px 10px;
+      width: 100%;
+    }
+
+    button {
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 4px 4px 4px 8px;
+      position: absolute;
+      right: 1px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .per-page-wrap {margin-left: 10px}
+}
+
+.info-table {
+  margin: 20px 0;
+  width: 100%;
+
+  thead {
+    background-color: $blue-stroke;
+    color: $main;
+
+    tr {border: 1px solid $main}
+
+    th {padding: 5px; text-align: center}
+    th span {font-weight: bold;}
+  }
+
+  tbody {
+    td {
+      padding: 5px 10px;
+
+      &.marked {
+        background-color: $blue-stroke;
+        border: 1px solid $main;
+        color: $main;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.overlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .6);
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  .preload {display: none}
+}

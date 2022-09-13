@@ -1,0 +1,87 @@
+import moment from 'moment/moment';
+import { Confirmation } from '../libs/confirmation';
+import { Session } from '../libs/session';
+import {Notifications} from "../libs/notifications";
+
+export const ContentTableMixin = {
+  methods: {
+    formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
+    editRoute(id) {
+      return Helpers.buildUrl(this.routes.edit, id, 2)
+    },
+    removeRoute(id) {
+      return Helpers.buildUrl(this.routes.destroy, id, 1)
+    },
+    removeEvent(e) {
+      const el = $(e.target).closest('a')
+
+      const [entity, index] = this.entity.split('.')
+      const confirm = new Confirmation(`Do you really want to remove ${entity} "${el.closest('tr').find(`td:eq(${index})`).text()}"`).open()
+
+      confirm.then(
+        answer => answer && $.axios.delete(el.attr('href'))
+          .then(response => 204 === response.status && this.getList())
+          .finally(() => $('.overlay, .overlay .preload').hide())
+      )
+    },
+    getList() {
+      // Set request URL
+      const requestUrl = Session.has(this.module)
+        ? Helpers.setRequestOrderParams(this.routes.list, Session.get(this.module))
+        : this.routes.list
+
+      // Get list
+      $.axios.get(requestUrl)
+        .then(response => {
+          // Set entities
+          this.models = response.data.collection
+          // Set pagination options
+          this.pagination = {
+            current: parseInt(response.data.page),
+            total: Math.ceil(parseInt(response.data.total) / parseInt(response.data.take)),
+          }
+        })
+        .catch(({response}) => {
+          if(400 <= response.status && 500 >= response.status) {
+            if (response.data.hasOwnProperty('message')) {
+              Notifications.push(response.data.message, 'error')
+            }
+            if(response.data.hasOwnProperty('errors')) {
+              for (let field in response.data.errors) {
+                const messages = response.data.errors[field]
+                for (let i = 0, n = messages.length; i < n; i++) {
+                  Notifications.push(messages[i], 'error')
+                }
+              }
+              Notifications.show()
+            }
+          }
+        })
+        .finally(() => $('.overlay, .overlay .preload').hide())
+    },
+  },
+  beforeMount() {
+    this.routes = $('#contentTable').data('routes')
+  },
+  mounted() {
+    const _this = this
+
+    // Elements per page value
+    const perPage = $('select[name="perPage"]')
+    if (perPage.length) {
+      // Get session data
+      const data = Session.get(_this.module)
+      if (null !== data && data.hasOwnProperty('take')) {
+        // Set selected element
+        perPage.find(`option[value="${data.take}"]`).attr('selected', 'selected')
+      }
+      // Change "elements per page value"
+      perPage.on('change', function () {
+        Session.has(_this.module) && Session.update(_this.module, {take: perPage.val()})
+        _this.getList()
+      })
+    }
+
+    this.getList()
+  }
+}

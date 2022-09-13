@@ -1,0 +1,78 @@
+.form-wrap {
+  margin: 40px 0;
+
+  .row {display: flex}
+
+  fieldset {
+    margin: 20px 0;
+    padding: 40px 10px 0 10px;
+    position: relative;
+
+    legend {
+      border-bottom: 1px solid $headline;
+      font-size: 20px;
+      position: absolute;
+      top: 10px;
+      width: calc(100% - 10px);
+    }
+    &:first-child {padding-left: 0}
+  }
+
+  .form-row {margin: 20px 0}
+
+  label.caption span{
+    display: block;
+    padding: 5px 0;
+  }
+
+  label.inline-caption {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 5px;
+    margin-right: 20px;
+
+    span {
+      display: block;
+      padding: 5px 0;
+      margin-left: 5px;
+    }
+  }
+
+  .image-upload-wrap {
+    position: relative;
+
+    .image-upload-preview img {
+      object-fit: contain;
+      max-height: 300px;
+      max-width: 640px;
+      padding: 20px 0;
+    }
+
+    .buttons-wrap {
+      margin-top: 15px;
+      button {margin-right: 15px}
+    }
+  }
+}
+
+.form-input, .form-select {
+  background-color: $secondary;
+  border: 1px solid $headline;
+  border-radius: 5px;
+}
+
+.form-input {
+  max-width: 450px;
+  min-width: 250px;
+  padding: 5px 10px;
+}
+
+.form-select {
+  appearance: none;
+  background-image: url('/images/angle-down.svg');
+  background-position: right 5px center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  padding: 5px 20px 5px 10px;
+}

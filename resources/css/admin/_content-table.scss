@@ -1,0 +1,53 @@
+.content-table-wrap {
+  margin: 20px 0;
+  position: relative;
+
+  table {
+    width: 100%;
+
+    thead {
+      background-color: $paragraph;
+
+      th {padding: 8px 16px; position: relative}
+
+      .col-name {color: $secondary; font-size: 18px}
+
+      .directions-wrap {
+        flex-direction: column;
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        i {
+          color: $secondary;
+          cursor: pointer;
+          font-size: 18px;
+          padding: 0 4px;
+
+          &:hover, &.active {color: $highlight}
+        }
+      }
+    }
+
+    tbody {
+      tr:nth-child(odd) {background-color: $secondary}
+
+      td {text-align: center; padding: 5px}
+
+      .controls {
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+        text-decoration: none;
+
+        .edit, .remove, .view {padding: 4px}
+        .edit {color: $highlight}
+        .remove {color: $red-stroke}
+        .view {color: $blue}
+
+        i {font-size: 16px}
+      }
+    }
+  }
+}

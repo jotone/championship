@@ -1,0 +1,33 @@
+.btn {
+  border: 1px solid $blue-stroke;
+  background-color: $blue;
+  color: $secondary;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 15px;
+  text-decoration: none;
+
+  &.cancel {
+    border: 1px solid $red-stroke;
+    background-color: $tertiary;
+    color: $secondary;
+  }
+
+  &.danger {
+    border: 1px solid $red-stroke;
+    background-color: $red;
+    color: $secondary;
+  }
+
+  &.special {
+    border: 1px solid $yellow-stroke;
+    background-color: $yellow;
+    color: $headline;
+  }
+
+  &.success {
+    border: 1px solid $green-stroke;
+    background-color: $green;
+    color: $secondary;
+  }
+}

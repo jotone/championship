@@ -1,0 +1,25 @@
+.pagination {
+  margin: 20px 0;
+  ul {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    li {
+      a, span {
+        color: $headline;
+        display: block;
+        min-width: 35px;
+        font-size: 18px;
+        padding: 5px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      &:hover a, a.active {
+        background-color: $blue-stroke;
+        color: $main;
+      }
+    }
+  }
+}

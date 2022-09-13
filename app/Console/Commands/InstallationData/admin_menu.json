@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Dashboard",
+    "url": "admin.index",
+    "img_url": "fas fa-home"
+  },
+  {
+    "name": "Users and Permissions",
+    "img_url": "fas fa-users",
+    "inner": [
+      {
+        "name": "Users",
+        "url": "admin.users.index",
+        "img_url": "fas fa-user"
+      },
+      {
+        "name": "Roles",
+        "url": "admin.users.roles.index",
+        "img_url": "fas fa-user-tag"
+      }
+    ]
+  }
+]

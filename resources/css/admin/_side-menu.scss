@@ -1,0 +1,41 @@
+.side-menu {
+  background-color: $paragraph;
+  height: 98vh;
+  width: 100%;
+
+  ul {
+    margin-left: 10px;
+
+    ul {display: none}
+
+    li {
+      cursor: pointer;
+
+      > div, > a {
+        color: $main;
+        display: block;
+        padding: 8px 24px;
+        text-decoration: none;
+        position: relative;
+      }
+
+      .image, .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .image {left: 0}
+
+      .arrow {right: 10px}
+    }
+
+    li.active {
+      ul {display: block}
+
+      > div, > a {color: $highlight}
+
+      .arrow {transform: rotate(90deg); top: 30%}
+    }
+  }
+}

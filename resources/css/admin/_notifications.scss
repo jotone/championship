@@ -1,0 +1,41 @@
+.notifications-wrap {
+  position: absolute;
+  right: 10px;
+  top: 40px;
+
+  li {
+    border-radius: 10px;
+    display: none;
+    margin: 10px 0;
+    max-width: 300px;
+    padding: 10px 30px 10px 10px;
+    position: relative;
+
+    .close {
+      cursor: pointer;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+
+      i {font-size: 20px}
+    }
+
+    &.error {
+      border: 2px solid $red-stroke;
+      background-color: $red;
+      color: $main;
+    }
+
+    &.success {
+      border: 2px solid $green-stroke;
+      background-color: $green;
+      color: $main;
+    }
+
+    &.warning {
+      border: 2px solid $yellow-stroke;
+      background-color: $yellow;
+      color: $paragraph;
+    }
+  }
+}
