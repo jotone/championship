@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\{AdminMenu, Country, Permission, Role, User};
+use App\Models\{AdminMenu, Country, Permission, Role, Settings, User};
 use App\Traits\PermissionsTrait;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -45,6 +45,7 @@ class InstallApplication extends Command
             'admin_menu' => json_decode(file_get_contents(base_path($this->files_path . 'admin_menu.json')), 1),
             'countries'  => json_decode(file_get_contents(base_path($this->files_path . 'countries.json')), 1),
             'roles'      => json_decode(file_get_contents(base_path($this->files_path . 'roles.json')), 1),
+            'settings'   => json_decode(file_get_contents(base_path($this->files_path . 'settings.json')), 1)
         ];
 
         // Create admin menu
@@ -87,10 +88,31 @@ class InstallApplication extends Command
             ]);
         });
 
+        // Create settings
+        $this->runWithTimer('Create Settings', function () use ($files) {
+            foreach ($files['settings'] as $section => $settings) {
+                foreach ($settings as $i => $setting) {
+                    Settings::create([
+                        'key'      => $setting['key'],
+                        'value'    => $setting['value'],
+                        'section'  => $section,
+                        'caption'  => $setting['caption'],
+                        'position' => $i
+                    ]);
+                }
+            }
+        });
+
+        // Create countries
         $this->runWithTimer('Countries', function () use ($files) {
             $n = count($files['countries']);
             for ($i = 0; $i < $n; $i++) {
-                DB::table('countries')->insert($files['countries'][$i]);
+                DB::table('countries')->insert([
+                    'code'    => $files['countries'][$i]['code'],
+                    'en'      => $files['countries'][$i]['en'],
+                    'ua'      => $files['countries'][$i]['ua'],
+                    'img_url' => $files['countries'][$i]['img_url']
+                ]);
             }
         });
         return 0;

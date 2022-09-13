@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\{DashboardController, CountryController, RolesController, UsersController};
+use App\Http\Controllers\Admin\{
+    DashboardController, CountryController, RolesController, TeamController, UsersController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+Route::group(['as' => 'countries.', 'prefix' => '/countries'], function () {
+    Route::resource('/teams', TeamController::class)->only(['index', 'create', 'edit']);
+});
 
 Route::resource('/countries', CountryController::class)->only(['index', 'create', 'edit']);
 

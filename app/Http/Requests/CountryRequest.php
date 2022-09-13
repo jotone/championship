@@ -14,7 +14,6 @@ class CountryRequest extends DefaultFormRequest
         return [
             'code'    => ['required', 'string'],
             'en'      => ['required', 'string'],
-            'ru'      => ['required', 'string'],
             'ua'      => ['required', 'string'],
             'img_url' => ['nullable', 'file', 'mimes:svg']
         ];

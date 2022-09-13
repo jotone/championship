@@ -12,8 +12,8 @@
         <th data-field="en">
           <TableDirections text="EN"></TableDirections>
         </th>
-        <th data-field="code">
-          <TableDirections text="Code"></TableDirections>
+        <th data-field="country">
+          <TableDirections text="Country"></TableDirections>
         </th>
         <th>
           <div class="col-name">Image</div>
@@ -30,9 +30,9 @@
       <tbody>
       <tr v-for="model in models" :data-id="model.id">
         <td><span>{{ model.id }}</span></td>
-        <td><span>{{ model.code }}</span></td>
         <td><span>{{ model.ua }}</span></td>
         <td><span>{{ model.en }}</span></td>
+        <td><a :href="editCountryRoute(model.country_id)">{{ model.country }}</a></td>
         <td>
           <img :src="model.img_url" style="max-height: 40px" alt="">
         </td>
@@ -73,6 +73,11 @@ export default {
       pagination: {},
       routes: {}
     }
+  },
+  methods: {
+    editCountryRoute(id) {
+      return Helpers.buildUrl(this.routes.country, id, 2)
+    },
   },
   mixins: [ContentTableMixin]
 }

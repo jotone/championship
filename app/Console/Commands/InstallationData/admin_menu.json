@@ -12,6 +12,11 @@
         "name": "Countries",
         "url": "admin.countries.index",
         "img_url": "fas fa-globe-africa"
+      },
+      {
+        "name": "Teams",
+        "url": "admin.countries.teams.index",
+        "img_url": "fas fa-users-class"
       }
     ]
   },

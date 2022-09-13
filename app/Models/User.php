@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\ModelThumbsTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany, HasOne};
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,9 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
+    use HasFactory, ModelThumbsTrait, Notifiable;
+
+    protected $settings_key = 'user_img';
 
     /**
      * The attributes that are mass assignable.

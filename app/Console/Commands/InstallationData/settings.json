@@ -1,0 +1,19 @@
+{
+  "images": [
+    {
+      "caption": "User image",
+      "key": "user_img",
+      "value": {
+        "resize": [400, 300]
+      }
+    },
+    {
+      "caption": "Team image",
+      "key": "team_img",
+      "value": {
+        "thumb_large": [150, 90],
+        "resize": [400, 300]
+      }
+    }
+  ]
+}

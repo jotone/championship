@@ -2,91 +2,78 @@
   {
     "en": "Ascension Island",
     "code": "AC",
-    "ru": "Остров Вознесения",
     "ua": "Острів Вознесіння",
     "img_url": "\/images\/country\/AC.svg"
   },
   {
     "en": "Andorra",
     "code": "AD",
-    "ru": "\u0410\u043d\u0434\u043e\u0440\u0440\u0430",
     "ua": "\u0410\u043d\u0434\u043e\u0440\u0440\u0430",
     "img_url": "\/images\/country\/AD.svg"
   },
   {
     "en": "United Arab Emirates",
     "code": "AE",
-    "ru": "\u041e\u0410\u042d",
     "ua": "\u041e\u0431'\u0454\u0434\u043d\u0430\u043d\u0456 \u0410\u0440\u0430\u0431\u0441\u044c\u043a\u0456 \u0415\u043c\u0456\u0440\u0430\u0442\u0438",
     "img_url": "\/images\/country\/AE.svg"
   },
   {
     "en": "Afghanistan",
     "code": "AF",
-    "ru": "\u0410\u0444\u0433\u0430\u043d\u0438\u0441\u0442\u0430\u043d",
     "ua": "\u0410\u0444\u0433\u0430\u043d\u0456\u0441\u0442\u0430\u043d",
     "img_url": "\/images\/country\/AF.svg"
   },
   {
     "en": "Antigua & Barbuda",
     "code": "AG",
-    "ru": "\u0410\u043d\u0442\u0438\u0433\u0443\u0430 \u0438 \u0411\u0430\u0440\u0431\u0443\u0434\u0430",
     "ua": "\u0410\u043d\u0442\u0438\u0433\u0443\u0430 \u0456 \u0411\u0430\u0440\u0431\u0443\u0434\u0430",
     "img_url": "\/images\/country\/AG.svg"
   },
   {
     "en": "Anguilla",
     "code": "AI",
-    "ru": "\u0410\u043d\u0433\u0438\u043b\u044c\u044f",
     "ua": "\u0410\u043d\u0433\u0456\u043b\u044c\u044f",
     "img_url": "\/images\/country\/AI.svg"
   },
   {
     "en": "Albania",
     "code": "AL",
-    "ru": "\u0410\u043b\u0431\u0430\u043d\u0438\u044f",
     "ua": "\u0410\u043b\u0431\u0430\u043d\u0456\u044f",
     "img_url": "\/images\/country\/AL.svg"
   },
   {
     "en": "Armenia",
     "code": "AM",
-    "ru": "\u0410\u0440\u043c\u0435\u043d\u0438\u044f",
     "ua": "\u0412\u0456\u0440\u043c\u0435\u043d\u0456\u044f",
     "img_url": "\/images\/country\/AM.svg"
   },
   {
     "en": "Angola",
     "code": "AO",
-    "ru": "\u0410\u043d\u0433\u043e\u043b\u0430",
     "ua": "\u0410\u043d\u0433\u043e\u043b\u0430",
     "img_url": "\/images\/country\/AO.svg"
   },
   {
     "en": "Antarctica",
     "code": "AQ",
-    "ru": "\u0410\u043d\u0442\u0430\u0440\u043a\u0442\u0438\u0434\u0430",
     "ua": "\u0410\u043d\u0442\u0430\u0440\u043a\u0442\u0438\u043a\u0430",
     "img_url": "\/images\/country\/AQ.svg"
   },
   {
     "en": "Argentina",
     "code": "AR",
-    "ru": "\u0410\u0440\u0433\u0435\u043d\u0442\u0438\u043d\u0430",
     "ua": "\u0410\u0440\u0433\u0435\u043d\u0442\u0438\u043d\u0430",
     "img_url": "\/images\/country\/AR.svg"
   },
   {
     "en": "American Samoa",
     "code": "AS",
-    "ru": "\u0410\u043c\u0435\u0440\u0438\u043a\u0430\u043d\u0441\u043a\u043e\u0435 \u0421\u0430\u043c\u043e\u0430",
     "ua": "\u0410\u043c\u0435\u0440\u0438\u043a\u0430\u043d\u0441\u044c\u043a\u0435 \u0421\u0430\u043c\u043e\u0430",
     "img_url": "\/images\/country\/AS.svg"
   },
   {
     "en": "Austria",
     "code": "AT",
-    "ru": "\u0410\u0432\u0441\u0442\u0440\u0438\u044f",
     "ua": "\u0410\u0432\u0441\u0442\u0440\u0456\u044f",
     "img_url": "\/images\/country\/AT.svg"
   },
@@ -94,41 +81,35 @@
     "en": "Australia",
     "code": "AU",
     "img_url": "\/images\/country\/AU.svg",
-    "ua": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0456\u044f",
-    "ru": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0438\u044f"
+    "ua": "\u0410\u0432\u0441\u0442\u0440\u0430\u043b\u0456\u044f"
   },
   {
     "en": "Aruba",
     "code": "AW",
-    "ru": "\u0410\u0440\u0443\u0431\u0430",
     "ua": "\u0410\u0440\u0443\u0431\u0430",
     "img_url": "\/images\/country\/AW.svg"
   },
   {
     "en": "\u00c5land Islands",
     "code": "AX",
-    "ru": "\u0410\u043b\u0430\u043d\u0434\u0441\u043a\u0438\u0435 \u043e\u0441\u0442\u0440\u043e\u0432\u0430",
     "ua": "\u0410\u043b\u0430\u043d\u0434\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
     "img_url": "\/images\/country\/AX.svg"
   },
   {
     "en": "Azerbaijan",
     "code": "AZ",
-    "ru": "\u0410\u0437\u0435\u0440\u0431\u0430\u0439\u0434\u0436\u0430\u043d",
     "ua": "\u0410\u0437\u0435\u0440\u0431\u0430\u0439\u0434\u0436\u0430\u043d",
     "img_url": "\/images\/country\/AZ.svg"
   },
   {
     "en": "Bosnia & Herzegovina",
     "code": "BA",
-    "ru": "\u0411\u043e\u0441\u043d\u0438\u044f \u0438 \u0413\u0435\u0440\u0446\u0435\u0433\u043e\u0432\u0438\u043d\u0430",
     "ua": "\u0411\u043e\u0441\u043d\u0456\u044f \u0456 \u0413\u0435\u0440\u0446\u0435\u0433\u043e\u0432\u0438\u043d\u0430",
     "img_url": "\/images\/country\/BA.svg"
   },
   {
     "en": "Barbados",
     "code": "BB",
-    "ru": "\u0411\u0430\u0440\u0431\u0430\u0434\u043e\u0441",
     "ua": "\u0411\u0430\u0440\u0431\u0430\u0434\u043e\u0441",
     "img_url": "\/images\/country\/BB.svg"
   },
@@ -136,1681 +117,1446 @@
     "en": "Bangladesh",
     "code": "BD",
     "img_url": "\/images\/country\/BD.svg",
-    "ua": "\u0411\u0430\u043d\u0433\u043b\u0430\u0434\u0435\u0448",
-    "ru": "\u0411\u0430\u043d\u0433\u043b\u0430\u0434\u0435\u0448"
+    "ua": "\u0411\u0430\u043d\u0433\u043b\u0430\u0434\u0435\u0448"
   },
   {
     "en": "Belgium",
     "code": "BE",
     "img_url": "\/images\/country\/BE.svg",
-    "ua": "\u0411\u0435\u043b\u044c\u0433\u0456\u044f",
-    "ru": "\u0411\u0435\u043b\u044c\u0433\u0438\u044f"
+    "ua": "\u0411\u0435\u043b\u044c\u0433\u0456\u044f"
   },
   {
     "en": "Burkina Faso",
     "code": "BF",
     "img_url": "\/images\/country\/BF.svg",
-    "ua": "\u0411\u0443\u0440\u043a\u0456\u043d\u0430-\u0424\u0430\u0441\u043e",
-    "ru": "\u0411\u0443\u0440\u043a\u0438\u043d\u0430-\u0424\u0430\u0441\u043e"
+    "ua": "\u0411\u0443\u0440\u043a\u0456\u043d\u0430-\u0424\u0430\u0441\u043e"
   },
   {
     "en": "Bulgaria",
     "code": "BG",
     "img_url": "\/images\/country\/BG.svg",
-    "ua": "\u0411\u043e\u043b\u0433\u0430\u0440\u0456\u044f",
-    "ru": "\u0411\u043e\u043b\u0433\u0430\u0440\u0438\u044f"
+    "ua": "\u0411\u043e\u043b\u0433\u0430\u0440\u0456\u044f"
   },
   {
     "en": "Bahrain",
     "code": "BH",
     "img_url": "\/images\/country\/BH.svg",
-    "ua": "\u0411\u0430\u0445\u0440\u0435\u0439\u043d",
-    "ru": "\u0411\u0430\u0445\u0440\u0435\u0439\u043d"
+    "ua": "\u0411\u0430\u0445\u0440\u0435\u0439\u043d"
   },
   {
     "en": "Burundi",
     "code": "BI",
     "img_url": "\/images\/country\/BI.svg",
-    "ua": "\u0411\u0443\u0440\u0443\u043d\u0434\u0456",
-    "ru": "\u0411\u0443\u0440\u0443\u043d\u0434\u0438"
+    "ua": "\u0411\u0443\u0440\u0443\u043d\u0434\u0456"
   },
   {
     "en": "Benin",
     "code": "BJ",
     "img_url": "\/images\/country\/BJ.svg",
-    "ua": "\u0411\u0435\u043d\u0456\u043d",
-    "ru": "\u0411\u0435\u043d\u0438\u043d"
+    "ua": "\u0411\u0435\u043d\u0456\u043d"
   },
   {
     "en": "St. Barth\u00e9lemy",
     "code": "BL",
     "img_url": "\/images\/country\/BL.svg",
-    "ua": "\u0421\u0435\u043d-\u0411\u0430\u0440\u0442\u0435\u043b\u0435\u043c\u0456",
-    "ru": "\u0421\u0435\u043d-\u0411\u0430\u0440\u0442\u0435\u043b\u0435\u043c\u0438"
+    "ua": "\u0421\u0435\u043d-\u0411\u0430\u0440\u0442\u0435\u043b\u0435\u043c\u0456"
   },
   {
     "en": "Bermuda",
     "code": "BM",
     "img_url": "\/images\/country\/BM.svg",
-    "ua": "\u0411\u0435\u0440\u043c\u0443\u0434\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u0411\u0435\u0440\u043c\u0443\u0434\u044b"
+    "ua": "\u0411\u0435\u0440\u043c\u0443\u0434\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Brunei",
     "code": "BN",
     "img_url": "\/images\/country\/BN.svg",
-    "ua": "\u0411\u0440\u0443\u043d\u0435\u0439-\u0414\u0430\u0440\u0443\u0441\u0441\u0430\u043b\u0430\u043c",
-    "ru": "\u0411\u0440\u0443\u043d\u0435\u0439"
+    "ua": "\u0411\u0440\u0443\u043d\u0435\u0439-\u0414\u0430\u0440\u0443\u0441\u0441\u0430\u043b\u0430\u043c"
   },
   {
     "en": "Bolivia",
     "code": "BO",
     "img_url": "\/images\/country\/BO.svg",
-    "ua": "\u0411\u043e\u043b\u0456\u0432\u0456\u044f",
-    "ru": "\u0411\u043e\u043b\u0438\u0432\u0438\u044f"
+    "ua": "\u0411\u043e\u043b\u0456\u0432\u0456\u044f"
   },
   {
     "en": "Caribbean Netherlands",
     "code": "BQ",
     "img_url": "\/images\/country\/BQ.svg",
-    "ua": "\u041a\u0430\u0440\u0438\u0431\u0441\u044c\u043a\u0456 \u041d\u0456\u0434\u0435\u0440\u043b\u0430\u043d\u0434\u0438",
-    "ru": "\u0411\u043e\u043d\u044d\u0439\u0440, \u0421\u0438\u043d\u0442-\u042d\u0441\u0442\u0430\u0442\u0438\u0443\u0441 \u0438 \u0421\u0430\u0431\u0430"
+    "ua": "\u041a\u0430\u0440\u0438\u0431\u0441\u044c\u043a\u0456 \u041d\u0456\u0434\u0435\u0440\u043b\u0430\u043d\u0434\u0438"
   },
   {
     "en": "Brazil",
     "code": "BR",
     "img_url": "\/images\/country\/BR.svg",
-    "ua": "\u0411\u0440\u0430\u0437\u0438\u043b\u0456\u044f",
-    "ru": "\u0411\u0440\u0430\u0437\u0438\u043b\u0438\u044f"
+    "ua": "\u0411\u0440\u0430\u0437\u0438\u043b\u0456\u044f"
   },
   {
     "en": "Bahamas",
     "code": "BS",
     "img_url": "\/images\/country\/BS.svg",
-    "ua": "\u0411\u0430\u0433\u0430\u043c\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u0411\u0430\u0433\u0430\u043c\u044b"
+    "ua": "\u0411\u0430\u0433\u0430\u043c\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Bhutan",
     "code": "BT",
     "img_url": "\/images\/country\/BT.svg",
-    "ua": "\u0411\u0443\u0442\u0430\u043d",
-    "ru": "\u0411\u0443\u0442\u0430\u043d"
+    "ua": "\u0411\u0443\u0442\u0430\u043d"
   },
   {
     "en": "Bouvet Island",
     "code": "BV",
     "img_url": "\/images\/country\/BV.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u0411\u0443\u0432\u0435",
-    "ru": "\u041e\u0441\u0442\u0440\u043e\u0432 \u0411\u0443\u0432\u0435"
+    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u0411\u0443\u0432\u0435"
   },
   {
     "en": "Botswana",
     "code": "BW",
     "img_url": "\/images\/country\/BW.svg",
-    "ua": "\u0411\u043e\u0442\u0441\u0432\u0430\u043d\u0430",
-    "ru": "\u0411\u043e\u0442\u0441\u0432\u0430\u043d\u0430"
+    "ua": "\u0411\u043e\u0442\u0441\u0432\u0430\u043d\u0430"
   },
   {
     "en": "Belarus",
     "code": "BY",
     "img_url": "\/images\/country\/BY.svg",
-    "ua": "\u0411\u0456\u043b\u043e\u0440\u0443\u0441\u044c",
-    "ru": "\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c"
+    "ua": "\u0411\u0456\u043b\u043e\u0440\u0443\u0441\u044c"
   },
   {
     "en": "Belize",
     "code": "BZ",
     "img_url": "\/images\/country\/BZ.svg",
-    "ua": "\u0411\u0435\u043b\u0456\u0437",
-    "ru": "\u0411\u0435\u043b\u0438\u0437"
+    "ua": "\u0411\u0435\u043b\u0456\u0437"
   },
   {
     "en": "Canada",
     "code": "CA",
     "img_url": "\/images\/country\/CA.svg",
-    "ua": "\u041a\u0430\u043d\u0430\u0434\u0430",
-    "ru": "\u041a\u0430\u043d\u0430\u0434\u0430"
+    "ua": "\u041a\u0430\u043d\u0430\u0434\u0430"
   },
   {
     "en": "Cocos (Keeling) Islands",
     "code": "CC",
     "img_url": "\/images\/country\/CC.svg",
-    "ua": "\u041a\u043e\u043a\u043e\u0441\u043e\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u041a\u043e\u043a\u043e\u0441\u043e\u0432\u044b\u0435 \u043e\u0441\u0442\u0440\u043e\u0432\u0430"
+    "ua": "\u041a\u043e\u043a\u043e\u0441\u043e\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Congo - Kinshasa",
     "code": "CD",
     "img_url": "\/images\/country\/CD.svg",
-    "ua": "\u0414\u0435\u043c\u043e\u043a\u0440\u0430\u0442\u0438\u0447\u043d\u0430 \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430 \u041a\u043e\u043d\u0433\u043e",
-    "ru": "\u0414\u0435\u043c\u043e\u043a\u0440\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u043e\u043d\u0433\u043e"
+    "ua": "\u0414\u0435\u043c\u043e\u043a\u0440\u0430\u0442\u0438\u0447\u043d\u0430 \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430 \u041a\u043e\u043d\u0433\u043e"
   },
   {
     "en": "Central African Republic",
     "code": "CF",
     "img_url": "\/images\/country\/CF.svg",
-    "ua": "\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u043e\u0430\u0444\u0440\u0438\u043a\u0430\u043d\u0441\u044c\u043a\u0430 \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430",
-    "ru": "\u0426\u0410\u0420"
+    "ua": "\u0426\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u043e\u0430\u0444\u0440\u0438\u043a\u0430\u043d\u0441\u044c\u043a\u0430 \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430"
   },
   {
     "en": "Congo - Brazzaville",
     "code": "CG",
     "img_url": "\/images\/country\/CG.svg",
-    "ua": "\u041a\u043e\u043d\u0433\u043e",
-    "ru": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u043e\u043d\u0433\u043e"
+    "ua": "\u041a\u043e\u043d\u0433\u043e"
   },
   {
     "en": "Switzerland",
     "code": "CH",
     "img_url": "\/images\/country\/CH.svg",
-    "ua": "\u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0456\u044f",
-    "ru": "\u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0438\u044f"
+    "ua": "\u0428\u0432\u0435\u0439\u0446\u0430\u0440\u0456\u044f"
   },
   {
     "en": "C\u00f4te d\u2019Ivoire",
     "code": "CI",
     "img_url": "\/images\/country\/CI.svg",
-    "ua": "\u041a\u043e\u0442-\u0414'\u0406\u0432\u0443\u0430\u0440",
-    "ru": "\u041a\u043e\u0442-\u0434\u2019\u0418\u0432\u0443\u0430\u0440"
+    "ua": "\u041a\u043e\u0442-\u0414'\u0406\u0432\u0443\u0430\u0440"
   },
   {
     "en": "Cook Islands",
     "code": "CK",
     "img_url": "\/images\/country\/CK.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u043e\u0432\u0438 \u041a\u0443\u043a\u0430",
-    "ru": "\u041e\u0441\u0442\u0440\u043e\u0432\u0430 \u041a\u0443\u043a\u0430"
+    "ua": "\u041e\u0441\u0442\u0440\u043e\u0432\u0438 \u041a\u0443\u043a\u0430"
   },
   {
     "en": "Chile",
     "code": "CL",
     "img_url": "\/images\/country\/CL.svg",
-    "ua": "\u0427\u0438\u043b\u0456",
-    "ru": "\u0427\u0438\u043b\u0438"
+    "ua": "\u0427\u0438\u043b\u0456"
   },
   {
     "en": "Cameroon",
     "code": "CM",
     "img_url": "\/images\/country\/CM.svg",
-    "ua": "\u041a\u0430\u043c\u0435\u0440\u0443\u043d",
-    "ru": "\u041a\u0430\u043c\u0435\u0440\u0443\u043d"
+    "ua": "\u041a\u0430\u043c\u0435\u0440\u0443\u043d"
   },
   {
     "en": "China",
     "code": "CN",
     "img_url": "\/images\/country\/CN.svg",
-    "ua": "\u041a\u0438\u0442\u0430\u0439",
-    "ru": "\u041a\u041d\u0420 (\u041a\u0438\u0442\u0430\u0439\u0441\u043a\u0430\u044f \u041d\u0430\u0440\u043e\u0434\u043d\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430)"
+    "ua": "\u041a\u0438\u0442\u0430\u0439"
   },
   {
     "en": "Colombia",
     "code": "CO",
     "img_url": "\/images\/country\/CO.svg",
-    "ua": "\u041a\u043e\u043b\u0443\u043c\u0431\u0456\u044f",
-    "ru": "\u041a\u043e\u043b\u0443\u043c\u0431\u0438\u044f"
+    "ua": "\u041a\u043e\u043b\u0443\u043c\u0431\u0456\u044f"
   },
   {
     "en": "Clipperton Island",
     "code": "CP",
-    "img_url": "\/images\/country\/CP.svg"
+    "img_url": "\/images\/country\/CP.svg",
+    "ua": "Кліппертон"
   },
   {
     "en": "Costa Rica",
     "code": "CR",
     "img_url": "\/images\/country\/CR.svg",
-    "ua": "\u041a\u043e\u0441\u0442\u0430-\u0420\u0438\u043a\u0430",
-    "ru": "\u041a\u043e\u0441\u0442\u0430-\u0420\u0438\u043a\u0430"
+    "ua": "\u041a\u043e\u0441\u0442\u0430-\u0420\u0438\u043a\u0430"
   },
   {
     "en": "Cuba",
     "code": "CU",
     "img_url": "\/images\/country\/CU.svg",
-    "ua": "\u041a\u0443\u0431\u0430",
-    "ru": "\u041a\u0443\u0431\u0430"
+    "ua": "\u041a\u0443\u0431\u0430"
   },
   {
     "en": "Cape Verde",
     "code": "CV",
     "img_url": "\/images\/country\/CV.svg",
-    "ua": "\u041a\u0430\u0431\u043e-\u0412\u0435\u0440\u0434\u0435",
-    "ru": "\u041a\u0430\u0431\u043e-\u0412\u0435\u0440\u0434\u0435"
+    "ua": "\u041a\u0430\u0431\u043e-\u0412\u0435\u0440\u0434\u0435"
   },
   {
     "en": "Cura\u00e7ao",
     "code": "CW",
     "img_url": "\/images\/country\/CW.svg",
-    "ua": "\u041a\u044e\u0440\u0430\u0441\u0430\u043e",
-    "ru": "\u041a\u044e\u0440\u0430\u0441\u0430\u043e"
+    "ua": "\u041a\u044e\u0440\u0430\u0441\u0430\u043e"
   },
   {
     "en": "Christmas Island",
     "code": "CX",
     "img_url": "\/images\/country\/CX.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u0420\u0456\u0437\u0434\u0432\u0430",
-    "ru": "\u041e\u0441\u0442\u0440\u043e\u0432 \u0420\u043e\u0436\u0434\u0435\u0441\u0442\u0432\u0430"
+    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u0420\u0456\u0437\u0434\u0432\u0430"
   },
   {
     "en": "Cyprus",
     "code": "CY",
     "img_url": "\/images\/country\/CY.svg",
-    "ua": "\u041a\u0456\u043f\u0440",
-    "ru": "\u041a\u0438\u043f\u0440"
+    "ua": "\u041a\u0456\u043f\u0440"
   },
   {
     "en": "Czechia",
     "code": "CZ",
     "img_url": "\/images\/country\/CZ.svg",
-    "ua": "\u0427\u0435\u0445\u0456\u044f",
-    "ru": "\u0427\u0435\u0445\u0438\u044f"
+    "ua": "\u0427\u0435\u0445\u0456\u044f"
   },
   {
     "en": "Germany",
     "code": "DE",
     "img_url": "\/images\/country\/DE.svg",
-    "ua": "\u041d\u0456\u043c\u0435\u0447\u0447\u0438\u043d\u0430",
-    "ru": "\u0413\u0435\u0440\u043c\u0430\u043d\u0438\u044f"
+    "ua": "\u041d\u0456\u043c\u0435\u0447\u0447\u0438\u043d\u0430"
   },
   {
     "en": "Diego Garcia",
     "code": "DG",
     "img_url": "\/images\/country\/DG.svg",
-    "ua": "Дієго-Гарсія",
-    "ru": "Диего-Гарсия"
+    "ua": "Дієго-Гарсія"
   },
   {
     "en": "Djibouti",
     "code": "DJ",
     "img_url": "\/images\/country\/DJ.svg",
-    "ua": "\u0414\u0436\u0438\u0431\u0443\u0442\u0456",
-    "ru": "\u0414\u0436\u0438\u0431\u0443\u0442\u0438"
+    "ua": "\u0414\u0436\u0438\u0431\u0443\u0442\u0456"
   },
   {
     "en": "Denmark",
     "code": "DK",
     "img_url": "\/images\/country\/DK.svg",
-    "ua": "\u0414\u0430\u043d\u0456\u044f",
-    "ru": "\u0414\u0430\u043d\u0438\u044f"
+    "ua": "\u0414\u0430\u043d\u0456\u044f"
   },
   {
     "en": "Dominica",
     "code": "DM",
     "img_url": "\/images\/country\/DM.svg",
-    "ua": "\u0414\u043e\u043c\u0456\u043d\u0456\u043a\u0430",
-    "ru": "\u0414\u043e\u043c\u0438\u043d\u0438\u043a\u0430"
+    "ua": "\u0414\u043e\u043c\u0456\u043d\u0456\u043a\u0430"
   },
   {
     "en": "Dominican Republic",
     "code": "DO",
     "img_url": "\/images\/country\/DO.svg",
-    "ua": "\u0414\u043e\u043c\u0456\u043d\u0456\u043a\u0430\u043d\u0441\u044c\u043a\u0430 \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430",
-    "ru": "\u0414\u043e\u043c\u0438\u043d\u0438\u043a\u0430\u043d\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430"
+    "ua": "\u0414\u043e\u043c\u0456\u043d\u0456\u043a\u0430\u043d\u0441\u044c\u043a\u0430 \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430"
   },
   {
     "en": "Algeria",
     "code": "DZ",
     "img_url": "\/images\/country\/DZ.svg",
-    "ua": "\u0410\u043b\u0436\u0438\u0440",
-    "ru": "\u0410\u043b\u0436\u0438\u0440"
+    "ua": "\u0410\u043b\u0436\u0438\u0440"
   },
   {
     "en": "Ceuta & Melilla",
     "code": "EA",
     "img_url": "\/images\/country\/EA.svg",
-    "ua": "Сеута",
-    "ru": "Сеута"
+    "ua": "Сеута"
   },
   {
     "en": "Ecuador",
     "code": "EC",
     "img_url": "\/images\/country\/EC.svg",
-    "ua": "\u0415\u043a\u0432\u0430\u0434\u043e\u0440",
-    "ru": "\u042d\u043a\u0432\u0430\u0434\u043e\u0440"
+    "ua": "\u0415\u043a\u0432\u0430\u0434\u043e\u0440"
   },
   {
     "en": "Estonia",
     "code": "EE",
     "img_url": "\/images\/country\/EE.svg",
-    "ua": "\u0415\u0441\u0442\u043e\u043d\u0456\u044f",
-    "ru": "\u042d\u0441\u0442\u043e\u043d\u0438\u044f"
+    "ua": "\u0415\u0441\u0442\u043e\u043d\u0456\u044f"
   },
   {
     "en": "Egypt",
     "code": "EG",
     "img_url": "\/images\/country\/EG.svg",
-    "ua": "\u0404\u0433\u0438\u043f\u0435\u0442",
-    "ru": "\u0415\u0433\u0438\u043f\u0435\u0442"
+    "ua": "\u0404\u0433\u0438\u043f\u0435\u0442"
   },
   {
     "en": "Western Sahara",
     "code": "EH",
     "img_url": "\/images\/country\/EH.svg",
-    "ua": "\u0417\u0430\u0445\u0456\u0434\u043d\u0430 \u0421\u0430\u0445\u0430\u0440\u0430",
-    "ru": "\u0421\u0410\u0414\u0420"
+    "ua": "\u0417\u0430\u0445\u0456\u0434\u043d\u0430 \u0421\u0430\u0445\u0430\u0440\u0430"
   },
   {
     "en": "Eritrea",
     "code": "ER",
     "img_url": "\/images\/country\/ER.svg",
-    "ua": "\u0415\u0440\u0438\u0442\u0440\u0435\u044f",
-    "ru": "\u042d\u0440\u0438\u0442\u0440\u0435\u044f"
+    "ua": "\u0415\u0440\u0438\u0442\u0440\u0435\u044f"
   },
   {
     "en": "Spain",
     "code": "ES",
     "img_url": "\/images\/country\/ES.svg",
-    "ua": "\u0406\u0441\u043f\u0430\u043d\u0456\u044f",
-    "ru": "\u0418\u0441\u043f\u0430\u043d\u0438\u044f"
+    "ua": "\u0406\u0441\u043f\u0430\u043d\u0456\u044f"
   },
   {
     "en": "Ethiopia",
     "code": "ET",
     "img_url": "\/images\/country\/ET.svg",
-    "ua": "\u0415\u0444\u0456\u043e\u043f\u0456\u044f",
-    "ru": "\u042d\u0444\u0438\u043e\u043f\u0438\u044f"
+    "ua": "\u0415\u0444\u0456\u043e\u043f\u0456\u044f"
   },
   {
     "en": "European Union",
     "code": "EU",
-    "img_url": "\/images\/country\/EU.svg"
+    "img_url": "\/images\/country\/EU.svg",
+    "ua": "Європейський Союз"
   },
   {
     "en": "Finland",
     "code": "FI",
     "img_url": "\/images\/country\/FI.svg",
-    "ua": "\u0424\u0456\u043d\u043b\u044f\u043d\u0434\u0456\u044f",
-    "ru": "\u0424\u0438\u043d\u043b\u044f\u043d\u0434\u0438\u044f"
+    "ua": "\u0424\u0456\u043d\u043b\u044f\u043d\u0434\u0456\u044f"
   },
   {
     "en": "Fiji",
     "code": "FJ",
     "img_url": "\/images\/country\/FJ.svg",
-    "ua": "\u0424\u0456\u0434\u0436\u0456",
-    "ru": "\u0424\u0438\u0434\u0436\u0438"
+    "ua": "\u0424\u0456\u0434\u0436\u0456"
   },
   {
     "en": "Falkland Islands",
     "code": "FK",
     "img_url": "\/images\/country\/FK.svg",
-    "ua": "\u0424\u043e\u043b\u043a\u043b\u0435\u043d\u0434\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u0424\u043e\u043b\u043a\u043b\u0435\u043d\u0434\u0441\u043a\u0438\u0435 \u043e\u0441\u0442\u0440\u043e\u0432\u0430"
+    "ua": "\u0424\u043e\u043b\u043a\u043b\u0435\u043d\u0434\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Micronesia",
     "code": "FM",
     "img_url": "\/images\/country\/FM.svg",
-    "ua": "\u041c\u0456\u043a\u0440\u043e\u043d\u0435\u0437\u0456\u044f",
-    "ru": "\u041c\u0438\u043a\u0440\u043e\u043d\u0435\u0437\u0438\u044f"
+    "ua": "\u041c\u0456\u043a\u0440\u043e\u043d\u0435\u0437\u0456\u044f"
   },
   {
     "en": "Faroe Islands",
     "code": "FO",
     "img_url": "\/images\/country\/FO.svg",
-    "ua": "\u0424\u0430\u0440\u0435\u0440\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u0424\u0430\u0440\u0435\u0440\u044b"
+    "ua": "\u0424\u0430\u0440\u0435\u0440\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "France",
     "code": "FR",
     "img_url": "\/images\/country\/FR.svg",
-    "ua": "\u0424\u0440\u0430\u043d\u0446\u0456\u044f",
-    "ru": "\u0424\u0440\u0430\u043d\u0446\u0438\u044f"
+    "ua": "\u0424\u0440\u0430\u043d\u0446\u0456\u044f"
   },
   {
     "en": "Gabon",
     "code": "GA",
     "img_url": "\/images\/country\/GA.svg",
-    "ua": "\u0413\u0430\u0431\u043e\u043d",
-    "ru": "\u0413\u0430\u0431\u043e\u043d"
+    "ua": "\u0413\u0430\u0431\u043e\u043d"
   },
   {
     "en": "United Kingdom",
     "code": "GB",
     "img_url": "\/images\/country\/GB.svg",
-    "ua": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0456\u044f",
-    "ru": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f"
+    "ua": "\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0456\u044f"
   },
   {
     "en": "Grenada",
     "code": "GD",
     "img_url": "\/images\/country\/GD.svg",
-    "ua": "\u0413\u0440\u0435\u043d\u0430\u0434\u0430",
-    "ru": "\u0413\u0440\u0435\u043d\u0430\u0434\u0430"
+    "ua": "\u0413\u0440\u0435\u043d\u0430\u0434\u0430"
   },
   {
     "en": "Georgia",
     "code": "GE",
     "img_url": "\/images\/country\/GE.svg",
-    "ua": "\u0413\u0440\u0443\u0437\u0456\u044f",
-    "ru": "\u0413\u0440\u0443\u0437\u0438\u044f"
+    "ua": "\u0413\u0440\u0443\u0437\u0456\u044f"
   },
   {
     "en": "French Guiana",
     "code": "GF",
     "img_url": "\/images\/country\/GF.svg",
-    "ua": "\u0413\u0432\u0456\u0430\u043d\u0430",
-    "ru": "\u0413\u0432\u0438\u0430\u043d\u0430"
+    "ua": "\u0413\u0432\u0456\u0430\u043d\u0430"
   },
   {
     "en": "Guernsey",
     "code": "GG",
     "img_url": "\/images\/country\/GG.svg",
-    "ua": "\u0413\u0435\u0440\u043d\u0441\u0456",
-    "ru": "\u0413\u0435\u0440\u043d\u0441\u0438"
+    "ua": "\u0413\u0435\u0440\u043d\u0441\u0456"
   },
   {
     "en": "Ghana",
     "code": "GH",
     "img_url": "\/images\/country\/GH.svg",
-    "ua": "\u0413\u0430\u043d\u0430",
-    "ru": "\u0413\u0430\u043d\u0430"
+    "ua": "\u0413\u0430\u043d\u0430"
   },
   {
     "en": "Gibraltar",
     "code": "GI",
     "img_url": "\/images\/country\/GI.svg",
-    "ua": "\u0413\u0456\u0431\u0440\u0430\u043b\u0442\u0430\u0440",
-    "ru": "\u0413\u0438\u0431\u0440\u0430\u043b\u0442\u0430\u0440"
+    "ua": "\u0413\u0456\u0431\u0440\u0430\u043b\u0442\u0430\u0440"
   },
   {
     "en": "Greenland",
     "code": "GL",
     "img_url": "\/images\/country\/GL.svg",
-    "ua": "\u0413\u0440\u0435\u043d\u043b\u0430\u043d\u0434\u0456\u044f",
-    "ru": "\u0413\u0440\u0435\u043d\u043b\u0430\u043d\u0434\u0438\u044f"
+    "ua": "\u0413\u0440\u0435\u043d\u043b\u0430\u043d\u0434\u0456\u044f"
   },
   {
     "en": "Gambia",
     "code": "GM",
     "img_url": "\/images\/country\/GM.svg",
-    "ua": "\u0413\u0430\u043c\u0431\u0456\u044f",
-    "ru": "\u0413\u0430\u043c\u0431\u0438\u044f"
+    "ua": "\u0413\u0430\u043c\u0431\u0456\u044f"
   },
   {
     "en": "Guinea",
     "code": "GN",
     "img_url": "\/images\/country\/GN.svg",
-    "ua": "\u0413\u0432\u0456\u043d\u0435\u044f",
-    "ru": "\u0413\u0432\u0438\u043d\u0435\u044f"
+    "ua": "\u0413\u0432\u0456\u043d\u0435\u044f"
   },
   {
     "en": "Guadeloupe",
     "code": "GP",
     "img_url": "\/images\/country\/GP.svg",
-    "ua": "\u0413\u0432\u0430\u0434\u0435\u043b\u0443\u043f\u0430",
-    "ru": "\u0413\u0432\u0430\u0434\u0435\u043b\u0443\u043f\u0430"
+    "ua": "\u0413\u0432\u0430\u0434\u0435\u043b\u0443\u043f\u0430"
   },
   {
     "en": "Equatorial Guinea",
     "code": "GQ",
     "img_url": "\/images\/country\/GQ.svg",
-    "ua": "\u0415\u043a\u0432\u0430\u0442\u043e\u0440\u0456\u0430\u043b\u044c\u043d\u0430 \u0413\u0432\u0456\u043d\u0435\u044f",
-    "ru": "\u042d\u043a\u0432\u0430\u0442\u043e\u0440\u0438\u0430\u043b\u044c\u043d\u0430\u044f \u0413\u0432\u0438\u043d\u0435\u044f"
+    "ua": "\u0415\u043a\u0432\u0430\u0442\u043e\u0440\u0456\u0430\u043b\u044c\u043d\u0430 \u0413\u0432\u0456\u043d\u0435\u044f"
   },
   {
     "en": "Greece",
     "code": "GR",
     "img_url": "\/images\/country\/GR.svg",
-    "ua": "\u0413\u0440\u0435\u0446\u0456\u044f",
-    "ru": "\u0413\u0440\u0435\u0446\u0438\u044f"
+    "ua": "\u0413\u0440\u0435\u0446\u0456\u044f"
   },
   {
     "en": "South Georgia & South Sandwich Islands",
     "code": "GS",
     "img_url": "\/images\/country\/GS.svg",
-    "ua": "\u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0430 \u0414\u0436\u043e\u0440\u0434\u0436\u0456\u044f \u0442\u0430 \u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0456 \u0421\u0430\u043d\u0434\u0432\u0456\u0447\u0435\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u042e\u0436\u043d\u0430\u044f \u0413\u0435\u043e\u0440\u0433\u0438\u044f \u0438 \u042e\u0436\u043d\u044b\u0435 \u0421\u0430\u043d\u0434\u0432\u0438\u0447\u0435\u0432\u044b \u041e\u0441\u0442\u0440\u043e\u0432\u0430"
+    "ua": "\u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0430 \u0414\u0436\u043e\u0440\u0434\u0436\u0456\u044f \u0442\u0430 \u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0456 \u0421\u0430\u043d\u0434\u0432\u0456\u0447\u0435\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Guatemala",
     "code": "GT",
     "img_url": "\/images\/country\/GT.svg",
-    "ua": "\u0413\u0432\u0430\u0442\u0435\u043c\u0430\u043b\u0430",
-    "ru": "\u0413\u0432\u0430\u0442\u0435\u043c\u0430\u043b\u0430"
+    "ua": "\u0413\u0432\u0430\u0442\u0435\u043c\u0430\u043b\u0430"
   },
   {
     "en": "Guam",
     "code": "GU",
     "img_url": "\/images\/country\/GU.svg",
-    "ua": "\u0413\u0443\u0430\u043c",
-    "ru": "\u0413\u0443\u0430\u043c"
+    "ua": "\u0413\u0443\u0430\u043c"
   },
   {
     "en": "Guinea-Bissau",
     "code": "GW",
     "img_url": "\/images\/country\/GW.svg",
-    "ua": "\u0413\u0432\u0456\u043d\u0435\u044f-\u0411\u0456\u0441\u0430\u0443",
-    "ru": "\u0413\u0432\u0438\u043d\u0435\u044f-\u0411\u0438\u0441\u0430\u0443"
+    "ua": "\u0413\u0432\u0456\u043d\u0435\u044f-\u0411\u0456\u0441\u0430\u0443"
   },
   {
     "en": "Guyana",
     "code": "GY",
     "img_url": "\/images\/country\/GY.svg",
-    "ua": "\u0413\u0430\u044f\u043d\u0430",
-    "ru": "\u0413\u0430\u0439\u0430\u043d\u0430"
+    "ua": "\u0413\u0430\u044f\u043d\u0430"
   },
   {
     "en": "Hong Kong SAR China",
     "code": "HK",
     "img_url": "\/images\/country\/HK.svg",
-    "ua": "\u0413\u043e\u043d\u043a\u043e\u043d\u0433",
-    "ru": "\u0413\u043e\u043d\u043a\u043e\u043d\u0433"
+    "ua": "\u0413\u043e\u043d\u043a\u043e\u043d\u0433"
   },
   {
     "en": "Heard & McDonald Islands",
     "code": "HM",
     "img_url": "\/images\/country\/HM.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u0413\u0435\u0440\u0434 \u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438 \u041c\u0430\u043a\u0434\u043e\u043d\u0430\u043b\u0434",
-    "ru": "\u0425\u0435\u0440\u0434 \u0438 \u041c\u0430\u043a\u0434\u043e\u043d\u0430\u043b\u044c\u0434"
+    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u0413\u0435\u0440\u0434 \u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438 \u041c\u0430\u043a\u0434\u043e\u043d\u0430\u043b\u0434"
   },
   {
     "en": "Honduras",
     "code": "HN",
     "img_url": "\/images\/country\/HN.svg",
-    "ua": "\u0413\u043e\u043d\u0434\u0443\u0440\u0430\u0441",
-    "ru": "\u0413\u043e\u043d\u0434\u0443\u0440\u0430\u0441"
+    "ua": "\u0413\u043e\u043d\u0434\u0443\u0440\u0430\u0441"
   },
   {
     "en": "Croatia",
     "code": "HR",
     "img_url": "\/images\/country\/HR.svg",
-    "ua": "\u0425\u043e\u0440\u0432\u0430\u0442\u0456\u044f",
-    "ru": "\u0425\u043e\u0440\u0432\u0430\u0442\u0438\u044f"
+    "ua": "\u0425\u043e\u0440\u0432\u0430\u0442\u0456\u044f"
   },
   {
     "en": "Haiti",
     "code": "HT",
     "img_url": "\/images\/country\/HT.svg",
-    "ua": "\u0413\u0430\u0457\u0442\u0456",
-    "ru": "\u0413\u0430\u0438\u0442\u0438"
+    "ua": "\u0413\u0430\u0457\u0442\u0456"
   },
   {
     "en": "Hungary",
     "code": "HU",
     "img_url": "\/images\/country\/HU.svg",
-    "ua": "\u0423\u0433\u043e\u0440\u0449\u0438\u043d\u0430",
-    "ru": "\u0412\u0435\u043d\u0433\u0440\u0438\u044f"
+    "ua": "\u0423\u0433\u043e\u0440\u0449\u0438\u043d\u0430"
   },
   {
     "en": "Canary Islands",
     "code": "IC",
-    "img_url": "\/images\/country\/IC.svg"
+    "img_url": "\/images\/country\/IC.svg",
+    "ua": "Канарські острови"
   },
   {
     "en": "Indonesia",
     "code": "ID",
     "img_url": "\/images\/country\/ID.svg",
-    "ua": "\u0406\u043d\u0434\u043e\u043d\u0435\u0437\u0456\u044f",
-    "ru": "\u0418\u043d\u0434\u043e\u043d\u0435\u0437\u0438\u044f"
+    "ua": "\u0406\u043d\u0434\u043e\u043d\u0435\u0437\u0456\u044f"
   },
   {
     "en": "Ireland",
     "code": "IE",
     "img_url": "\/images\/country\/IE.svg",
-    "ua": "\u0406\u0440\u043b\u0430\u043d\u0434\u0456\u044f",
-    "ru": "\u0418\u0440\u043b\u0430\u043d\u0434\u0438\u044f"
+    "ua": "\u0406\u0440\u043b\u0430\u043d\u0434\u0456\u044f"
   },
   {
     "en": "Israel",
     "code": "IL",
     "img_url": "\/images\/country\/IL.svg",
-    "ua": "\u0406\u0437\u0440\u0430\u0457\u043b\u044c",
-    "ru": "\u0418\u0437\u0440\u0430\u0438\u043b\u044c"
+    "ua": "\u0406\u0437\u0440\u0430\u0457\u043b\u044c"
   },
   {
     "en": "Isle of Man",
     "code": "IM",
     "img_url": "\/images\/country\/IM.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u041c\u0435\u043d",
-    "ru": "\u041e\u0441\u0442\u0440\u043e\u0432 \u041c\u044d\u043d"
+    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u041c\u0435\u043d"
   },
   {
     "en": "India",
     "code": "IN",
     "img_url": "\/images\/country\/IN.svg",
-    "ua": "\u0406\u043d\u0434\u0456\u044f",
-    "ru": "\u0418\u043d\u0434\u0438\u044f"
+    "ua": "\u0406\u043d\u0434\u0456\u044f"
   },
   {
     "en": "British Indian Ocean Territory",
     "code": "IO",
     "img_url": "\/images\/country\/IO.svg",
-    "ua": "\u0411\u0440\u0438\u0442\u0430\u043d\u0441\u044c\u043a\u0430 \u0422\u0435\u0440\u0438\u0442\u043e\u0440\u0456\u044f \u0432 \u0406\u043d\u0434\u0456\u0439\u0441\u044c\u043a\u043e\u043c\u0443 \u041e\u043a\u0435\u0430\u043d\u0456",
-    "ru": "\u0411\u0440\u0438\u0442\u0430\u043d\u0441\u043a\u0430\u044f \u0442\u0435\u0440\u0440\u0438\u0442\u043e\u0440\u0438\u044f \u0432 \u0418\u043d\u0434\u0438\u0439\u0441\u043a\u043e\u043c \u043e\u043a\u0435\u0430\u043d\u0435"
+    "ua": "\u0411\u0440\u0438\u0442\u0430\u043d\u0441\u044c\u043a\u0430 \u0422\u0435\u0440\u0438\u0442\u043e\u0440\u0456\u044f \u0432 \u0406\u043d\u0434\u0456\u0439\u0441\u044c\u043a\u043e\u043c\u0443 \u041e\u043a\u0435\u0430\u043d\u0456"
   },
   {
     "en": "Iraq",
     "code": "IQ",
     "img_url": "\/images\/country\/IQ.svg",
-    "ua": "\u0406\u0440\u0430\u043a",
-    "ru": "\u0418\u0440\u0430\u043a"
+    "ua": "\u0406\u0440\u0430\u043a"
   },
   {
     "en": "Iran",
     "code": "IR",
     "img_url": "\/images\/country\/IR.svg",
-    "ua": "\u0406\u0440\u0430\u043d",
-    "ru": "\u0418\u0440\u0430\u043d"
+    "ua": "\u0406\u0440\u0430\u043d"
   },
   {
     "en": "Iceland",
     "code": "IS",
     "img_url": "\/images\/country\/IS.svg",
-    "ua": "\u0406\u0441\u043b\u0430\u043d\u0434\u0456\u044f",
-    "ru": "\u0418\u0441\u043b\u0430\u043d\u0434\u0438\u044f"
+    "ua": "\u0406\u0441\u043b\u0430\u043d\u0434\u0456\u044f"
   },
   {
     "en": "Italy",
     "code": "IT",
     "img_url": "\/images\/country\/IT.svg",
-    "ua": "\u0406\u0442\u0430\u043b\u0456\u044f",
-    "ru": "\u0418\u0442\u0430\u043b\u0438\u044f"
+    "ua": "\u0406\u0442\u0430\u043b\u0456\u044f"
   },
   {
     "en": "Jersey",
     "code": "JE",
     "img_url": "\/images\/country\/JE.svg",
-    "ua": "\u0414\u0436\u0435\u0440\u0441\u0456",
-    "ru": "\u0414\u0436\u0435\u0440\u0441\u0438"
+    "ua": "\u0414\u0436\u0435\u0440\u0441\u0456"
   },
   {
     "en": "Jamaica",
     "code": "JM",
     "img_url": "\/images\/country\/JM.svg",
-    "ua": "\u042f\u043c\u0430\u0439\u043a\u0430",
-    "ru": "\u042f\u043c\u0430\u0439\u043a\u0430"
+    "ua": "\u042f\u043c\u0430\u0439\u043a\u0430"
   },
   {
     "en": "Jordan",
     "code": "JO",
     "img_url": "\/images\/country\/JO.svg",
-    "ua": "\u0419\u043e\u0440\u0434\u0430\u043d\u0456\u044f",
-    "ru": "\u0418\u043e\u0440\u0434\u0430\u043d\u0438\u044f"
+    "ua": "\u0419\u043e\u0440\u0434\u0430\u043d\u0456\u044f"
   },
   {
     "en": "Japan",
     "code": "JP",
     "img_url": "\/images\/country\/JP.svg",
-    "ua": "\u042f\u043f\u043e\u043d\u0456\u044f",
-    "ru": "\u042f\u043f\u043e\u043d\u0438\u044f"
+    "ua": "\u042f\u043f\u043e\u043d\u0456\u044f"
   },
   {
     "en": "Kenya",
     "code": "KE",
     "img_url": "\/images\/country\/KE.svg",
-    "ua": "\u041a\u0435\u043d\u0456\u044f",
-    "ru": "\u041a\u0435\u043d\u0438\u044f"
+    "ua": "\u041a\u0435\u043d\u0456\u044f"
   },
   {
     "en": "Kyrgyzstan",
     "code": "KG",
     "img_url": "\/images\/country\/KG.svg",
-    "ua": "\u041a\u0438\u0440\u0433\u0438\u0437\u0441\u0442\u0430\u043d",
-    "ru": "\u041a\u0438\u0440\u0433\u0438\u0437\u0438\u044f"
+    "ua": "\u041a\u0438\u0440\u0433\u0438\u0437\u0441\u0442\u0430\u043d"
   },
   {
     "en": "Cambodia",
     "code": "KH",
     "img_url": "\/images\/country\/KH.svg",
-    "ua": "\u041a\u0430\u043c\u0431\u043e\u0434\u0436\u0430",
-    "ru": "\u041a\u0430\u043c\u0431\u043e\u0434\u0436\u0430"
+    "ua": "\u041a\u0430\u043c\u0431\u043e\u0434\u0436\u0430"
   },
   {
     "en": "Kiribati",
     "code": "KI",
     "img_url": "\/images\/country\/KI.svg",
-    "ua": "\u041a\u0456\u0440\u0438\u0431\u0430\u0442\u0456",
-    "ru": "\u041a\u0438\u0440\u0438\u0431\u0430\u0442\u0438"
+    "ua": "\u041a\u0456\u0440\u0438\u0431\u0430\u0442\u0456"
   },
   {
     "en": "Comoros",
     "code": "KM",
     "img_url": "\/images\/country\/KM.svg",
-    "ua": "\u041a\u043e\u043c\u043e\u0440\u0438",
-    "ru": "\u041a\u043e\u043c\u043e\u0440\u044b"
+    "ua": "\u041a\u043e\u043c\u043e\u0440\u0438"
   },
   {
     "en": "St. Kitts & Nevis",
     "code": "KN",
     "img_url": "\/images\/country\/KN.svg",
-    "ua": "\u0421\u0435\u043d\u0442-\u041a\u0456\u0442\u0441 \u0456 \u041d\u0435\u0432\u0456\u0441",
-    "ru": "\u0421\u0435\u043d\u0442-\u041a\u0438\u0442\u0441 \u0438 \u041d\u0435\u0432\u0438\u0441"
+    "ua": "\u0421\u0435\u043d\u0442-\u041a\u0456\u0442\u0441 \u0456 \u041d\u0435\u0432\u0456\u0441"
   },
   {
     "en": "North Korea",
     "code": "KP",
     "img_url": "\/images\/country\/KP.svg",
-    "ua": "\u041a\u043e\u0440\u0435\u0439\u0441\u044c\u043a\u0430 \u041d\u0430\u0440\u043e\u0434\u043d\u043e-\u0414\u0435\u043c\u043e\u043a\u0440\u0430\u0442\u0438\u0447\u043d\u0430 \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430",
-    "ru": "\u041a\u041d\u0414\u0420 (\u041a\u043e\u0440\u0435\u0439\u0441\u043a\u0430\u044f \u041d\u0430\u0440\u043e\u0434\u043d\u043e-\u0414\u0435\u043c\u043e\u043a\u0440\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430)"
+    "ua": "\u041a\u043e\u0440\u0435\u0439\u0441\u044c\u043a\u0430 \u041d\u0430\u0440\u043e\u0434\u043d\u043e-\u0414\u0435\u043c\u043e\u043a\u0440\u0430\u0442\u0438\u0447\u043d\u0430 \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430"
   },
   {
     "en": "South Korea",
     "code": "KR",
     "img_url": "\/images\/country\/KR.svg",
-    "ua": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430 \u041a\u043e\u0440\u0435\u044f",
-    "ru": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u043e\u0440\u0435\u044f"
+    "ua": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0456\u043a\u0430 \u041a\u043e\u0440\u0435\u044f"
   },
   {
     "en": "Kuwait",
     "code": "KW",
     "img_url": "\/images\/country\/KW.svg",
-    "ua": "\u041a\u0443\u0432\u0435\u0439\u0442",
-    "ru": "\u041a\u0443\u0432\u0435\u0439\u0442"
+    "ua": "\u041a\u0443\u0432\u0435\u0439\u0442"
   },
   {
     "en": "Cayman Islands",
     "code": "KY",
     "img_url": "\/images\/country\/KY.svg",
-    "ua": "\u041a\u0430\u0439\u043c\u0430\u043d\u043e\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u041e\u0441\u0442\u0440\u043e\u0432\u0430 \u041a\u0430\u0439\u043c\u0430\u043d"
+    "ua": "\u041a\u0430\u0439\u043c\u0430\u043d\u043e\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Kazakhstan",
     "code": "KZ",
     "img_url": "\/images\/country\/KZ.svg",
-    "ua": "\u041a\u0430\u0437\u0430\u0445\u0441\u0442\u0430\u043d",
-    "ru": "\u041a\u0430\u0437\u0430\u0445\u0441\u0442\u0430\u043d"
+    "ua": "\u041a\u0430\u0437\u0430\u0445\u0441\u0442\u0430\u043d"
   },
   {
     "en": "Laos",
     "code": "LA",
     "img_url": "\/images\/country\/LA.svg",
-    "ua": "\u041b\u0430\u043e\u0441",
-    "ru": "\u041b\u0430\u043e\u0441"
+    "ua": "\u041b\u0430\u043e\u0441"
   },
   {
     "en": "Lebanon",
     "code": "LB",
     "img_url": "\/images\/country\/LB.svg",
-    "ua": "\u041b\u0456\u0432\u0430\u043d",
-    "ru": "\u041b\u0438\u0432\u0430\u043d"
+    "ua": "\u041b\u0456\u0432\u0430\u043d"
   },
   {
     "en": "St. Lucia",
     "code": "LC",
     "img_url": "\/images\/country\/LC.svg",
-    "ua": "\u0421\u0435\u043d\u0442-\u041b\u044e\u0441\u0456\u044f",
-    "ru": "\u0421\u0435\u043d\u0442-\u041b\u044e\u0441\u0438\u044f"
+    "ua": "\u0421\u0435\u043d\u0442-\u041b\u044e\u0441\u0456\u044f"
   },
   {
     "en": "Liechtenstein",
     "code": "LI",
     "img_url": "\/images\/country\/LI.svg",
-    "ua": "\u041b\u0456\u0445\u0442\u0435\u043d\u0448\u0442\u0435\u0439\u043d",
-    "ru": "\u041b\u0438\u0445\u0442\u0435\u043d\u0448\u0442\u0435\u0439\u043d"
+    "ua": "\u041b\u0456\u0445\u0442\u0435\u043d\u0448\u0442\u0435\u0439\u043d"
   },
   {
     "en": "Sri Lanka",
     "code": "LK",
     "img_url": "\/images\/country\/LK.svg",
-    "ua": "\u0428\u0440\u0438-\u041b\u0430\u043d\u043a\u0430",
-    "ru": "\u0428\u0440\u0438-\u041b\u0430\u043d\u043a\u0430"
+    "ua": "\u0428\u0440\u0438-\u041b\u0430\u043d\u043a\u0430"
   },
   {
     "en": "Liberia",
     "code": "LR",
     "img_url": "\/images\/country\/LR.svg",
-    "ua": "\u041b\u0456\u0431\u0435\u0440\u0456\u044f",
-    "ru": "\u041b\u0438\u0431\u0435\u0440\u0438\u044f"
+    "ua": "\u041b\u0456\u0431\u0435\u0440\u0456\u044f"
   },
   {
     "en": "Lesotho",
     "code": "LS",
     "img_url": "\/images\/country\/LS.svg",
-    "ua": "\u041b\u0435\u0441\u043e\u0442\u043e",
-    "ru": "\u041b\u0435\u0441\u043e\u0442\u043e"
+    "ua": "\u041b\u0435\u0441\u043e\u0442\u043e"
   },
   {
     "en": "Lithuania",
     "code": "LT",
     "img_url": "\/images\/country\/LT.svg",
-    "ua": "\u041b\u0438\u0442\u0432\u0430",
-    "ru": "\u041b\u0438\u0442\u0432\u0430"
+    "ua": "\u041b\u0438\u0442\u0432\u0430"
   },
   {
     "en": "Luxembourg",
     "code": "LU",
     "img_url": "\/images\/country\/LU.svg",
-    "ua": "\u041b\u044e\u043a\u0441\u0435\u043c\u0431\u0443\u0440\u0433",
-    "ru": "\u041b\u044e\u043a\u0441\u0435\u043c\u0431\u0443\u0440\u0433"
+    "ua": "\u041b\u044e\u043a\u0441\u0435\u043c\u0431\u0443\u0440\u0433"
   },
   {
     "en": "Latvia",
     "code": "LV",
     "img_url": "\/images\/country\/LV.svg",
-    "ua": "\u041b\u0430\u0442\u0432\u0456\u044f",
-    "ru": "\u041b\u0430\u0442\u0432\u0438\u044f"
+    "ua": "\u041b\u0430\u0442\u0432\u0456\u044f"
   },
   {
     "en": "Libya",
     "code": "LY",
     "img_url": "\/images\/country\/LY.svg",
-    "ua": "\u041b\u0456\u0432\u0456\u044f",
-    "ru": "\u041b\u0438\u0432\u0438\u044f"
+    "ua": "\u041b\u0456\u0432\u0456\u044f"
   },
   {
     "en": "Morocco",
     "code": "MA",
     "img_url": "\/images\/country\/MA.svg",
-    "ua": "\u041c\u0430\u0440\u043e\u043a\u043a\u043e",
-    "ru": "\u041c\u0430\u0440\u043e\u043a\u043a\u043e"
+    "ua": "\u041c\u0430\u0440\u043e\u043a\u043a\u043e"
   },
   {
     "en": "Monaco",
     "code": "MC",
     "img_url": "\/images\/country\/MC.svg",
-    "ua": "\u041c\u043e\u043d\u0430\u043a\u043e",
-    "ru": "\u041c\u043e\u043d\u0430\u043a\u043e"
+    "ua": "\u041c\u043e\u043d\u0430\u043a\u043e"
   },
   {
     "en": "Moldova",
     "code": "MD",
     "img_url": "\/images\/country\/MD.svg",
-    "ua": "\u041c\u043e\u043b\u0434\u043e\u0432\u0430",
-    "ru": "\u041c\u043e\u043b\u0434\u0430\u0432\u0438\u044f"
+    "ua": "\u041c\u043e\u043b\u0434\u043e\u0432\u0430"
   },
   {
     "en": "Montenegro",
     "code": "ME",
     "img_url": "\/images\/country\/ME.svg",
-    "ua": "\u0427\u043e\u0440\u043d\u043e\u0433\u043e\u0440\u0456\u044f",
-    "ru": "\u0427\u0435\u0440\u043d\u043e\u0433\u043e\u0440\u0438\u044f"
+    "ua": "\u0427\u043e\u0440\u043d\u043e\u0433\u043e\u0440\u0456\u044f"
   },
   {
     "en": "St. Martin",
     "code": "MF",
     "img_url": "\/images\/country\/MF.svg",
-    "ua": "\u0421\u0435\u043d-\u041c\u0430\u0440\u0442\u0435\u043d",
-    "ru": "\u0421\u0435\u043d-\u041c\u0430\u0440\u0442\u0435\u043d"
+    "ua": "\u0421\u0435\u043d-\u041c\u0430\u0440\u0442\u0435\u043d"
   },
   {
     "en": "Madagascar",
     "code": "MG",
     "img_url": "\/images\/country\/MG.svg",
-    "ua": "\u041c\u0430\u0434\u0430\u0433\u0430\u0441\u043a\u0430\u0440",
-    "ru": "\u041c\u0430\u0434\u0430\u0433\u0430\u0441\u043a\u0430\u0440"
+    "ua": "\u041c\u0430\u0434\u0430\u0433\u0430\u0441\u043a\u0430\u0440"
   },
   {
     "en": "Marshall Islands",
     "code": "MH",
     "img_url": "\/images\/country\/MH.svg",
-    "ua": "\u041c\u0430\u0440\u0448\u0430\u043b\u043b\u043e\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u041c\u0430\u0440\u0448\u0430\u043b\u043b\u043e\u0432\u044b \u041e\u0441\u0442\u0440\u043e\u0432\u0430"
+    "ua": "\u041c\u0430\u0440\u0448\u0430\u043b\u043b\u043e\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "North Macedonia",
     "code": "MK",
     "img_url": "\/images\/country\/MK.svg",
-    "ua": "\u041f\u0456\u0432\u043d\u0456\u0447\u043d\u0430 \u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0456\u044f",
-    "ru": "\u0421\u0435\u0432\u0435\u0440\u043d\u0430\u044f \u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0438\u044f"
+    "ua": "\u041f\u0456\u0432\u043d\u0456\u0447\u043d\u0430 \u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0456\u044f"
   },
   {
     "en": "Mali",
     "code": "ML",
     "img_url": "\/images\/country\/ML.svg",
-    "ua": "\u041c\u0430\u043b\u0456",
-    "ru": "\u041c\u0430\u043b\u0438"
+    "ua": "\u041c\u0430\u043b\u0456"
   },
   {
     "en": "Myanmar (Burma)",
     "code": "MM",
     "img_url": "\/images\/country\/MM.svg",
-    "ua": "\u041c'\u044f\u043d\u043c\u0430",
-    "ru": "\u041c\u044c\u044f\u043d\u043c\u0430"
+    "ua": "\u041c'\u044f\u043d\u043c\u0430"
   },
   {
     "en": "Mongolia",
     "code": "MN",
     "img_url": "\/images\/country\/MN.svg",
-    "ua": "\u041c\u043e\u043d\u0433\u043e\u043b\u0456\u044f",
-    "ru": "\u041c\u043e\u043d\u0433\u043e\u043b\u0438\u044f"
+    "ua": "\u041c\u043e\u043d\u0433\u043e\u043b\u0456\u044f"
   },
   {
     "en": "Macao SAR China",
     "code": "MO",
     "img_url": "\/images\/country\/MO.svg",
-    "ua": "\u041c\u0430\u043a\u0430\u043e",
-    "ru": "\u041c\u0430\u043a\u0430\u043e"
+    "ua": "\u041c\u0430\u043a\u0430\u043e"
   },
   {
     "en": "Northern Mariana Islands",
     "code": "MP",
     "img_url": "\/images\/country\/MP.svg",
-    "ua": "\u041f\u0456\u0432\u043d\u0456\u0447\u043d\u0456 \u041c\u0430\u0440\u0456\u0430\u043d\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u0421\u0435\u0432\u0435\u0440\u043d\u044b\u0435 \u041c\u0430\u0440\u0438\u0430\u043d\u0441\u043a\u0438\u0435 \u041e\u0441\u0442\u0440\u043e\u0432\u0430"
+    "ua": "\u041f\u0456\u0432\u043d\u0456\u0447\u043d\u0456 \u041c\u0430\u0440\u0456\u0430\u043d\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Martinique",
     "code": "MQ",
     "img_url": "\/images\/country\/MQ.svg",
-    "ua": "\u041c\u0430\u0440\u0442\u0438\u043d\u0456\u043a\u0430",
-    "ru": "\u041c\u0430\u0440\u0442\u0438\u043d\u0438\u043a\u0430"
+    "ua": "\u041c\u0430\u0440\u0442\u0438\u043d\u0456\u043a\u0430"
   },
   {
     "en": "Mauritania",
     "code": "MR",
     "img_url": "\/images\/country\/MR.svg",
-    "ua": "\u041c\u0430\u0432\u0440\u0438\u0442\u0430\u043d\u0456\u044f",
-    "ru": "\u041c\u0430\u0432\u0440\u0438\u0442\u0430\u043d\u0438\u044f"
+    "ua": "\u041c\u0430\u0432\u0440\u0438\u0442\u0430\u043d\u0456\u044f"
   },
   {
     "en": "Montserrat",
     "code": "MS",
     "img_url": "\/images\/country\/MS.svg",
-    "ua": "\u041c\u043e\u043d\u0442\u0441\u0435\u0440\u0440\u0430\u0442",
-    "ru": "\u041c\u043e\u043d\u0442\u0441\u0435\u0440\u0440\u0430\u0442"
+    "ua": "\u041c\u043e\u043d\u0442\u0441\u0435\u0440\u0440\u0430\u0442"
   },
   {
     "en": "Malta",
     "code": "MT",
     "img_url": "\/images\/country\/MT.svg",
-    "ua": "\u041c\u0430\u043b\u044c\u0442\u0430",
-    "ru": "\u041c\u0430\u043b\u044c\u0442\u0430"
+    "ua": "\u041c\u0430\u043b\u044c\u0442\u0430"
   },
   {
     "en": "Mauritius",
     "code": "MU",
     "img_url": "\/images\/country\/MU.svg",
-    "ua": "\u041c\u0430\u0432\u0440\u0438\u043a\u0456\u0439",
-    "ru": "\u041c\u0430\u0432\u0440\u0438\u043a\u0438\u0439"
+    "ua": "\u041c\u0430\u0432\u0440\u0438\u043a\u0456\u0439"
   },
   {
     "en": "Maldives",
     "code": "MV",
     "img_url": "\/images\/country\/MV.svg",
-    "ua": "\u041c\u0430\u043b\u044c\u0434\u0456\u0432\u0438",
-    "ru": "\u041c\u0430\u043b\u044c\u0434\u0438\u0432\u044b"
+    "ua": "\u041c\u0430\u043b\u044c\u0434\u0456\u0432\u0438"
   },
   {
     "en": "Malawi",
     "code": "MW",
     "img_url": "\/images\/country\/MW.svg",
-    "ua": "\u041c\u0430\u043b\u0430\u0432\u0456",
-    "ru": "\u041c\u0430\u043b\u0430\u0432\u0438"
+    "ua": "\u041c\u0430\u043b\u0430\u0432\u0456"
   },
   {
     "en": "Mexico",
     "code": "MX",
     "img_url": "\/images\/country\/MX.svg",
-    "ua": "\u041c\u0435\u043a\u0441\u0438\u043a\u0430",
-    "ru": "\u041c\u0435\u043a\u0441\u0438\u043a\u0430"
+    "ua": "\u041c\u0435\u043a\u0441\u0438\u043a\u0430"
   },
   {
     "en": "Malaysia",
     "code": "MY",
     "img_url": "\/images\/country\/MY.svg",
-    "ua": "\u041c\u0430\u043b\u0430\u0439\u0437\u0456\u044f",
-    "ru": "\u041c\u0430\u043b\u0430\u0439\u0437\u0438\u044f"
+    "ua": "\u041c\u0430\u043b\u0430\u0439\u0437\u0456\u044f"
   },
   {
     "en": "Mozambique",
     "code": "MZ",
     "img_url": "\/images\/country\/MZ.svg",
-    "ua": "\u041c\u043e\u0437\u0430\u043c\u0431\u0456\u043a",
-    "ru": "\u041c\u043e\u0437\u0430\u043c\u0431\u0438\u043a"
+    "ua": "\u041c\u043e\u0437\u0430\u043c\u0431\u0456\u043a"
   },
   {
     "en": "Namibia",
     "code": "NA",
     "img_url": "\/images\/country\/NA.svg",
-    "ua": "\u041d\u0430\u043c\u0456\u0431\u0456\u044f",
-    "ru": "\u041d\u0430\u043c\u0438\u0431\u0438\u044f"
+    "ua": "\u041d\u0430\u043c\u0456\u0431\u0456\u044f"
   },
   {
     "en": "New Caledonia",
     "code": "NC",
     "img_url": "\/images\/country\/NC.svg",
-    "ua": "\u041d\u043e\u0432\u0430 \u041a\u0430\u043b\u0435\u0434\u043e\u043d\u0456\u044f",
-    "ru": "\u041d\u043e\u0432\u0430\u044f \u041a\u0430\u043b\u0435\u0434\u043e\u043d\u0438\u044f"
+    "ua": "\u041d\u043e\u0432\u0430 \u041a\u0430\u043b\u0435\u0434\u043e\u043d\u0456\u044f"
   },
   {
     "en": "Niger",
     "code": "NE",
     "img_url": "\/images\/country\/NE.svg",
-    "ua": "\u041d\u0456\u0433\u0435\u0440",
-    "ru": "\u041d\u0438\u0433\u0435\u0440"
+    "ua": "\u041d\u0456\u0433\u0435\u0440"
   },
   {
     "en": "Norfolk Island",
     "code": "NF",
     "img_url": "\/images\/country\/NF.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u041d\u043e\u0440\u0444\u043e\u043b\u043a",
-    "ru": "\u041e\u0441\u0442\u0440\u043e\u0432 \u041d\u043e\u0440\u0444\u043e\u043b\u043a"
+    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u041d\u043e\u0440\u0444\u043e\u043b\u043a"
   },
   {
     "en": "Nigeria",
     "code": "NG",
     "img_url": "\/images\/country\/NG.svg",
-    "ua": "\u041d\u0456\u0433\u0435\u0440\u0456\u044f",
-    "ru": "\u041d\u0438\u0433\u0435\u0440\u0438\u044f"
+    "ua": "\u041d\u0456\u0433\u0435\u0440\u0456\u044f"
   },
   {
     "en": "Nicaragua",
     "code": "NI",
     "img_url": "\/images\/country\/NI.svg",
-    "ua": "\u041d\u0456\u043a\u0430\u0440\u0430\u0433\u0443\u0430",
-    "ru": "\u041d\u0438\u043a\u0430\u0440\u0430\u0433\u0443\u0430"
+    "ua": "\u041d\u0456\u043a\u0430\u0440\u0430\u0433\u0443\u0430"
   },
   {
     "en": "Netherlands",
     "code": "NL",
     "img_url": "\/images\/country\/NL.svg",
-    "ua": "\u041d\u0456\u0434\u0435\u0440\u043b\u0430\u043d\u0434\u0438",
-    "ru": "\u041d\u0438\u0434\u0435\u0440\u043b\u0430\u043d\u0434\u044b"
+    "ua": "\u041d\u0456\u0434\u0435\u0440\u043b\u0430\u043d\u0434\u0438"
   },
   {
     "en": "Norway",
     "code": "NO",
     "img_url": "\/images\/country\/NO.svg",
-    "ua": "\u041d\u043e\u0440\u0432\u0435\u0433\u0456\u044f",
-    "ru": "\u041d\u043e\u0440\u0432\u0435\u0433\u0438\u044f"
+    "ua": "\u041d\u043e\u0440\u0432\u0435\u0433\u0456\u044f"
   },
   {
     "en": "Nepal",
     "code": "NP",
     "img_url": "\/images\/country\/NP.svg",
-    "ua": "\u041d\u0435\u043f\u0430\u043b",
-    "ru": "\u041d\u0435\u043f\u0430\u043b"
+    "ua": "\u041d\u0435\u043f\u0430\u043b"
   },
   {
     "en": "Nauru",
     "code": "NR",
     "img_url": "\/images\/country\/NR.svg",
-    "ua": "\u041d\u0430\u0443\u0440\u0443",
-    "ru": "\u041d\u0430\u0443\u0440\u0443"
+    "ua": "\u041d\u0430\u0443\u0440\u0443"
   },
   {
     "en": "Niue",
     "code": "NU",
     "img_url": "\/images\/country\/NU.svg",
-    "ua": "\u041d\u0456\u0443\u0435",
-    "ru": "\u041d\u0438\u0443\u044d"
+    "ua": "\u041d\u0456\u0443\u0435"
   },
   {
     "en": "New Zealand",
     "code": "NZ",
     "img_url": "\/images\/country\/NZ.svg",
-    "ua": "\u041d\u043e\u0432\u0430 \u0417\u0435\u043b\u0430\u043d\u0434\u0456\u044f",
-    "ru": "\u041d\u043e\u0432\u0430\u044f \u0417\u0435\u043b\u0430\u043d\u0434\u0438\u044f"
+    "ua": "\u041d\u043e\u0432\u0430 \u0417\u0435\u043b\u0430\u043d\u0434\u0456\u044f"
   },
   {
     "en": "Oman",
     "code": "OM",
     "img_url": "\/images\/country\/OM.svg",
-    "ua": "\u041e\u043c\u0430\u043d",
-    "ru": "\u041e\u043c\u0430\u043d"
+    "ua": "\u041e\u043c\u0430\u043d"
   },
   {
     "en": "Panama",
     "code": "PA",
     "img_url": "\/images\/country\/PA.svg",
-    "ua": "\u041f\u0430\u043d\u0430\u043c\u0430",
-    "ru": "\u041f\u0430\u043d\u0430\u043c\u0430"
+    "ua": "\u041f\u0430\u043d\u0430\u043c\u0430"
   },
   {
     "en": "Peru",
     "code": "PE",
     "img_url": "\/images\/country\/PE.svg",
-    "ua": "\u041f\u0435\u0440\u0443",
-    "ru": "\u041f\u0435\u0440\u0443"
+    "ua": "\u041f\u0435\u0440\u0443"
   },
   {
     "en": "French Polynesia",
     "code": "PF",
     "img_url": "\/images\/country\/PF.svg",
-    "ua": "\u0424\u0440\u0430\u043d\u0446\u0443\u0437\u044c\u043a\u0430 \u041f\u043e\u043b\u0456\u043d\u0435\u0437\u0456\u044f",
-    "ru": "\u0424\u0440\u0430\u043d\u0446\u0443\u0437\u0441\u043a\u0430\u044f \u041f\u043e\u043b\u0438\u043d\u0435\u0437\u0438\u044f"
+    "ua": "\u0424\u0440\u0430\u043d\u0446\u0443\u0437\u044c\u043a\u0430 \u041f\u043e\u043b\u0456\u043d\u0435\u0437\u0456\u044f"
   },
   {
     "en": "Papua New Guinea",
     "code": "PG",
     "img_url": "\/images\/country\/PG.svg",
-    "ua": "\u041f\u0430\u043f\u0443\u0430-\u041d\u043e\u0432\u0430 \u0413\u0432\u0456\u043d\u0435\u044f",
-    "ru": "\u041f\u0430\u043f\u0443\u0430 \u2014 \u041d\u043e\u0432\u0430\u044f \u0413\u0432\u0438\u043d\u0435\u044f"
+    "ua": "\u041f\u0430\u043f\u0443\u0430-\u041d\u043e\u0432\u0430 \u0413\u0432\u0456\u043d\u0435\u044f"
   },
   {
     "en": "Philippines",
     "code": "PH",
     "img_url": "\/images\/country\/PH.svg",
-    "ua": "\u0424\u0456\u043b\u0456\u043f\u043f\u0456\u043d\u0438",
-    "ru": "\u0424\u0438\u043b\u0438\u043f\u043f\u0438\u043d\u044b"
+    "ua": "\u0424\u0456\u043b\u0456\u043f\u043f\u0456\u043d\u0438"
   },
   {
     "en": "Pakistan",
     "code": "PK",
     "img_url": "\/images\/country\/PK.svg",
-    "ua": "\u041f\u0430\u043a\u0438\u0441\u0442\u0430\u043d",
-    "ru": "\u041f\u0430\u043a\u0438\u0441\u0442\u0430\u043d"
+    "ua": "\u041f\u0430\u043a\u0438\u0441\u0442\u0430\u043d"
   },
   {
     "en": "Poland",
     "code": "PL",
     "img_url": "\/images\/country\/PL.svg",
-    "ua": "\u041f\u043e\u043b\u044c\u0449\u0430",
-    "ru": "\u041f\u043e\u043b\u044c\u0448\u0430"
+    "ua": "\u041f\u043e\u043b\u044c\u0449\u0430"
   },
   {
     "en": "St. Pierre & Miquelon",
     "code": "PM",
     "img_url": "\/images\/country\/PM.svg",
-    "ua": "\u0421\u0435\u043d-\u041f'\u0454\u0440 \u0456 \u041c\u0456\u043a\u0435\u043b\u043e\u043d",
-    "ru": "\u0421\u0435\u043d-\u041f\u044c\u0435\u0440 \u0438 \u041c\u0438\u043a\u0435\u043b\u043e\u043d"
+    "ua": "\u0421\u0435\u043d-\u041f'\u0454\u0440 \u0456 \u041c\u0456\u043a\u0435\u043b\u043e\u043d"
   },
   {
     "en": "Pitcairn Islands",
     "code": "PN",
     "img_url": "\/images\/country\/PN.svg",
-    "ua": "\u041f\u0456\u0442\u043a\u0435\u0440\u043d",
-    "ru": "\u041e\u0441\u0442\u0440\u043e\u0432\u0430 \u041f\u0438\u0442\u043a\u044d\u0440\u043d"
+    "ua": "\u041f\u0456\u0442\u043a\u0435\u0440\u043d"
   },
   {
     "en": "Puerto Rico",
     "code": "PR",
     "img_url": "\/images\/country\/PR.svg",
-    "ua": "\u041f\u0443\u0435\u0440\u0442\u043e-\u0420\u0438\u043a\u043e",
-    "ru": "\u041f\u0443\u044d\u0440\u0442\u043e-\u0420\u0438\u043a\u043e"
+    "ua": "\u041f\u0443\u0435\u0440\u0442\u043e-\u0420\u0438\u043a\u043e"
   },
   {
     "en": "Palestinian Territories",
     "code": "PS",
     "img_url": "\/images\/country\/PS.svg",
-    "ua": "\u041f\u0430\u043b\u0435\u0441\u0442\u0438\u043d\u0430",
-    "ru": "\u0413\u043e\u0441\u0443\u0434\u0430\u0440\u0441\u0442\u0432\u043e \u041f\u0430\u043b\u0435\u0441\u0442\u0438\u043d\u0430"
+    "ua": "\u041f\u0430\u043b\u0435\u0441\u0442\u0438\u043d\u0430"
   },
   {
     "en": "Portugal",
     "code": "PT",
     "img_url": "\/images\/country\/PT.svg",
-    "ua": "\u041f\u043e\u0440\u0442\u0443\u0433\u0430\u043b\u0456\u044f",
-    "ru": "\u041f\u043e\u0440\u0442\u0443\u0433\u0430\u043b\u0438\u044f"
+    "ua": "\u041f\u043e\u0440\u0442\u0443\u0433\u0430\u043b\u0456\u044f"
   },
   {
     "en": "Palau",
     "code": "PW",
     "img_url": "\/images\/country\/PW.svg",
-    "ua": "\u041f\u0430\u043b\u0430\u0443",
-    "ru": "\u041f\u0430\u043b\u0430\u0443"
+    "ua": "\u041f\u0430\u043b\u0430\u0443"
   },
   {
     "en": "Paraguay",
     "code": "PY",
     "img_url": "\/images\/country\/PY.svg",
-    "ua": "\u041f\u0430\u0440\u0430\u0433\u0432\u0430\u0439",
-    "ru": "\u041f\u0430\u0440\u0430\u0433\u0432\u0430\u0439"
+    "ua": "\u041f\u0430\u0440\u0430\u0433\u0432\u0430\u0439"
   },
   {
     "en": "Qatar",
     "code": "QA",
     "img_url": "\/images\/country\/QA.svg",
-    "ua": "\u041a\u0430\u0442\u0430\u0440",
-    "ru": "\u041a\u0430\u0442\u0430\u0440"
+    "ua": "\u041a\u0430\u0442\u0430\u0440"
   },
   {
     "en": "R\u00e9union",
     "code": "RE",
     "img_url": "\/images\/country\/RE.svg",
-    "ua": "\u0420\u0435\u044e\u043d\u044c\u0439\u043e\u043d",
-    "ru": "\u0420\u0435\u044e\u043d\u044c\u043e\u043d"
+    "ua": "\u0420\u0435\u044e\u043d\u044c\u0439\u043e\u043d"
   },
   {
     "en": "Romania",
     "code": "RO",
     "img_url": "\/images\/country\/RO.svg",
-    "ua": "\u0420\u0443\u043c\u0443\u043d\u0456\u044f",
-    "ru": "\u0420\u0443\u043c\u044b\u043d\u0438\u044f"
+    "ua": "\u0420\u0443\u043c\u0443\u043d\u0456\u044f"
   },
   {
     "en": "Serbia",
     "code": "RS",
     "img_url": "\/images\/country\/RS.svg",
-    "ua": "\u0421\u0435\u0440\u0431\u0456\u044f",
-    "ru": "\u0421\u0435\u0440\u0431\u0438\u044f"
+    "ua": "\u0421\u0435\u0440\u0431\u0456\u044f"
   },
   {
     "en": "Russia",
     "code": "RU",
     "img_url": "\/images\/country\/RU.svg",
-    "ua": "\u0420\u043e\u0441\u0456\u044f",
-    "ru": "Россия"
+    "ua": "\u0420\u043e\u0441\u0456\u044f"
   },
   {
     "en": "Rwanda",
     "code": "RW",
     "img_url": "\/images\/country\/RW.svg",
-    "ua": "\u0420\u0443\u0430\u043d\u0434\u0430",
-    "ru": "\u0420\u0443\u0430\u043d\u0434\u0430"
+    "ua": "\u0420\u0443\u0430\u043d\u0434\u0430"
   },
   {
     "en": "Saudi Arabia",
     "code": "SA",
     "img_url": "\/images\/country\/SA.svg",
-    "ua": "\u0421\u0430\u0443\u0434\u0456\u0432\u0441\u044c\u043a\u0430 \u0410\u0440\u0430\u0432\u0456\u044f",
-    "ru": "\u0421\u0430\u0443\u0434\u043e\u0432\u0441\u043a\u0430\u044f \u0410\u0440\u0430\u0432\u0438\u044f"
+    "ua": "\u0421\u0430\u0443\u0434\u0456\u0432\u0441\u044c\u043a\u0430 \u0410\u0440\u0430\u0432\u0456\u044f"
   },
   {
     "en": "Solomon Islands",
     "code": "SB",
     "img_url": "\/images\/country\/SB.svg",
-    "ua": "\u0421\u043e\u043b\u043e\u043c\u043e\u043d\u043e\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u0421\u043e\u043b\u043e\u043c\u043e\u043d\u043e\u0432\u044b \u041e\u0441\u0442\u0440\u043e\u0432\u0430"
+    "ua": "\u0421\u043e\u043b\u043e\u043c\u043e\u043d\u043e\u0432\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Seychelles",
     "code": "SC",
     "img_url": "\/images\/country\/SC.svg",
-    "ua": "\u0421\u0435\u0439\u0448\u0435\u043b\u044c\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u0421\u0435\u0439\u0448\u0435\u043b\u044c\u0441\u043a\u0438\u0435 \u041e\u0441\u0442\u0440\u043e\u0432\u0430"
+    "ua": "\u0421\u0435\u0439\u0448\u0435\u043b\u044c\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "Sudan",
     "code": "SD",
     "img_url": "\/images\/country\/SD.svg",
-    "ua": "\u0421\u0443\u0434\u0430\u043d",
-    "ru": "\u0421\u0443\u0434\u0430\u043d"
+    "ua": "\u0421\u0443\u0434\u0430\u043d"
   },
   {
     "en": "Sweden",
     "code": "SE",
     "img_url": "\/images\/country\/SE.svg",
-    "ua": "\u0428\u0432\u0435\u0446\u0456\u044f",
-    "ru": "\u0428\u0432\u0435\u0446\u0438\u044f"
+    "ua": "\u0428\u0432\u0435\u0446\u0456\u044f"
   },
   {
     "en": "Singapore",
     "code": "SG",
     "img_url": "\/images\/country\/SG.svg",
-    "ua": "\u0421\u0438\u043d\u0433\u0430\u043f\u0443\u0440",
-    "ru": "\u0421\u0438\u043d\u0433\u0430\u043f\u0443\u0440"
+    "ua": "\u0421\u0438\u043d\u0433\u0430\u043f\u0443\u0440"
   },
   {
     "en": "St. Helena",
     "code": "SH",
     "img_url": "\/images\/country\/SH.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u0421\u0432\u044f\u0442\u043e\u0457 \u0404\u043b\u0435\u043d\u0438",
-    "ru": "\u041e\u0441\u0442\u0440\u043e\u0432\u0430 \u0421\u0432\u044f\u0442\u043e\u0439 \u0415\u043b\u0435\u043d\u044b, \u0412\u043e\u0437\u043d\u0435\u0441\u0435\u043d\u0438\u044f \u0438 \u0422\u0440\u0438\u0441\u0442\u0430\u043d-\u0434\u0430-\u041a\u0443\u043d\u044c\u044f"
+    "ua": "\u041e\u0441\u0442\u0440\u0456\u0432 \u0421\u0432\u044f\u0442\u043e\u0457 \u0404\u043b\u0435\u043d\u0438"
   },
   {
     "en": "Slovenia",
     "code": "SI",
     "img_url": "\/images\/country\/SI.svg",
-    "ua": "\u0421\u043b\u043e\u0432\u0435\u043d\u0456\u044f",
-    "ru": "\u0421\u043b\u043e\u0432\u0435\u043d\u0438\u044f"
+    "ua": "\u0421\u043b\u043e\u0432\u0435\u043d\u0456\u044f"
   },
   {
     "en": "Svalbard & Jan Mayen",
     "code": "SJ",
     "img_url": "\/images\/country\/SJ.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u043e\u0432\u0438 \u0428\u043f\u0456\u0446\u0431\u0435\u0440\u0433\u0435\u043d \u0442\u0430 \u042f\u043d-\u041c\u0430\u0454\u043d",
-    "ru": "\u0428\u043f\u0438\u0446\u0431\u0435\u0440\u0433\u0435\u043d \u0438 \u042f\u043d-\u041c\u0430\u0439\u0435\u043d"
+    "ua": "\u041e\u0441\u0442\u0440\u043e\u0432\u0438 \u0428\u043f\u0456\u0446\u0431\u0435\u0440\u0433\u0435\u043d \u0442\u0430 \u042f\u043d-\u041c\u0430\u0454\u043d"
   },
   {
     "en": "Slovakia",
     "code": "SK",
     "img_url": "\/images\/country\/SK.svg",
-    "ua": "\u0421\u043b\u043e\u0432\u0430\u0447\u0447\u0438\u043d\u0430",
-    "ru": "\u0421\u043b\u043e\u0432\u0430\u043a\u0438\u044f"
+    "ua": "\u0421\u043b\u043e\u0432\u0430\u0447\u0447\u0438\u043d\u0430"
   },
   {
     "en": "Sierra Leone",
     "code": "SL",
     "img_url": "\/images\/country\/SL.svg",
-    "ua": "\u0421\u044c\u0454\u0440\u0440\u0430-\u041b\u0435\u043e\u043d\u0435",
-    "ru": "\u0421\u044c\u0435\u0440\u0440\u0430-\u041b\u0435\u043e\u043d\u0435"
+    "ua": "\u0421\u044c\u0454\u0440\u0440\u0430-\u041b\u0435\u043e\u043d\u0435"
   },
   {
     "en": "San Marino",
     "code": "SM",
     "img_url": "\/images\/country\/SM.svg",
-    "ua": "\u0421\u0430\u043d-\u041c\u0430\u0440\u0438\u043d\u043e",
-    "ru": "\u0421\u0430\u043d-\u041c\u0430\u0440\u0438\u043d\u043e"
+    "ua": "\u0421\u0430\u043d-\u041c\u0430\u0440\u0438\u043d\u043e"
   },
   {
     "en": "Senegal",
     "code": "SN",
     "img_url": "\/images\/country\/SN.svg",
-    "ua": "\u0421\u0435\u043d\u0435\u0433\u0430\u043b",
-    "ru": "\u0421\u0435\u043d\u0435\u0433\u0430\u043b"
+    "ua": "\u0421\u0435\u043d\u0435\u0433\u0430\u043b"
   },
   {
     "en": "Somalia",
     "code": "SO",
     "img_url": "\/images\/country\/SO.svg",
-    "ua": "\u0421\u043e\u043c\u0430\u043b\u0456",
-    "ru": "\u0421\u043e\u043c\u0430\u043b\u0438"
+    "ua": "\u0421\u043e\u043c\u0430\u043b\u0456"
   },
   {
     "en": "Suriname",
     "code": "SR",
     "img_url": "\/img_url\/country\/SR.svg",
-    "ua": "\u0421\u0443\u0440\u0438\u043d\u0430\u043c",
-    "ru": "\u0421\u0443\u0440\u0438\u043d\u0430\u043c"
+    "ua": "\u0421\u0443\u0440\u0438\u043d\u0430\u043c"
   },
   {
     "en": "South Sudan",
     "code": "SS",
     "img_url": "\/images\/country\/SS.svg",
-    "ua": "\u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0438\u0439 \u0421\u0443\u0434\u0430\u043d",
-    "ru": "\u042e\u0436\u043d\u044b\u0439 \u0421\u0443\u0434\u0430\u043d"
+    "ua": "\u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0438\u0439 \u0421\u0443\u0434\u0430\u043d"
   },
   {
     "en": "S\u00e3o Tom\u00e9 & Pr\u00edncipe",
     "code": "ST",
     "img_url": "\/images\/country\/ST.svg",
-    "ua": "\u0421\u0430\u043d-\u0422\u043e\u043c\u0435 \u0456 \u041f\u0440\u0438\u043d\u0441\u0456\u043f\u0456",
-    "ru": "\u0421\u0430\u043d-\u0422\u043e\u043c\u0435 \u0438 \u041f\u0440\u0438\u043d\u0441\u0438\u043f\u0438"
+    "ua": "\u0421\u0430\u043d-\u0422\u043e\u043c\u0435 \u0456 \u041f\u0440\u0438\u043d\u0441\u0456\u043f\u0456"
   },
   {
     "en": "El Salvador",
     "code": "SV",
     "img_url": "\/images\/country\/SV.svg",
-    "ua": "\u0421\u0430\u043b\u044c\u0432\u0430\u0434\u043e\u0440",
-    "ru": "\u0421\u0430\u043b\u044c\u0432\u0430\u0434\u043e\u0440"
+    "ua": "\u0421\u0430\u043b\u044c\u0432\u0430\u0434\u043e\u0440"
   },
   {
     "en": "Sint Maarten",
     "code": "SX",
     "img_url": "\/images\/country\/SX.svg",
-    "ua": "\u0421\u0456\u043d\u0442-\u041c\u0430\u0440\u0442\u0435\u043d",
-    "ru": "\u0421\u0438\u043d\u0442-\u041c\u0430\u0440\u0442\u0435\u043d"
+    "ua": "\u0421\u0456\u043d\u0442-\u041c\u0430\u0440\u0442\u0435\u043d"
   },
   {
     "en": "Syria",
     "code": "SY",
     "img_url": "\/images\/country\/SY.svg",
-    "ua": "\u0421\u0438\u0440\u0456\u044f",
-    "ru": "\u0421\u0438\u0440\u0438\u044f"
+    "ua": "\u0421\u0438\u0440\u0456\u044f"
   },
   {
     "en": "Eswatini",
     "code": "SZ",
     "img_url": "\/images\/country\/SZ.svg",
-    "ua": "\u0415\u0441\u0432\u0430\u0442\u0456\u043d\u0456",
-    "ru": "\u0421\u0432\u0430\u0437\u0438\u043b\u0435\u043d\u0434"
+    "ua": "\u0415\u0441\u0432\u0430\u0442\u0456\u043d\u0456"
   },
   {
     "en": "Tristan da Cunha",
     "code": "TA",
     "img_url": "\/images\/country\/TA.svg",
-    "ua": "Тристан-да-Кунья",
-    "ru": "Тристан-да-Кунья"
+    "ua": "Тристан-да-Кунья"
   },
   {
     "en": "Turks & Caicos Islands",
     "code": "TC",
     "img_url": "\/images\/country\/TC.svg",
-    "ua": "\u041e\u0441\u0442\u0440\u043e\u0432\u0438 \u0422\u0435\u0440\u043a\u0441 \u0456 \u041a\u0430\u0439\u043a\u043e\u0441",
-    "ru": "\u0422\u0435\u0440\u043a\u0441 \u0438 \u041a\u0430\u0439\u043a\u043e\u0441"
+    "ua": "\u041e\u0441\u0442\u0440\u043e\u0432\u0438 \u0422\u0435\u0440\u043a\u0441 \u0456 \u041a\u0430\u0439\u043a\u043e\u0441"
   },
   {
     "en": "Chad",
     "code": "TD",
     "img_url": "\/images\/country\/TD.svg",
-    "ua": "\u0427\u0430\u0434",
-    "ru": "\u0427\u0430\u0434"
+    "ua": "\u0427\u0430\u0434"
   },
   {
     "en": "French Southern Territories",
     "code": "TF",
     "img_url": "\/images\/country\/TF.svg",
-    "ua": "\u0424\u0440\u0430\u043d\u0446\u0443\u0437\u044c\u043a\u0456 \u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0456 \u0456 \u0410\u043d\u0442\u0430\u0440\u043a\u0442\u0438\u0447\u043d\u0456 \u0422\u0435\u0440\u0438\u0442\u043e\u0440\u0456\u0457",
-    "ru": "\u0424\u0440\u0430\u043d\u0446\u0443\u0437\u0441\u043a\u0438\u0435 \u042e\u0436\u043d\u044b\u0435 \u0438 \u0410\u043d\u0442\u0430\u0440\u043a\u0442\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0422\u0435\u0440\u0440\u0438\u0442\u043e\u0440\u0438\u0438"
+    "ua": "\u0424\u0440\u0430\u043d\u0446\u0443\u0437\u044c\u043a\u0456 \u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0456 \u0456 \u0410\u043d\u0442\u0430\u0440\u043a\u0442\u0438\u0447\u043d\u0456 \u0422\u0435\u0440\u0438\u0442\u043e\u0440\u0456\u0457"
   },
   {
     "en": "Togo",
     "code": "TG",
     "img_url": "\/images\/country\/TG.svg",
-    "ua": "\u0422\u043e\u0433\u043e",
-    "ru": "\u0422\u043e\u0433\u043e"
+    "ua": "\u0422\u043e\u0433\u043e"
   },
   {
     "en": "Thailand",
     "code": "TH",
     "img_url": "\/images\/country\/TH.svg",
-    "ua": "\u0422\u0430\u0457\u043b\u0430\u043d\u0434",
-    "ru": "\u0422\u0430\u0438\u043b\u0430\u043d\u0434"
+    "ua": "\u0422\u0430\u0457\u043b\u0430\u043d\u0434"
   },
   {
     "en": "Tajikistan",
     "code": "TJ",
     "img_url": "\/images\/country\/TJ.svg",
-    "ua": "\u0422\u0430\u0434\u0436\u0438\u043a\u0438\u0441\u0442\u0430\u043d",
-    "ru": "\u0422\u0430\u0434\u0436\u0438\u043a\u0438\u0441\u0442\u0430\u043d"
+    "ua": "\u0422\u0430\u0434\u0436\u0438\u043a\u0438\u0441\u0442\u0430\u043d"
   },
   {
     "en": "Tokelau",
     "code": "TK",
     "img_url": "\/images\/country\/TK.svg",
-    "ua": "\u0422\u043e\u043a\u0435\u043b\u0430\u0443",
-    "ru": "\u0422\u043e\u043a\u0435\u043b\u0430\u0443"
+    "ua": "\u0422\u043e\u043a\u0435\u043b\u0430\u0443"
   },
   {
     "en": "Timor-Leste",
     "code": "TL",
     "img_url": "\/images\/country\/TL.svg",
-    "ua": "\u0422\u0438\u043c\u043e\u0440-\u041b\u0435\u0448\u0442\u0456",
-    "ru": "\u0412\u043e\u0441\u0442\u043e\u0447\u043d\u044b\u0439 \u0422\u0438\u043c\u043e\u0440"
+    "ua": "\u0422\u0438\u043c\u043e\u0440-\u041b\u0435\u0448\u0442\u0456"
   },
   {
     "en": "Turkmenistan",
     "code": "TM",
     "img_url": "\/images\/country\/TM.svg",
-    "ua": "\u0422\u0443\u0440\u043a\u043c\u0435\u043d\u0438\u0441\u0442\u0430\u043d",
-    "ru": "\u0422\u0443\u0440\u043a\u043c\u0435\u043d\u0438\u044f"
+    "ua": "\u0422\u0443\u0440\u043a\u043c\u0435\u043d\u0438\u0441\u0442\u0430\u043d"
   },
   {
     "en": "Tunisia",
     "code": "TN",
     "img_url": "\/images\/country\/TN.svg",
-    "ua": "\u0422\u0443\u043d\u0456\u0441",
-    "ru": "\u0422\u0443\u043d\u0438\u0441"
+    "ua": "\u0422\u0443\u043d\u0456\u0441"
   },
   {
     "en": "Tonga",
     "code": "TO",
     "img_url": "\/images\/country\/TO.svg",
-    "ua": "\u0422\u043e\u043d\u0433\u0430",
-    "ru": "\u0422\u043e\u043d\u0433\u0430"
+    "ua": "\u0422\u043e\u043d\u0433\u0430"
   },
   {
     "en": "Turkey",
     "code": "TR",
     "img_url": "\/images\/country\/TR.svg",
-    "ua": "\u0422\u0443\u0440\u0435\u0447\u0447\u0438\u043d\u0430",
-    "ru": "\u0422\u0443\u0440\u0446\u0438\u044f"
+    "ua": "\u0422\u0443\u0440\u0435\u0447\u0447\u0438\u043d\u0430"
   },
   {
     "en": "Trinidad & Tobago",
     "code": "TT",
     "img_url": "\/images\/country\/TT.svg",
-    "ua": "\u0422\u0440\u0438\u043d\u0456\u0434\u0430\u0434 \u0456 \u0422\u043e\u0431\u0430\u0433\u043e",
-    "ru": "\u0422\u0440\u0438\u043d\u0438\u0434\u0430\u0434 \u0438 \u0422\u043e\u0431\u0430\u0433\u043e"
+    "ua": "\u0422\u0440\u0438\u043d\u0456\u0434\u0430\u0434 \u0456 \u0422\u043e\u0431\u0430\u0433\u043e"
   },
   {
     "en": "Tuvalu",
     "code": "TV",
     "img_url": "\/images\/country\/TV.svg",
-    "ua": "\u0422\u0443\u0432\u0430\u043b\u0443",
-    "ru": "\u0422\u0443\u0432\u0430\u043b\u0443"
+    "ua": "\u0422\u0443\u0432\u0430\u043b\u0443"
   },
   {
     "en": "Taiwan",
     "code": "TW",
     "img_url": "\/images\/country\/TW.svg",
-    "ua": "Тайвань",
-    "ru": "Тайвань"
+    "ua": "Тайвань"
   },
   {
     "en": "Tanzania",
     "code": "TZ",
     "img_url": "\/images\/country\/TZ.svg",
-    "ua": "\u0422\u0430\u043d\u0437\u0430\u043d\u0456\u044f",
-    "ru": "\u0422\u0430\u043d\u0437\u0430\u043d\u0438\u044f"
+    "ua": "\u0422\u0430\u043d\u0437\u0430\u043d\u0456\u044f"
   },
   {
     "en": "Ukraine",
     "code": "UA",
     "img_url": "\/images\/country\/UA.svg",
-    "ua": "\u0423\u043a\u0440\u0430\u0457\u043d\u0430",
-    "ru": "\u0423\u043a\u0440\u0430\u0438\u043d\u0430"
+    "ua": "\u0423\u043a\u0440\u0430\u0457\u043d\u0430"
   },
   {
     "en": "Uganda",
     "code": "UG",
     "img_url": "\/images\/country\/UG.svg",
-    "ua": "\u0423\u0433\u0430\u043d\u0434\u0430",
-    "ru": "\u0423\u0433\u0430\u043d\u0434\u0430"
+    "ua": "\u0423\u0433\u0430\u043d\u0434\u0430"
   },
   {
     "en": "U.S. Outlying Islands",
     "code": "UM",
     "img_url": "\/images\/country\/UM.svg",
-    "ua": "\u0417\u043e\u0432\u043d\u0456\u0448\u043d\u0456 \u0412\u0456\u0434\u0434\u0430\u043b\u0435\u043d\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438 (\u0421\u0428\u0410)",
-    "ru": "\u0412\u043d\u0435\u0448\u043d\u0438\u0435 \u043c\u0430\u043b\u044b\u0435 \u043e\u0441\u0442\u0440\u043e\u0432\u0430 (\u0421\u0428\u0410)"
+    "ua": "\u0417\u043e\u0432\u043d\u0456\u0448\u043d\u0456 \u0412\u0456\u0434\u0434\u0430\u043b\u0435\u043d\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438 (\u0421\u0428\u0410)"
   },
   {
     "en": "United States",
     "code": "US",
     "img_url": "\/images\/country\/US.svg",
-    "ua": "\u0421\u0428\u0410",
-    "ru": "\u0421\u0428\u0410"
+    "ua": "\u0421\u0428\u0410"
   },
   {
     "en": "Uruguay",
     "code": "UY",
     "img_url": "\/images\/country\/UY.svg",
-    "ua": "\u0423\u0440\u0443\u0433\u0432\u0430\u0439",
-    "ru": "\u0423\u0440\u0443\u0433\u0432\u0430\u0439"
+    "ua": "\u0423\u0440\u0443\u0433\u0432\u0430\u0439"
   },
   {
     "en": "Uzbekistan",
     "code": "UZ",
     "img_url": "\/images\/country\/UZ.svg",
-    "ua": "\u0423\u0437\u0431\u0435\u043a\u0438\u0441\u0442\u0430\u043d",
-    "ru": "\u0423\u0437\u0431\u0435\u043a\u0438\u0441\u0442\u0430\u043d"
+    "ua": "\u0423\u0437\u0431\u0435\u043a\u0438\u0441\u0442\u0430\u043d"
   },
   {
     "en": "Vatican City",
     "code": "VA",
     "img_url": "\/images\/country\/VA.svg",
-    "ua": "\u0412\u0430\u0442\u0438\u043a\u0430\u043d",
-    "ru": "\u0412\u0430\u0442\u0438\u043a\u0430\u043d"
+    "ua": "\u0412\u0430\u0442\u0438\u043a\u0430\u043d"
   },
   {
     "en": "St. Vincent & Grenadines",
     "code": "VC",
     "img_url": "\/images\/country\/VC.svg",
-    "ua": "\u0421\u0435\u043d\u0442-\u0412\u0456\u043d\u0441\u0435\u043d\u0442 \u0456 \u0413\u0440\u0435\u043d\u0430\u0434\u0456\u043d\u0438",
-    "ru": "\u0421\u0435\u043d\u0442-\u0412\u0438\u043d\u0441\u0435\u043d\u0442 \u0438 \u0413\u0440\u0435\u043d\u0430\u0434\u0438\u043d\u044b"
+    "ua": "\u0421\u0435\u043d\u0442-\u0412\u0456\u043d\u0441\u0435\u043d\u0442 \u0456 \u0413\u0440\u0435\u043d\u0430\u0434\u0456\u043d\u0438"
   },
   {
     "en": "Venezuela",
     "code": "VE",
     "img_url": "\/images\/country\/VE.svg",
-    "ua": "\u0412\u0435\u043d\u0435\u0441\u0443\u0435\u043b\u0430",
-    "ru": "\u0412\u0435\u043d\u0435\u0441\u0443\u044d\u043b\u0430"
+    "ua": "\u0412\u0435\u043d\u0435\u0441\u0443\u0435\u043b\u0430"
   },
   {
     "en": "British Virgin Islands",
     "code": "VG",
     "img_url": "\/images\/country\/VG.svg",
-    "ua": "\u0411\u0440\u0438\u0442\u0430\u043d\u0441\u044c\u043a\u0456 \u0412\u0456\u0440\u0433\u0456\u043d\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438",
-    "ru": "\u0412\u0438\u0440\u0433\u0438\u043d\u0441\u043a\u0438\u0435 \u041e\u0441\u0442\u0440\u043e\u0432\u0430 (\u0412\u0435\u043b\u0438\u043a\u043e\u0431\u0440\u0438\u0442\u0430\u043d\u0438\u044f)"
+    "ua": "\u0411\u0440\u0438\u0442\u0430\u043d\u0441\u044c\u043a\u0456 \u0412\u0456\u0440\u0433\u0456\u043d\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438"
   },
   {
     "en": "U.S. Virgin Islands",
     "code": "VI",
     "img_url": "\/images\/country\/VI.svg",
-    "ua": "\u0412\u0456\u0440\u0433\u0456\u043d\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438 (\u0421\u0428\u0410)",
-    "ru": "\u0412\u0438\u0440\u0433\u0438\u043d\u0441\u043a\u0438\u0435 \u041e\u0441\u0442\u0440\u043e\u0432\u0430 (\u0421\u0428\u0410)"
+    "ua": "\u0412\u0456\u0440\u0433\u0456\u043d\u0441\u044c\u043a\u0456 \u041e\u0441\u0442\u0440\u043e\u0432\u0438 (\u0421\u0428\u0410)"
   },
   {
     "en": "Vietnam",
     "code": "VN",
     "img_url": "\/images\/country\/VN.svg",
-    "ua": "\u0412'\u0454\u0442\u043d\u0430\u043c",
-    "ru": "\u0412\u044c\u0435\u0442\u043d\u0430\u043c"
+    "ua": "\u0412'\u0454\u0442\u043d\u0430\u043c"
   },
   {
     "en": "Vanuatu",
     "code": "VU",
     "img_url": "\/images\/country\/VU.svg",
-    "ua": "\u0412\u0430\u043d\u0443\u0430\u0442\u0443",
-    "ru": "\u0412\u0430\u043d\u0443\u0430\u0442\u0443"
+    "ua": "\u0412\u0430\u043d\u0443\u0430\u0442\u0443"
   },
   {
     "en": "Wallis & Futuna",
     "code": "WF",
     "img_url": "\/images\/country\/WF.svg",
-    "ua": "\u0412\u043e\u043b\u043b\u0456\u0441 \u0456 \u0424\u0443\u0442\u0443\u043d\u0430",
-    "ru": "\u0423\u043e\u043b\u043b\u0438\u0441 \u0438 \u0424\u0443\u0442\u0443\u043d\u0430"
+    "ua": "\u0412\u043e\u043b\u043b\u0456\u0441 \u0456 \u0424\u0443\u0442\u0443\u043d\u0430"
   },
   {
     "en": "Samoa",
     "code": "WS",
     "img_url": "\/images\/country\/WS.svg",
-    "ua": "\u0421\u0430\u043c\u043e\u0430",
-    "ru": "\u0421\u0430\u043c\u043e\u0430"
+    "ua": "\u0421\u0430\u043c\u043e\u0430"
   },
   {
     "en": "Kosovo",
     "code": "XK",
     "img_url": "\/images\/country\/XK.svg",
-    "ua": "\u041a\u043e\u0441\u043e\u0432\u043e",
-    "ru": "\u041a\u043e\u0441\u043e\u0432\u043e"
+    "ua": "\u041a\u043e\u0441\u043e\u0432\u043e"
   },
   {
     "en": "Yemen",
     "code": "YE",
     "img_url": "\/images\/country\/YE.svg",
-    "ua": "\u0404\u043c\u0435\u043d",
-    "ru": "\u0419\u0435\u043c\u0435\u043d"
+    "ua": "\u0404\u043c\u0435\u043d"
   },
   {
     "en": "Mayotte",
     "code": "YT",
     "img_url": "\/images\/country\/YT.svg",
-    "ua": "\u041c\u0430\u0439\u043e\u0442\u0442\u0430",
-    "ru": "\u041c\u0430\u0439\u043e\u0442\u0442\u0430"
+    "ua": "\u041c\u0430\u0439\u043e\u0442\u0442\u0430"
   },
   {
     "en": "South Africa",
     "code": "ZA",
     "img_url": "\/images\/country\/ZA.svg",
-    "ua": "\u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0430 \u0410\u0444\u0440\u0438\u043a\u0430",
-    "ru": "\u042e\u0410\u0420"
+    "ua": "\u041f\u0456\u0432\u0434\u0435\u043d\u043d\u0430 \u0410\u0444\u0440\u0438\u043a\u0430"
   },
   {
     "en": "Zambia",
     "code": "ZM",
     "img_url": "\/images\/country\/ZM.svg",
-    "ua": "\u0417\u0430\u043c\u0431\u0456\u044f",
-    "ru": "\u0417\u0430\u043c\u0431\u0438\u044f"
+    "ua": "\u0417\u0430\u043c\u0431\u0456\u044f"
   },
   {
     "en": "Zimbabwe",
     "code": "ZW",
     "img_url": "\/images\/country\/ZW.svg",
-    "ua": "\u0417\u0456\u043c\u0431\u0430\u0431\u0432\u0435",
-    "ru": "\u0417\u0438\u043c\u0431\u0430\u0431\u0432\u0435"
+    "ua": "\u0417\u0456\u043c\u0431\u0430\u0431\u0432\u0435"
   },
   {
     "en": "England",
     "code": "ENGLAND",
     "img_url": "\/images\/country\/ENGLAND.svg",
-    "ua": "Англія",
-    "ru": "Англия"
+    "ua": "Англія"
   },
   {
     "en": "Scotland",
     "code": "SCOTLAND",
     "img_url": "\/images\/country\/SCOTLAND.svg",
-    "ua": "Шотландія",
-    "ru": "Шотландия"
+    "ua": "Шотландія"
   },
   {
     "en": "Wales",
     "code": "WALES",
     "img_url": "\/images\/country\/WALES.svg",
-    "ua": "Уельс",
-    "ru": "Уэльс"
+    "ua": "Уельс"
   }
 ]

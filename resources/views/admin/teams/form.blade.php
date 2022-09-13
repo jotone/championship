@@ -3,9 +3,9 @@
 @section('content')
   <div class="form-wrap">
     <form
-      action="{{ isset($model) ? route('api.countries.update', $model->id) : route('api.countries.store') }}"
+      action="{{ isset($model) ? route('api.teams.update', $model->id) : route('api.teams.store') }}"
       data-xhr
-      data-msg="Country.ua"
+      data-msg="Team.ua"
       method="POST"
     >
       @isset($model)
@@ -19,29 +19,14 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Country code:</span>
+              <span>Team UA:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
-                name="code"
-                data-slug="input.slug"
-                placeholder="Country code&hellip;"
-                required
-                value="{{ $model->code ?? '' }}"
-              >
-            </label>
-          </div>
-
-          <div class="form-row">
-            <label class="caption">
-              <span>Country UA:</span>
-
-              <input
-                autocomplete="off"
-                class="form-input col-100"
+                data-slug="input.en"
                 name="ua"
-                placeholder="Country UA&hellip;"
+                placeholder="Team UA&hellip;"
                 required
                 value="{{ $model->ua ?? '' }}"
               >
@@ -50,15 +35,29 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Country EN:</span>
+              <span>Team EN:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="en"
-                placeholder="Country EN&hellip;" required
+                placeholder="Team EN&hellip;" required
                 value="{{ $model->en ?? '' }}"
               >
+            </label>
+          </div>
+
+          <div class="form-row">
+            <label class="caption">
+              <span>Country:</span>
+
+              <select name="country_id" class="form-select col-100">
+                @foreach($countries as $country)
+                  <option value="{{ $country->id }}" @selected(isset($model) && $model->country_id == $country->id)>
+                    {{ $country->ua }}
+                  </option>
+                @endforeach
+              </select>
             </label>
           </div>
         </fieldset>
@@ -68,7 +67,7 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Upload SVG:</span>
+              <span>Upload Image:</span>
             </label>
 
             <div class="image-upload-wrap">
@@ -78,7 +77,7 @@
                 @endif
               </div>
               <div class="buttons-wrap">
-                <input name="img_url" type="file" style="display: none" accept="image/svg+xml">
+                <input name="img_url" type="file" style="display: none" accept="image/jpeg,image/png,image/svg+xml">
                 <button name="upload" class="btn" type="button">
                   <span>Upload</span>
                 </button>
@@ -90,6 +89,7 @@
           </div>
         </fieldset>
       </div>
+
       <div class="row">
         <button type="submit" class="btn success">
           Save

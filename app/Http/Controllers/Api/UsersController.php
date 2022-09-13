@@ -72,7 +72,11 @@ class UsersController extends BasicApiController
         if ($request->hasFile('img_url')) {
             try {
                 // Attempt to save file
-                $user->img_url = FileHelper::saveFile($request->file('img_url'), 'uploads/users/' . $user->id);
+                $user->img_url = FileHelper::saveFile(
+                    $request->file('img_url'),
+                    'uploads/users/' . $user->id,
+                    'user_img'
+                );
                 $user->save();
             } catch (\Exception $e) {
                 return response(['errors' => [
@@ -132,7 +136,11 @@ class UsersController extends BasicApiController
         if ($request->hasFile('img_url')) {
             try {
                 // Attempt to save file
-                $user->img_url = FileHelper::saveFile($request->file('img_url'), 'uploads/users/' . $user->id);
+                $user->img_url = FileHelper::saveFile(
+                    $request->file('img_url'),
+                    'uploads/users/' . $user->id,
+                    'user_img'
+                );
             } catch (\Exception $e) {
                 return response(['errors' => [
                     'img_url' => [$e->getMessage()]

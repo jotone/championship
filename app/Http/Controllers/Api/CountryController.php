@@ -11,7 +11,7 @@ use Illuminate\Http\{Request, Response};
 class CountryController extends BasicApiController
 {
     /**
-     * Get role list
+     * Get country list
      *
      * @param Request $request
      * @return Response
@@ -29,15 +29,14 @@ class CountryController extends BasicApiController
         // Check search value isset
         if (!empty($search)) {
             $content = $content->where('en', 'like', '%' . $search . '%')
-                ->orWhere('ua', 'like', '%' . $search . '%')
-                ->orWhere('ru', 'like', '%' . $search . '%');
+                ->orWhere('ua', 'like', '%' . $search . '%');
         }
 
         return $this->apiIndexResponse($content, $args);
     }
 
     /**
-     * Create role
+     * Create country
      *
      * @param CountryRequest $request
      * @return Response
@@ -46,29 +45,28 @@ class CountryController extends BasicApiController
     {
         // Request data
         $args = $request->validated();
-        // Create role
+        // Create country
         $country = Country::create([
             'code' => $args['code'],
-            'en'   => $args['en'],
             'ua'   => $args['ua'],
-            'ru'   => $args['ru']
+            'en'   => $args['en']
         ]);
 
-        if ($request->hasFile('img_url')) {
-            try {
-                // Attempt to save file
+        try {
+            // Attempt to save file
+            if ($request->hasFile('img_url')) {
                 $country->img_url = FileHelper::saveFile($request->file('img_url'), 'images/country/');
                 $country->save();
-            } catch (\Exception $e) {
-                return response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
             }
+        } catch (\Exception $e) {
+            throw response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
         }
 
         return response($country, 201);
     }
 
     /**
-     * Update role
+     * Update country
      *
      * @param Country $country
      * @param CountryRequest $request
@@ -82,18 +80,14 @@ class CountryController extends BasicApiController
         $country->code = $args['code'];
         $country->en = $args['en'];
         $country->ua = $args['ua'];
-        $country->ru = $args['ru'];
-        // Set image
-        // Check img_url file exists
-        if ($request->hasFile('img_url')) {
-            try {
-                // Attempt to save file
-                $country->img_url = FileHelper::saveFile($request->file('img_url'), 'images/country/' . $args['code'] . '.svg');
-            } catch (\Exception $e) {
-                return response(['errors' => [
-                    'img_url' => [$e->getMessage()]
-                ]], 400);
+        // Save image
+        try {
+            // Attempt to save file
+            if ($request->hasFile('img_url')) {
+                $country->img_url = FileHelper::saveFile($request->file('img_url'), 'images/country/');
             }
+        } catch (\Exception $e) {
+            throw response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
         }
 
         $country->save();

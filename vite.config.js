@@ -18,6 +18,7 @@ export default defineConfig({
         'resources/js/admin/country-list/app.js',
         'resources/js/admin/role-list/app.js',
         'resources/js/admin/user-list/app.js',
+        'resources/js/admin/team-list/app.js',
         'resources/js/main/app.js'
       ],
       refresh: true,
