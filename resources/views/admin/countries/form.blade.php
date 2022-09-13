@@ -25,7 +25,6 @@
                 autocomplete="off"
                 class="form-input col-100"
                 name="code"
-                data-slug="input.slug"
                 placeholder="Country code&hellip;"
                 required
                 value="{{ $model->code ?? '' }}"

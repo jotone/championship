@@ -53,9 +53,9 @@ export default {
   },
   data() {
     return {
-      entity: 'role.1',
+      entity: 'team.1',
       models: [],
-      module: 'roles',
+      module: 'teams',
       pagination: {},
       routes: {}
     }

@@ -6,18 +6,6 @@
         <th data-field="id">
           <TableDirections text="#"></TableDirections>
         </th>
-        <th data-field="ua">
-          <TableDirections text="UA"></TableDirections>
-        </th>
-        <th data-field="en">
-          <TableDirections text="EN"></TableDirections>
-        </th>
-        <th data-field="code">
-          <TableDirections text="Code"></TableDirections>
-        </th>
-        <th>
-          <div class="col-name">Image</div>
-        </th>
         <th data-field="created_at">
           <TableDirections text="Created"></TableDirections>
         </th>
@@ -30,12 +18,6 @@
       <tbody>
       <tr v-for="model in models" :data-id="model.id">
         <td><span>{{ model.id }}</span></td>
-        <td><span>{{ model.code }}</span></td>
-        <td><span>{{ model.ua }}</span></td>
-        <td><span>{{ model.en }}</span></td>
-        <td>
-          <img :src="model.img_url" style="max-height: 40px" alt="">
-        </td>
         <td><span>{{ formatDate(model.created_at) }}</span></td>
         <td>
           <div class="controls">
@@ -67,9 +49,9 @@ export default {
   },
   data() {
     return {
-      entity: 'country.1',
+      entity: '%single%.1',
       models: [],
-      module: 'countries',
+      module: '%plural%',
       pagination: {},
       routes: {}
     }

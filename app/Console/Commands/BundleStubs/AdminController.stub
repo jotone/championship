@@ -1,0 +1,59 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\BasicAdminController;
+use App\Models\%name%;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+class %name%Controller extends BasicAdminController
+{
+    /**
+     * %name% list page
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function index(Request $request): View
+    {
+        // Get request parameters
+        [$args, $query] = $this->requestData($request);
+
+        return $this->renderPage('admin.%plural%.index', $request, [
+            'routes' => [
+
+            ],
+            'search' => $args['search'] ?? '',
+            'title'  => '%name% list'
+        ]);
+    }
+
+    /**
+     * %name% creating page
+     *
+     * @param Request $request
+     * @return View
+     */
+    public function create(Request $request): View
+    {
+        return $this->renderPage('admin.%plural%.form', $request, [
+            'title' => 'Create %name%'
+        ]);
+    }
+
+    /**
+     * %name% edit page
+     *
+     * @param %name% $%single%
+     * @param Request $request
+     * @return View
+     */
+    public function edit(%name% $%single%, Request $request): View
+    {
+        return $this->renderPage('admin.%plural%.form', $request, [
+            'model' => $%single%,
+            'title' => 'Edit %name%'
+        ]);
+    }
+}
