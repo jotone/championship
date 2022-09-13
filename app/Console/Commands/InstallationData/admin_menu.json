@@ -5,6 +5,17 @@
     "img_url": "fas fa-home"
   },
   {
+    "name": "Teams And Counties",
+    "img_url": "fas fa-globe",
+    "inner": [
+      {
+        "name": "Countries",
+        "url": "admin.countries.index",
+        "img_url": "fas fa-globe-africa"
+      }
+    ]
+  },
+  {
     "name": "Users and Permissions",
     "img_url": "fas fa-users",
     "inner": [

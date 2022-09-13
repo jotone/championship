@@ -57,6 +57,7 @@ class FileHelper
         $filename = $file->getClientOriginalName();
         $file_info = pathinfo($filename);
 
+        $is_image = true;
         switch($file->getMimeType()) {
             case 'image/png':
                 $ext = 'png';
@@ -65,12 +66,15 @@ class FileHelper
                 $ext = 'jpg';
                 break;
             default:
+                $is_image = false;
                 $ext = $file_info['extension'];
         }
         $filename = sprintf('%s.%s', $file_info['filename'], $ext);
         $file->move($path, $filename);
 
-        self::removeExif(Str::finish($path, '/') . $filename);
+        if ($is_image) {
+            self::removeExif(Str::finish($path, '/') . $filename);
+        }
 
         return Str::finish(substr($path, strlen(public_path())), '/') . $filename;
     }

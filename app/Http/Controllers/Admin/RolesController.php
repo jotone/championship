@@ -42,7 +42,6 @@ class RolesController extends BasicAdminController
      * @return View
      */
     public function create(Request $request): View
-
     {
         return $this->renderPage('admin.roles.form', $request, [
             'permissions' => $this->permissionList(['app/Http/Controllers/Admin', 'app/Http/Controllers/Api']),

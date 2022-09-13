@@ -15,6 +15,7 @@ export default defineConfig({
         'resources/css/admin/app.scss',
         'resources/css/main/app.scss',
         'resources/js/admin/main.js',
+        'resources/js/admin/country-list/app.js',
         'resources/js/admin/role-list/app.js',
         'resources/js/admin/user-list/app.js',
         'resources/js/main/app.js'

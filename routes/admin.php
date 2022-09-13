@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\{DashboardController, RolesController, UsersController};
+use App\Http\Controllers\Admin\{DashboardController, CountryController, RolesController, UsersController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+Route::resource('/countries', CountryController::class)->only(['index', 'create', 'edit']);
 
 Route::group(['as' => 'users.', 'prefix' => '/users'], function () {
     Route::resource('/roles', RolesController::class)->only(['index', 'create', 'edit']);

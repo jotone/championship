@@ -2,9 +2,11 @@
 
 namespace App\Console\Commands;
 
-use App\Models\{AdminMenu, Permission, Role, User};
+use App\Models\{AdminMenu, Country, Permission, Role, User};
 use App\Traits\PermissionsTrait;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class InstallApplication extends Command
 {
@@ -41,6 +43,7 @@ class InstallApplication extends Command
         // retrieve installation data
         $files = [
             'admin_menu' => json_decode(file_get_contents(base_path($this->files_path . 'admin_menu.json')), 1),
+            'countries'  => json_decode(file_get_contents(base_path($this->files_path . 'countries.json')), 1),
             'roles'      => json_decode(file_get_contents(base_path($this->files_path . 'roles.json')), 1),
         ];
 
@@ -63,11 +66,12 @@ class InstallApplication extends Command
         // Create role permissions
         $this->runWithTimer('Application role permissions', function () use ($roles) {
             $permissions = $this->permissionList(['app/Http/Controllers/Admin', 'app/Http/Controllers/Api']);
-            foreach ($permissions as $permission) {
+            $n = count($permissions);
+            for ($i = 0; $i < $n; $i++) {
                 Permission::create([
                     'role_id'         => $roles['superadmin']->id,
-                    'controller'      => $permission['class'],
-                    'allowed_methods' => $permission['methods']
+                    'controller'      => $permissions[$i]['class'],
+                    'allowed_methods' => $permissions[$i]['methods']
                 ]);
             }
         });
@@ -81,6 +85,13 @@ class InstallApplication extends Command
                 'role_id'           => $roles['superadmin']->id,
                 'email_verified_at' => now()
             ]);
+        });
+
+        $this->runWithTimer('Countries', function () use ($files) {
+            $n = count($files['countries']);
+            for ($i = 0; $i < $n; $i++) {
+                DB::table('countries')->insert($files['countries'][$i]);
+            }
         });
         return 0;
     }

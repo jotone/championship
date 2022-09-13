@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\{RolesController, UsersController};
+use App\Http\Controllers\Api\{CountryController, RolesController, UsersController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('/countries', CountryController::class)->except(['create', 'edit', 'show']);
 Route::resource('/roles', RolesController::class)->except(['create', 'edit', 'show']);
 Route::resource('/users', UsersController::class)->except(['create', 'edit']);

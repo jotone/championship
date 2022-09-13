@@ -1,15 +1,12 @@
 include .env
 
 up:
-	@docker-compose up -d
+	@vendor/bin/sail up -d
 
 down:
-	@docker-compose down
-
-cmd:
-	@docker exec -it estates_php-fpm_1 bash -c "${c}"
+	@vendor/bin/sail down
 
 reset:
-	@php artisan migrate:fresh
-	@php artisan app:install
+	@vendor/bin/sail artisan migrate:fresh
+	@vendor/bin/sail artisan app:install
 	@npm run build
