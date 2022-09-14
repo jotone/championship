@@ -85,8 +85,28 @@ $(document).ready(() => {
       reader.readAsDataURL(file)
     })
 
+  // Bookmark menu
+  if($('ul.bookmark-wrap').length) {
+    $('.form-wrap [data-show]').hide()
+    const active = $('ul.bookmark-wrap li.active').attr('data-show')
+    $(`.form-wrap [data-show="${active}"]`).show()
+
+    $('ul.bookmark-wrap').on('click', 'li', function () {
+      // Highlight bookmark item
+      $(this).closest('ul').find('li.active').removeClass('active')
+      $(this).addClass('active')
+      // View bounded element
+      $('.form-wrap [data-show]').hide()
+      const item = $(this).attr('data-show')
+      $(`.form-wrap [data-show="${item}"]`).show()
+    })
+  }
+
   // Form submit
   $('form[data-xhr]').on('submit', function (e) {
+
+    const forceRedirect = typeof $(this).attr('data-redirect') !== 'undefined'
+
     e.preventDefault()
     // Form data
     const formData = new FormData(this)
@@ -102,10 +122,14 @@ $(document).ready(() => {
 
           Notifications.push(message)
 
-          if (201 === response.status) {
-            window.location.reload()
+          if (!forceRedirect) {
+            if (201 === response.status) {
+              window.location.reload()
+            } else {
+              Notifications.show()
+            }
           } else {
-            Notifications.show()
+            window.location = Helpers.buildUrl($(this).attr('data-redirect'), response.data.id, 2);
           }
         }
       })

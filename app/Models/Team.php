@@ -34,4 +34,22 @@ class Team extends Model
     {
         return $this->belongsTo(Country::class, 'country_id', 'id');
     }
+
+    /**
+     * Extend model behavior
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($model) {
+            // remove team image
+            unlink(public_path($model->img_url));
+            foreach ($model->thumbs as $thumb) {
+                unlink(public_path($thumb));
+            }
+
+            TestingEntity::where(['entity' => self::class, 'entity_id' => $model->id])->delete();
+        });
+    }
 }

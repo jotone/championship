@@ -37,6 +37,9 @@ class Country extends Model
         parent::boot();
 
         static::deleting(function ($model) {
+            // remove country image
+            unlink(public_path($model->img_url));
+
             $model->teams()->get()->each(fn($entity) => $entity->delete());
         });
     }

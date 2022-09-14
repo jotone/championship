@@ -9,12 +9,15 @@ export default defineConfig({
   plugins: [
     laravel({
       input: [
+        'node_modules/air-datepicker/air-datepicker.css',
         'resources/css/font-awesome/fontawesome.scss',
         'resources/css/font-awesome/solid.scss',
         'resources/css/reset.scss',
         'resources/css/admin/app.scss',
         'resources/css/main/app.scss',
         'resources/js/admin/main.js',
+        'resources/js/admin/competition-form/app.js',
+        'resources/js/admin/competition-list/app.js',
         'resources/js/admin/country-list/app.js',
         'resources/js/admin/role-list/app.js',
         'resources/js/admin/user-list/app.js',

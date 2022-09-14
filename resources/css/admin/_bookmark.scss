@@ -1,0 +1,17 @@
+.bookmark-wrap {
+  align-items: baseline;
+  display: flex;
+
+  li {
+    border: 1px solid $paragraph;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    padding: 10px 15px;
+
+    &.active {
+      background-color: $secondary;
+      padding-top: 15px
+    }
+  }
+}

@@ -5,6 +5,11 @@
     "img_url": "fas fa-home"
   },
   {
+    "name": "Championship",
+    "url": "admin.competitions.index",
+    "img_url": "eas fa-sitemap"
+  },
+  {
     "name": "Teams And Counties",
     "img_url": "fas fa-globe",
     "inner": [

@@ -3,10 +3,13 @@
 namespace App\Http\Requests;
 
 use App\Rules\AlreadyExists;
+use App\Traits\RequestSlugTrait;
 use Illuminate\Support\Facades\Auth;
 
 class RoleStoreRequest extends DefaultFormRequest
 {
+    use RequestSlugTrait;
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -21,19 +24,5 @@ class RoleStoreRequest extends DefaultFormRequest
             'level'       => ['required', 'numeric', 'min:' . $min_level, 'max:255'],
             'permissions' => ['nullable', 'array']
         ];
-    }
-
-    /**
-     * Prepare the data for validation.
-     *
-     * @return void
-     */
-    protected function prepareForValidation(): void
-    {
-        $slug = $this->request->get('slug', $this->request->get('name'));
-
-        $this->merge([
-            'slug' => generateUrl(!empty($slug) ? $slug : $this->request->get('name'))
-        ]);
     }
 }
