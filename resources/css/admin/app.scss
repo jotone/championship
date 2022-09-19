@@ -160,6 +160,39 @@ header {
   }
 }
 
+.competition-table {
+  margin-bottom: 40px;
+
+  thead {
+    tr {
+      border-bottom: 2px solid $blue-stroke;
+
+      th {
+        padding: 15px;
+        text-align: center;
+
+        &:first-child {min-width: 250px; font-size: 32px}
+
+        &.border {border: 1px dotted $blue-stroke}
+      }
+    }
+  }
+
+  tbody {
+    tr td {
+      border: 1px solid $secondary;
+      padding: 10px;
+      text-align: center;
+    }
+  }
+
+  .add {
+    color: $green-stroke;
+    cursor: pointer;
+    font-size: 32px;
+  }
+}
+
 .overlay {
   align-items: center;
   background-color: rgba(0, 0, 0, .6);

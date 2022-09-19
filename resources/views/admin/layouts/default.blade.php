@@ -57,6 +57,8 @@
 
 <div class="overlay">
   <img class="preload" src="/images/preload.svg" alt="Loading&hellip;">
+
+  @yield('popup')
 </div>
 
 @yield('scripts')

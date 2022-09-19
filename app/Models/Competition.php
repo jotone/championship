@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\{HasMany, HasManyThrough};
 
 class Competition extends Model
 {
@@ -36,13 +37,47 @@ class Competition extends Model
     ];
 
     /**
+     * Related games
+     *
+     * @return HasManyThrough
+     */
+    public function games()
+    {
+        return $this->hasManyThrough(
+            CompetitionGame::class,
+            CompetitionGroup::class,
+            'competition_id',
+            'group_id',
+            'id',
+            'id'
+        );
+    }
+
+    /**
      * Related competition groups
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function groups()
+    public function groups(): HasMany
     {
         return $this->hasMany(CompetitionGroup::class, 'competition_id', 'id');
+    }
+
+    /**
+     * Related teams
+     *
+     * @return HasManyThrough
+     */
+    public function teams(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            CompetitionTeam::class,
+            CompetitionGroup::class,
+            'competition_id',
+            'group_id',
+            'id',
+            'id'
+        );
     }
 
     /**
