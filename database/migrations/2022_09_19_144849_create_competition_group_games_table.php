@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('host_team');
             $table->unsignedInteger('guest_team')->nullable();
+            $table->string('entity');
             $table->timestamp('start_at')->nullable();
             $table->timestamps();
         });

@@ -57,7 +57,7 @@ export default {
         last = this.pagination.total;
       }
       // Check for search request
-      const urlData = Helpers.parseUrl()
+      const urlData = window.Helpers.parseUrl()
       const search = typeof urlData.search.search !== 'undefined'
           ? `&search=${urlData.search.search}`
           : ''

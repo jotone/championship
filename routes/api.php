@@ -1,6 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\{CompetitionController, CountryController, RolesController, TeamController, UsersController};
+use App\Http\Controllers\Api\{
+    CompetitionController,
+    CompetitionGroupController,
+    CompetitionGroupTeamController,
+    CountryController,
+    RolesController,
+    TeamController,
+    UsersController
+};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('/competition-group-teams', CompetitionGroupTeamController::class)->only(['store', 'destroy']);
+Route::resource('/competition-groups', CompetitionGroupController::class)->only(['index']);
 Route::resource('/competitions', CompetitionController::class)->except(['create', 'edit', 'show']);
 Route::resource('/countries', CountryController::class)->except(['create', 'edit', 'show']);
 Route::resource('/roles', RolesController::class)->except(['create', 'edit', 'show']);

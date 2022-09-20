@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     editRoleRoute(id) {
-      return Helpers.buildUrl(this.routes.role, id, 2)
+      return window.Helpers.buildUrl(this.routes.role, id, 2)
     },
   },
   mixins: [ContentTableMixin]

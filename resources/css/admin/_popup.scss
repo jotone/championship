@@ -1,3 +1,17 @@
+.overlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, .6);
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  .preload {display: none}
+}
+
 .confirmation-popup {
   background-color: $secondary;
   border: 2px solid $paragraph;
@@ -34,3 +48,39 @@
   }
 }
 
+.popup-wrap {
+  background-color: $secondary;
+  border-radius: 10px;
+  margin: 0 auto;
+  min-width: 320px;
+  padding: 20px 25px;
+  position: relative;
+  top: 10%;
+  width: 50%;
+
+  .popup-close {
+    align-items: center;
+    background-color: $paragraph;
+    color: $secondary;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 32px;
+
+    i {font-size: 24px}
+  }
+
+  .popup-title {
+    font-size: 24px;
+    margin: 15px 0;
+  }
+
+  .popup-content-wrap {
+    .form-wrap {margin: 0}
+  }
+}

@@ -16,6 +16,7 @@ export default defineConfig({
         'resources/css/admin/app.scss',
         'resources/css/main/app.scss',
         'resources/js/admin/main.js',
+        'resources/js/admin/app.js',
         'resources/js/admin/competition-form/app.js',
         'resources/js/admin/competition-list/app.js',
         'resources/js/admin/country-list/app.js',

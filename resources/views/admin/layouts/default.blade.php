@@ -62,6 +62,7 @@
 </div>
 
 @yield('scripts')
+@vite(['resources/js/admin/app.js'])
 
 </body>
 </html>

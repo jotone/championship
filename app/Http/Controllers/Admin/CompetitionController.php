@@ -55,8 +55,21 @@ class CompetitionController extends BasicAdminController
     public function edit(Competition $competition, Request $request): View
     {
         return $this->renderPage('admin.competitions.form', $request, [
-            'model' => $competition,
-            'title' => 'Edit Competition'
+            'model'  => $competition,
+            'tab'    => $request->has('tab') ? $request->get('tab') : 'competition',
+            'title'  => 'Edit Competition',
+            'routes' => [
+                'country' => [
+                    'list' => route('api.countries.index') . '?take=0'
+                ],
+                'group'   => [
+                    'list' => route('api.competition-groups.index') . '?with[]=games&with[]=teams&where[competition_id]=' . $competition->id
+                ],
+                'team'    => [
+                    'list' => route('api.teams.index') . '?take=0',
+                    'edit' => route('admin.countries.teams.edit', 0)
+                ]
+            ]
         ]);
     }
 }

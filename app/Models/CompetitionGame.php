@@ -21,6 +21,7 @@ class CompetitionGame extends Model
         'group_id',
         'host_team',
         'guest_team',
+        'entity',
         'start_at'
     ];
 
@@ -45,7 +46,7 @@ class CompetitionGame extends Model
      */
     public function hostTeam()
     {
-        return $this->belongsTo(Team::class, 'host_team', 'id');
+        return $this->belongsTo($this->attributes['entity'], 'host_team', 'id');
     }
 
     /**
@@ -55,6 +56,6 @@ class CompetitionGame extends Model
      */
     public function guestTeam()
     {
-        return $this->belongsTo(Team::class, 'guest_team', 'id');
+        return $this->belongsTo($this->attributes['entity'], 'guest_team', 'id');
     }
 }

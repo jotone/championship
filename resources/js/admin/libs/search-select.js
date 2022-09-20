@@ -14,7 +14,6 @@ export class SearchSelect {
     this.options = {...this.options, ...options}
 
     if (!wrap.length) {
-      console.error(wrap)
       throw new Error('Object not found')
     }
 
@@ -23,11 +22,13 @@ export class SearchSelect {
     }
 
     if (typeof wrap.attr('data-name') !== 'undefined') {
-      this.options.name = wrap.data('name')
+      this.options.name = wrap.attr('data-name')
     }
     if (typeof wrap.attr('data-url') !== 'undefined') {
-      this.options.url = wrap.data('url')
+      this.options.url = wrap.attr('data-url')
     }
+
+    wrap.attr('data-url', this.options.url)
 
     new Promise(resolve => {
       wrap.empty().append(this.templates.list())
@@ -41,14 +42,20 @@ export class SearchSelect {
         const value = _this.val().trim() + ''
 
         if (value.length > 2) {
-          const url = this.options.url + (this.options.url.indexOf('?') >= 0 ? '&' : '?') + 'search=' + value
-          $.axios.get(url)
-            .then(response => {
-              200 === response.status && list
-                .show()
-                .append(response.data.collection.reduce((sum, cur) => sum + this.templates.listItem(cur), ''))
+          const url =  wrap.attr('data-url') + (this.options.url.indexOf('?') >= 0 ? '&' : '?') + 'search=' + value
+          $.axios.get(url, {
+            preventOverlay: this.options.preventOverlay
+          })
+            .then(response => 200 === response.status && list
+              .show()
+              .empty()
+              .append(response.data.collection.reduce((sum, cur) => sum + this.templates.listItem(cur), ''))
+            )
+            .finally(() => {
+              if (!this.options.preventOverlay) {
+                $('.overlay, .overlay .preload').hide()
+              }
             })
-            .finally(() => $('.overlay, .overlay .preload').hide())
         }
       }, 205))
       // Switch item
@@ -78,8 +85,13 @@ export class SearchSelect {
      * @returns {string}
      */
     list: () => `<div class="search-select-wrap">
-      <input name="${this.options.name}" type="hidden">
-      <input name="searchSelect" class="search-select-input" placeholder="${this.options.placeholder}">
+      <input name="${this.options.name}" type="hidden" autocomplete="off">
+      <input
+       autocomplete="off"
+       name="searchSelect"
+       class="search-select-input"
+       placeholder="${this.options.placeholder}"
+      >
       <ul>${this.options.items.reduce((sum, cur) => sum + this.templates.listItem(cur), '')}</ul>
     </div>`
   }

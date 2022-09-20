@@ -35,7 +35,7 @@ class BasicApiController extends Controller
      * Default query skip value
      * @var int
      */
-    protected $skip;
+    protected $skip = 0;
 
     /**
      * Default query number of limit items
@@ -56,9 +56,16 @@ class BasicApiController extends Controller
         // Apply where query
         if (!empty($args['where'])) {
             foreach ($args['where'] as $key => $value) {
-                $content = strpos($key, '+') === 0
-                    ? $content->orWhere(substr($key, 1), $value)
-                    : $content->where($key, $value);
+                if (str_contains($value, ',')) {
+                    $value = explode(',', $value);
+                    $content = str_contains($key, '+')
+                        ? $content->orWhereIn(substr($key, 1), $value)
+                        : $content->whereIn($key, $value);
+                } else {
+                    $content = str_contains($key, '+')
+                        ? $content->orWhere(substr($key, 1), $value)
+                        : $content->where($key, $value);
+                }
             }
         }
         // Apply additional query relationships
@@ -70,9 +77,13 @@ class BasicApiController extends Controller
             $content = $content->orderBy($field, $this->order_dir);
         }
 
+        if ($this->take > 0) {
+            $content = $content->take($this->take)->skip($this->skip);
+        }
+
         return response([
             // Get paginated content
-            'collection' => $content->take($this->take)->skip($this->skip)->get()->map(function ($model) {
+            'collection' => $content->get()->map(function ($model) {
                 if (method_exists(static::class, 'map')) {
                     $model = $this->map($model);
                 }
@@ -109,7 +120,8 @@ class BasicApiController extends Controller
         $this->take = $args['take'] ?? $this->take;
         // Set page number
         $this->page = !empty($args['page']) && is_numeric($args['page']) ? $args['page'] : 1;
-        $this->skip = $this->page > 1 ? ($this->page - 1) * $this->take : 0;
+        // Set Offset value
+        $this->skip = $this->page > 1 && $this->take > 0 ? ($this->page - 1) * $this->take : 0;
 
         return $args;
     }

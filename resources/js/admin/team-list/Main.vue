@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     editCountryRoute(id) {
-      return Helpers.buildUrl(this.routes.country, id, 2)
+      return window.Helpers.buildUrl(this.routes.country, id, 2)
     },
   },
   mixins: [ContentTableMixin]

@@ -19,7 +19,8 @@ class CompetitionTeam extends Model
      */
     protected $fillable = [
         'group_id',
-        'team_id',
+        'entity_id',
+        'entity',
         'position',
         'games',
         'wins',
@@ -46,6 +47,6 @@ class CompetitionTeam extends Model
      */
     public function team(): BelongsTo
     {
-        return $this->belongsTo(Team::class, 'team_id', 'id');
+        return $this->belongsTo($this->attributes['entity']::class, 'entity_id', 'id');
     }
 }

@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('competition_group_teams', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('group_id');
-            $table->unsignedInteger('team_id');
+            $table->unsignedInteger('entity_id');
+            $table->string('entity');
             $table->unsignedTinyInteger('position')->default(0);
             $table->unsignedSmallInteger('games')->default(0);
             $table->unsignedSmallInteger('wins')->default(0);

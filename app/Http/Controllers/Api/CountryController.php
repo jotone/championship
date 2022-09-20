@@ -59,7 +59,7 @@ class CountryController extends BasicApiController
                 $country->save();
             }
         } catch (\Exception $e) {
-            throw response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
+            return response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
         }
 
         return response($country, 201);

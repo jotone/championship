@@ -7,10 +7,10 @@ export const ContentTableMixin = {
   methods: {
     formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
     editRoute(id) {
-      return Helpers.buildUrl(this.routes.edit, id, 2)
+      return window.Helpers.buildUrl(this.routes.edit, id, 2)
     },
     removeRoute(id) {
-      return Helpers.buildUrl(this.routes.destroy, id, 1)
+      return window.Helpers.buildUrl(this.routes.destroy, id, 1)
     },
     removeEvent(e) {
       const el = $(e.target).closest('a')
@@ -27,7 +27,7 @@ export const ContentTableMixin = {
     getList() {
       // Set request URL
       const requestUrl = Session.has(this.module)
-        ? Helpers.setRequestOrderParams(this.routes.list, Session.get(this.module))
+        ? window.Helpers.setRequestOrderParams(this.routes.list, Session.get(this.module))
         : this.routes.list
 
       // Get list
@@ -64,21 +64,19 @@ export const ContentTableMixin = {
     this.routes = $('#contentTable').data('routes')
   },
   mounted() {
-    const _this = this
-
     // Elements per page value
     const perPage = $('select[name="perPage"]')
     if (perPage.length) {
       // Get session data
-      const data = Session.get(_this.module)
+      const data = Session.get(this.module)
       if (null !== data && data.hasOwnProperty('take')) {
         // Set selected element
         perPage.find(`option[value="${data.take}"]`).attr('selected', 'selected')
       }
       // Change "elements per page value"
-      perPage.on('change', function () {
-        Session.has(_this.module) && Session.update(_this.module, {take: perPage.val()})
-        _this.getList()
+      perPage.on('change', () => {
+        Session.has(this.module) && Session.update(this.module, {take: perPage.val()})
+        this.getList()
       })
     }
 

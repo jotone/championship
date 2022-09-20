@@ -46,7 +46,7 @@ class CompetitionGroup extends Model
      */
     public function teams(): HasMany
     {
-        return $this->hasMany(CompetitionTeam::class, 'group_id', 'id');
+        return $this->hasMany(CompetitionTeam::class, 'group_id', 'id')->orderBy('position');
     }
 
     /**

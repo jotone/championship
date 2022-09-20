@@ -28,7 +28,7 @@ export default {
         el.closest('thead').find('.active').removeClass('active')
         el.addClass('active')
         // Build request URL
-        const requestUrl = Helpers.setRequestOrderParams(this.$parent.routes.list, order)
+        const requestUrl = window.Helpers.setRequestOrderParams(this.$parent.routes.list, order)
         // Set order to local storage
         Session.update(this.$parent.module, order)
         // Run request
