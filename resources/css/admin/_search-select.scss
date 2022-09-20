@@ -1,0 +1,35 @@
+.search-select-wrap {
+  position: relative;
+
+  .search-select-input {
+    background-color: $secondary;
+    border: 1px solid $headline;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 100%;
+  }
+
+  ul {
+    background-color: $secondary;
+    display: none;
+    left: 0;
+    max-height: 180px;
+    overflow: auto;
+    position: absolute;
+    top: 32px;
+    width: 100%;
+
+    li {
+      border-bottom: 1px solid transparent;
+      display: block;
+      cursor: pointer;
+      padding: 4px 10px;
+      width: 100%;
+
+      &:hover {
+        background-color: $highlight;
+        color: $secondary;
+      }
+    }
+  }
+}

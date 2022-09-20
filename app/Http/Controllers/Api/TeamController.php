@@ -29,9 +29,8 @@ class TeamController extends BasicApiController
         $search = $args['search'] ?? null;
         // Check search value isset
         if (!empty($search)) {
-            $content = $content->where('en', 'like', '%' . $search . '%')
-                ->orWhere('ua', 'like', '%' . $search . '%')
-                ->orWhere('country', 'like', '%' . $search . '%');
+            $content = $content->where('teams.en', 'like', '%' . $search . '%')
+                ->orWhere('teams.ua', 'like', '%' . $search . '%');
         }
 
         return $this->apiIndexResponse($content, $args);

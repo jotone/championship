@@ -48,15 +48,6 @@
     @endisset
   </div>
 
-  <div class="popup-wrap" id="append-team">
-    <div class="popup-close">
-      <i class="fas fa-times-circle"></i>
-    </div>
-
-    <div class="popup-content-wrap">
-
-    </div>
-  </div>
 @endsection
 
 @section('popup')
