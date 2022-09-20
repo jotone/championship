@@ -175,10 +175,7 @@ header {
 
         &.border {border: 1px dotted $blue-stroke}
 
-        .flag-img {
-          display: block;
-          margin: 0 auto;
-        }
+        .flag-img {display: block; margin: 0 auto}
       }
     }
   }
@@ -194,9 +191,7 @@ header {
         vertical-align: middle;
         text-align: right;
 
-        span {
-          margin-right: 60px;
-        }
+        span {margin-right: 60px}
 
         .flag-img {
           position: absolute;
