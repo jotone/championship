@@ -76,6 +76,15 @@ export default {
     }
   },
   methods: {
+    /**
+     * Set Competition game value
+     * @param games
+     * @param groupID
+     * @param hostID
+     * @param guestID
+     * @param obj
+     * @returns {*}
+     */
     setGameValue(games, groupID, hostID, guestID, obj) {
       if (typeof games[groupID] == 'undefined') {
         games[groupID] = {}
@@ -92,6 +101,14 @@ export default {
 
       return games
     },
+    /**
+     * Set competition team value
+     * @param teams
+     * @param groupID
+     * @param position
+     * @param team
+     * @returns {*}
+     */
     setTeam(teams, groupID, position, team) {
       if (typeof teams[groupID] == 'undefined') {
         teams[groupID] = []
@@ -102,6 +119,10 @@ export default {
 
       return teams
     },
+    /**
+     * Show Add Team Popup
+     * @param e
+     */
     showPopup(e) {
       this.addRowPopup.wrap.find('input[name="group_id"]').val($(e.target).closest('.competition-table').attr('data-id'))
       this.addRowPopup.wrap.find('input[name="entity_id"]').val('')
@@ -115,17 +136,17 @@ export default {
   mounted() {
     $.axios.get(this.routes.group.list).then(response => {
       if (200 === response.status) {
-
-        let games = {}
-        let teamIDs = [];
-        let teams = []
-        let type = null
+        // Init variables
+        let games = {}, teamIDs = [], teams = [], type = null
+        // Convert games and teams values into prover view
         for (let i = 0; i < response.data.collection.length; i++) {
           const group = response.data.collection[i]
+          // Set games values
           for (let j = 0; j < group.games.length; j++) {
             const game = group.games[j]
             games = this.setGameValue(games, group.id, game.host_team, game.guest_team, game)
           }
+          // Set team values
           for (let j = 0; j < group.teams.length; j++) {
             const team = group.teams[j]
             if (null === type) {
@@ -137,18 +158,23 @@ export default {
               pos: team.position,
               id: team.entity_id
             })
+            // This is need to get teams data
             teamIDs.push(team.entity_id)
           }
         }
-
+        // Teams are countries or clubs
         const teamsRequestUrl = type === 'App\\Models\\Country' ? this.routes.country.list : this.routes.teams.list;
-
+        // Set groups
         this.groups = response.data.collection
+        // Set games
         this.games = games
 
+        // Get teams data
         $.axios.get(`${teamsRequestUrl}&where[id]=${teamIDs.join(',')}`).then(response => {
           if (200 === response.status) {
+            // Result teams values
             let result = {}
+            // Convert teams data into proper view groupID -> teamPosition -> teamData
             for (let i = 0; i < response.data.collection.length; i++) {
               const team = response.data.collection[i]
 
@@ -159,40 +185,40 @@ export default {
                 }
               }
             }
+            // Set teams
             this.teams = result
           }
         })
       }
     })
-
+    // Popup handler
     this.addRowPopup = new Popup($('#append-team'))
-
+    // Popup form submit event
     this.addRowPopup.wrap.find('form').on('submit', e => {
       e.preventDefault()
 
       const _this = $(e.target)
-
+      // Get form data
       const formData = new FormData(_this[0])
       // Form method
       const method = _this.attr('method') || 'get';
-
+      // Send request
       $.axios[method.toLowerCase()](_this.attr('action'), formData).then(response => {
         if (201 === response.status) {
-          console.log(response.data)
+          const model = response.data.model
+          // Set games
           for (let i = 0; i < response.data.group.games.length; i++) {
             const game = response.data.group.games[i]
-
             this.games = this.setGameValue(this.games, game.group_id, game.host_team.id, game.guest_team.id, game)
           }
-          const model = response.data.model
-
+          // Set new teams
           this.teams = this.setTeam(this.teams, parseInt(model.group_id), parseInt(model.position), response.data.team)
 
+          // Set new teams on groups
           let groups = this.groups
           for (let i = 0; i < groups.length; i++) {
             if (response.data.group.id === groups[i].id) {
               groups[i].teams.push(response.data.model);
-              console.log(this.teams[parseInt(model.group_id)][parseInt(model.position)])
             }
           }
 
