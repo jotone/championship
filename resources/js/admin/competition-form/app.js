@@ -3,7 +3,6 @@ import Main from './Main.vue';
 
 createApp(Main).mount('#groupsTable')
 
-
 import "@eastdesire/jscolor";
 import AirDatepicker from "air-datepicker";
 import uaLocale from 'air-datepicker/locale/uk';

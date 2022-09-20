@@ -33,7 +33,7 @@
         </td>
         <td v-for="(gameTeam) in teams[group.id]">
           <span
-              v-if="teams[group.id][groupTeam.position].id != gameTeam.id"
+              v-if="teams[group.id][groupTeam.position].id !== gameTeam.id"
               class="set-date"
               :data-id="games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].id"
           >

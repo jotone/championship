@@ -7,11 +7,17 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     cursor: pointer;
-    padding: 10px 15px;
 
-    &.active {
-      background-color: $secondary;
-      padding-top: 15px
+    a, span {
+      color: $paragraph;
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
     }
+  }
+  li.active {
+    background-color: $secondary;
+
+    a, span {padding-top: 15px}
   }
 }

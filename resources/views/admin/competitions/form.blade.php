@@ -3,10 +3,16 @@
 @section('content')
   @isset($model)
     <ul class="bookmark-wrap">
-      <li @if($tab == 'competition') class="active" @endif data-show="competition">Competition</li>
-      <li @if($tab == 'groups') class="active" @endif data-show="groups">Groups</li>
+      <li @if($tab == 'competition') class="active" @endif data-show="competition">
+        <a href="?tab=competition">Competition</a>
+      </li>
+      <li @if($tab == 'groups') class="active" @endif data-show="groups">
+        <a href="?tab=groups">Groups</a>
+      </li>
       @if($model->groups_number > 1)
-        <li @if($tab == 'play-offs') class="active" @endif data-show="play-offs">Play-offs</li>
+        <li @if($tab == 'play-offs') class="active" @endif data-show="play-offs">
+          <a href="?tab=play-offs">Play-offs</a>
+        </li>
       @endif
     </ul>
   @endisset
@@ -15,8 +21,13 @@
     @include('admin.competitions.partials.main-form')
 
     @isset($model)
-      <div class="col-100" data-show="groups" id="groupsTable" data-routes="{{ json_encode($routes) }}"></div>
-      <div class="row col-100" data-show="play-offs">3</div>
+      <div
+        class="col-100"
+        id="groupsTable"
+        data-routes="{{ json_encode($routes) }}"
+        style="display: {{ $tab == 'groups' ? 'block' : 'none' }}"
+      ></div>
+      <div class="row col-100" style="display: {{ $tab == 'play-offs' ? 'block' : 'none' }}">3</div>
     @endisset
   </div>
 

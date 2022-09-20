@@ -1,9 +1,9 @@
 <form
   action="{{ isset($model) ? route('api.competitions.update', $model->id) : route('api.competitions.store') }}"
-  data-show="competition"
   data-xhr
   data-redirect="{{ route('admin.competitions.edit', 0) }}"
   data-msg="Competition.name"
+  style="display: {{ $tab == 'competition' ? 'block' : 'none' }}"
   method="POST"
 >
   @isset($model)
