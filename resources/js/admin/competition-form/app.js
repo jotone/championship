@@ -5,13 +5,16 @@ createApp(Main).mount('#groupsTable')
 
 import "@eastdesire/jscolor";
 import AirDatepicker from "air-datepicker";
-import uaLocale from 'air-datepicker/locale/uk';
+import enLocale from 'air-datepicker/locale/en';
 import {SearchSelect} from "../libs/search-select";
 
 $(document).ready(() => {
   $('.datepicker').each(function () {
     new AirDatepicker(this, {
-      locale: uaLocale
+      locale: enLocale,
+      firstDay: 1,
+      dateFormat: 'd/MMM/yyyy',
+      timeFormat: 'HH:mm',
     })
   })
 

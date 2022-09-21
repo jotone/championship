@@ -218,8 +218,8 @@ header {
   .set-date {
     color: $blue;
     cursor: pointer;
-    text-decoration: underline;
-
-    &:hover {color: $blue-stroke}
+    padding: 4px 8px;
+    text-align: center;
+    width: 140px;
   }
 }

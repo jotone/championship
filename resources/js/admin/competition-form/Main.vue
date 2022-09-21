@@ -32,17 +32,14 @@
           >
         </td>
         <td v-for="(gameTeam) in teams[group.id]">
-          <span
+          <input
+              :name="`game[${games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].id}]`"
               v-if="teams[group.id][groupTeam.position].id !== gameTeam.id"
               class="set-date"
-              :data-id="games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].id"
-          >
-            {{
-              games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].start === null
+              :value="games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].start === null
                   ? 'Not set'
-                  : games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].start
-            }}
-          </span>
+                  : formatDate(games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].start)"
+          >
         </td>
         <td><span>{{ groupTeam.games || 0}}</span></td>
         <td><span>{{ groupTeam.wins || 0}}</span></td>
@@ -63,6 +60,9 @@
 
 <script>
 import {Popup} from "../libs/popup";
+import AirDatepicker from "air-datepicker";
+import enLocale from 'air-datepicker/locale/en';
+import moment from "moment/moment";
 
 export default {
   data() {
@@ -76,6 +76,7 @@ export default {
     }
   },
   methods: {
+    formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
     /**
      * Set Competition game value
      * @param games
@@ -191,6 +192,29 @@ export default {
         })
       }
     })
+    // Games date pickers
+    let i = 0
+    const datePicker = setInterval(() => {
+      if ($('.set-date').length) {
+        $('.set-date').each(function () {
+          new AirDatepicker(this, {
+            locale: enLocale,
+            timepicker: true,
+            firstDay: 1,
+            dateFormat: 'd/MMM/yyyy',
+            timeFormat: 'HH:mm',
+          })
+        })
+        clearInterval(datePicker)
+      }
+
+      i++
+      if (i > 1000) {
+        clearInterval(datePicker)
+      }
+    }, 50)
+
+
     // Popup handler
     this.addRowPopup = new Popup($('#append-team'))
     // Popup form submit event
