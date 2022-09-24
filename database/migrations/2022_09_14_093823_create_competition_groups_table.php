@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('competition_id');
+            $table->unsignedTinyInteger('position')->default(0);
         });
     }
 

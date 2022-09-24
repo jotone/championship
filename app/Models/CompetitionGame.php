@@ -22,7 +22,8 @@ class CompetitionGame extends Model
         'host_team',
         'guest_team',
         'entity',
-        'start_at'
+        'start_at',
+        'place'
     ];
 
     public $casts = [

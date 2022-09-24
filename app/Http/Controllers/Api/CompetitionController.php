@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Classes\FileHelper;
 use App\Http\Controllers\BasicApiController;
+use Carbon\Carbon;
 use App\Http\Requests\{CompetitionStoreRequest, CompetitionUpdateRequest};
 use App\Models\{Competition, CompetitionGroup};
 use Illuminate\Http\{Request, Response};
 
 class CompetitionController extends BasicApiController
 {
-    protected $start_char_number = 65; // Code of "A" symbol
+    protected string $group_chars = 'ABCDEFGHIKLMOPQRSTVXYZ';
 
     /**
      * Get competition list
@@ -51,19 +52,20 @@ class CompetitionController extends BasicApiController
             'name'          => $args['name'],
             'slug'          => $args['slug'],
             'groups_number' => $args['groups_number'],
+            'rounds'        => $args['rounds'],
             'img_url'       => null,
             'bg_color'      => $args['bg_color'][0] != '#' ? '#' . $args['bg_color'] : $args['bg_color'],
             'text_color'    => $args['text_color'][0] != '#' ? '#' . $args['text_color'] : $args['text_color'],
-            'start_at'      => $args['start_at'],
-            'finish_at'     => $args['finish_at'],
+            'start_at'      => Carbon::createFromFormat('d/M/Y', $args['start_at']),
+            'finish_at'     => Carbon::createFromFormat('d/M/Y', $args['finish_at']),
         ]);
 
         //Create competition groups
-        $n = $this->start_char_number + $args['groups_number'];
-        for ($i = $this->start_char_number; $i < $n; $i++) {
+        for ($i = 0; $i < $args['groups_number']; $i++) {
             CompetitionGroup::create([
-                'name'           => chr($i),
-                'competition_id' => $competition->id
+                'name'           => $this->group_chars[$i],
+                'competition_id' => $competition->id,
+                'position'       => CompetitionGroup::where('competition_id', $competition->id)->count()
             ]);
         }
 
@@ -95,6 +97,8 @@ class CompetitionController extends BasicApiController
     {
         // Request data
         $args = $request->validated();
+        // Modifying group number
+        $modify = $args['groups_number'] - $competition->groups_number;
         // Modify model
         $competition->name = $args['name'];
         $competition->slug = $args['slug'];
@@ -103,6 +107,21 @@ class CompetitionController extends BasicApiController
         $competition->text_color = $args['text_color'][0] != '#' ? '#' . $args['text_color'] : $args['text_color'];
         $competition->start_at = $args['start_at'];
         $competition->finish_at = $args['finish_at'];
+
+        if ($modify >= 0) {
+            for ($i = 0; $i < $modify; $i++) {
+                CompetitionGroup::create([
+                    'name'           => 'New group ' . $i,
+                    'competition_id' => $competition->id,
+                    'position'       => CompetitionGroup::where('competition_id', $competition->id)->count()
+                ]);
+            }
+        } else {
+            CompetitionGroup::where('competition_id', $competition->id)
+                ->orderBy('position', 'desc')
+                ->get()
+                ->each(fn($entity) => $entity->delete());
+        }
 
         try {
             // Attempt to save file

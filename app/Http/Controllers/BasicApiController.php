@@ -56,15 +56,17 @@ class BasicApiController extends Controller
         // Apply where query
         if (!empty($args['where'])) {
             foreach ($args['where'] as $key => $value) {
-                if (str_contains($value, ',')) {
-                    $value = explode(',', $value);
-                    $content = str_contains($key, '+')
-                        ? $content->orWhereIn(substr($key, 1), $value)
-                        : $content->whereIn($key, $value);
-                } else {
-                    $content = str_contains($key, '+')
-                        ? $content->orWhere(substr($key, 1), $value)
-                        : $content->where($key, $value);
+                if (!empty($value)) {
+                    if (str_contains($value, ',')) {
+                        $value = explode(',', $value);
+                        $content = str_contains($key, '+')
+                            ? $content->orWhereIn(substr($key, 1), $value)
+                            : $content->whereIn($key, $value);
+                    } else {
+                        $content = str_contains($key, '+')
+                            ? $content->orWhere(substr($key, 1), $value)
+                            : $content->where($key, $value);
+                    }
                 }
             }
         }

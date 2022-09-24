@@ -41,6 +41,7 @@ class CompetitionController extends BasicAdminController
     public function create(Request $request): View
     {
         return $this->renderPage('admin.competitions.form', $request, [
+            'tab'   => 'competition',
             'title' => 'Create Competition'
         ]);
     }
@@ -66,8 +67,7 @@ class CompetitionController extends BasicAdminController
                     'list' => route('api.competition-groups.index') . '?with[]=games&with[]=teams&where[competition_id]=' . $competition->id
                 ],
                 'team'    => [
-                    'list' => route('api.teams.index') . '?take=0',
-                    'edit' => route('admin.countries.teams.edit', 0)
+                    'list' => route('api.teams.index') . '?take=0'
                 ]
             ]
         ]);

@@ -30,40 +30,27 @@ class CompetitionGroupTeamController extends BasicApiController
                 ]
             ], 400);
         }
-        $args['position'] = CompetitionTeam::where('entity', $args['entity'])
-            ->where('group_id', $args['group_id'])
-            ->count();
 
-        $competition_team = CompetitionTeam::create($args);
+        CompetitionTeam::create($args);
+
+        $group->fresh();
 
         foreach ($group->teams as $group_team) {
-            if ($group_team->entity_id != $team->id) {
-                CompetitionGame::create([
-                    'group_id'   => $args['group_id'],
-                    'host_team'  => $team->id,
-                    'guest_team' => $group_team->entity_id,
-                    'entity'     => $args['entity'],
-                ]);
-                CompetitionGame::create([
-                    'group_id'   => $args['group_id'],
-                    'host_team'  => $group_team->entity_id,
-                    'guest_team' => $team->id,
-                    'entity'     => $args['entity']
-                ]);
+            for ($i = 0; $i < $group->competition->rounds; $i++) {
+                if ($group_team->entity_id != $team->id) {
+                    CompetitionGame::create([
+                        'group_id'   => $args['group_id'],
+                        'host_team'  => $team->id,
+                        'guest_team' => $group_team->entity_id,
+                        'entity'     => $args['entity'],
+                    ]);
+                }
             }
         }
 
-        foreach ($group->games as $i => $game) {
-            $host = $game->hostTeam;
-            $guest = $game->guestTeam;
-            $group->games[$i]['host_team'] = $host;
-            $group->games[$i]['guest_team'] = $guest;
-        }
-
         return response([
-            'model' => $competition_team,
             'team'  => $team,
-            'group' => $group
+            'group' => CompetitionGroup::with(['teams', 'games'])->find($args['group_id'])
         ], 201);
     }
 }

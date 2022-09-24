@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('guest_team')->nullable();
             $table->string('entity');
             $table->timestamp('start_at')->nullable();
+            $table->string('place')->nullable();
             $table->timestamps();
         });
     }

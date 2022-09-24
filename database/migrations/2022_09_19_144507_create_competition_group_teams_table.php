@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('entity_id');
             $table->string('entity');
-            $table->unsignedTinyInteger('position')->default(0);
             $table->unsignedSmallInteger('games')->default(0);
             $table->unsignedSmallInteger('wins')->default(0);
             $table->unsignedSmallInteger('draws')->default(0);

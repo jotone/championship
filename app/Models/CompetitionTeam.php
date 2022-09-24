@@ -21,7 +21,6 @@ class CompetitionTeam extends Model
         'group_id',
         'entity_id',
         'entity',
-        'position',
         'games',
         'wins',
         'draws',
@@ -47,6 +46,6 @@ class CompetitionTeam extends Model
      */
     public function team(): BelongsTo
     {
-        return $this->belongsTo($this->attributes['entity']::class, 'entity_id', 'id');
+        return $this->belongsTo($this->attributes['entity'], 'entity_id', 'id');
     }
 }

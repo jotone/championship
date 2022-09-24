@@ -19,6 +19,7 @@ class Competition extends Model
         'name',
         'slug',
         'groups_number',
+        'rounds',
         'img_url',
         'bg_color',
         'text_color',

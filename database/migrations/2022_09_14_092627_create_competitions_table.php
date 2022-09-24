@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->unsignedTinyInteger('groups_number');
+            $table->unsignedTinyInteger('rounds')->default(1);
             $table->string('img_url')->nullable();
             $table->string('bg_color')->default('#ffffff');
             $table->string('text_color')->default('#0d0d0d');

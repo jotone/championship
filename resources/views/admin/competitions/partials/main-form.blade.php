@@ -92,6 +92,24 @@
           >
         </label>
       </div>
+
+      <div class="form-row">
+        <label class="caption">
+          <span>Number of Rounds:</span>
+
+          <input
+            autocomplete="off"
+            class="form-input col-100"
+            name="rounds"
+            placeholder="Number of Rounds&hellip;"
+            required
+            type="number"
+            min="1"
+            max="5"
+            value="{{ $model->rounds ?? '1' }}"
+          >
+        </label>
+      </div>
     </fieldset>
 
     <fieldset class="col-50">

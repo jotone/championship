@@ -19,7 +19,8 @@ class CompetitionUpdateRequest extends DefaultFormRequest
         return [
             'name'          => ['required', 'string'],
             'slug'          => ['nullable', 'string', new AlreadyExists('competitions', $id)],
-            'groups_number' => ['required', 'numeric', 'min:1', 'max:25'],
+            'groups_number' => ['required', 'numeric', 'min:1', 'max:21'],
+            'rounds'        => ['required', 'numeric', 'min:1', 'max:5'],
             'img_url'       => ['nullable', 'file', 'mimes:jpeg,jpg,png,svg'],
             'bg_color'      => ['nullable', 'string'],
             'text_color'    => ['nullable', 'string'],

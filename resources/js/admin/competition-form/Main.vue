@@ -1,14 +1,10 @@
 <template>
-  <div>
-    <table v-for="(group) in groups" class="competition-table" :data-id="group.id">
+  <div v-for="(group) in groups">
+    <table class="competition-table" :data-id="group.id">
       <thead>
       <tr>
         <th>
           Group {{ group.name }}
-        </th>
-        <th v-for="(team) in teams[group.id]" class="border">
-          <span>{{ team.ua }}</span>
-          <img class="flag-img" :src="team.img_url" :alt="team.code">
         </th>
         <th>Games</th>
         <th>Wins</th>
@@ -21,24 +17,14 @@
       <tbody>
       <tr v-for="(groupTeam) in group.teams">
         <td :data-i="JSON.stringify(groupTeam)">
-          <span v-if="typeof teams[group.id] === 'object' && !!teams[group.id][groupTeam.position]">
-            {{ teams[group.id][groupTeam.position].ua }}
+          <span v-if="typeof teams[groupTeam.entity_id] === 'object' && !!teams[groupTeam.entity_id]">
+            {{ teams[groupTeam.entity_id].ua }}
           </span>
           <img
-              v-if="typeof teams[group.id] === 'object' && !!teams[group.id][groupTeam.position]"
+              v-if="typeof teams[groupTeam.entity_id] === 'object' && !!teams[groupTeam.entity_id]"
               class="flag-img"
-              :src="teams[group.id][groupTeam.position].img_url"
-              :alt="teams[group.id][groupTeam.position].code"
-          >
-        </td>
-        <td v-for="(gameTeam) in teams[group.id]">
-          <input
-              :name="`game[${games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].id}]`"
-              v-if="teams[group.id][groupTeam.position].id !== gameTeam.id"
-              class="set-date"
-              :value="games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].start === null
-                  ? 'Not set'
-                  : formatDate(games[group.id][teams[group.id][groupTeam.position].id][gameTeam.id].start)"
+              :src="teams[groupTeam.entity_id].img_url"
+              :alt="teams[groupTeam.entity_id].code"
           >
         </td>
         <td><span>{{ groupTeam.games || 0}}</span></td>
@@ -59,15 +45,14 @@
 </template>
 
 <script>
-import {Popup} from "../libs/popup";
-import AirDatepicker from "air-datepicker";
+import {Popup} from '../libs/popup';
+import AirDatepicker from 'air-datepicker';
 import enLocale from 'air-datepicker/locale/en';
 import moment from "moment/moment";
 
 export default {
   data() {
     return {
-      games: [],
       groups: [],
       teams: [],
       module: 'groups',
@@ -76,50 +61,18 @@ export default {
     }
   },
   methods: {
+    datePickerInit() {
+      $('.set-date').each(function () {
+        new AirDatepicker(this, {
+          locale: enLocale,
+          timepicker: true,
+          firstDay: 1,
+          dateFormat: 'd/MMM/yyyy',
+          timeFormat: 'HH:mm',
+        })
+      })
+    },
     formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
-    /**
-     * Set Competition game value
-     * @param games
-     * @param groupID
-     * @param hostID
-     * @param guestID
-     * @param obj
-     * @returns {*}
-     */
-    setGameValue(games, groupID, hostID, guestID, obj) {
-      if (typeof games[groupID] == 'undefined') {
-        games[groupID] = {}
-      }
-
-      if (typeof games[groupID][hostID] == 'undefined') {
-        games[groupID][hostID] = {}
-      }
-
-      games[groupID][hostID][guestID] = {
-        id: obj.id,
-        start: obj.start_at
-      }
-
-      return games
-    },
-    /**
-     * Set competition team value
-     * @param teams
-     * @param groupID
-     * @param position
-     * @param team
-     * @returns {*}
-     */
-    setTeam(teams, groupID, position, team) {
-      if (typeof teams[groupID] == 'undefined') {
-        teams[groupID] = []
-      }
-      if (typeof teams[groupID][position] === 'undefined') {
-        teams[groupID][position] = team
-      }
-
-      return teams
-    },
     /**
      * Show Add Team Popup
      * @param e
@@ -138,15 +91,10 @@ export default {
     $.axios.get(this.routes.group.list).then(response => {
       if (200 === response.status) {
         // Init variables
-        let games = {}, teamIDs = [], teams = [], type = null
+        let teamIDs = [], teams = [], type = null
         // Convert games and teams values into prover view
         for (let i = 0; i < response.data.collection.length; i++) {
           const group = response.data.collection[i]
-          // Set games values
-          for (let j = 0; j < group.games.length; j++) {
-            const game = group.games[j]
-            games = this.setGameValue(games, group.id, game.host_team, game.guest_team, game)
-          }
           // Set team values
           for (let j = 0; j < group.teams.length; j++) {
             const team = group.teams[j]
@@ -156,7 +104,6 @@ export default {
 
             teams.push({
               group: group.id,
-              pos: team.position,
               id: team.entity_id
             })
             // This is need to get teams data
@@ -164,27 +111,19 @@ export default {
           }
         }
         // Teams are countries or clubs
-        const teamsRequestUrl = type === 'App\\Models\\Country' ? this.routes.country.list : this.routes.teams.list;
+        const teamsRequestUrl = type === 'App\\Models\\Country' ? this.routes.country.list : this.routes.team.list;
         // Set groups
         this.groups = response.data.collection
-        // Set games
-        this.games = games
 
         // Get teams data
         $.axios.get(`${teamsRequestUrl}&where[id]=${teamIDs.join(',')}`).then(response => {
           if (200 === response.status) {
             // Result teams values
             let result = {}
+
             // Convert teams data into proper view groupID -> teamPosition -> teamData
             for (let i = 0; i < response.data.collection.length; i++) {
-              const team = response.data.collection[i]
-
-              for (let j = 0; j < teams.length; j++) {
-                const teamOfGroup = teams[j]
-                if (team.id === teamOfGroup.id) {
-                  result = this.setTeam(result, teamOfGroup.group, teamOfGroup.pos, team)
-                }
-              }
+              result[response.data.collection[i].id] = response.data.collection[i]
             }
             // Set teams
             this.teams = result
@@ -193,27 +132,18 @@ export default {
       }
     })
     // Games date pickers
-    let i = 0
-    const datePicker = setInterval(() => {
-      if ($('.set-date').length) {
-        $('.set-date').each(function () {
-          new AirDatepicker(this, {
-            locale: enLocale,
-            timepicker: true,
-            firstDay: 1,
-            dateFormat: 'd/MMM/yyyy',
-            timeFormat: 'HH:mm',
-          })
-        })
-        clearInterval(datePicker)
-      }
-
-      i++
-      if (i > 1000) {
-        clearInterval(datePicker)
-      }
-    }, 50)
-
+    // let i = 0
+    // const datePicker = setInterval(() => {
+    //   if ($('.set-date').length) {
+    //     this.datePickerInit()
+    //     clearInterval(datePicker)
+    //   }
+    //
+    //   i++
+    //   if (i > 1000) {
+    //     clearInterval(datePicker)
+    //   }
+    // }, 50)
 
     // Popup handler
     this.addRowPopup = new Popup($('#append-team'))
@@ -229,24 +159,14 @@ export default {
       // Send request
       $.axios[method.toLowerCase()](_this.attr('action'), formData).then(response => {
         if (201 === response.status) {
-          const model = response.data.model
-          // Set games
-          for (let i = 0; i < response.data.group.games.length; i++) {
-            const game = response.data.group.games[i]
-            this.games = this.setGameValue(this.games, game.group_id, game.host_team.id, game.guest_team.id, game)
-          }
-          // Set new teams
-          this.teams = this.setTeam(this.teams, parseInt(model.group_id), parseInt(model.position), response.data.team)
-
-          // Set new teams on groups
-          let groups = this.groups
-          for (let i = 0; i < groups.length; i++) {
-            if (response.data.group.id === groups[i].id) {
-              groups[i].teams.push(response.data.model);
+          const team = response.data.team
+          const group = response.data.group
+          for (let i = 0, n = this.groups.length; i < n; i++) {
+            if (this.groups[i].id === group.id) {
+              this.groups[i] = group
             }
           }
-
-          this.groups = groups
+          this.teams[team.id] = team
 
           this.addRowPopup.close()
         }
