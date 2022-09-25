@@ -37,7 +37,7 @@ class CompetitionGroup extends Model
      */
     public function games()
     {
-        return $this->hasMany(CompetitionGame::class, 'group_id', 'id');
+        return $this->hasMany(CompetitionGame::class, 'group_id', 'id')->orderBy('start_at');
     }
 
     /**

@@ -3,7 +3,7 @@
     <table class="competition-table" :data-id="group.id">
       <thead>
       <tr>
-        <th>
+        <th class="caption-big">
           Group {{ group.name }}
         </th>
         <th>Games</th>
@@ -16,16 +16,11 @@
       </thead>
       <tbody>
       <tr v-for="(groupTeam) in group.teams">
-        <td :data-i="JSON.stringify(groupTeam)">
-          <span v-if="typeof teams[groupTeam.entity_id] === 'object' && !!teams[groupTeam.entity_id]">
-            {{ teams[groupTeam.entity_id].ua }}
-          </span>
-          <img
-              v-if="typeof teams[groupTeam.entity_id] === 'object' && !!teams[groupTeam.entity_id]"
-              class="flag-img"
-              :src="teams[groupTeam.entity_id].img_url"
-              :alt="teams[groupTeam.entity_id].code"
-          >
+        <td>
+          <Team
+            v-if="typeof teams[groupTeam.entity_id] === 'object' && !!teams[groupTeam.entity_id]"
+            :team="teams[groupTeam.entity_id]"
+          ></Team>
         </td>
         <td><span>{{ groupTeam.games || 0}}</span></td>
         <td><span>{{ groupTeam.wins || 0}}</span></td>
@@ -41,16 +36,63 @@
       </tr>
       </tbody>
     </table>
+
+    <table class="competition-table">
+      <thead>
+      <tr>
+        <th>Game Date</th>
+        <th>Teams</th>
+        <th>Place</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(game) in group.games">
+        <td>
+          <input
+            class="set-date"
+            :name="`gameDate[${game.id}]`"
+            :value="null !== game.start_at ? formatDate(game.start_at) : 'Not set'"
+          >
+        </td>
+        <td>
+          <div class="teams-swap">
+            <div
+              v-if="typeof teams[game.host_team] === 'object' && !!teams[game.host_team]"
+              :data-id="game.host_team"
+            >
+              <Team :team="teams[game.host_team]"></Team>
+            </div>
+            <div>
+              <button name="swapTeams" type="button" class="swap-btn">
+                <i class="fas fa-exchange-alt"></i>
+              </button>
+            </div>
+            <div
+              v-if="typeof teams[game.guest_team] === 'object' && !!teams[game.guest_team]"
+              :data-id="game.guest_team"
+            >
+              <Team :team="teams[game.guest_team]" :invert="1"></Team>
+            </div>
+          </div>
+        </td>
+        <td>
+          <input :name="`gamePlace[${game.id}]`" class="form-input" :value="game.place || ''">
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
-import {Popup} from '../libs/popup';
 import AirDatepicker from 'air-datepicker';
 import enLocale from 'air-datepicker/locale/en';
-import moment from "moment/moment";
+import moment from 'moment/moment';
+import {Popup} from '../libs/popup';
+import Team from './Team.vue';
 
 export default {
+  components: {Team},
   data() {
     return {
       groups: [],
