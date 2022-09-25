@@ -63,7 +63,7 @@ class CompetitionController extends BasicApiController
         //Create competition groups
         for ($i = 0; $i < $args['groups_number']; $i++) {
             CompetitionGroup::create([
-                'name'           => $this->group_chars[$i],
+                'name'           => 'Group ' . $this->group_chars[$i],
                 'competition_id' => $competition->id,
                 'position'       => CompetitionGroup::where('competition_id', $competition->id)->count()
             ]);
@@ -80,7 +80,7 @@ class CompetitionController extends BasicApiController
                 $competition->save();
             }
         } catch (\Exception $e) {
-            throw response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
+            return response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
         }
 
         return response($competition, 201);
@@ -134,7 +134,7 @@ class CompetitionController extends BasicApiController
                 $competition->save();
             }
         } catch (\Exception $e) {
-            throw response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
+            return response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
         }
 
         $competition->save();

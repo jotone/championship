@@ -64,7 +64,7 @@ class TeamController extends BasicApiController
                 $team->save();
             }
         } catch (\Exception $e) {
-            throw response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
+            return response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
         }
 
         return response($team, 201);
@@ -96,7 +96,7 @@ class TeamController extends BasicApiController
                 );
             }
         } catch (\Exception $e) {
-            throw response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
+            return response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
         }
 
         $team->save();

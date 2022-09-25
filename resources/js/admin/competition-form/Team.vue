@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <span v-if="!invert">{{ team.ua }}</span>
+  <div :class="`country-wrap ${invert ? 'invert' : ''}`">
+    <span>{{ team.ua }}</span>
     <img
       class="flag-img"
       :src="team.img_url"
       :alt="team.code"
     >
-    <span v-if="invert">{{ team.ua }}</span>
   </div>
 </template>
 
@@ -18,7 +17,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

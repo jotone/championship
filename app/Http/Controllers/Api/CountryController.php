@@ -87,7 +87,7 @@ class CountryController extends BasicApiController
                 $country->img_url = FileHelper::saveFile($request->file('img_url'), 'images/country/');
             }
         } catch (\Exception $e) {
-            throw response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
+            return response(['errors' => ['img_url' => [$e->getMessage()]]], 400);
         }
 
         $country->save();

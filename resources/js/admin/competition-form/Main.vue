@@ -3,8 +3,27 @@
     <table class="competition-table" :data-id="group.id">
       <thead>
       <tr>
-        <th class="caption-big">
-          Group {{ group.name }}
+        <th>
+          <div class="group-caption-wrap">
+            <span>{{ group.name }}</span>
+
+            <div class="group-controls">
+              <a class="edit" @click.prevent="showGroupNameEditor">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a class="remove" href="#">
+                <i class="fas fa-times"></i>
+              </a>
+              <a
+                class="accept"
+                style="display: none"
+                :href="groupUpdateRoute(group.id)"
+                @click.prevent="updateGroupName"
+              >
+                <i class="fas fa-check"></i>
+              </a>
+            </div>
+          </div>
         </th>
         <th>Games</th>
         <th>Wins</th>
@@ -41,39 +60,38 @@
       <thead>
       <tr>
         <th>Game Date</th>
-        <th>Teams</th>
+        <th colspan="3">Teams</th>
         <th>Place</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="(game) in group.games">
         <td>
-          <input
-            class="set-date"
+          <DatePicker
             :name="`gameDate[${game.id}]`"
             :value="null !== game.start_at ? formatDate(game.start_at) : 'Not set'"
-          >
+          ></DatePicker>
         </td>
         <td>
-          <div class="teams-swap">
-            <div
-              v-if="typeof teams[game.host_team] === 'object' && !!teams[game.host_team]"
-              :data-id="game.host_team"
-            >
-              <Team :team="teams[game.host_team]"></Team>
-            </div>
-            <div>
-              <button name="swapTeams" type="button" class="swap-btn">
-                <i class="fas fa-exchange-alt"></i>
-              </button>
-            </div>
-            <div
-              v-if="typeof teams[game.guest_team] === 'object' && !!teams[game.guest_team]"
-              :data-id="game.guest_team"
-            >
-              <Team :team="teams[game.guest_team]" :invert="1"></Team>
-            </div>
-          </div>
+          <Team
+            v-if="typeof teams[game.host_team] === 'object' && !!teams[game.host_team]"
+            :data-id="game.host_team"
+            :team="teams[game.host_team]"
+          ></Team>
+        </td>
+        <td>
+          <button name="swapTeams" type="button" class="swap-btn">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+        </td>
+        <td>
+          <Team
+            v-if="typeof teams[game.guest_team] === 'object' && !!teams[game.guest_team]"
+            :data-id="game.guest_team"
+            :team="teams[game.guest_team]"
+            :invert="1"
+          >
+          </Team>
         </td>
         <td>
           <input :name="`gamePlace[${game.id}]`" class="form-input" :value="game.place || ''">
@@ -85,14 +103,13 @@
 </template>
 
 <script>
-import AirDatepicker from 'air-datepicker';
-import enLocale from 'air-datepicker/locale/en';
 import moment from 'moment/moment';
 import {Popup} from '../libs/popup';
+import DatePicker from "./DatePicker.vue";
 import Team from './Team.vue';
 
 export default {
-  components: {Team},
+  components: {DatePicker, Team},
   data() {
     return {
       groups: [],
@@ -103,18 +120,27 @@ export default {
     }
   },
   methods: {
-    datePickerInit() {
-      $('.set-date').each(function () {
-        new AirDatepicker(this, {
-          locale: enLocale,
-          timepicker: true,
-          firstDay: 1,
-          dateFormat: 'd/MMM/yyyy',
-          timeFormat: 'HH:mm',
-        })
-      })
+    /**
+     * @param id
+     * @returns {string}
+     */
+    groupUpdateRoute(id) {
+      return window.Helpers.buildUrl(this.routes.group.update, id, 1)
     },
+    /**
+     * Convert a date value to the proper view
+     * @param val
+     * @returns {string}
+     */
     formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
+    showGroupNameEditor(e) {
+      const _this = $(e.target)
+      _this.closest('.group-caption-wrap').children('span').replaceWith(function () {
+        return $(`<input class="form-input" name="groupName" value="${$(this).text()}">`);
+      })
+      _this.closest('.group-controls').find('.edit, .remove').hide()
+      _this.closest('.group-controls').find('.accept').show()
+    },
     /**
      * Show Add Team Popup
      * @param e
@@ -124,6 +150,24 @@ export default {
       this.addRowPopup.wrap.find('input[name="entity_id"]').val('')
       this.addRowPopup.wrap.find('input[name="searchSelect"]').val('')
       this.addRowPopup.open()
+    },
+    updateGroupName(e) {
+      const _this = $(e.target).closest('a')
+      const value = _this.closest('.group-caption-wrap').find('input[name="groupName"]').val().trim()
+
+      let formData = new FormData()
+      formData.append('_method', 'patch')
+      formData.append('name', value)
+
+      $.axios.post(_this.attr('href'), formData).then(response => {
+        if (200 === response.status) {
+          _this.closest('.group-caption-wrap').children('input').replaceWith(function () {
+            return $(`<span>${value}</span>`);
+          })
+          _this.closest('.group-controls').find('.accept').hide()
+          _this.closest('.group-controls').find('.edit, .remove').show()
+        }
+      })
     }
   },
   beforeMount() {
@@ -173,19 +217,6 @@ export default {
         })
       }
     })
-    // Games date pickers
-    // let i = 0
-    // const datePicker = setInterval(() => {
-    //   if ($('.set-date').length) {
-    //     this.datePickerInit()
-    //     clearInterval(datePicker)
-    //   }
-    //
-    //   i++
-    //   if (i > 1000) {
-    //     clearInterval(datePicker)
-    //   }
-    // }, 50)
 
     // Popup handler
     this.addRowPopup = new Popup($('#append-team'))
