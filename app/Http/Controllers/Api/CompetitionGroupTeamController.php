@@ -31,6 +31,7 @@ class CompetitionGroupTeamController extends BasicApiController
 
         abort_if(!$team, 404);
 
+        unset($args['searchSelect']);
         // Check the team already exists on the group
         if (CompetitionTeam::where($args)->count()) {
             return response([

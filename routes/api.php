@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/competition-group-games', CompetitionGroupGameController::class)->except(['create', 'edit', 'show']);
+Route::resource('/competition-group-games', CompetitionGroupGameController::class)->only(['update']);
 Route::resource('/competition-group-teams', CompetitionGroupTeamController::class)->only(['store', 'destroy']);
 Route::patch('/competition-groups', [CompetitionGroupController::class, 'upgrade'])->name('competition-groups.upgrade');
 Route::resource('/competition-groups', CompetitionGroupController::class)->only(['index', 'update', 'destroy']);

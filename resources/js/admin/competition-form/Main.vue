@@ -71,7 +71,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(game) in group.games">
+      <tr v-for="(game) in group.games" :data-id="game.id">
         <td>
           <DatePicker
             :name="`gameDate[${game.id}]`"
@@ -100,7 +100,7 @@
           </Team>
         </td>
         <td>
-          <input :name="`gamePlace[${game.id}]`" class="form-input" :value="game.place || ''">
+          <input :name="`gamePlace[${game.id}]`" class="form-input" :value="game.place || ''" @keyup="gameChangePlace">
         </td>
       </tr>
       </tbody>
@@ -114,7 +114,7 @@ import {Popup} from '../libs/popup';
 import DatePicker from "./DatePicker.vue";
 import Team from './Team.vue';
 import {Confirmation} from "../libs/confirmation";
-import Sortable from "sortablejs";
+import {debounce} from "debounce";
 
 export default {
   components: {DatePicker, Team},
@@ -128,6 +128,14 @@ export default {
     }
   },
   methods: {
+    gameChangePlace: debounce(function (e) {
+      const _this = $(e.target)
+      let formData = new FormData()
+      formData.append('_method', 'patch')
+      formData.append('place', _this.val().trim())
+
+      $.axios.post(window.Helpers.buildUrl(this.routes.game.update, _this.closest('tr').data('id'), 1), formData)
+    }, 500),
     groupRemoveRoute(id) {
       return window.Helpers.buildUrl(this.routes.group.destroy, id, 1)
     },
