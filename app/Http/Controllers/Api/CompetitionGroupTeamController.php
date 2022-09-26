@@ -41,7 +41,11 @@ class CompetitionGroupTeamController extends BasicApiController
             ], 400);
         }
 
-        CompetitionTeam::create($args);
+        CompetitionTeam::create([
+            'group_id'  => $args['group_id'],
+            'entity'    => $args['entity'],
+            'entity_id' => $team->id
+        ]);
 
         $group->fresh();
 
@@ -62,5 +66,18 @@ class CompetitionGroupTeamController extends BasicApiController
             'team'  => $team,
             'group' => CompetitionGroup::with(['teams', 'games'])->find($args['group_id'])
         ], 201);
+    }
+
+    /**
+     * Remove competition team
+     *
+     * @param CompetitionTeam $competition_group_team
+     * @return Response
+     */
+    public function destroy(CompetitionTeam $competition_group_team): Response
+    {
+        $competition_group_team->delete();
+
+        return response([], 204);
     }
 }

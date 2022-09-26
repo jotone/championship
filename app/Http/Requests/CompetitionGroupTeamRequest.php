@@ -18,7 +18,7 @@ class CompetitionGroupTeamRequest extends DefaultFormRequest
         return [
             'group_id'     => ['required', 'exists:competition_groups,id'],
             'entity'       => ['required', 'string'],
-            'entity_id'    => ['required', 'exists:' . $table . ',id'],
+            'entity_id'    => ['nullable', 'exists:' . $table . ',id'],
             'searchSelect' => ['required', 'string']
         ];
     }

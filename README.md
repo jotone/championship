@@ -1,11 +1,10 @@
 - ~~Groups~~
   - ~~Move~~
+- ~~Team~~
+  - ~~Remove~~
 - Game
-  - Update
-    - ~~start_date~~
-    - ~~place~~
-    - host and guest
+  - ~~Update~~
+  - ~~Remove~~
   - Store(Add)
-  - Remove
 
 - Play-offs

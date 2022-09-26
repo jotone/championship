@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BasicApiController;
-use App\Models\CompetitionGame;
+use App\Models\{CompetitionGame, Country};
 use Carbon\Carbon;
 use Illuminate\Http\{Request, Response};
 use Illuminate\Support\Facades\Validator;
@@ -19,18 +19,30 @@ class CompetitionGroupGameController extends BasicApiController
      */
     public function update(CompetitionGame $competition_group_game, Request $request): Response
     {
-        $args = $request->only(['place', 'start_at']);
+        $args = $request->only(['host_team', 'guest_team', 'place', 'start_at']);
 
         $rules = [];
         foreach ($args as $key => $val) {
             switch ($key) {
+                case 'host_team':
+                    $table = Country::class == $competition_group_game->entity ? 'countries' : 'teams';
+                    $rules[$key] = ['required', 'numeric', 'exists:' . $table . ',id'];
+                    $competition_group_game->guest_team = $val;
+                    break;
+                case 'guest_team':
+                    $table = Country::class == $competition_group_game->entity ? 'countries' : 'teams';
+                    $rules[$key] = ['required', 'numeric', 'exists:' . $table . ',id'];
+                    $competition_group_game->host_team = $val;
+                    break;
                 case 'place':
-                    $rules[$key] = ['required', 'string'];
+                    $rules[$key] = ['nullable', 'string'];
                     $competition_group_game->$key = $val;
                     break;
                 case 'start_at':
-                    $rules[$key] = ['required', 'string', 'date_format:d/M/Y H:i'];
-                    $competition_group_game->$key = Carbon::createFromFormat('d/M/Y H:i', $val)->subHours(3);
+                    $rules[$key] = ['nullable', 'string', 'date_format:d/M/Y H:i'];
+                    $competition_group_game->$key = !empty($val)
+                        ? Carbon::createFromFormat('d/M/Y H:i', $val)->subHours(3)
+                        : null;
                     break;
             }
         }
@@ -46,5 +58,18 @@ class CompetitionGroupGameController extends BasicApiController
         }
 
         return response($competition_group_game);
+    }
+
+    /**
+     * Remove competition game
+     *
+     * @param CompetitionGame $competition_group_game
+     * @return Response
+     */
+    public function destroy(CompetitionGame $competition_group_game): Response
+    {
+        $competition_group_game->delete();
+
+        return response([], 204);
     }
 }

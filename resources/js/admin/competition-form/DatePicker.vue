@@ -24,9 +24,23 @@ export default {
         formData.append('_method', 'patch')
         formData.append('start_at', e.formattedDate || null)
 
-        const url = window.Helpers.buildUrl(this.$parent.routes.game.update, $(e.datepicker.$el).closest('tr').data('id'), 1)
+        const id = parseInt($(e.datepicker.$el).closest('tr').data('id'))
 
-        $.axios.post(url, formData)
+        $.axios
+          .post(this.$parent.gameUpdateRoute(id), formData)
+          .then(response => {
+            if (200 === response.status) {
+              for (let i = 0, n = this.$parent.groups.length; i < n; i++) {
+                if (this.$parent.groups[i].id === response.data.group_id) {
+                  for (let j = 0, m = this.$parent.groups[i].games.length; j < m; j++) {
+                    if (id === this.$parent.groups[i].games[j].id) {
+                      this.$parent.groups[i].games[j] = response.data
+                    }
+                  }
+                }
+              }
+            }
+          })
       }, 500)
     })
   }

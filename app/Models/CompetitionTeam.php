@@ -48,4 +48,19 @@ class CompetitionTeam extends Model
     {
         return $this->belongsTo($this->attributes['entity'], 'entity_id', 'id');
     }
+
+    /**
+     * Extend model behavior
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($model) {
+            CompetitionGame::where('host_team', $model->entity_id)
+                ->orWhere('guest_team', $model->entity_id)
+                ->get()
+                ->each(fn($entity) => $entity->delete());
+        });
+    }
 }

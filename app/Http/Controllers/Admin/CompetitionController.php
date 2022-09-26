@@ -64,7 +64,8 @@ class CompetitionController extends BasicAdminController
                     'list' => route('api.countries.index') . '?take=0'
                 ],
                 'game'    => [
-                    'update' => route('api.competition-group-games.update', 0)
+                    'update'  => route('api.competition-group-games.update', 0),
+                    'destroy' => route('api.competition-group-games.destroy', 0)
                 ],
                 'group'   => [
                     'list'    => route('api.competition-groups.index') . '?with[]=games&with[]=teams&order[by]=position&where[competition_id]=' . $competition->id,
@@ -73,7 +74,8 @@ class CompetitionController extends BasicAdminController
                     'destroy' => route('api.competition-groups.destroy', 0)
                 ],
                 'team'    => [
-                    'list' => route('api.teams.index') . '?take=0'
+                    'list'    => route('api.teams.index') . '?take=0',
+                    'destroy' => route('api.competition-group-teams.destroy', 0)
                 ]
             ]
         ]);

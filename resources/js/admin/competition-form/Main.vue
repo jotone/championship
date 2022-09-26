@@ -37,10 +37,11 @@
         <th>Loses</th>
         <th>Balls</th>
         <th>Score</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(groupTeam) in group.teams">
+      <tr v-for="(groupTeam) in group.teams" :data-id="groupTeam.entity_id">
         <td>
           <Team
             v-if="typeof teams[groupTeam.entity_id] === 'object' && !!teams[groupTeam.entity_id]"
@@ -53,9 +54,14 @@
         <td><span>{{ groupTeam.loses || 0 }}</span></td>
         <td><span>{{ groupTeam.balls || '0-0' }}</span></td>
         <td><span>{{ groupTeam.score || 0 }}</span></td>
+        <td>
+          <a class="remove" :href="teamDestroyRoute(groupTeam.id)" @click.prevent="teamRemove">
+            <i class="fas fa-times"></i>
+          </a>
+        </td>
       </tr>
       <tr data-role="add-team">
-        <td>
+        <td colspan="7">
           <span class="add fas fa-plus-circle" title="Add Team" @click="showPopup"></span>
         </td>
       </tr>
@@ -68,6 +74,7 @@
         <th>Game Date</th>
         <th colspan="3">Teams</th>
         <th>Place</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -86,7 +93,13 @@
           ></Team>
         </td>
         <td>
-          <button name="swapTeams" type="button" class="swap-btn">
+          <button
+            name="swapTeams"
+            type="button"
+            title="Swap host and guest teams"
+            class="swap-btn"
+            @click="swapTeams"
+          >
             <i class="fas fa-exchange-alt"></i>
           </button>
         </td>
@@ -100,7 +113,17 @@
           </Team>
         </td>
         <td>
-          <input :name="`gamePlace[${game.id}]`" class="form-input" :value="game.place || ''" @keyup="gameChangePlace">
+          <input
+            class="form-input"
+            @keyup="gameChangePlace"
+            :name="`gamePlace[${game.id}]`"
+            :value="game.place || ''"
+          >
+        </td>
+        <td>
+          <a class="remove" :href="gameRemoveRoute(game.id)" @click.prevent="gameRemove">
+            <i class="fas fa-times"></i>
+          </a>
         </td>
       </tr>
       </tbody>
@@ -134,8 +157,49 @@ export default {
       formData.append('_method', 'patch')
       formData.append('place', _this.val().trim())
 
-      $.axios.post(window.Helpers.buildUrl(this.routes.game.update, _this.closest('tr').data('id'), 1), formData)
+      const id = _this.closest('tr').data('id')
+
+      $.axios
+        .post(this.gameUpdateRoute(), formData)
+        .then(response => {
+          if (200 === response.status) {
+            this.updateGames(response.data, id)
+          }
+        })
     }, 500),
+    gameRemove(e) {
+      const _this = $(e.target).closest('a')
+
+      const id = parseInt(_this.closest('tr').attr('data-id'));
+      const groupID = parseInt(_this.closest('div').find('.competition-table[data-id]').attr('data-id'))
+      const confirm = new Confirmation(`Do you really want to remove this game?`).open()
+
+      confirm.then(answer => answer && $.axios
+        .delete(_this.attr('href'))
+        .then(response => {
+          if (204 === response.status) {
+            for (let i = 0, n = this.groups.length; i < n; i++) {
+              if (this.groups[i].id === groupID) {
+                for (let j = 0, m = this.groups[i].games.length; j < m; j++) {
+                  this.groups[i].games[j].id === id && this.groups[i].games.splice(j, 1)
+                }
+              }
+            }
+          }
+        })
+      )
+    },
+    gameRemoveRoute(id) {
+      return window.Helpers.buildUrl(this.routes.game.destroy, id, 1)
+    },
+    gameUpdateRoute(id) {
+      return window.Helpers.buildUrl(this.routes.game.update, id, 1)
+    },
+    /**
+     * Remove group route
+     * @param id
+     * @returns {string}
+     */
     groupRemoveRoute(id) {
       return window.Helpers.buildUrl(this.routes.group.destroy, id, 1)
     },
@@ -149,7 +213,7 @@ export default {
       const id = parseInt(_this.closest('.competition-table').attr('data-id'))
 
       const name = _this.closest('.group-caption-wrap').children('span').text().trim()
-      const confirm = new Confirmation(`Do you really want to remove group "${name}"`).open()
+      const confirm = new Confirmation(`Do you really want to remove group "${name}"?`).open()
 
       confirm.then(answer => answer && $.axios
         .delete(_this.attr('href'))
@@ -221,6 +285,70 @@ export default {
       this.addRowPopup.wrap.find('input[name="entity_id"]').val('')
       this.addRowPopup.wrap.find('input[name="searchSelect"]').val('')
       this.addRowPopup.open()
+    },
+    /**
+     * Swap host amd guest teams in match
+     * @param e
+     */
+    swapTeams(e) {
+      const _this = $(e.target)
+
+      const parent = _this.closest('tr')
+
+      let formData = new FormData()
+      formData.append('_method', 'patch')
+      formData.append('host_team', parent.find('td:eq(1) .country-wrap').attr('data-id'))
+      formData.append('guest_team', parent.find('td:eq(3) .country-wrap').attr('data-id'))
+
+      $.axios
+        .post(this.gameUpdateRoute(parent.attr('data-id')), formData)
+        .then(response => {
+          if (200 === response.status) {
+            this.updateGames(response.data, parent.attr('data-id'))
+
+            const host = parent.find('td:eq(1)').clone()
+            const guest = parent.find('td:eq(3)').clone()
+
+            parent.find('td:eq(1)').html(guest.html())
+            parent.find('td:eq(3)').html(host.html())
+          }
+        })
+    },
+    /**
+     *
+     * @param id
+     * @returns {string}
+     */
+    teamDestroyRoute(id) {
+      return window.Helpers.buildUrl(this.routes.team.destroy, id, 1)
+    },
+    teamRemove(e) {
+      const _this = $(e.target).closest('a')
+
+      const name = _this.closest('tr').find('td:eq(0) span').text().trim()
+
+      const confirm = new Confirmation(`Do you really want to remove team "${name}"?`).open()
+
+      confirm.then(answer =>
+        answer && $.axios.delete(_this.attr('href')).then(
+          response => 204 === response.status && window.location.reload())
+      )
+    },
+    /**
+     * Update games entities
+     * @param data
+     * @param id
+     */
+    updateGames(data, id) {
+      for (let i = 0, n = this.groups.length; i < n; i++) {
+        if (this.groups[i].id === data.group_id) {
+          for (let j = 0, m = this.groups[i].games.length; j < m; j++) {
+            if (id === this.groups[i].games[j].id) {
+              this.groups[i].games[j] = data
+            }
+          }
+        }
+      }
     }
   },
   beforeMount() {

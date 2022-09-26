@@ -16,7 +16,7 @@ export const ContentTableMixin = {
       const el = $(e.target).closest('a')
 
       const [entity, index] = this.entity.split('.')
-      const confirm = new Confirmation(`Do you really want to remove ${entity} "${el.closest('tr').find(`td:eq(${index})`).text()}"`).open()
+      const confirm = new Confirmation(`Do you really want to remove ${entity} "${el.closest('tr').find(`td:eq(${index})`).text()}"?`).open()
 
       confirm.then(
         answer => answer && $.axios
