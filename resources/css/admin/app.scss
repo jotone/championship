@@ -11,7 +11,7 @@ body {background-color: $paragraph}
 .col-50 {width: 50%}
 .col-30 {width: 30%}
 
-.accept, .edit, .remove, .view {padding: 4px}
+.accept, .edit, .remove, .view {cursor: pointer; padding: 4px}
 .accept {color: $green-stroke}
 .edit {color: $highlight}
 .remove {color: $red-stroke}
@@ -182,14 +182,27 @@ header {
           min-width: 250px;
           position: relative;
 
-          span {font-size: 32px}
+          span {font-size: 32px; padding: 0 20px}
+        }
+
+        .move-group {
+          cursor: grab;
+          left: -15px;
+          padding: 5px 10px;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+
+          &:active {
+            cursor: grabbing;
+          }
         }
 
         .group-controls {
           align-items: center;
           display: flex;
           position: absolute;
-          right: 0;
+          right: -15px;
           top: 50%;
           transform: translateY(-50%);
         }

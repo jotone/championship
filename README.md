@@ -1,0 +1,12 @@
+- Groups
+  - ~~Move~~
+  - Store(add)
+- Game
+  - Move
+  - Remove
+  - Update
+    - start_date
+    - place
+    - host and guest
+
+- Play-offs

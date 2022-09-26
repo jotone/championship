@@ -5,20 +5,26 @@
       <tr>
         <th>
           <div class="group-caption-wrap">
+            <div class="move-group">
+              <i class="fas fa-ellipsis-v"></i>
+              <i class="fas fa-ellipsis-v"></i>
+            </div>
+
             <span>{{ group.name }}</span>
 
             <div class="group-controls">
-              <a class="edit" @click.prevent="showGroupNameEditor">
+              <a class="edit" @click.prevent="showGroupNameEditor" title="Edit group name">
                 <i class="fas fa-edit"></i>
               </a>
-              <a class="remove" href="#">
+              <a class="remove" @click.prevent="groupRemove" :href="groupRemoveRoute(group.id)" title="Remove group">
                 <i class="fas fa-times"></i>
               </a>
               <a
                 class="accept"
-                style="display: none"
+                style="display: none; padding-right: 20px"
+                title="Accept changes"
                 :href="groupUpdateRoute(group.id)"
-                @click.prevent="updateGroupName"
+                @click.prevent="groupUpdateName"
               >
                 <i class="fas fa-check"></i>
               </a>
@@ -41,11 +47,11 @@
             :team="teams[groupTeam.entity_id]"
           ></Team>
         </td>
-        <td><span>{{ groupTeam.games || 0}}</span></td>
-        <td><span>{{ groupTeam.wins || 0}}</span></td>
-        <td><span>{{ groupTeam.draws || 0}}</span></td>
-        <td><span>{{ groupTeam.loses || 0}}</span></td>
-        <td><span>{{ groupTeam.balls || '0-0'}}</span></td>
+        <td><span>{{ groupTeam.games || 0 }}</span></td>
+        <td><span>{{ groupTeam.wins || 0 }}</span></td>
+        <td><span>{{ groupTeam.draws || 0 }}</span></td>
+        <td><span>{{ groupTeam.loses || 0 }}</span></td>
+        <td><span>{{ groupTeam.balls || '0-0' }}</span></td>
         <td><span>{{ groupTeam.score || 0 }}</span></td>
       </tr>
       <tr data-role="add-team">
@@ -107,6 +113,8 @@ import moment from 'moment/moment';
 import {Popup} from '../libs/popup';
 import DatePicker from "./DatePicker.vue";
 import Team from './Team.vue';
+import {Confirmation} from "../libs/confirmation";
+import Sortable from "sortablejs";
 
 export default {
   components: {DatePicker, Team},
@@ -120,6 +128,57 @@ export default {
     }
   },
   methods: {
+    groupRemoveRoute(id) {
+      return window.Helpers.buildUrl(this.routes.group.destroy, id, 1)
+    },
+    /**
+     * Remove group
+     * @param e
+     */
+    groupRemove(e) {
+      const _this = $(e.target).closest('a')
+
+      const id = parseInt(_this.closest('.competition-table').attr('data-id'))
+
+      const name = _this.closest('.group-caption-wrap').children('span').text().trim()
+      const confirm = new Confirmation(`Do you really want to remove group "${name}"`).open()
+
+      confirm.then(answer => answer && $.axios
+        .delete(_this.attr('href'))
+        .then(response => {
+          if (204 === response.status) {
+            for (let i = 0, n = this.groups.length; i < n; i++) {
+              !!this.groups[i] && this.groups[i].id === id && this.groups.splice(i, 1);
+            }
+          }
+        })
+        .finally(() => $('.overlay, .overlay .preload').hide())
+      )
+    },
+    /**
+     * Send request to update the group name
+     * @param e
+     */
+    groupUpdateName(e) {
+      const _this = $(e.target).closest('a')
+      const name = _this.closest('.group-caption-wrap').find('input[name="groupName"]').val().trim()
+
+      let formData = new FormData()
+      formData.append('_method', 'patch')
+      formData.append('name', name)
+
+      $.axios
+        .post(_this.attr('href'), formData)
+        .then(response => {
+          if (200 === response.status) {
+            _this.closest('.group-caption-wrap').children('input').replaceWith(function () {
+              return $(`<span>${name}</span>`);
+            })
+            _this.closest('.group-controls').find('.accept').hide()
+            _this.closest('.group-controls').find('.edit, .remove').show()
+          }
+        })
+    },
     /**
      * @param id
      * @returns {string}
@@ -133,6 +192,10 @@ export default {
      * @returns {string}
      */
     formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
+    /**
+     * View group name input
+     * @param e
+     */
     showGroupNameEditor(e) {
       const _this = $(e.target)
       _this.closest('.group-caption-wrap').children('span').replaceWith(function () {
@@ -150,73 +213,59 @@ export default {
       this.addRowPopup.wrap.find('input[name="entity_id"]').val('')
       this.addRowPopup.wrap.find('input[name="searchSelect"]').val('')
       this.addRowPopup.open()
-    },
-    updateGroupName(e) {
-      const _this = $(e.target).closest('a')
-      const value = _this.closest('.group-caption-wrap').find('input[name="groupName"]').val().trim()
-
-      let formData = new FormData()
-      formData.append('_method', 'patch')
-      formData.append('name', value)
-
-      $.axios.post(_this.attr('href'), formData).then(response => {
-        if (200 === response.status) {
-          _this.closest('.group-caption-wrap').children('input').replaceWith(function () {
-            return $(`<span>${value}</span>`);
-          })
-          _this.closest('.group-controls').find('.accept').hide()
-          _this.closest('.group-controls').find('.edit, .remove').show()
-        }
-      })
     }
   },
   beforeMount() {
     this.routes = $('#groupsTable').data('routes')
   },
   mounted() {
-    $.axios.get(this.routes.group.list).then(response => {
-      if (200 === response.status) {
-        // Init variables
-        let teamIDs = [], teams = [], type = null
-        // Convert games and teams values into prover view
-        for (let i = 0; i < response.data.collection.length; i++) {
-          const group = response.data.collection[i]
-          // Set team values
-          for (let j = 0; j < group.teams.length; j++) {
-            const team = group.teams[j]
-            if (null === type) {
-              type = team.entity
-            }
+    $.axios
+      .get(this.routes.group.list)
+      .then(response => {
+        if (200 === response.status) {
+          // Init variables
+          let teamIDs = [], teams = [], type = null
+          // Convert games and teams values into prover view
+          for (let i = 0; i < response.data.collection.length; i++) {
+            const group = response.data.collection[i]
+            // Set team values
+            for (let j = 0; j < group.teams.length; j++) {
+              const team = group.teams[j]
+              if (null === type) {
+                type = team.entity
+              }
 
-            teams.push({
-              group: group.id,
-              id: team.entity_id
+              teams.push({
+                group: group.id,
+                id: team.entity_id
+              })
+              // This is need to get teams data
+              teamIDs.push(team.entity_id)
+            }
+          }
+          // Teams are countries or clubs
+          const teamsRequestUrl = type === 'App\\Models\\Country' ? this.routes.country.list : this.routes.team.list;
+          // Set groups
+          this.groups = response.data.collection
+
+          // Get teams data
+          $.axios
+            .get(`${teamsRequestUrl}&where[id]=${teamIDs.join(',')}`)
+            .then(response => {
+              if (200 === response.status) {
+                // Result teams values
+                let result = {}
+
+                // Convert teams data into proper view groupID -> teamPosition -> teamData
+                for (let i = 0; i < response.data.collection.length; i++) {
+                  result[response.data.collection[i].id] = response.data.collection[i]
+                }
+                // Set teams
+                this.teams = result
+              }
             })
-            // This is need to get teams data
-            teamIDs.push(team.entity_id)
-          }
         }
-        // Teams are countries or clubs
-        const teamsRequestUrl = type === 'App\\Models\\Country' ? this.routes.country.list : this.routes.team.list;
-        // Set groups
-        this.groups = response.data.collection
-
-        // Get teams data
-        $.axios.get(`${teamsRequestUrl}&where[id]=${teamIDs.join(',')}`).then(response => {
-          if (200 === response.status) {
-            // Result teams values
-            let result = {}
-
-            // Convert teams data into proper view groupID -> teamPosition -> teamData
-            for (let i = 0; i < response.data.collection.length; i++) {
-              result[response.data.collection[i].id] = response.data.collection[i]
-            }
-            // Set teams
-            this.teams = result
-          }
-        })
-      }
-    })
+      })
 
     // Popup handler
     this.addRowPopup = new Popup($('#append-team'))

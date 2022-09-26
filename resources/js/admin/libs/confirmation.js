@@ -20,6 +20,7 @@ export class Confirmation {
 
   open() {
     return new Promise(resolve => {
+      this.overlay.find('.popup-wrap, .preload').hide()
       this.overlay.find('.confirmation-popup').remove()
       this.overlay.append(this.template())
       this.overlay.css({display: 'flex'})

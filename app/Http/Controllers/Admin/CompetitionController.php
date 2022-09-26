@@ -64,8 +64,9 @@ class CompetitionController extends BasicAdminController
                     'list' => route('api.countries.index') . '?take=0'
                 ],
                 'group'   => [
-                    'list'    => route('api.competition-groups.index') . '?with[]=games&with[]=teams&where[competition_id]=' . $competition->id,
+                    'list'    => route('api.competition-groups.index') . '?with[]=games&with[]=teams&order[by]=position&where[competition_id]=' . $competition->id,
                     'update'  => route('api.competition-groups.update', 0),
+                    'upgrade' => route('api.competition-groups.upgrade'),
                     'destroy' => route('api.competition-groups.destroy', 0)
                 ],
                 'team'    => [

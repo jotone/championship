@@ -21,7 +21,16 @@ class CompetitionGroupTeamController extends BasicApiController
 
         $group = CompetitionGroup::findOrFail($args['group_id']);
 
-        $team = $args['entity']::findOrFail($args['entity_id']);
+        // Search team
+        $team = $args['entity']::find($args['entity_id']);
+        if (!$team) {
+            $team = $args['entity']::where('en', 'like', '%' . $args['searchSelect'] . '%')
+                ->orWhere('ua', 'like', '%' . $args['searchSelect'] . '%')
+                ->first();
+        }
+
+        abort_if(!$team, 404);
+
         // Check the team already exists on the group
         if (CompetitionTeam::where($args)->count()) {
             return response([

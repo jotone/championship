@@ -58,14 +58,58 @@ class CompetitionGroupController extends BasicApiController
             }
         }
 
-        $validator = Validator::make($args, $rules);
+        if (!empty($rules)) {
+            $validator = Validator::make($args, $rules);
+
+            if ($validator->fails()) {
+                return response($validator->errors()->all(), 400);
+            }
+
+            $competition_group->save();
+        }
+
+        return response($competition_group);
+    }
+
+    /**
+     * Modify group positions
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function upgrade(Request $request): Response
+    {
+        $args = $request->only('positions');
+
+        $validator = Validator::make($args, [
+            'positions' => ['required', 'array'],
+            'positions.*' => ['exists:competition_groups,id']
+        ]);
 
         if ($validator->fails()) {
             return response($validator->errors()->all(), 400);
         }
 
-        $competition_group->save();
+        foreach ($args['positions'] as $pos => $id) {
+            $group = CompetitionGroup::findOrFail($id);
+            $group->position = $pos;
+            $group->save();
+        }
 
-        return response($competition_group);
+        return response([]);
+    }
+
+    /**
+     * Remove group
+     *
+     * @param CompetitionGroup $competition_group
+     * @return Response
+     */
+    public function destroy(CompetitionGroup $competition_group): Response
+    {
+        $competition_group->competition->decrement('groups_number');
+        $competition_group->delete();
+
+        return response([], 204);
     }
 }

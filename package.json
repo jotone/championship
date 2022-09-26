@@ -10,14 +10,15 @@
     "moment": "^2.29.4",
     "postcss": "^8.4.16",
     "sass": "^1.54.3",
-    "vite": "^3.0.4",
-    "vue": "^3.2.37"
+    "vite": "^3.0.4"
   },
   "dependencies": {
+    "@eastdesire/jscolor": "^2.5.0",
     "air-datepicker": "^3.3.0",
     "axios": "^0.27.2",
     "debounce": "^1.2.1",
     "jquery": "^3.6.0",
-    "@eastdesire/jscolor": "^2.5.0"
+    "vue": "^3.2.37",
+    "sortablejs": "^1.15.0"
   }
 }

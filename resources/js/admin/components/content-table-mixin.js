@@ -19,7 +19,8 @@ export const ContentTableMixin = {
       const confirm = new Confirmation(`Do you really want to remove ${entity} "${el.closest('tr').find(`td:eq(${index})`).text()}"`).open()
 
       confirm.then(
-        answer => answer && $.axios.delete(el.attr('href'))
+        answer => answer && $.axios
+          .delete(el.attr('href'))
           .then(response => 204 === response.status && this.getList())
           .finally(() => $('.overlay, .overlay .preload').hide())
       )
@@ -31,7 +32,8 @@ export const ContentTableMixin = {
         : this.routes.list
 
       // Get list
-      $.axios.get(requestUrl)
+      $.axios
+        .get(requestUrl)
         .then(response => {
           // Set entities
           this.models = response.data.collection

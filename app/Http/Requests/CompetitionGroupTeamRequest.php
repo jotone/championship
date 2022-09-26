@@ -16,9 +16,10 @@ class CompetitionGroupTeamRequest extends DefaultFormRequest
         $table = $this->request->get('entity') == Country::class ? 'countries' : 'teams';
 
         return [
-            'group_id'  => ['required', 'exists:competition_groups,id'],
-            'entity'    => ['required', 'string'],
-            'entity_id' => ['required', 'exists:' . $table . ',id'],
+            'group_id'     => ['required', 'exists:competition_groups,id'],
+            'entity'       => ['required', 'string'],
+            'entity_id'    => ['required', 'exists:' . $table . ',id'],
+            'searchSelect' => ['required', 'string']
         ];
     }
 }
