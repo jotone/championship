@@ -60,15 +60,17 @@
           </a>
         </td>
       </tr>
+      </tbody>
+      <tfoot>
       <tr data-role="add-team">
-        <td colspan="7">
-          <span class="add fas fa-plus-circle" title="Add Team" @click="showPopup"></span>
+        <td colspan="8">
+          <span class="add fas fa-plus-circle" title="Add Team" @click="showTeamPopup"></span>
         </td>
       </tr>
-      </tbody>
+      </tfoot>
     </table>
 
-    <table class="competition-table">
+    <table class="competition-table" :data-id="group.id">
       <thead>
       <tr>
         <th>Game Date</th>
@@ -127,6 +129,14 @@
         </td>
       </tr>
       </tbody>
+
+      <tfoot>
+      <tr data-role="add-team">
+        <td colspan="8">
+          <span class="add fas fa-plus-circle" title="Add game" @click="showGamePopup"></span>
+        </td>
+      </tr>
+      </tfoot>
     </table>
   </div>
 </template>
@@ -147,7 +157,8 @@ export default {
       teams: [],
       module: 'groups',
       routes: {},
-      addRowPopup: null
+      addGamePopup: null,
+      addTeamPopup: null,
     }
   },
   methods: {
@@ -171,7 +182,7 @@ export default {
       const _this = $(e.target).closest('a')
 
       const id = parseInt(_this.closest('tr').attr('data-id'));
-      const groupID = parseInt(_this.closest('div').find('.competition-table[data-id]').attr('data-id'))
+      const groupID = parseInt(_this.closest('.competition-table').attr('data-id'))
       const confirm = new Confirmation(`Do you really want to remove this game?`).open()
 
       confirm.then(answer => answer && $.axios
@@ -277,14 +288,38 @@ export default {
       _this.closest('.group-controls').find('.accept').show()
     },
     /**
+     * Show Add game popup
+     * @param e
+     */
+    showGamePopup(e) {
+      const groupID = $(e.target).closest('.competition-table').attr('data-id')
+
+      const url = this.routes.group.list + '&where[id]=' + groupID
+      $.axios.get(url).then(response => {
+        if (200 === response.status && !!response.data.collection[0]) {
+
+          const teams = response.data.collection[0].teams
+          this.addGamePopup.wrap.find('input[name="group_id"]').val(groupID)
+          this.addGamePopup.wrap
+            .find('select[name="host_team"]')
+            .html(teams.reduce((sum, cur) => sum + `<option value="${cur.entity_id}">${this.teams[cur.entity_id].ua}</option>`, ''))
+          this.addGamePopup.wrap
+            .find('select[name="guest_team"]')
+            .html(teams.reduce((sum, cur) => sum + `<option value="${cur.entity_id}">${this.teams[cur.entity_id].ua}</option>`, ''))
+          this.addGamePopup.open()
+        }
+      })
+    },
+    /**
      * Show Add Team Popup
      * @param e
      */
-    showPopup(e) {
-      this.addRowPopup.wrap.find('input[name="group_id"]').val($(e.target).closest('.competition-table').attr('data-id'))
-      this.addRowPopup.wrap.find('input[name="entity_id"]').val('')
-      this.addRowPopup.wrap.find('input[name="searchSelect"]').val('')
-      this.addRowPopup.open()
+    showTeamPopup(e) {
+      const groupID = $(e.target).closest('.competition-table').attr('data-id')
+      this.addTeamPopup.wrap.find('input[name="group_id"]').val(groupID)
+      this.addTeamPopup.wrap.find('input[name="entity_id"]').val('')
+      this.addTeamPopup.wrap.find('input[name="searchSelect"]').val('')
+      this.addTeamPopup.open()
     },
     /**
      * Swap host amd guest teams in match
@@ -404,9 +439,32 @@ export default {
       })
 
     // Popup handler
-    this.addRowPopup = new Popup($('#append-team'))
-    // Popup form submit event
-    this.addRowPopup.wrap.find('form').on('submit', e => {
+    this.addGamePopup = new Popup($('#add-group'))
+    this.addTeamPopup = new Popup($('#add-team'))
+    // Popup game form submit event
+    this.addGamePopup.wrap.find('form').on('submit', e => {
+      e.preventDefault()
+
+      const _this = $(e.target)
+      // Get form data
+      const formData = new FormData(_this[0])
+      // Form method
+      const method = _this.attr('method') || 'get';
+      // Send request
+      $.axios[method.toLowerCase()](_this.attr('action'), formData).then(response => {
+        if (201 === response.status) {
+          for (let i = 0, n = this.groups.length; i < n; i++) {
+            if (this.groups[i].id === parseInt(response.data.group_id)) {
+              this.groups[i].games.push(response.data)
+              break;
+            }
+          }
+          this.addGamePopup.close()
+        }
+      })
+    })
+    // Popup team form submit event
+    this.addTeamPopup.wrap.find('form').on('submit', e => {
       e.preventDefault()
 
       const _this = $(e.target)
@@ -422,11 +480,12 @@ export default {
           for (let i = 0, n = this.groups.length; i < n; i++) {
             if (this.groups[i].id === group.id) {
               this.groups[i] = group
+              break;
             }
           }
           this.teams[team.id] = team
 
-          this.addRowPopup.close()
+          this.addTeamPopup.close()
         }
       })
     })

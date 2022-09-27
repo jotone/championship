@@ -3,13 +3,31 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BasicApiController;
-use App\Models\{CompetitionGame, Country};
+use App\Http\Requests\CompetitionGroupGameRequest;
+use App\Models\{CompetitionGame, CompetitionTeam, Country};
 use Carbon\Carbon;
 use Illuminate\Http\{Request, Response};
 use Illuminate\Support\Facades\Validator;
 
 class CompetitionGroupGameController extends BasicApiController
 {
+    /**
+     * Create competition game
+     *
+     * @param CompetitionGroupGameRequest $request
+     * @return Response
+     */
+    public function store(CompetitionGroupGameRequest $request): Response
+    {
+        $args = $request->validated();
+        $team = CompetitionTeam::where('group_id', $args['group_id'])->first();
+        $args['entity'] = $team->entity;
+
+        $game = CompetitionGame::create($args);
+
+        return response($game, 201);
+    }
+
     /**
      * Update competition game
      *

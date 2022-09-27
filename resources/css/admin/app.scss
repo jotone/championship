@@ -239,10 +239,17 @@ header {
     }
   }
 
-  .add {
-    color: $green-stroke;
-    cursor: pointer;
-    font-size: 32px;
+  tfoot {
+    tr {
+      text-align: center;
+
+      .add {
+        color: $green-stroke;
+        cursor: pointer;
+        font-size: 32px;
+        padding: 5px;
+      }
+    }
   }
 
   .flag-img {
