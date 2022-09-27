@@ -23,10 +23,12 @@ class CompetitionGame extends Model
         'guest_team',
         'entity',
         'start_at',
-        'place'
+        'place',
+        'score'
     ];
 
     public $casts = [
+        'score'    => 'array',
         'start_at' => 'datetime'
     ];
 

@@ -22,6 +22,10 @@ class CompetitionGroupGameController extends BasicApiController
         $args = $request->validated();
         $team = CompetitionTeam::where('group_id', $args['group_id'])->first();
         $args['entity'] = $team->entity;
+        $args['score'] = [
+            $args['host_team']  => 0,
+            $args['guest_team'] => 0
+        ];
 
         $game = CompetitionGame::create($args);
 
@@ -37,7 +41,7 @@ class CompetitionGroupGameController extends BasicApiController
      */
     public function update(CompetitionGame $competition_group_game, Request $request): Response
     {
-        $args = $request->only(['host_team', 'guest_team', 'place', 'start_at']);
+        $args = $request->only(['host_team', 'guest_team', 'place', 'start_at', 'score']);
 
         $rules = [];
         foreach ($args as $key => $val) {
@@ -54,6 +58,10 @@ class CompetitionGroupGameController extends BasicApiController
                     break;
                 case 'place':
                     $rules[$key] = ['nullable', 'string'];
+                    $competition_group_game->$key = $val;
+                    break;
+                case 'score':
+                    $rules[$key] = ['required', 'array'];
                     $competition_group_game->$key = $val;
                     break;
                 case 'start_at':

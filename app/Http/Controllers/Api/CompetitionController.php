@@ -103,6 +103,7 @@ class CompetitionController extends BasicApiController
         $competition->name = $args['name'];
         $competition->slug = $args['slug'];
         $competition->groups_number = $args['groups_number'];
+        $competition->rounds = $args['rounds'];
         $competition->bg_color = $args['bg_color'][0] != '#' ? '#' . $args['bg_color'] : $args['bg_color'];
         $competition->text_color = $args['text_color'][0] != '#' ? '#' . $args['text_color'] : $args['text_color'];
         $competition->start_at = $args['start_at'];
@@ -119,8 +120,8 @@ class CompetitionController extends BasicApiController
         } else {
             CompetitionGroup::where('competition_id', $competition->id)
                 ->orderBy('position', 'desc')
-                ->get()
-                ->each(fn($entity) => $entity->delete());
+                ->take(abs($modify))
+                ->delete();
         }
 
         try {

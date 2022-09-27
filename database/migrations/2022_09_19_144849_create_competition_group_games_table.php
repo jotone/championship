@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('entity');
             $table->timestamp('start_at')->nullable();
             $table->string('place')->nullable();
+            $table->json('score');
             $table->timestamps();
         });
     }

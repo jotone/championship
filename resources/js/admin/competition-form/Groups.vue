@@ -75,6 +75,7 @@
       <tr>
         <th>Game Date</th>
         <th colspan="3">Teams</th>
+        <th>Score</th>
         <th>Place</th>
         <th></th>
       </tr>
@@ -113,6 +114,30 @@
             :invert="1"
           >
           </Team>
+        </td>
+        <td>
+          <form>
+            <input name="_method" type="hidden" value="patch">
+            <input
+              class="score-input"
+              type="number"
+              min="0"
+              :name="`score[${game.host_team}]`"
+              :value="`${game.score[game.host_team] || 0}`"
+              @keyup="setScore"
+              @mouseup="setScore"
+            >
+            <span style="margin: 0 8px">:</span>
+            <input
+              class="score-input"
+              type="number"
+              min="0"
+              :name="`score[${game.guest_team}]`"
+              :value="`${game.score[game.guest_team] || 0}`"
+              @keyup="setScore"
+              @mouseup="setScore"
+            >
+          </form>
         </td>
         <td>
           <input
@@ -171,12 +196,8 @@ export default {
       const id = _this.closest('tr').data('id')
 
       $.axios
-        .post(this.gameUpdateRoute(), formData)
-        .then(response => {
-          if (200 === response.status) {
-            this.updateGames(response.data, id)
-          }
-        })
+        .post(this.gameUpdateRoute(id), formData)
+        .then(response => 200 === response.status && this.updateGames(response.data, id))
     }, 500),
     gameRemove(e) {
       const _this = $(e.target).closest('a')
@@ -275,6 +296,15 @@ export default {
      * @returns {string}
      */
     formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
+    setScore: debounce(function(e) {
+      let formData = new FormData($(e.target).closest('form')[0])
+
+      const id = $(e.target).closest('tr').attr('data-id')
+
+      $.axios
+        .post(this.gameUpdateRoute(id), formData)
+        .then(response => 200 === response.status && this.updateGames(response.data, id))
+    }, 500),
     /**
      * View group name input
      * @param e

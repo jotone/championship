@@ -1,7 +1,9 @@
 import { createApp } from 'vue';
-import Main from './Main.vue';
+import Groups from './Groups.vue';
 
-createApp(Main).mount('#groupsTable')
+const groupTable = $('#groupsTable')
+
+groupTable.length && createApp(Groups).mount(`#${groupTable.attr('id')}`)
 
 import "@eastdesire/jscolor";
 import AirDatepicker from 'air-datepicker';
@@ -24,12 +26,12 @@ $(document).ready(() => {
     preventOverlay: true
   })
 
-  $('#append-team form select[name="entity"]').on('change', function () {
+  $('#add-team form select[name="entity"]').on('change', function () {
     const url = $(this).find('option:selected').data('url')
     $(this).closest('form').find('.team-selector').attr('data-url', url)
   })
 
-  new Sortable($('#groupsTable')[0], {
+  new Sortable(groupTable[0], {
     animation: 150,
     handle: '.move-group',
     group: 'shared',
