@@ -1,9 +1,12 @@
 import { createApp } from 'vue';
 import Groups from './Groups.vue';
+import PlayOffs from './PlayOffs.vue';
 
 const groupTable = $('#groupsTable')
+const playOffTable = $('#playOffTable')
 
 groupTable.length && createApp(Groups).mount(`#${groupTable.attr('id')}`)
+playOffTable.length && createApp(PlayOffs).mount(`#${playOffTable.attr('id')}`)
 
 import "@eastdesire/jscolor";
 import AirDatepicker from 'air-datepicker';

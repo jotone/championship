@@ -167,12 +167,13 @@
 </template>
 
 <script>
-import moment from 'moment/moment';
+
+import {debounce} from 'debounce';
+import {Confirmation} from '../libs/confirmation';
 import {Popup} from '../libs/popup';
-import DatePicker from "./DatePicker.vue";
+import moment from 'moment/moment';
+import DatePicker from './DatePicker.vue';
 import Team from './Team.vue';
-import {Confirmation} from "../libs/confirmation";
-import {debounce} from "debounce";
 
 export default {
   components: {DatePicker, Team},
@@ -447,7 +448,12 @@ export default {
           // Teams are countries or clubs
           const teamsRequestUrl = type === 'App\\Models\\Country' ? this.routes.country.list : this.routes.team.list;
           // Set groups
-          this.groups = response.data.collection
+          for (let i = 0, n = response.data.collection.length; i < n; i++) {
+            const group = response.data.collection[i]
+            if (0 === parseInt(group.tour)) {
+              this.groups.push(group)
+            }
+          }
 
           // Get teams data
           $.axios
