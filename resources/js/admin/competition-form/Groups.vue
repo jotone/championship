@@ -175,10 +175,10 @@
 
 <script>
 
-import {debounce} from 'debounce';
-import {Confirmation} from '../libs/confirmation';
-import {Popup} from '../libs/popup';
-import moment from 'moment/moment';
+import { debounce } from 'debounce';
+import { CompetitionMixin } from './competition-mixin';
+import { Confirmation } from '../libs/confirmation';
+import { Popup } from '../libs/popup';
 import DatePicker from './DatePicker.vue';
 import Team from './Team.vue';
 
@@ -267,30 +267,6 @@ export default {
         .then(response => 200 === response.status && this.updateGames(response.data))
     }, 500),
     /**
-     *
-     * @param id
-     * @returns {string}
-     */
-    gameRemoveRoute(id) {
-      return window.Helpers.buildUrl(this.routes.game.destroy, id, 1)
-    },
-    /**
-     *
-     * @param id
-     * @returns {string}
-     */
-    gameUpdateRoute(id) {
-      return window.Helpers.buildUrl(this.routes.game.update, id, 1)
-    },
-    /**
-     * Remove group route
-     * @param id
-     * @returns {string}
-     */
-    groupRemoveRoute(id) {
-      return window.Helpers.buildUrl(this.routes.group.destroy, id, 1)
-    },
-    /**
      * Remove group
      * @param e
      */
@@ -314,55 +290,6 @@ export default {
         })
         .finally(() => $('.overlay, .overlay .preload').hide())
       )
-    },
-    /**
-     * Send request to update the group name
-     * @param e
-     */
-    groupUpdateName(e) {
-      const _this = $(e.target).closest('a')
-      const name = _this.closest('.group-caption-wrap').find('input[name="groupName"]').val().trim()
-
-      let formData = new FormData()
-      formData.append('_method', 'patch')
-      formData.append('name', name)
-
-      $.axios
-        .post(_this.attr('href'), formData)
-        .then(response => {
-          if (200 === response.status) {
-            _this.closest('.group-caption-wrap').children('input').replaceWith(function () {
-              return $(`<span>${name}</span>`);
-            })
-            _this.closest('.group-controls').find('.accept').hide()
-            _this.closest('.group-controls').find('.edit, .remove').show()
-          }
-        })
-    },
-    /**
-     * @param id
-     * @returns {string}
-     */
-    groupUpdateRoute(id) {
-      return window.Helpers.buildUrl(this.routes.group.update, id, 1)
-    },
-    /**
-     * Convert a date value to the proper view
-     * @param val
-     * @returns {string}
-     */
-    formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
-    /**
-     * View group name input
-     * @param e
-     */
-    showGroupNameEditor(e) {
-      const _this = $(e.target)
-      _this.closest('.group-caption-wrap').children('span').replaceWith(function () {
-        return $(`<input class="form-input" name="groupName" value="${$(this).text()}">`);
-      })
-      _this.closest('.group-controls').find('.edit, .remove').hide()
-      _this.closest('.group-controls').find('.accept').show()
     },
     /**
      * Show Add game popup
@@ -508,7 +435,7 @@ export default {
           // Set groups
           for (let i = 0, n = response.data.collection.length; i < n; i++) {
             const group = response.data.collection[i]
-            if (0 === parseInt(group.tour)) {
+            if (0 === parseInt(group.stage)) {
               this.groups.push(group)
             }
           }
@@ -589,6 +516,7 @@ export default {
         }
       })
     })
-  }
+  },
+  mixins: [CompetitionMixin]
 }
 </script>

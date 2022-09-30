@@ -26,7 +26,7 @@
       @endif
 
       @if($model->groups_number > 1 && $tab == 'play-offs')
-        <div class="col-100" id="playOffTable" data-routes="{{ json_encode($routes) }}"></div>
+        <div class="col-100" id="playOffTable" data-routes="{{ json_encode($routes) }}" data-id="{{ $model->id }}"></div>
       @endif
     @endisset
   </div>

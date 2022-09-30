@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BasicApiController;
+use App\Http\Requests\CompetitionGroupRequest;
 use App\Models\CompetitionGroup;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\{Request, Response};
@@ -31,6 +32,30 @@ class CompetitionGroupController extends BasicApiController
         }
 
         return $this->apiIndexResponse($content, $args);
+    }
+
+    /**
+     * Create competition group
+     *
+     * @param CompetitionGroupRequest $request
+     * @return Response
+     */
+    public function store(CompetitionGroupRequest $request): Response
+    {
+        $args = $request->validated();
+
+        if (empty($args['position'])) {
+            $args['position'] = CompetitionGroup::where('competition_id', $args['competition_id'])->count();
+        }
+
+        $group = CompetitionGroup::create([
+            'name'           => empty($args['name']) ? 'New group ' . $args['position'] : $args['name'],
+            'competition_id' => $args['competition_id'],
+            'position'       => $args['position'],
+            'stage'          => $args['stage'] ?? 0
+        ]);
+
+        return response($group, 201);
     }
 
     /**
@@ -82,18 +107,30 @@ class CompetitionGroupController extends BasicApiController
         $args = $request->only('positions');
 
         $validator = Validator::make($args, [
-            'positions' => ['required', 'array'],
-            'positions.*' => ['exists:competition_groups,id']
+            'positions'   => ['nullable', 'array'],
+            'positions.*' => ['exists:competition_groups,id'],
+            'stages'      => ['nullable', 'array'],
+            'stages.*'    => ['numeric']
         ]);
 
         if ($validator->fails()) {
             return response($validator->errors()->all(), 400);
         }
 
-        foreach ($args['positions'] as $pos => $id) {
-            $group = CompetitionGroup::findOrFail($id);
-            $group->position = $pos;
-            $group->save();
+        if (!empty($args['positions'])) {
+            foreach ($args['positions'] as $pos => $id) {
+                $group = CompetitionGroup::findOrFail($id);
+                $group->position = $pos;
+                $group->save();
+            }
+        }
+
+        if (!empty($args['stages'])) {
+            foreach ($args['stages'] as $stage => $id) {
+                $group = CompetitionGroup::findOrFail($id);
+                $group->stage = $stage;
+                $group->save();
+            }
         }
 
         return response([]);

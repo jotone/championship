@@ -1,0 +1,13 @@
+- Stage
+  - ~~Store~~
+  - ~~Edit~~
+  - ~~Remove~~
+  - Move
+- Game
+  - Store
+  - Edit
+    - Update
+    - Set date
+    - Set score
+    - Accept
+  - Remove

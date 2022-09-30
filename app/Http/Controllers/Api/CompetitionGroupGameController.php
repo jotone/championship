@@ -86,7 +86,7 @@ class CompetitionGroupGameController extends BasicApiController
 
             $competition_group_game->save();
 
-            if ($competition_group_game->group->tour == 0) {
+            if ($competition_group_game->group->stage == 0) {
                 $this->updateGroupsScore($competition_group_game->group);
             }
         }

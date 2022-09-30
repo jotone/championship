@@ -18,7 +18,7 @@ class CompetitionGroup extends Model
         'name',
         'competition_id',
         'position',
-        'tour'
+        'stage'
     ];
 
     /**

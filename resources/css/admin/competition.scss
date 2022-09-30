@@ -11,33 +11,6 @@
       padding: 15px;
       text-align: center;
 
-      .group-caption-wrap {
-        min-width: 250px;
-        position: relative;
-
-        span {font-size: 32px; padding: 0 20px}
-      }
-
-      .move-group {
-        cursor: grab;
-        left: -25px;
-        padding: 5px 10px;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-
-        &:active {cursor: grabbing}
-      }
-
-      .group-controls {
-        align-items: center;
-        display: flex;
-        position: absolute;
-        right: -15px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-
       .flag-img {display: block; margin: 0 auto}
     }
   }
@@ -128,17 +101,17 @@
   }
 }
 
-.tours-wrap {
+.stages-wrap {
   align-items: stretch;
   display: flex;
   justify-content: flex-start;
 
-  .tour-item-wrap {
+  .stage-item-wrap {
     border-right: 1px solid $paragraph;
     min-width: 250px;
     padding: 20px;
 
-    .tour-group-caption {
+    .group-caption-wrap {
       font-weight: bold;
       font-size: 24px;
       text-align: center;
@@ -150,7 +123,7 @@
     }
   }
 
-  .add-tour-wrap {
+  .add-stage-wrap {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -161,5 +134,32 @@
       font-size: 64px;
       color: $green;
     }
+  }
+}
+
+.group-caption-wrap {
+  min-width: 250px;
+  position: relative;
+
+  > span {font-size: 32px; padding: 0 20px}
+
+  .move-group {
+    cursor: grab;
+    left: -25px;
+    padding: 5px 10px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &:active {cursor: grabbing}
+  }
+
+  .group-controls {
+    align-items: center;
+    display: flex;
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
