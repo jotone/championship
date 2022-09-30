@@ -41,11 +41,15 @@ class CompetitionGroupGameController extends BasicApiController
      */
     public function update(CompetitionGame $competition_group_game, Request $request): Response
     {
-        $args = $request->only(['host_team', 'guest_team', 'place', 'start_at', 'score']);
+        $args = $request->only(['accept', 'host_team', 'guest_team', 'place', 'start_at', 'score']);
 
         $rules = [];
         foreach ($args as $key => $val) {
             switch ($key) {
+                case 'accept':
+                    $rules[$key] = ['required', 'numeric', 'min:0', 'max:1'];
+                    $competition_group_game->$key = $val;
+                    break;
                 case 'host_team':
                     $table = Country::class == $competition_group_game->entity ? 'countries' : 'teams';
                     $rules[$key] = ['required', 'numeric', 'exists:' . $table . ',id'];
@@ -81,9 +85,13 @@ class CompetitionGroupGameController extends BasicApiController
             }
 
             $competition_group_game->save();
+
+            if ($competition_group_game->group->tour == 0) {
+                $this->updateGroupsScore($competition_group_game->group);
+            }
         }
 
-        return response($competition_group_game);
+        return response($competition_group_game->group()->with(['games', 'teams'])->first());
     }
 
     /**
@@ -97,5 +105,108 @@ class CompetitionGroupGameController extends BasicApiController
         $competition_group_game->delete();
 
         return response([], 204);
+    }
+
+    /**
+     * Update scores for group
+     * @param $group
+     * @return void
+     */
+    protected function updateGroupsScore($group): void
+    {
+        $result = [];
+        $entity = null;
+        foreach ($group->games()->where('accept', 1)->get() as $game) {
+            $host_team = $game->hostTeam;
+            $guest_team = $game->guestTeam;
+
+            if (!isset($result[$host_team->id])) {
+                $result[$host_team->id] = $this->createTeamArray();
+            }
+            if (!isset($result[$guest_team->id])) {
+                $result[$guest_team->id] = $this->createTeamArray();
+            }
+            if ($game->score[$host_team->id] == $game->score[$guest_team->id]) {
+                $score = array_values($game->score)[0] ?? 0;
+                $result[$host_team->id] = $this->updateDraw($result[$host_team->id], $score);
+                $result[$guest_team->id] = $this->updateDraw($result[$guest_team->id], $score);
+            } else {
+                $result = $game->score[$host_team->id] > $game->score[$guest_team->id]
+                    ? $this->updateWinner($result, $host_team->id, $guest_team->id, $game->score)
+                    : $this->updateWinner($result, $guest_team->id, $host_team->id, $game->score);
+            }
+            if (is_null($entity)) {
+                $entity = $game->entity;
+            }
+        }
+        if (!is_null($entity)) {
+            foreach ($result as $id => $group_team_data) {
+                $group_team = CompetitionTeam::where('group_id', $group->id)
+                    ->where('entity', $entity)
+                    ->where('entity_id', $id)
+                    ->firstOrFail();
+
+                $item = $result[$group_team->entity_id];
+
+                $group_team->games = $item->games;
+                $group_team->wins = $item->wins;
+                $group_team->draws = $item->draws;
+                $group_team->loses = $item->loses;
+                $group_team->score = $item->score;
+                $group_team->balls = $item->goals . '-' . $item->misses;
+                $group_team->save();
+            }
+        }
+    }
+
+    /**
+     * Update team values for draw
+     * @param $team
+     * @param $score
+     * @return mixed
+     */
+    protected function updateDraw($team, $score)
+    {
+        $team->games++;
+        $team->draws++;
+        $team->score++;
+        $team->goals += $score;
+        $team->misses += $score;
+
+        return $team;
+    }
+
+    protected function updateWinner($result, $winner, $loser, $score)
+    {
+        $result[$winner]->games++;
+        $result[$winner]->wins++;
+        $result[$winner]->score += 3;
+        $result[$winner]->goals += $score[$winner];
+        $result[$winner]->misses += $score[$loser];
+
+        $result[$loser]->games++;
+        $result[$loser]->loses++;
+        $result[$loser]->goals += $score[$loser];
+        $result[$loser]->misses += $score[$winner];
+
+        return $result;
+    }
+
+    /**
+     * Default team results array
+     *
+     * @return object
+     */
+    protected function createTeamArray(): object
+    {
+        return (object)[
+            'games'  => 0,
+            'wins'   => 0,
+            'draws'  => 0,
+            'loses'  => 0,
+            'goals'  => 0,
+            'misses' => 0,
+            'score'  => 0
+        ];
     }
 }

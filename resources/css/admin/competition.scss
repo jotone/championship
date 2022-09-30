@@ -1,0 +1,165 @@
+@import "variables";
+
+.competition-table {
+  &:nth-child(odd) {margin-bottom: 10px}
+  &:nth-child(even) {margin-bottom: 75px}
+
+  thead tr {
+    border-bottom: 2px solid $blue-stroke;
+
+    th {
+      padding: 15px;
+      text-align: center;
+
+      .group-caption-wrap {
+        min-width: 250px;
+        position: relative;
+
+        span {font-size: 32px; padding: 0 20px}
+      }
+
+      .move-group {
+        cursor: grab;
+        left: -25px;
+        padding: 5px 10px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &:active {cursor: grabbing}
+      }
+
+      .group-controls {
+        align-items: center;
+        display: flex;
+        position: absolute;
+        right: -15px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .flag-img {display: block; margin: 0 auto}
+    }
+  }
+
+  tbody tr {
+    counter-increment: row-num;
+
+    td {
+      border: 1px solid $secondary;
+      padding: 10px;
+      position: relative;
+      text-align: center;
+
+      &.country-wrap {
+        text-align: right;
+        vertical-align: middle;
+        padding-right: 80px;
+
+        .flag-img {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      &.country-wrap.invert {
+        text-align: left;
+        padding-left: 80px;
+
+        .flag-img {left: 0}
+      }
+
+      .swap-btn {
+        border: none;
+        cursor: pointer;
+        margin: 5px 15px;
+
+        i {font-size: 24px}
+      }
+
+      .score-input {
+        background-color: #fffffe;
+        border: 1px solid #0d0d0d;
+        border-radius: 5px;
+        min-width: 50px;
+        padding: 5px 2px;
+        text-align: center;
+        width: 50px
+      }
+    }
+  }
+
+  tfoot tr {
+    text-align: center;
+
+    .add {
+      color: $green-stroke;
+      cursor: pointer;
+      font-size: 32px;
+      padding: 5px;
+    }
+  }
+
+  &.has-inc-rows {
+    tbody tr td:first-child::after {
+      display: block;
+      content: counter(row-num);
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .flag-img {
+    object-fit: contain;
+    height: 60px;
+    width: 60px;
+    margin: 0 10px;
+  }
+
+  .set-date {
+    color: $blue;
+    cursor: pointer;
+    padding: 4px 8px;
+    text-align: center;
+    width: 140px;
+  }
+}
+
+.tours-wrap {
+  align-items: stretch;
+  display: flex;
+  justify-content: flex-start;
+
+  .tour-item-wrap {
+    border-right: 1px solid $paragraph;
+    min-width: 250px;
+    padding: 20px;
+
+    .tour-group-caption {
+      font-weight: bold;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .add-game-wrap {
+      margin-top: 50px;
+      text-align: center;
+    }
+  }
+
+  .add-tour-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-width: 200px;
+
+    i {
+      cursor: pointer;
+      font-size: 64px;
+      color: $green;
+    }
+  }
+}

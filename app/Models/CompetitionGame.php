@@ -24,12 +24,14 @@ class CompetitionGame extends Model
         'entity',
         'start_at',
         'place',
-        'score'
+        'score',
+        'accept'
     ];
 
     public $casts = [
         'score'    => 'array',
-        'start_at' => 'datetime'
+        'start_at' => 'datetime',
+        'accept'   => 'boolean'
     ];
 
     /**

@@ -13,6 +13,7 @@ export default defineConfig({
         'resources/css/font-awesome/fontawesome.scss',
         'resources/css/font-awesome/solid.scss',
         'resources/css/reset.scss',
+        'resources/css/admin/competition.scss',
         'resources/css/admin/app.scss',
         'resources/css/main/app.scss',
         'resources/js/admin/main.js',

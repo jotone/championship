@@ -1,6 +1,6 @@
 <template>
   <div v-for="(group) in groups">
-    <table class="competition-table" :data-id="group.id">
+    <table class="competition-table has-inc-rows" :data-id="group.id">
       <thead>
       <tr>
         <th>
@@ -42,12 +42,10 @@
       </thead>
       <tbody>
       <tr v-for="(groupTeam) in group.teams" :data-id="groupTeam.entity_id">
-        <td>
-          <Team
-            v-if="typeof teams[groupTeam.entity_id] === 'object' && !!teams[groupTeam.entity_id]"
-            :team="teams[groupTeam.entity_id]"
-          ></Team>
-        </td>
+        <Team
+          v-if="typeof teams[groupTeam.entity_id] === 'object' && !!teams[groupTeam.entity_id]"
+          :team="teams[groupTeam.entity_id]"
+        ></Team>
         <td><span>{{ groupTeam.games || 0 }}</span></td>
         <td><span>{{ groupTeam.wins || 0 }}</span></td>
         <td><span>{{ groupTeam.draws || 0 }}</span></td>
@@ -64,7 +62,9 @@
       <tfoot>
       <tr data-role="add-team">
         <td colspan="8">
-          <span class="add fas fa-plus-circle" title="Add Team" @click="showTeamPopup"></span>
+          <button class="btn success" name="addTeam" @click="showTeamPopup" type="button">
+            Add Team
+          </button>
         </td>
       </tr>
       </tfoot>
@@ -76,6 +76,7 @@
         <th>Game Date</th>
         <th colspan="3">Teams</th>
         <th>Score</th>
+        <th>Accept</th>
         <th>Place</th>
         <th></th>
       </tr>
@@ -88,13 +89,11 @@
             :value="null !== game.start_at ? formatDate(game.start_at) : 'Not set'"
           ></DatePicker>
         </td>
-        <td>
-          <Team
-            v-if="typeof teams[game.host_team] === 'object' && !!teams[game.host_team]"
-            :data-id="game.host_team"
-            :team="teams[game.host_team]"
-          ></Team>
-        </td>
+        <Team
+          v-if="typeof teams[game.host_team] === 'object' && !!teams[game.host_team]"
+          :data-id="game.host_team"
+          :team="teams[game.host_team]"
+        ></Team>
         <td>
           <button
             name="swapTeams"
@@ -106,17 +105,15 @@
             <i class="fas fa-exchange-alt"></i>
           </button>
         </td>
+        <Team
+          v-if="typeof teams[game.guest_team] === 'object' && !!teams[game.guest_team]"
+          :data-id="game.guest_team"
+          :team="teams[game.guest_team]"
+          :invert="1"
+        >
+        </Team>
         <td>
-          <Team
-            v-if="typeof teams[game.guest_team] === 'object' && !!teams[game.guest_team]"
-            :data-id="game.guest_team"
-            :team="teams[game.guest_team]"
-            :invert="1"
-          >
-          </Team>
-        </td>
-        <td>
-          <form>
+          <form style="min-width: 120px">
             <input name="_method" type="hidden" value="patch">
             <input
               class="score-input"
@@ -124,8 +121,8 @@
               min="0"
               :name="`score[${game.host_team}]`"
               :value="`${game.score[game.host_team] || 0}`"
-              @keyup="setScore"
-              @mouseup="setScore"
+              @keyup="gameSetScore"
+              @mouseup="gameSetScore"
             >
             <span style="margin: 0 8px">:</span>
             <input
@@ -134,10 +131,18 @@
               min="0"
               :name="`score[${game.guest_team}]`"
               :value="`${game.score[game.guest_team] || 0}`"
-              @keyup="setScore"
-              @mouseup="setScore"
+              @keyup="gameSetScore"
+              @mouseup="gameSetScore"
             >
           </form>
+        </td>
+        <td>
+          <input
+            name="accept"
+            type="checkbox"
+            v-model="game.accept"
+            @change="gameAccept"
+          >
         </td>
         <td>
           <input
@@ -158,7 +163,9 @@
       <tfoot>
       <tr data-role="add-team">
         <td colspan="8">
-          <span class="add fas fa-plus-circle" title="Add game" @click="showGamePopup"></span>
+          <button class="btn success" name="addGame" @click="showGamePopup" type="button">
+            Add game
+          </button>
         </td>
       </tr>
       </tfoot>
@@ -188,18 +195,41 @@ export default {
     }
   },
   methods: {
+    /**
+     * Game change accept value
+     * @param e
+     */
+    gameAccept(e) {
+      const _this = $(e.target)
+      const id = parseInt(_this.closest('tr').data('id'))
+      let formData = new FormData()
+      formData.append('_method', 'patch')
+      formData.append('accept', _this.prop('checked') ? 1 : 0)
+
+      $.axios
+        .post(this.gameUpdateRoute(id), formData)
+        .then(response => 200 === response.status && this.updateGames(response.data))
+    },
+    /**
+     * Game change place value
+     * @param e
+     */
     gameChangePlace: debounce(function (e) {
       const _this = $(e.target)
       let formData = new FormData()
       formData.append('_method', 'patch')
       formData.append('place', _this.val().trim())
 
-      const id = _this.closest('tr').data('id')
+      const id = parseInt(_this.closest('tr').data('id'))
 
       $.axios
         .post(this.gameUpdateRoute(id), formData)
-        .then(response => 200 === response.status && this.updateGames(response.data, id))
+        .then(response => 200 === response.status && this.updateGames(response.data))
     }, 500),
+    /**
+     * Remove game
+     * @param e
+     */
     gameRemove(e) {
       const _this = $(e.target).closest('a')
 
@@ -218,13 +248,37 @@ export default {
                 }
               }
             }
+            this.sortGamesAndTeams()
           }
         })
       )
     },
+    /**
+     * Change score for game
+     * @param e
+     */
+    gameSetScore: debounce(function(e) {
+      let formData = new FormData($(e.target).closest('form')[0])
+
+      const id = parseInt($(e.target).closest('tr').attr('data-id'))
+
+      $.axios
+        .post(this.gameUpdateRoute(id), formData)
+        .then(response => 200 === response.status && this.updateGames(response.data))
+    }, 500),
+    /**
+     *
+     * @param id
+     * @returns {string}
+     */
     gameRemoveRoute(id) {
       return window.Helpers.buildUrl(this.routes.game.destroy, id, 1)
     },
+    /**
+     *
+     * @param id
+     * @returns {string}
+     */
     gameUpdateRoute(id) {
       return window.Helpers.buildUrl(this.routes.game.update, id, 1)
     },
@@ -255,6 +309,7 @@ export default {
             for (let i = 0, n = this.groups.length; i < n; i++) {
               !!this.groups[i] && this.groups[i].id === id && this.groups.splice(i, 1);
             }
+            this.sortGamesAndTeams()
           }
         })
         .finally(() => $('.overlay, .overlay .preload').hide())
@@ -297,15 +352,6 @@ export default {
      * @returns {string}
      */
     formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
-    setScore: debounce(function(e) {
-      let formData = new FormData($(e.target).closest('form')[0])
-
-      const id = $(e.target).closest('tr').attr('data-id')
-
-      $.axios
-        .post(this.gameUpdateRoute(id), formData)
-        .then(response => 200 === response.status && this.updateGames(response.data, id))
-    }, 500),
     /**
      * View group name input
      * @param e
@@ -363,25 +409,25 @@ export default {
 
       let formData = new FormData()
       formData.append('_method', 'patch')
-      formData.append('host_team', parent.find('td:eq(1) .country-wrap').attr('data-id'))
-      formData.append('guest_team', parent.find('td:eq(3) .country-wrap').attr('data-id'))
+      formData.append('host_team', parent.find('td.country-wrap:first').attr('data-id'))
+      formData.append('guest_team', parent.find('td.country-wrap:last').attr('data-id'))
 
       $.axios
         .post(this.gameUpdateRoute(parent.attr('data-id')), formData)
         .then(response => {
           if (200 === response.status) {
-            this.updateGames(response.data, parent.attr('data-id'))
+            this.updateGames(response.data)
 
-            const host = parent.find('td:eq(1)').clone()
-            const guest = parent.find('td:eq(3)').clone()
+            const host = parent.find('td.country-wrap:first').clone()
+            const guest = parent.find('td.country-wrap:last').clone()
 
-            parent.find('td:eq(1)').html(guest.html())
-            parent.find('td:eq(3)').html(host.html())
+            parent.find('td.country-wrap:first').html(guest.html())
+            parent.find('td.country-wrap:last').html(host.html())
           }
         })
     },
     /**
-     *
+     * Generate team remove route
      * @param id
      * @returns {string}
      */
@@ -403,17 +449,30 @@ export default {
     /**
      * Update games entities
      * @param data
-     * @param id
      */
-    updateGames(data, id) {
+    updateGames(data) {
       for (let i = 0, n = this.groups.length; i < n; i++) {
-        if (this.groups[i].id === data.group_id) {
-          for (let j = 0, m = this.groups[i].games.length; j < m; j++) {
-            if (id === this.groups[i].games[j].id) {
-              this.groups[i].games[j] = data
-            }
-          }
+        if (this.groups[i].id === data.id) {
+          this.groups[i] = data
         }
+      }
+      this.sortGamesAndTeams()
+    },
+    sortGamesAndTeams() {
+      for (let i = 0, n = this.groups.length; i < n; i++) {
+        let games = this.groups[i].games
+        let teams = this.groups[i].teams;
+
+        this.groups[i].teams = teams.sort((a, b) => {
+          if (a.score < b.score) return 1;
+          if (a.score > b.score) return -1;
+          return 0;
+        })
+        this.groups[i].games = games.sort((a, b) => {
+          if (a.start_at < b.start_at) return -1;
+          if (a.start_at > b.start_at) return 1;
+          return 0;
+        })
       }
     }
   },
@@ -445,8 +504,7 @@ export default {
               teamIDs.push(team.entity_id)
             }
           }
-          // Teams are countries or clubs
-          const teamsRequestUrl = type === 'App\\Models\\Country' ? this.routes.country.list : this.routes.team.list;
+
           // Set groups
           for (let i = 0, n = response.data.collection.length; i < n; i++) {
             const group = response.data.collection[i]
@@ -454,6 +512,9 @@ export default {
               this.groups.push(group)
             }
           }
+
+          // Teams are countries or clubs
+          const teamsRequestUrl = type === 'App\\Models\\Country' ? this.routes.country.list : this.routes.team.list;
 
           // Get teams data
           $.axios
@@ -471,6 +532,7 @@ export default {
                 this.teams = result
               }
             })
+            .finally(() => this.sortGamesAndTeams())
         }
       })
 
@@ -495,6 +557,7 @@ export default {
               break;
             }
           }
+          this.sortGamesAndTeams()
           this.addGamePopup.close()
         }
       })
@@ -521,6 +584,7 @@ export default {
           }
           this.teams[team.id] = team
 
+          this.sortGamesAndTeams()
           this.addTeamPopup.close()
         }
       })

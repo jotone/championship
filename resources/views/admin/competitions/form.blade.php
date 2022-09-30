@@ -21,20 +21,12 @@
     @include('admin.competitions.partials.main-form')
 
     @isset($model)
-      <div
-        class="col-100"
-        id="groupsTable"
-        data-routes="{{ json_encode($routes) }}"
-        style="display: {{ $tab == 'groups' ? 'block' : 'none' }}"
-      ></div>
+      @if($tab == 'groups')
+        <div class="col-100" id="groupsTable" data-routes="{{ json_encode($routes) }}"></div>
+      @endif
 
-      @if($model->groups_number > 1)
-        <div
-          class="col-100"
-          id="playOffTable"
-          data-routes="{{ json_encode($routes) }}"
-          style="display: {{ $tab == 'play-offs' ? 'block' : 'none' }}"
-        ></div>
+      @if($model->groups_number > 1 && $tab == 'play-offs')
+        <div class="col-100" id="playOffTable" data-routes="{{ json_encode($routes) }}"></div>
       @endif
     @endisset
   </div>
@@ -49,6 +41,7 @@
 
 @section('scripts')
   @vite([
+    'resources/css/admin/competition.scss',
     'node_modules/air-datepicker/air-datepicker.css',
     'resources/js/admin/competition-form/app.js'
   ])

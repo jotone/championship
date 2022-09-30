@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('start_at')->nullable();
             $table->string('place')->nullable();
             $table->json('score');
+            $table->boolean('accept')->default(0);
             $table->timestamps();
         });
     }
