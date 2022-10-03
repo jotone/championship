@@ -1,8 +1,4 @@
-- Stage
-  - ~~Store~~
-  - ~~Edit~~
-  - ~~Remove~~
-  - Move
+- ~~Stage~~
 - Game
   - Store
   - Edit

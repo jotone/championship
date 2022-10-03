@@ -1,7 +1,7 @@
 <template>
   <div class="stages-wrap">
-    <div class="stage-item-wrap" v-for="(stage, i) in stages">
-      <div class="group-caption-wrap" v-for="(group) in stage" :data-index="i">
+    <div class="stage-item-wrap" v-for="(stage, i) in stages" >
+      <div class="group-caption-wrap" v-for="(group) in stage" :data-id="group.id">
         <div class="move-group">
           <i class="fas fa-ellipsis-v"></i>
           <i class="fas fa-ellipsis-v"></i>

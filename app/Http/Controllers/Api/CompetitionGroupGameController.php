@@ -163,9 +163,9 @@ class CompetitionGroupGameController extends BasicApiController
      * Update team values for draw
      * @param $team
      * @param $score
-     * @return mixed
+     * @return object
      */
-    protected function updateDraw($team, $score)
+    protected function updateDraw($team, $score): object
     {
         $team->games++;
         $team->draws++;
@@ -176,7 +176,15 @@ class CompetitionGroupGameController extends BasicApiController
         return $team;
     }
 
-    protected function updateWinner($result, $winner, $loser, $score)
+    /**
+     * Update team values for win and lose
+     * @param $result
+     * @param $winner
+     * @param $loser
+     * @param $score
+     * @return object
+     */
+    protected function updateWinner($result, $winner, $loser, $score): object
     {
         $result[$winner]->games++;
         $result[$winner]->wins++;

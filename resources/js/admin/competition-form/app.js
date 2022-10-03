@@ -6,6 +6,7 @@ import AirDatepicker from 'air-datepicker';
 import enLocale from 'air-datepicker/locale/en';
 import {SearchSelect} from '../libs/search-select';
 import Sortable from 'sortablejs';
+import ro from "air-datepicker/locale/ro";
 
 const groupTable = $('#groupsTable')
 const playOffTable = $('#playOffTable')
@@ -32,22 +33,34 @@ $(document).ready(() => {
     $(this).closest('form').find('.team-selector').attr('data-url', url)
   })
 
-  if (groupTable.length) {
-    new Sortable(groupTable[0], {
-      animation: 150,
-      handle: '.move-group',
-      group: 'shared',
-      onSort: function () {
-        const routes = $(this.el).data('routes');
 
-        let formData = new FormData()
-        formData.append('_method', 'patch')
+  new Sortable(groupTable.length ? groupTable[0] : playOffTable.find('.stages-wrap')[0], {
+    animation: 150,
+    handle: '.move-group',
+    group: 'shared',
+    onSort: function () {
+
+
+      let formData = new FormData()
+      formData.append('_method', 'patch')
+
+      let routes = {}
+
+      if (groupTable.length) {
+        routes = $(this.el).data('routes');
         $(this.el).children('div').each(function () {
           formData.append('positions[]', $(this).find('.competition-table[data-id]').attr('data-id'))
         })
-
-        $.axios.post(routes.group.upgrade, formData)
+      } else {
+        routes = $(this.el).closest('#playOffTable').data('routes')
+        $(this.el).children('div').each(function () {
+          if ($(this).hasClass('stage-item-wrap')) {
+            formData.append('stages[]', $(this).find('.group-caption-wrap[data-id]').attr('data-id'))
+          }
+        })
       }
-    })
-  }
+      console.log(routes)
+      $.axios.post(routes.group.upgrade, formData)
+    }
+  })
 })

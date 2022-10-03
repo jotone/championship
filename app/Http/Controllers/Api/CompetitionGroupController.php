@@ -104,7 +104,7 @@ class CompetitionGroupController extends BasicApiController
      */
     public function upgrade(Request $request): Response
     {
-        $args = $request->only('positions');
+        $args = $request->only(['positions', 'stages']);
 
         $validator = Validator::make($args, [
             'positions'   => ['nullable', 'array'],
@@ -128,7 +128,7 @@ class CompetitionGroupController extends BasicApiController
         if (!empty($args['stages'])) {
             foreach ($args['stages'] as $stage => $id) {
                 $group = CompetitionGroup::findOrFail($id);
-                $group->stage = $stage;
+                $group->stage = $stage + 1;
                 $group->save();
             }
         }
