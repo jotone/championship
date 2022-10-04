@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\Main\{AuthController, HomeController, PasswordResetController, RegistrationController};
-use Illuminate\Support\Facades\Route;
+use App\Models\Settings;
+use Illuminate\Support\Facades\{Route, View};
+
+$settings = Settings::whereIn('key', ['registration_enable'])->get()->keyBy('key');
+View::share('settings', $settings);
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +21,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::any('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-Route::group(['as' => 'registration.'], function () {
-    Route::get('/registration', [RegistrationController::class, 'index'])->name('index');
-    Route::post('/registration', [RegistrationController::class, 'store'])->name('store');
-    Route::get('/email-confirmation/{token}', [RegistrationController::class, 'confirmation'])->name('confirmation');
-});
+if ($settings['registration_enable']->converted_value) {
+    Route::group(['as' => 'registration.'], function () {
+        Route::get('/registration', [RegistrationController::class, 'index'])->name('index');
+        Route::post('/registration', [RegistrationController::class, 'store'])->name('store');
+        Route::get('/email-confirmation/{token}', [RegistrationController::class, 'confirmation'])->name('confirmation');
+    });
+}
 
 Route::group(['as' => 'password-reset.'], function () {
     Route::get('/forgot-password', [PasswordResetController::class, 'index'])->name('index');// Request form

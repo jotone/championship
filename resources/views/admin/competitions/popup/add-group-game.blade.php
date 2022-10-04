@@ -1,4 +1,4 @@
-<div class="popup-wrap" id="add-group">
+<div class="popup-wrap" id="add-group-game">
   <div class="popup-close">
     <i class="fas fa-times"></i>
   </div>

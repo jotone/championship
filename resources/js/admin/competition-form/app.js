@@ -39,27 +39,23 @@ $(document).ready(() => {
     handle: '.move-group',
     group: 'shared',
     onSort: function () {
-
-
       let formData = new FormData()
       formData.append('_method', 'patch')
 
-      let routes = {}
+      let routes = groupTable.length ? groupTable.data('routes') : playOffTable.data('routes')
 
       if (groupTable.length) {
-        routes = $(this.el).data('routes');
         $(this.el).children('div').each(function () {
           formData.append('positions[]', $(this).find('.competition-table[data-id]').attr('data-id'))
         })
       } else {
-        routes = $(this.el).closest('#playOffTable').data('routes')
-        $(this.el).children('div').each(function () {
-          if ($(this).hasClass('stage-item-wrap')) {
-            formData.append('stages[]', $(this).find('.group-caption-wrap[data-id]').attr('data-id'))
-          }
+        $(this.el).children('.stage-item-wrap[data-id]').each(function () {
+          formData.append('stages[]', $(this).attr('data-id'))
         })
       }
+
       console.log(routes)
+
       $.axios.post(routes.group.upgrade, formData)
     }
   })

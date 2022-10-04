@@ -1,7 +1,7 @@
 <template>
   <div class="stages-wrap">
-    <div class="stage-item-wrap" v-for="(stage, i) in stages" >
-      <div class="group-caption-wrap" v-for="(group) in stage" :data-id="group.id">
+    <div class="stage-item-wrap" v-for="(stage) in stages" :data-id="stage[0].id">
+      <div class="group-caption-wrap" v-for="(group) in stage">
         <div class="move-group">
           <i class="fas fa-ellipsis-v"></i>
           <i class="fas fa-ellipsis-v"></i>
@@ -33,7 +33,7 @@
       </div>
 
       <div class="add-game-wrap">
-        <button class="btn success" name="addGame" type="button">
+        <button class="btn success" name="addGame" type="button" @click="showGamePopup">
           Add Play-off Game
         </button>
       </div>
@@ -50,6 +50,7 @@
 
 import { CompetitionMixin } from './competition-mixin';
 import { Confirmation } from '../libs/confirmation';
+import {Popup} from "../libs/popup";
 
 export default {
   data() {
@@ -57,7 +58,8 @@ export default {
       stages: {},
       teams: [],
       module: 'play-offs',
-      routes: {}
+      routes: {},
+      addGamePopup: null
     }
   },
   methods: {
@@ -102,7 +104,21 @@ export default {
         })
         .finally(() => $('.overlay, .overlay .preload').hide())
       )
-    }
+    },
+    showGamePopup(e) {
+      const groupID = $(e.target).closest('.stage-item-wrap').attr('data-id')
+
+      this.addGamePopup.wrap.find('input[name="group_id"]').val(groupID)
+
+      let options = ''
+      for (let id in this.teams) {
+        const team = this.teams[id]
+        options += `<option value="${team.id}">${team.ua}</option>`
+      }
+      this.addGamePopup.wrap.find('select[name="host_team"]').html(options)
+      this.addGamePopup.wrap.find('select[name="guest_team"]').html(options)
+      this.addGamePopup.open()
+    },
   },
   beforeMount() {
     this.routes = $('#playOffTable').data('routes')
@@ -113,6 +129,18 @@ export default {
       .then(response => {
         if (200 === response.status) {
           let teamIDs = [], type = null
+
+          for (let i = 0, n = response.data.collection.length; i < n; i++) {
+            const group = response.data.collection[i]
+            for (let j = 0; j < group.games.length; j++) {
+              const game = group.games[j]
+              if (null === type) {
+                type = game.entity
+                break;
+              }
+            }
+          }
+
           for (let i = 0, n = response.data.collection.length; i < n; i++) {
             const group = response.data.collection[i]
             if (0 < group.stage) {
@@ -123,11 +151,6 @@ export default {
               this.stages[group.stage].push(group)
 
               for (let j = 0; j < group.games.length; j++) {
-                const game = group.games[j]
-                if (null === type) {
-                  type = game.entity
-                }
-
                 // This is need to get teams data
                 teamIDs.push(game.host_team)
                 teamIDs.push(game.guest_team)
@@ -159,6 +182,9 @@ export default {
             })
         }
       })
+
+    // Popup handler
+    this.addGamePopup = new Popup($('#add-group-game'))
   },
   mixins: [CompetitionMixin]
 }

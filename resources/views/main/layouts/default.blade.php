@@ -29,9 +29,12 @@
         <li data-show="login-form">
           <span>Sign In</span>
         </li>
-        <li>
-          <a href="{{ route('registration.index') }}">Sign Up</a>
-        </li>
+
+        @if($settings['registration_enable']->converted_value)
+          <li>
+            <a href="{{ route('registration.index') }}">Sign Up</a>
+          </li>
+        @endisset
       @endauth
     </ul>
   </div>

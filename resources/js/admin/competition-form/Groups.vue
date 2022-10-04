@@ -301,7 +301,6 @@ export default {
       const url = this.routes.group.list + '&where[id]=' + groupID
       $.axios.get(url).then(response => {
         if (200 === response.status && !!response.data.collection[0]) {
-
           const teams = response.data.collection[0].teams
           this.addGamePopup.wrap.find('input[name="group_id"]').val(groupID)
           this.addGamePopup.wrap
@@ -464,7 +463,7 @@ export default {
       })
 
     // Popup handler
-    this.addGamePopup = new Popup($('#add-group'))
+    this.addGamePopup = new Popup($('#add-group-game'))
     this.addTeamPopup = new Popup($('#add-team'))
     // Popup game form submit event
     this.addGamePopup.wrap.find('form').on('submit', e => {

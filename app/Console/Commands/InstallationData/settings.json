@@ -1,4 +1,11 @@
 {
+  "registration": [
+    {
+      "caption": "Enable registration",
+      "key": "registration_enable",
+      "value": false
+    }
+  ],
   "images": [
     {
       "caption": "User image",

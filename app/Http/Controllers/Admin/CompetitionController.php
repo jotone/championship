@@ -60,6 +60,9 @@ class CompetitionController extends BasicAdminController
             'tab'    => $request->has('tab') ? $request->get('tab') : 'competition',
             'title'  => 'Edit Competition',
             'routes' => [
+                'competition' => [
+                    'list' => route('api.competitions.index') . '?with[]=groups'
+                ],
                 'country' => [
                     'list' => route('api.countries.index') . '?take=0'
                 ],

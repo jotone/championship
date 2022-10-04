@@ -34,7 +34,7 @@
 @endsection
 
 @section('popup')
-  @include('admin.competitions.popup.add-group')
+  @include('admin.competitions.popup.add-group-game')
 
   @include('admin.competitions.popup.add-team')
 @endsection
