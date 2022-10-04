@@ -27,6 +27,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'img_url',
         'role_id',
+        'created_by',
         'email_verified_at',
         'last_activity',
         'deleted_at'
@@ -100,6 +101,16 @@ class User extends Authenticatable implements JWTSubject
     public function setPasswordAttribute(?string $value)
     {
         $this->attributes['password'] = !empty($value) ? bcrypt($value) : '';
+    }
+
+    /**
+     * User creator
+     *
+     * @return BelongsTo
+     */
+    public function createdBy(): BelongsTo
+    {
+        return $this->belongsTo(self::class, 'created_by', 'id');
     }
 
     /**
