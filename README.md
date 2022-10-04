@@ -1,5 +1,6 @@
-- Questionnaire form
+- form (Questionnaire)
 - participants
+- view and compare forms
 - view user page
 - profile
 - custom pages (rules, help)
@@ -8,3 +9,9 @@
   - Schedule
   - Comment (Forum)
 - Dashboard for admin
+- Admin
+  - Settings
+    - header image
+    - logo image
+    - Registration
+    - Comments

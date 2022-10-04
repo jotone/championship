@@ -16,12 +16,12 @@
 </head>
 <body>
 <header>
-  <nav class="top-menu">
-    <ul></ul>
-  </nav>
-  <div class="login-form-menu">
+  <nav class="login-form-menu">
     <ul>
       @auth
+        <li>
+          <a href="#">Good luck, {{ Auth::user()->name }}</a>
+        </li>
         <li>
           <a href="{{ route('auth.logout') }}">Sign Out</a>
         </li>
@@ -37,7 +37,7 @@
         @endisset
       @endauth
     </ul>
-  </div>
+  </nav>
 </header>
 
 <form class="login-form" action="{{ route('auth.login') }}" method="POST">
@@ -52,8 +52,21 @@
     <button type="submit">YARRR</button>
     <a href="{{ route('password-reset.index') }}" style="color: white">Forgot password</a>
   </div>
-
 </form>
+
+<div class="banner-wrap" style="background-image: url('/images/header.jpg')">
+  <nav class="site-menu-wrap">
+    <ul>
+      <li><a href="#">Anketa</a></li>
+      <li><a href="#">Forum</a></li>
+      <li><a href="#">Svodnaja</a></li>
+      <li><a href="#">Rules</a></li>
+      <li><a href="#">Groups</a></li>
+      <li><a href="#">Raspisanie</a></li>
+      <li><a href="#">Help</a></li>
+    </ul>
+  </nav>
+</div>
 
 @yield('content')
 
