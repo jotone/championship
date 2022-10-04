@@ -114,26 +114,7 @@
         </Team>
         <td>
           <form style="min-width: 120px">
-            <input name="_method" type="hidden" value="patch">
-            <input
-              class="score-input"
-              type="number"
-              min="0"
-              :name="`score[${game.host_team}]`"
-              :value="`${game.score[game.host_team] || 0}`"
-              @keyup="gameSetScore"
-              @mouseup="gameSetScore"
-            >
-            <span style="margin: 0 8px">:</span>
-            <input
-              class="score-input"
-              type="number"
-              min="0"
-              :name="`score[${game.guest_team}]`"
-              :value="`${game.score[game.guest_team] || 0}`"
-              @keyup="gameSetScore"
-              @mouseup="gameSetScore"
-            >
+            <GameScore :game="game"></GameScore>
           </form>
         </td>
         <td>
@@ -180,10 +161,11 @@ import { CompetitionMixin } from './competition-mixin';
 import { Confirmation } from '../libs/confirmation';
 import { Popup } from '../libs/popup';
 import DatePicker from './DatePicker.vue';
+import GameScore from './GameScore.vue';
 import Team from './Team.vue';
 
 export default {
-  components: {DatePicker, Team},
+  components: {GameScore, DatePicker, Team},
   data() {
     return {
       groups: [],
@@ -195,21 +177,6 @@ export default {
     }
   },
   methods: {
-    /**
-     * Game change accept value
-     * @param e
-     */
-    gameAccept(e) {
-      const _this = $(e.target)
-      const id = parseInt(_this.closest('tr').data('id'))
-      let formData = new FormData()
-      formData.append('_method', 'patch')
-      formData.append('accept', _this.prop('checked') ? 1 : 0)
-
-      $.axios
-        .post(this.gameUpdateRoute(id), formData)
-        .then(response => 200 === response.status && this.updateGames(response.data))
-    },
     /**
      * Game change place value
      * @param e
@@ -253,19 +220,6 @@ export default {
         })
       )
     },
-    /**
-     * Change score for game
-     * @param e
-     */
-    gameSetScore: debounce(function(e) {
-      let formData = new FormData($(e.target).closest('form')[0])
-
-      const id = parseInt($(e.target).closest('tr').attr('data-id'))
-
-      $.axios
-        .post(this.gameUpdateRoute(id), formData)
-        .then(response => 200 === response.status && this.updateGames(response.data))
-    }, 500),
     /**
      * Remove group
      * @param e

@@ -3,7 +3,7 @@
   - ~~Store~~
   - Edit
     - Update
-    - Set date
-    - Set score
-    - Accept
+    - ~~Set date~~
+    - ~~Set score~~
+    - ~~Accept~~
   - ~~Remove~~

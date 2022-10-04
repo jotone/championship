@@ -1,4 +1,5 @@
 import moment from 'moment';
+import {debounce} from "debounce";
 
 export const CompetitionMixin = {
   methods: {
@@ -8,6 +9,24 @@ export const CompetitionMixin = {
      * @returns {string}
      */
     formatDate: val => moment(new Date(val)).format('D[/]MMM[/]YYYY HH[:]mm'),
+    /**
+     * Game change accept value
+     * @param e
+     */
+    gameAccept(e) {
+      const _this = $(e.target)
+      const id = _this.closest('tr').length
+        ? parseInt(_this.closest('tr').data('id'))
+        : parseInt(_this.closest('li').data('id'));
+
+      let formData = new FormData()
+      formData.append('_method', 'patch')
+      formData.append('accept', _this.prop('checked') ? 1 : 0)
+
+      $.axios
+        .post(this.gameUpdateRoute(id), formData)
+        .then(response => 200 === response.status && this.updateGames(response.data))
+    },
     /**
      *
      * @param id

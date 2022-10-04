@@ -73,9 +73,9 @@ class CompetitionGroupGameController extends BasicApiController
                     $competition_group_game->$key = $val;
                     break;
                 case 'start_at':
-                    $rules[$key] = ['nullable', 'string', 'date_format:d/M/Y H:i'];
+                    $rules[$key] = ['nullable', 'string', 'date_format:j/M/Y H:i'];
                     $competition_group_game->$key = !empty($val)
-                        ? Carbon::createFromFormat('d/M/Y H:i', $val)->subHours(3)
+                        ? Carbon::createFromFormat('j/M/Y H:i', $val)->subHours(3)
                         : null;
                     break;
             }
@@ -186,9 +186,9 @@ class CompetitionGroupGameController extends BasicApiController
      * @param $winner
      * @param $loser
      * @param $score
-     * @return object
+     * @return mixed
      */
-    protected function updateWinner($result, $winner, $loser, $score): object
+    protected function updateWinner($result, $winner, $loser, $score): mixed
     {
         $result[$winner]->games++;
         $result[$winner]->wins++;

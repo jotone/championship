@@ -21,7 +21,7 @@ View::share('settings', $settings);
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::any('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-if ($settings['registration_enable']->converted_value) {
+if ($settings->count() && $settings['registration_enable']->converted_value) {
     Route::group(['as' => 'registration.'], function () {
         Route::get('/registration', [RegistrationController::class, 'index'])->name('index');
         Route::post('/registration', [RegistrationController::class, 'store'])->name('store');

@@ -41,29 +41,16 @@
             <span>vs</span>
             <span>{{ !!teams[game.guest_team] ? teams[game.guest_team].ua : '' }}</span>
           </div>
-          <div class="game-teams-score-wrap">
-            <input
-              class="score-input"
-              type="number"
-              min="0"
-              :name="`score${game.host_team}`"
-              :value="game.score[game.host_team]"
-            >
-            <span style="padding: 0 10px">:</span>
-            <input
-              class="score-input"
-              type="number"
-              min="0"
-              :name="`score${game.guest_team}`"
-              :value="game.score[game.guest_team]"
-            >
-          </div>
+          <form class="game-teams-score-wrap">
+            <GameScore :game="game"></GameScore>
+          </form>
           <div class="game-accept-wrap">
             <label>
               <input
                   name="accept"
                   type="checkbox"
                   v-model="game.accept"
+                  @click="gameAccept"
               >
               <span style="margin-left: 10px">Accept</span>
             </label>
@@ -96,13 +83,14 @@
 
 <script>
 
-import {CompetitionMixin} from './competition-mixin';
-import {Confirmation} from '../libs/confirmation';
-import {Popup} from '../libs/popup';
+import { CompetitionMixin } from './competition-mixin';
+import { Confirmation } from '../libs/confirmation';
+import { Popup } from '../libs/popup';
 import DatePicker from './DatePicker.vue';
+import GameScore from './GameScore.vue';
 
 export default {
-  components: {DatePicker},
+  components: {GameScore, DatePicker},
   data() {
     return {
       entity: null,
@@ -114,6 +102,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * Remove game
+     * @param e
+     */
     gameRemove(e) {
       const _this = $(e.target).closest('a')
 
@@ -144,15 +136,16 @@ export default {
       formData.append('competition_id', $('#playOffTable').data('id'))
       formData.append('stage', $('#playOffTable').find('.stage-item-wrap').length + 1)
 
-      $.axios.post(this.routes.group.store, formData)
-          .then(response => {
-            if (201 === response.status) {
-              if (typeof this.stages[response.data.stage] === 'undefined') {
-                this.stages[response.data.stage] = []
-              }
-              this.stages[response.data.stage].push(response.data)
+      $.axios
+        .post(this.routes.group.store, formData)
+        .then(response => {
+          if (201 === response.status) {
+            if (typeof this.stages[response.data.stage] === 'undefined') {
+              this.stages[response.data.stage] = []
             }
-          })
+            this.stages[response.data.stage].push(response.data)
+          }
+        })
     },
     /**
      * Remove a stage
@@ -197,6 +190,17 @@ export default {
       this.addGamePopup.wrap.find('select[name="guest_team"]').html(options)
       this.addGamePopup.open()
     },
+    /**
+     * Update games entities
+     * @param data
+     */
+    updateGames(data) {
+      for (let i in this.stages) {
+        if (this.stages[i][0].id === data.id) {
+          this.stages[i][0] = data
+        }
+      }
+    }
   },
   beforeMount() {
     this.routes = $('#playOffTable').data('routes')
@@ -275,6 +279,9 @@ export default {
         if (201 === response.status) {
           for (let i in this.stages) {
             if (this.stages[i][0].id === parseInt(response.data.group_id)) {
+              if (!this.stages[i][0].hasOwnProperty('games')) {
+                this.stages[i][0].games = []
+              }
               this.stages[i][0].games.push(response.data)
             }
           }

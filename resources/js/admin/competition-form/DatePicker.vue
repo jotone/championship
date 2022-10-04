@@ -24,18 +24,26 @@ export default {
         formData.append('_method', 'patch')
         formData.append('start_at', e.formattedDate || null)
 
-        const id = parseInt($(e.datepicker.$el).closest('tr').data('id'))
+        const parent = $(e.datepicker.$el).closest('tr').length
+            ? $(e.datepicker.$el).closest('tr')
+            : $(e.datepicker.$el).closest('li')
+
+        const id = parseInt(parent.data('id'))
 
         $.axios
           .post(this.$parent.gameUpdateRoute(id), formData)
           .then(response => {
             if (200 === response.status) {
-              for (let i = 0, n = this.$parent.groups.length; i < n; i++) {
-                if (this.$parent.groups[i].id === response.data.group_id) {
-                  for (let j = 0, m = this.$parent.groups[i].games.length; j < m; j++) {
-                    if (id === this.$parent.groups[i].games[j].id) {
-                      this.$parent.groups[i].games[j] = response.data
-                    }
+              if (typeof this.$parent.groups === 'undefined') {
+                for (let i in this.$parent.stages) {
+                  if (this.$parent.stages[i][0].id === response.data.id) {
+                    this.$parent.stages[i][0] = response.data
+                  }
+                }
+              } else {
+                for (let i = 0, n = this.$parent.groups.length; i < n; i++) {
+                  if (this.$parent.groups[i].id === response.data.id) {
+                    this.$parent.groups[i] = response.data
                   }
                 }
               }

@@ -56,8 +56,8 @@ class CompetitionController extends BasicApiController
             'img_url'       => null,
             'bg_color'      => $args['bg_color'][0] != '#' ? '#' . $args['bg_color'] : $args['bg_color'],
             'text_color'    => $args['text_color'][0] != '#' ? '#' . $args['text_color'] : $args['text_color'],
-            'start_at'      => Carbon::createFromFormat('d/M/Y', $args['start_at']),
-            'finish_at'     => Carbon::createFromFormat('d/M/Y', $args['finish_at']),
+            'start_at'      => Carbon::createFromFormat('j/M/Y', $args['start_at']),
+            'finish_at'     => Carbon::createFromFormat('j/M/Y', $args['finish_at']),
         ]);
 
         //Create competition groups
