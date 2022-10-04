@@ -1,9 +1,10 @@
-- ~~Stage~~
-- Game
-  - ~~Store~~
-  - Edit
-    - Update
-    - ~~Set date~~
-    - ~~Set score~~
-    - ~~Accept~~
-  - ~~Remove~~
+- Questionnaire form
+- participants
+- view user page
+- profile
+- custom pages (rules, help)
+- Pages:
+  - Pivot table (united table)
+  - Schedule
+  - Comment (Forum)
+- Dashboard for admin
