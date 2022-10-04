@@ -13,6 +13,7 @@
       @csrf
 
       <input name="group_id" type="hidden" value="">
+      <input name="entity" type="hidden" value="">
       <div class="row col-100">
         <div class="form-row col-100">
           <label class="caption">

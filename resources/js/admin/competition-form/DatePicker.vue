@@ -1,5 +1,5 @@
 <template>
-  <input class="set-date" :name="name" :value="value">
+  <input class="set-date" :name="name" :value="value || 'Not set'">
 </template>
 
 <script>

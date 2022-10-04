@@ -20,8 +20,12 @@ class CompetitionGroupGameController extends BasicApiController
     public function store(CompetitionGroupGameRequest $request): Response
     {
         $args = $request->validated();
-        $team = CompetitionTeam::where('group_id', $args['group_id'])->first();
-        $args['entity'] = $team->entity;
+
+        if(empty($args['entity'])) {
+            $team = CompetitionTeam::where('group_id', $args['group_id'])->first();
+            $args['entity'] = $team->entity;
+        }
+
         $args['score'] = [
             $args['host_team']  => 0,
             $args['guest_team'] => 0

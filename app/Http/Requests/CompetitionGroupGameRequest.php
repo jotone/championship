@@ -13,11 +13,17 @@ class CompetitionGroupGameRequest extends DefaultFormRequest
      */
     public function rules(): array
     {
-        $team = CompetitionTeam::where('group_id', $this->request->get('group_id'))->first();
-        $table = !empty($team) && $team->entity == Country::class ? 'countries' : 'teams';
+        if (empty($this->request->get('entity'))) {
+            $team = CompetitionTeam::where('group_id', $this->request->get('group_id'))->first();
+            $entity = $team->entity;
+        } else {
+            $entity = $this->request->get('entity');
+        }
+        $table = $entity == Country::class ? 'countries' : 'teams';
 
         return [
             'group_id'   => ['required', 'exists:competition_groups,id'],
+            'entity'     => ['nullable', 'string'],
             'host_team'  => ['required', 'exists:' . $table . ',id'],
             'guest_team' => ['required', 'exists:' . $table . ',id']
         ];

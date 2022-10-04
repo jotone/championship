@@ -1,9 +1,9 @@
 - ~~Stage~~
 - Game
-  - Store
+  - ~~Store~~
   - Edit
     - Update
     - Set date
     - Set score
     - Accept
-  - Remove
+  - ~~Remove~~

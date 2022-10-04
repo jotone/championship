@@ -50,16 +50,6 @@
 
         i {font-size: 24px}
       }
-
-      .score-input {
-        background-color: #fffffe;
-        border: 1px solid #0d0d0d;
-        border-radius: 5px;
-        min-width: 50px;
-        padding: 5px 2px;
-        text-align: center;
-        width: 50px
-      }
     }
   }
 
@@ -101,6 +91,16 @@
   }
 }
 
+.score-input {
+  background-color: #fffffe;
+  border: 1px solid #0d0d0d;
+  border-radius: 5px;
+  min-width: 50px;
+  padding: 5px 2px;
+  text-align: center;
+  width: 50px
+}
+
 .stages-wrap {
   align-items: stretch;
   display: flex;
@@ -123,11 +123,51 @@
     }
   }
 
+  .play-off-games-list {
+    margin-top: 40px;
+    position: relative;
+
+    li {
+      border-bottom: 1px solid $blue;
+      margin: 20px 10px;
+      position: relative;
+
+      .game-date-wrap input {
+        color: $blue;
+        cursor: pointer;
+        padding: 4px 8px;
+        text-align: center;
+        width: 80%;
+      }
+
+      .game-teams-wrap, .game-teams-score-wrap {
+        align-items: center;
+        display: flex;
+        justify-content: space-around;
+        margin: 10px 0;
+
+        span {font-size: 16px}
+      }
+
+      .game-accept-wrap {
+        margin: 10px 0;
+        text-align: center
+      }
+
+      .game-controls-wrap {
+        position: absolute;
+        right: -25px;
+        top: 3px;
+      }
+    }
+  }
+
   .add-stage-wrap {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     justify-content: center;
     min-width: 200px;
+    padding-top: 10px;
 
     i {
       cursor: pointer;
@@ -145,7 +185,7 @@
 
   .move-group {
     cursor: grab;
-    left: -25px;
+    left: -20px;
     padding: 5px 10px;
     position: absolute;
     top: 50%;
