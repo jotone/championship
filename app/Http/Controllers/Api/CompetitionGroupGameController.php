@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Validator;
 class CompetitionGroupGameController extends BasicApiController
 {
     /**
+     * View competition game
+     *
+     * @param CompetitionGame $competition_group_game
+     * @return Response
+     */
+    public function show(CompetitionGame $competition_group_game): Response
+    {
+        return response($competition_group_game);
+    }
+
+    /**
      * Create competition game
      *
      * @param CompetitionGroupGameRequest $request
@@ -75,7 +86,7 @@ class CompetitionGroupGameController extends BasicApiController
                 case 'start_at':
                     $rules[$key] = ['nullable', 'string', 'date_format:j/M/Y H:i'];
                     $competition_group_game->$key = !empty($val)
-                        ? Carbon::createFromFormat('j/M/Y H:i', $val)->subHours(3)
+                        ? Carbon::createFromFormat('j/M/Y H:i', $val)
                         : null;
                     break;
             }

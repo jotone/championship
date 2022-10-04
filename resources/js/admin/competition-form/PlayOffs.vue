@@ -30,16 +30,25 @@
 
       <ul class="play-off-games-list">
         <li v-for="(game) in stage[0].games" :data-id="game.id">
-          <div class="game-date-wrap">
-            <DatePicker
-              :name="`gameDate[${game.id}]`"
-              :value="game.hasOwnProperty('start_at') && null !== game.start_at ? formatDate(game.start_at) : 'Not set'"
-            ></DatePicker>
-          </div>
           <div class="game-teams-wrap">
             <span>{{ !!teams[game.host_team] ? teams[game.host_team].ua : '' }}</span>
             <span>vs</span>
             <span>{{ !!teams[game.guest_team] ? teams[game.guest_team].ua : '' }}</span>
+          </div>
+          <div class="game-date-wrap">
+            <DatePicker
+              :name="`gameDate[${game.id}]`"
+              :value="game.hasOwnProperty('start_at') && null !== game.start_at ? formatDate(game.start_at) : 'The date is not set'"
+            ></DatePicker>
+          </div>
+          <div class="game-place-wrap">
+            <input
+              class="form-input"
+              placeholder="Set game place&hellip;"
+              @keyup="gameChangePlace"
+              :name="`gamePlace[${game.id}]`"
+              :value="game.place || ''"
+            >
           </div>
           <form class="game-teams-score-wrap">
             <GameScore :game="game"></GameScore>
@@ -47,19 +56,16 @@
           <div class="game-accept-wrap">
             <label>
               <input
-                  name="accept"
-                  type="checkbox"
-                  v-model="game.accept"
-                  @click="gameAccept"
+                name="accept"
+                type="checkbox"
+                v-model="game.accept"
+                @click="gameAccept"
               >
               <span style="margin-left: 10px">Accept</span>
             </label>
           </div>
 
           <div class="game-controls-wrap">
-            <a class="edit" title="Edit game">
-              <i class="fas fa-edit"></i>
-            </a>
             <a class="remove" :href="gameRemoveRoute(game.id)" title="Remove game" @click.prevent="gameRemove">
               <i class="fas fa-times"></i>
             </a>
@@ -83,11 +89,13 @@
 
 <script>
 
-import { CompetitionMixin } from './competition-mixin';
-import { Confirmation } from '../libs/confirmation';
-import { Popup } from '../libs/popup';
+import {CompetitionMixin} from './competition-mixin';
+import {Confirmation} from '../libs/confirmation';
+import {Popup} from '../libs/popup';
 import DatePicker from './DatePicker.vue';
 import GameScore from './GameScore.vue';
+import {_, t} from "../../../../public/build/assets/_plugin-vue_export-helper.8edea7f7";
+import {debounce} from "debounce";
 
 export default {
   components: {GameScore, DatePicker},
@@ -162,13 +170,13 @@ export default {
       const confirm = new Confirmation(`Do you really want to remove stage "${name}"?`).open()
 
       confirm.then(answer => answer && $.axios
-          .delete(_this.attr('href'))
-          .then(response => {
-            if (204 === response.status) {
-              delete this.stages[index]
-            }
-          })
-          .finally(() => $('.overlay, .overlay .preload').hide())
+        .delete(_this.attr('href'))
+        .then(response => {
+          if (204 === response.status) {
+            delete this.stages[index]
+          }
+        })
+        .finally(() => $('.overlay, .overlay .preload').hide())
       )
     },
     /**
@@ -181,14 +189,21 @@ export default {
       this.addGamePopup.wrap.find('input[name="group_id"]').val(groupID)
       this.addGamePopup.wrap.find('input[name="entity"]').val(this.entity)
 
+      this.addGamePopup.wrap.find('select[name="host_team"]').html(this.teamsOptionsList())
+      this.addGamePopup.wrap.find('select[name="guest_team"]').html(this.teamsOptionsList())
+      this.addGamePopup.open()
+    },
+    /**
+     * View teams as select options list
+     * @param selected
+     * @returns {string}
+     */
+    teamsOptionsList(selected = null) {
       let options = ''
       for (let id in this.teams) {
-        const team = this.teams[id]
-        options += `<option value="${team.id}">${team.ua}</option>`
+        options += `<option value="${id}"${selected === parseInt(id) ? 'selected' : ''}>${this.teams[id].ua}</option>`
       }
-      this.addGamePopup.wrap.find('select[name="host_team"]').html(options)
-      this.addGamePopup.wrap.find('select[name="guest_team"]').html(options)
-      this.addGamePopup.open()
+      return options
     },
     /**
      * Update games entities
@@ -207,59 +222,59 @@ export default {
   },
   mounted() {
     $.axios
-        .get(this.routes.group.list)
-        .then(response => {
-          if (200 === response.status) {
-            let teamIDs = [];
+      .get(this.routes.group.list)
+      .then(response => {
+        if (200 === response.status) {
+          let teamIDs = [];
 
-            for (let i = 0, n = response.data.collection.length; i < n; i++) {
-              const group = response.data.collection[i]
-              // Fill stages
-              if (0 < group.stage) {
-                if (typeof this.stages[group.stage] === 'undefined') {
-                  this.stages[group.stage] = []
-                }
-                this.stages[group.stage].push(group)
+          for (let i = 0, n = response.data.collection.length; i < n; i++) {
+            const group = response.data.collection[i]
+            // Fill stages
+            if (0 < group.stage) {
+              if (typeof this.stages[group.stage] === 'undefined') {
+                this.stages[group.stage] = []
               }
-
-              for (let j = 0; j < group.games.length; j++) {
-                // Get teams entity type
-                const game = group.games[j]
-                if (null === this.entity) {
-                  this.entity = game.entity
-                }
-                // This is need to get teams data
-                teamIDs.push(game.host_team)
-                teamIDs.push(game.guest_team)
-              }
+              this.stages[group.stage].push(group)
             }
 
-            // Array unique values
-            teamIDs = [...new Set(teamIDs)]
-
-            // Teams are countries or clubs
-            const teamsRequestUrl = this.entity === 'App\\Models\\Country'
-                ? this.routes.country.list
-                : this.routes.team.list;
-
-            // Get teams data
-            $.axios
-                .get(`${teamsRequestUrl}&where[id]=${teamIDs.join(',')}`)
-                .then(response => {
-                  if (200 === response.status) {
-                    // Result teams values
-                    let result = {}
-
-                    // Convert teams data into proper view groupID -> teamPosition -> teamData
-                    for (let i = 0; i < response.data.collection.length; i++) {
-                      result[response.data.collection[i].id] = response.data.collection[i]
-                    }
-                    // Set teams
-                    this.teams = result
-                  }
-                })
+            for (let j = 0; j < group.games.length; j++) {
+              // Get teams entity type
+              const game = group.games[j]
+              if (null === this.entity) {
+                this.entity = game.entity
+              }
+              // This is need to get teams data
+              teamIDs.push(game.host_team)
+              teamIDs.push(game.guest_team)
+            }
           }
-        })
+
+          // Array unique values
+          teamIDs = [...new Set(teamIDs)]
+
+          // Teams are countries or clubs
+          const teamsRequestUrl = this.entity === 'App\\Models\\Country'
+            ? this.routes.country.list
+            : this.routes.team.list;
+
+          // Get teams data
+          $.axios
+            .get(`${teamsRequestUrl}&where[id]=${teamIDs.join(',')}`)
+            .then(response => {
+              if (200 === response.status) {
+                // Result teams values
+                let result = {}
+
+                // Convert teams data into proper view groupID -> teamPosition -> teamData
+                for (let i = 0; i < response.data.collection.length; i++) {
+                  result[response.data.collection[i].id] = response.data.collection[i]
+                }
+                // Set teams
+                this.teams = result
+              }
+            })
+        }
+      })
 
     // Popup handler
     this.addGamePopup = new Popup($('#add-group-game'))

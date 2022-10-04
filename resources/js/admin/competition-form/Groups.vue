@@ -86,7 +86,7 @@
         <td>
           <DatePicker
             :name="`gameDate[${game.id}]`"
-            :value="null !== game.start_at ? formatDate(game.start_at) : 'Not set'"
+            :value="null !== game.start_at ? formatDate(game.start_at) : 'The date is not set'"
           ></DatePicker>
         </td>
         <Team
@@ -128,6 +128,7 @@
         <td>
           <input
             class="form-input"
+            placeholder="Set game place&hellip;"
             @keyup="gameChangePlace"
             :name="`gamePlace[${game.id}]`"
             :value="game.place || ''"
@@ -177,22 +178,6 @@ export default {
     }
   },
   methods: {
-    /**
-     * Game change place value
-     * @param e
-     */
-    gameChangePlace: debounce(function (e) {
-      const _this = $(e.target)
-      let formData = new FormData()
-      formData.append('_method', 'patch')
-      formData.append('place', _this.val().trim())
-
-      const id = parseInt(_this.closest('tr').data('id'))
-
-      $.axios
-        .post(this.gameUpdateRoute(id), formData)
-        .then(response => 200 === response.status && this.updateGames(response.data))
-    }, 500),
     /**
      * Remove game
      * @param e

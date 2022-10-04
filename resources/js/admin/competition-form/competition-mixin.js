@@ -28,6 +28,24 @@ export const CompetitionMixin = {
         .then(response => 200 === response.status && this.updateGames(response.data))
     },
     /**
+     * Game change place value
+     * @param e
+     */
+    gameChangePlace: debounce(function (e) {
+      const _this = $(e.target)
+      let formData = new FormData()
+      formData.append('_method', 'patch')
+      formData.append('place', _this.val().trim())
+
+      const id = _this.closest('tr').length
+        ? parseInt(_this.closest('tr').data('id'))
+        : parseInt(_this.closest('li').data('id'))
+
+      $.axios
+        .post(this.gameUpdateRoute(id), formData)
+        .then(response => 200 === response.status && this.updateGames(response.data))
+    }, 500),
+    /**
      *
      * @param id
      * @returns {string}
