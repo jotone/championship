@@ -22,7 +22,9 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->unsignedInteger('role_id')->nullable();
+            $table->unsignedInteger('created_by')->nullable();
             $table->timestamp('last_activity')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }
