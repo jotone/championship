@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('competition_id');
             $table->unsignedTinyInteger('position')->default(0);
             $table->unsignedTinyInteger('stage')->default(0);
+            $table->unsignedSmallInteger('games_number')->default(0);
         });
     }
 

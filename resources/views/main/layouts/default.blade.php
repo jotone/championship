@@ -57,7 +57,9 @@
 <div class="banner-wrap" style="background-image: url('/images/header.jpg')">
   <nav class="site-menu-wrap">
     <ul>
-      <li><a href="#">Anketa</a></li>
+      @auth
+      <li><a href="{{ route('user.form.index') }}">Anketa</a></li>
+      @endauth
       <li><a href="#">Forum</a></li>
       <li><a href="#">Svodnaja</a></li>
       <li><a href="#">Rules</a></li>
@@ -68,7 +70,15 @@
   </nav>
 </div>
 
-@yield('content')
+<div class="content-wrap">
+  @include('main.layouts.participant')
+
+  <main class="page-content-wrap">
+    @yield('content')
+  </main>
+
+  @include('main.layouts.real-scores')
+</div>
 
 @vite([
   'resources/js/main/app.js'

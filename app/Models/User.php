@@ -124,6 +124,16 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Related forms
+     *
+     * @return HasMany
+     */
+    public function forms(): HasMany
+    {
+        return $this->hasMany(UserForm::class, 'user_id', 'id');
+    }
+
+    /**
      * User login history
      *
      * @return HasMany

@@ -1,4 +1,9 @@
 - form (Questionnaire)
+  - ~~view~~
+  - cron task -> recount user points after match change score
+  - set
+  - compare
+  
 - participants
 - view and compare forms
 - view user page
@@ -10,6 +15,7 @@
   - Comment (Forum)
 - Dashboard for admin
 - Admin
+  - Set games number to group
   - Settings
     - header image
     - logo image

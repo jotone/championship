@@ -8,7 +8,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use App\Rules\AlreadyExists;
 use Illuminate\Http\{Request, Response};
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{Auth, Validator};
 
 class UsersController extends BasicApiController
 {
@@ -67,7 +67,9 @@ class UsersController extends BasicApiController
     public function store(UserStoreRequest $request): Response
     {
         // Create user
-        $user = User::create($request->validated());
+        $user = User::create(array_merge($request->validated(), [
+            'created_by' => Auth::id()
+        ]));
         // Check img_url file exists
         if ($request->hasFile('img_url')) {
             try {

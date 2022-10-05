@@ -44,9 +44,10 @@ class DatabaseSeeder extends Seeder
 
         for ($i = 0; $i < 8; $i++) {
             $group = CompetitionGroup::create([
-                'name'           => 'Group ' . chr($i + 65),
+                'name'           => 'Група ' . chr($i + 65),
                 'competition_id' => $competition->id,
-                'position'       => $i
+                'position'       => $i,
+                'games_number'   => 6
             ]);
 
             $game_arr['group_id'] = $group->id;
@@ -256,7 +257,7 @@ class DatabaseSeeder extends Seeder
                     ], $game_arr));
                     break;
                 case 4:
-                    foreach ([59, 128, 72, 52] as $country_id) {
+                    foreach ([59, 120, 72, 52] as $country_id) {
                         CompetitionTeam::create(array_merge([
                             'group_id'  => $group->id,
                             'entity_id' => $country_id
@@ -266,9 +267,9 @@ class DatabaseSeeder extends Seeder
                     // Germany vs Japan
                     CompetitionGame::create(array_merge([
                         'host_team'  => 59,
-                        'guest_team' => 128,
+                        'guest_team' => 120,
                         'start_at'   => '2022-11-23 15:00:00',
-                        'score'      => [59 => 0, 128 => 0]
+                        'score'      => [59 => 0, 120 => 0]
                     ], $game_arr));
                     // Germany vs Spain
                     CompetitionGame::create(array_merge([
@@ -286,17 +287,17 @@ class DatabaseSeeder extends Seeder
                     ], $game_arr));
                     // Japan vs Spain
                     CompetitionGame::create(array_merge([
-                        'host_team'  => 128,
+                        'host_team'  => 120,
                         'guest_team' => 72,
                         'start_at'   => '2022-12-01 21:00:00',
-                        'score'      => [128 => 0, 72 => 0]
+                        'score'      => [120 => 0, 72 => 0]
                     ], $game_arr));
                     // Japan vs Costa Rica
                     CompetitionGame::create(array_merge([
-                        'host_team'  => 128,
+                        'host_team'  => 120,
                         'guest_team' => 52,
                         'start_at'   => '2022-11-27 12:00:00',
-                        'score'      => [128 => 0, 52 => 0]
+                        'score'      => [120 => 0, 52 => 0]
                     ], $game_arr));
                     // Spain vs Costa Rica
                     CompetitionGame::create(array_merge([
@@ -461,5 +462,31 @@ class DatabaseSeeder extends Seeder
                     break;
             }
         }
+
+        foreach ([8, 4, 2] as $i => $type) {
+            CompetitionGroup::create([
+                'name'           => '1/' . $type,
+                'competition_id' => $competition->id,
+                'position'       => 0,
+                'stage'          => $i + 1,
+                'games_number'   => $type
+            ]);
+        }
+
+        CompetitionGroup::create([
+            'name'           => 'Фінал',
+            'competition_id' => $competition->id,
+            'position'       => 0,
+            'stage'          => $i + 2,
+            'games_number'   => 1
+        ]);
+
+        CompetitionGroup::create([
+            'name'           => 'Чемпіон',
+            'competition_id' => $competition->id,
+            'position'       => 0,
+            'stage'          => $i + 3,
+            'games_number'   => 0
+        ]);
     }
 }

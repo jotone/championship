@@ -18,7 +18,8 @@ class CompetitionGroup extends Model
         'name',
         'competition_id',
         'position',
-        'stage'
+        'stage',
+        'games_number'
     ];
 
     /**
@@ -36,7 +37,7 @@ class CompetitionGroup extends Model
      *
      * @return HasMany
      */
-    public function games()
+    public function games(): HasMany
     {
         return $this->hasMany(CompetitionGame::class, 'group_id', 'id')->orderBy('start_at');
     }

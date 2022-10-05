@@ -117,14 +117,31 @@ header {
 
   .real-score-wrap {width: 700px}
 
-  .page-content-wrap {width: 100%}
+  .page-content-wrap {padding: 0 40px; width: 100%}
+
+  .team-score-input, .team-selector {
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+    border-radius: 2px;
+    padding: 5px;
+    font-size: 1em;
+  }
+
+  .team-score-input {
+    text-align: center;
+    width: 60px;
+  }
+
+  .team-selector {min-width: 250px}
 }
 
 .content-table {
+  margin: 5px 0;
   width: 100%;
 
   thead tr {
     background-color: #2c4649;
+    border: 2px solid #000000;
 
     th {
       color: #ffffff;
@@ -137,6 +154,11 @@ header {
     background-color: #deecee;
     border: 1px solid #aaaaaa;
     padding: 5px;
-    text-align: center  ;
+    text-align: center;
+
+    &:first-child, &:last-child {
+      min-width: 280px;
+    }
+
   }
 }
