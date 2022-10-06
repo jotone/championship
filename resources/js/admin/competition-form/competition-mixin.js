@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {debounce} from "debounce";
+import {debounce} from 'debounce';
 
 export const CompetitionMixin = {
   methods: {

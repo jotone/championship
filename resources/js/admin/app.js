@@ -1,6 +1,5 @@
 import {Notifications} from "./libs/notifications";
 import {debounce} from "debounce";
-import th from "air-datepicker/locale/th";
 
 $(document).ready(() => {
   // Show current notifications

@@ -16,8 +16,7 @@ class UserForm extends Model
         'user_id',
         'competition_id',
         'game_id',
-        'game_score',
-        'teams',
+        'scores',
         'points'
     ];
 
@@ -27,8 +26,7 @@ class UserForm extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'game_score' => 'array',
-        'teams'      => 'array'
+        'scores' => 'array',
     ];
 
     /**

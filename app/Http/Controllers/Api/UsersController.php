@@ -20,20 +20,9 @@ class UsersController extends BasicApiController
      */
     public function index(Request $request): Response
     {
-        // Get request data
-        $args = $this->parseRequest($request);
-
-        // Run query
-        $content = User::query();
-
-        // Set search value
-        $search = $args['search'] ?? null;
-        // Check search value isset
-        if (!empty($search)) {
-            $content = $content->where('name', 'like', '%' . $search . '%');
-        }
-
-        return $this->apiIndexResponse($content, $args);
+        return $this->renderIndexPage($request, User::class, function ($content, $search) {
+            return $content->where('name', 'like', '%' . $search . '%')->orWhere('email', 'like', '%' . $search . '%');
+        });
     }
 
     /**

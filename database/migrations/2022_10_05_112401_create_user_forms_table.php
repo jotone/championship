@@ -19,8 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('competition_id');
             $table->unsignedInteger('group_id');
             $table->unsignedInteger('game_id')->nullable();
-            $table->json('game_score')->nullable();
-            $table->json('teams')->nullable();
+            $table->json('scores')->nullable();
             $table->unsignedSmallInteger('points')->default(0);
             $table->timestamps();
         });

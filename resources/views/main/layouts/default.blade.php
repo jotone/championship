@@ -83,5 +83,6 @@
 @vite([
   'resources/js/main/app.js'
 ])
+@yield('scripts')
 </body>
 </html>

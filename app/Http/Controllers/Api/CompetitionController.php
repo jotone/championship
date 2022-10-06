@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Classes\FileHelper;
 use App\Http\Controllers\BasicApiController;
-use Carbon\Carbon;
 use App\Http\Requests\{CompetitionStoreRequest, CompetitionUpdateRequest};
 use App\Models\{Competition, CompetitionGroup};
+use Carbon\Carbon;
 use Illuminate\Http\{Request, Response};
 
 class CompetitionController extends BasicApiController
@@ -21,20 +21,7 @@ class CompetitionController extends BasicApiController
      */
     public function index(Request $request): Response
     {
-        // Get request data
-        $args = $this->parseRequest($request);
-
-        // Run query
-        $content = Competition::query();
-
-        // Set search value
-        $search = $args['search'] ?? null;
-        // Check search value isset
-        if (!empty($search)) {
-            $content = $content->where('name', 'like', '%' . $search . '%');
-        }
-
-        return $this->apiIndexResponse($content, $args);
+        return $this->renderIndexPage($request, Competition::class);
     }
 
     /**

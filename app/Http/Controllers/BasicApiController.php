@@ -129,6 +129,38 @@ class BasicApiController extends Controller
     }
 
     /**
+     * Default api index method response
+     *
+     * @param Request $request
+     * @param string $model
+     * @param $callback
+     * @return Response
+     */
+    protected function renderIndexPage(Request $request, string $model, $callback = null): Response
+    {
+        // Get request data
+        $args = $this->parseRequest($request);
+
+        // Run query
+        $content = $model::query();
+
+        // Set search value
+        $search = $args['search'] ?? null;
+
+        // Check search value isset
+        if (!empty($search)) {
+            if (empty($callback)) {
+                $content = $content->where('name', 'like', '%' . $search . '%');
+            } else {
+                $content = $callback($content, $search);
+            }
+
+        }
+
+        return $this->apiIndexResponse($content, $args);
+    }
+
+    /**
      * Default model remove method
      *
      * @param Model $model

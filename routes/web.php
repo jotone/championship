@@ -41,3 +41,4 @@ Route::group(['as' => 'password-reset.'], function () {
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/user/form', [UserFormController::class, 'index'])->name('user.form.index');
+Route::post('/user/form/{competition}', [UserFormController::class, 'store'])->name('user.form.store');

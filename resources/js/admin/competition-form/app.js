@@ -1,12 +1,11 @@
 import { createApp } from 'vue';
-import Groups from './Groups.vue';
-import PlayOffs from './PlayOffs.vue';
+import { SearchSelect } from '../libs/search-select';
 import '@eastdesire/jscolor';
 import AirDatepicker from 'air-datepicker';
-import enLocale from 'air-datepicker/locale/en';
-import {SearchSelect} from '../libs/search-select';
+import EnLocale from 'air-datepicker/locale/en';
+import Groups from './Groups.vue';
+import PlayOffs from './PlayOffs.vue';
 import Sortable from 'sortablejs';
-import ro from "air-datepicker/locale/ro";
 
 const groupTable = $('#groupsTable')
 const playOffTable = $('#playOffTable')
@@ -16,7 +15,7 @@ playOffTable.length && createApp(PlayOffs).mount(`#${playOffTable.attr('id')}`);
 $(document).ready(() => {
   $('.datepicker').each(function () {
     new AirDatepicker(this, {
-      locale: enLocale,
+      locale: EnLocale,
       firstDay: 1,
       dateFormat: 'd/MMM/yyyy',
       timeFormat: 'HH:mm',

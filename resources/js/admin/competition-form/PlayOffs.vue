@@ -94,8 +94,6 @@ import {Confirmation} from '../libs/confirmation';
 import {Popup} from '../libs/popup';
 import DatePicker from './DatePicker.vue';
 import GameScore from './GameScore.vue';
-import {_, t} from "../../../../public/build/assets/_plugin-vue_export-helper.8edea7f7";
-import {debounce} from "debounce";
 
 export default {
   components: {GameScore, DatePicker},

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import {debounce} from "debounce";
+import {debounce} from 'debounce';
 
 export default {
   props: {

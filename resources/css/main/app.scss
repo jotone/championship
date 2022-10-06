@@ -1,5 +1,22 @@
 body {min-width: 320px}
 
+.flex-c {justify-content: center}
+.flex-fs {justify-content: flex-start}
+.flex-fe {justify-content: flex-end}
+
+.btn {
+  border: 1px solid #333333;
+  border-radius: 5px;
+  display: block;
+  font-size: 1rem;
+  padding: 10px 15px;
+
+  &.regular {
+    background-color: #05728f;
+    color: #ffffff;
+  }
+}
+
 header {
   background-color: #0f3479;
   align-items: center;
@@ -47,7 +64,7 @@ header {
         a {
           color: #0d0d0d;
           display: block;
-          font-size: 1.25em;
+          font-size: 1.25rem;
           font-weight: bold;
           text-shadow: 0 0 5px #ffffff;
           padding: 10px;
@@ -93,7 +110,7 @@ header {
 
       i {
         color: #b20310;
-        font-size: 8em;
+        font-size: 8rem;
 
         &.success {color: #22c708}
       }
@@ -101,7 +118,7 @@ header {
 
     &-text {
       margin: 30px 0;
-      font-size: 2em;
+      font-size: 2rem;
       text-align: center;
     }
   }
@@ -124,7 +141,7 @@ header {
     border: 1px solid #aaaaaa;
     border-radius: 2px;
     padding: 5px;
-    font-size: 1em;
+    font-size: 1rem;
   }
 
   .team-score-input {
@@ -156,9 +173,14 @@ header {
     padding: 5px;
     text-align: center;
 
-    &:first-child, &:last-child {
-      min-width: 280px;
-    }
-
+    &:first-child, &:last-child {min-width: 280px}
   }
+}
+
+.content-block-wrap {
+  background-color: #deecee;
+  border: 1px solid #aaaaaa;
+  display: flex;
+  font-size: 1rem;
+  padding: 5px;
 }

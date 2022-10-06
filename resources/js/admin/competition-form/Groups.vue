@@ -157,7 +157,6 @@
 
 <script>
 
-import { debounce } from 'debounce';
 import { CompetitionMixin } from './competition-mixin';
 import { Confirmation } from '../libs/confirmation';
 import { Popup } from '../libs/popup';

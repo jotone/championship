@@ -12,6 +12,17 @@ use Illuminate\Support\Facades\Validator;
 class CompetitionGroupGameController extends BasicApiController
 {
     /**
+     * Get competition groups list
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request): Response
+    {
+        return $this->renderIndexPage($request, CompetitionGame::class);
+    }
+
+    /**
      * View competition game
      *
      * @param CompetitionGame $competition_group_game

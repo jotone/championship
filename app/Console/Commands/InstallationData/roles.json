@@ -7,7 +7,21 @@
   {
     "name": "Admin",
     "slug": "Admin",
-    "level": 127
+    "level": 127,
+    "permissions": [
+      {
+        "controller": "App\\Http\\Controllers\\Admin\\UsersController",
+        "allowed_methods": ["index", "create", "edit"]
+      },
+      {
+        "controller": "App\\Http\\Controllers\\Admin\\DashboardController",
+        "allowed_methods": ["index"]
+      },
+      {
+        "controller": "App\\Http\\Controllers\\Api\\UsersController",
+        "allowed_methods": ["index", "show", "store", "update", "destroy"]
+      }
+    ]
   },
   {
     "name": "Regular",

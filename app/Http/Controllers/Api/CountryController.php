@@ -18,21 +18,9 @@ class CountryController extends BasicApiController
      */
     public function index(Request $request): Response
     {
-        // Get request data
-        $args = $this->parseRequest($request);
-
-        // Run query
-        $content = Country::query();
-
-        // Set search value
-        $search = $args['search'] ?? null;
-        // Check search value isset
-        if (!empty($search)) {
-            $content = $content->where('en', 'like', '%' . $search . '%')
-                ->orWhere('ua', 'like', '%' . $search . '%');
-        }
-
-        return $this->apiIndexResponse($content, $args);
+        return $this->renderIndexPage($request, Country::class, function ($content, $search) {
+            return $content->where('en', 'like', '%' . $search . '%')->orWhere('ua', 'like', '%' . $search . '%');
+        });
     }
 
     /**
