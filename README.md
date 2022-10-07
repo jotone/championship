@@ -1,12 +1,9 @@
-- form (Questionnaire)
-  - ~~view~~
-  - ~~save~~
-  - compare
-  - cron task -> recount user points after match change score
-  
+- ~~form (Questionnaire)~~
 - participants
-- view and compare forms
-- view user page
+  - ~~table~~
+  - view user page
+  - view and compare page
+- cron task -> recount user points after match change score
 - profile
 - custom pages (rules, help)
 - Pages:

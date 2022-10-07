@@ -1,5 +1,5 @@
 <div class="participant-list-wrap">
-  <table class="content-table">
+  <table class="content-table participant">
     <thead>
     <tr>
       <th>#</th>
@@ -8,12 +8,12 @@
     </tr>
     </thead>
     <tbody>
-    @if(!empty($user_form))
-      @foreach($user_form as $i => $user)
+    @if(!empty($results))
+      @foreach($results as $i => $result)
         <tr>
-          <td><span>{{ $i + 1 }}</span></td>
-          <td><span>{{ $user->name }}</span></td>
-          <td><span>0</span></td>
+          <td><a href="#">{{ $i + 1 }}</a></td>
+          <td><a href="#">{{ $result->user->name }}</a></td>
+          <td><a href="#">{{ $result->points }}</a></td>
         </tr>
       @endforeach
     @endif

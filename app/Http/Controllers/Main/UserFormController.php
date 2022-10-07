@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Main;
 
+use App\Http\Controllers\BasicMainController;
 use App\Models\{Competition, CompetitionGame, UserForm, UserFormBets};
 use Illuminate\Http\{RedirectResponse, Request};
-use Illuminate\Support\Facades\{Auth, DB, Session, Validator};
+use Illuminate\Support\Facades\{Auth, DB, Validator};
 use Illuminate\View\View;
 
-class UserFormController
+class UserFormController extends BasicMainController
 {
     /**
      * View User Form page
@@ -16,9 +17,6 @@ class UserFormController
      */
     public function index(): View
     {
-        // Get session messages
-        $messages = Session::has('messages') ? Session::get('messages') : [];
-        Session::remove('messages');
         // Competition model
         $competition = Competition::with(['groups', 'teams'])->where('slug', 'world-cup-2022')->first();
 
@@ -35,21 +33,22 @@ class UserFormController
 
         $bets = [];
 
-        foreach ($user_form->bets as $bet) {
-            $data = (object) [
-                'scores'  => $bet->scores,
-                'points'  => $bet->points
-            ];
-            if (!empty($bet->game_id)) {
-                $bets[$bet->group_id][$bet->game_id] = $data;
-            } else {
-                $bets[$bet->group_id] = $data;
+        if (!empty($user_form)) {
+            foreach ($user_form->bets as $bet) {
+                $data = (object) [
+                    'scores'  => $bet->scores,
+                    'points'  => $bet->points
+                ];
+                if (!empty($bet->game_id)) {
+                    $bets[$bet->group_id][$bet->game_id] = $data;
+                } else {
+                    $bets[$bet->group_id] = $data;
+                }
             }
         }
 
-        return view('main.user-form.index', [
+        return $this->renderIndexPage('main.user-form.index', [
             'competition' => $competition,
-            'messages'    => $messages,
             'teams'       => $teams,
             'bets'        => $bets
         ]);
@@ -81,6 +80,10 @@ class UserFormController
         // Start database transactions
         DB::beginTransaction();
 
+        if (UserForm::where('user_id', $user->id)->where('competition_id', $competition->id)->count()) {
+            return redirect()->back()->withErrors(['Ваша форма для даного чемпіонату вже сформована']);
+        }
+
         $user_form = UserForm::create([
             'user_id'        => $user->id,
             'competition_id' => $competition->id
@@ -88,7 +91,8 @@ class UserFormController
 
         // Save groups score
         foreach ($args['game'] as $game_id => $score) {
-            // Convert group team scores to proper data ( convert values like, '00' => 0 or '020' => 20 )
+            // Convert group team scores to proper data
+            // ( convert values like, '00' => 0 or '020' => 20 )
             $score_data = [];
             foreach ($score as $team_id => $value) {
                 $score_data[$team_id] = (int)$value;
@@ -109,9 +113,7 @@ class UserFormController
             foreach ($team_ids as $team_id) {
                 if ($team_id == '0') {
                     DB::rollBack();
-                    return redirect()->back()->withErrors([
-                        'error' => 'Невірно обрана команда'
-                    ]);
+                    return redirect()->back()->withErrors(['Невірно обрана команда']);
                 }
             }
             // Create user form bets entity
@@ -125,9 +127,7 @@ class UserFormController
 
         return redirect()->back()->with([
             'messages' => [
-                'success' => [
-                    'Ваша анкету було збережено'
-                ]
+                'success' => ['Ваша анкету було збережено']
             ]
         ]);
     }

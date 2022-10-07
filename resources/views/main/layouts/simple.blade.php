@@ -7,15 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 
-  @vite([
-    'resources/css/reset.scss',
-    'resources/css/font-awesome/fontawesome.scss',
-    'resources/css/font-awesome/solid.scss',
-    'resources/css/main/app.scss'
-  ])
+  @vite(['resources/css/reset.scss', 'resources/css/main/app.scss'])
 
   @yield('styles')
 </head>
+
+
 <body>
 <header>
   <nav class="login-form-menu">
@@ -55,6 +52,7 @@
     <a href="{{ route('password-reset.index') }}" style="color: white">Forgot password</a>
   </div>
 </form>
+
 
 <div class="banner-wrap" style="background-image: url('/images/header.jpg')">
   <nav class="site-menu-wrap">
@@ -96,17 +94,9 @@
   @endif
 </div>
 
-<div class="content-wrap">
-  @include('main.layouts.participant')
+@yield('content')
 
-  <main class="page-content-wrap">
-    @yield('content')
-  </main>
-
-  @include('main.layouts.real-scores')
-</div>
-
-@vite(['resources/js/main/app.js'])
 @yield('scripts')
+
 </body>
 </html>

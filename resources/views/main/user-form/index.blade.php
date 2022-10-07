@@ -16,7 +16,7 @@
     <fieldset @if(!empty($bets)) disabled="disabled" @endif>
 
       @foreach($competition->groups as $group)
-        <table class="content-table">
+        <table class="content-table score-table">
           <thead>
           <tr>
             <th colspan="4">
@@ -35,7 +35,7 @@
                       class="team-selector"
                       name="group[{{ $group->id }}][]"
                       required
-                      @isset($bets) data-selected="{{ $bets[$group->id]->scores[($i * 2)] }}" @endisset
+                      @if(!empty($bets)) data-selected="{{ $bets[$group->id]->scores[($i * 2)] }}" @endif
                     >
                     </select>
                   </td>
@@ -44,7 +44,7 @@
                       class="team-selector"
                       name="group[{{ $group->id }}][]"
                       required
-                      @isset($bets) data-selected="{{ $bets[$group->id]->scores[(($i * 2) + 1)] }}" @endisset
+                      @if(!empty($bets)) data-selected="{{ $bets[$group->id]->scores[(($i * 2) + 1)] }}" @endif
                     >
                     </select>
                   </td>
@@ -57,7 +57,7 @@
                     class="team-selector"
                     name="group[{{ $group->id }}][]"
                     required
-                    @isset($bets) data-selected="{{ $bets[$group->id]->scores[0] }}" @endisset
+                    @if(!empty($bets)) data-selected="{{ $bets[$group->id]->scores[0] }}" @endif
                   >
                   </select>
                 </td>
@@ -74,7 +74,7 @@
                     name="game[{{ $game->id }}][{{ $game->host_team }}]"
                     required
                     type="number"
-                    @isset($bets) value="{{ $bets[$group->id][$game->id]->scores[$game->host_team] }}" @endisset
+                    @if(!empty($bets)) value="{{ $bets[$group->id][$game->id]->scores[$game->host_team] }}" @endif
                   >
                 </td>
                 <td>
@@ -84,7 +84,7 @@
                     name="game[{{ $game->id }}][{{ $game->guest_team }}]"
                     required
                     type="number"
-                    @isset($bets) value="{{ $bets[$group->id][$game->id]->scores[$game->guest_team] }}" @endisset
+                    @if(!empty($bets)) value="{{ $bets[$group->id][$game->id]->scores[$game->guest_team] }}" @endif
                   >
                 </td>
                 <td><span>{{ $game->guestTeam->ua }}</span></td>

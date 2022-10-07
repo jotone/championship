@@ -1,4 +1,4 @@
-@extends('main.layouts.default')
+@extends('main.layouts.simple')
 
 @section('styles')
   @vite([

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Main;
 
-use App\Http\Controllers\Controller;
-
+use App\Http\Controllers\BasicMainController;
 use Illuminate\View\View;
 
-class HomeController extends Controller
+class HomeController extends BasicMainController
 {
     public function index(): View
     {
-        return view('main.home.index', [
-        ]);
+        return $this->renderIndexPage('main.home.index');
     }
 }

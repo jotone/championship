@@ -87,6 +87,7 @@ header {
   position: absolute;
   right: 15px;
   top: 50px;
+  z-index: 101;
 
   input {
     margin: 10px 0;
@@ -213,13 +214,35 @@ header {
     }
   }
 
-  tbody tr td {
+  tbody tr {
     background-color: $white-bg;
-    border: 1px solid $gray-light;
-    padding: 5px;
-    text-align: center;
 
+    td {
+      border: 1px solid $gray-light;
+      padding: 5px;
+      text-align: center;
+    }
+  }
+
+  &.score-table tbody tr td {
     &:first-child, &:last-child {min-width: 280px}
+  }
+
+  &.participant {
+    min-width: 300px;
+
+    tbody tr {
+      td {vertical-align: middle}
+
+      &:hover {background-color: white;}
+    }
+
+    a {
+      color: $black;
+      display: block;
+      padding: 5px;
+      text-decoration: none;
+    }
   }
 }
 

@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'name'              => fake()->name(),
             'email'             => fake()->safeEmail(),
             'email_verified_at' => now(),
-            'password'          => bcrypt('123456'),
+            'password'          => '123456',
             'img_url'           => fake()->imageUrl(),
             'remember_token'    => Str::random(10),
             'role_id'           => Role::where('slug', 'regular')->value('id')
