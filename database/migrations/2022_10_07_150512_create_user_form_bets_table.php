@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_forms', function (Blueprint $table) {
+        Schema::create('user_form_bets', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('competition_id');
-            $table->unsignedSmallInteger('points')->default(0);
-            $table->timestamps();
+            $table->unsignedBigInteger('user_form_id');
+            $table->unsignedInteger('group_id');
+            $table->unsignedInteger('game_id')->nullable();
+            $table->json('scores')->nullable();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_forms');
+        Schema::dropIfExists('user_form_bets');
     }
 };

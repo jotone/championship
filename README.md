@@ -1,8 +1,8 @@
 - form (Questionnaire)
   - ~~view~~
-  - save
-  - cron task -> recount user points after match change score
+  - ~~save~~
   - compare
+  - cron task -> recount user points after match change score
   
 - participants
 - view and compare forms

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
 class UserForm extends Model
 {
@@ -15,28 +15,17 @@ class UserForm extends Model
     protected $fillable = [
         'user_id',
         'competition_id',
-        'game_id',
-        'scores',
         'points'
     ];
 
     /**
-     * The attributes that should be cast.
+     * Related bets
      *
-     * @var array<string, string>
+     * @return HasMany
      */
-    protected $casts = [
-        'scores' => 'array',
-    ];
-
-    /**
-     * Related user
-     *
-     * @return BelongsTo
-     */
-    public function user(): BelongsTo
+    public function bets(): HasMany
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->hasMany(UserFormBets::class, 'user_form_id', 'id');
     }
 
     /**
@@ -50,12 +39,12 @@ class UserForm extends Model
     }
 
     /**
-     * Related game
+     * Related user
      *
      * @return BelongsTo
      */
-    public function game(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(CompetitionGame::class, 'game_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

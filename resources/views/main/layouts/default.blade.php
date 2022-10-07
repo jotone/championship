@@ -9,6 +9,8 @@
 
   @vite([
     'resources/css/reset.scss',
+    'resources/css/font-awesome/fontawesome.scss',
+    'resources/css/font-awesome/solid.scss',
     'resources/css/main/app.scss'
   ])
 
@@ -58,7 +60,7 @@
   <nav class="site-menu-wrap">
     <ul>
       @auth
-      <li><a href="{{ route('user.form.index') }}">Anketa</a></li>
+        <li><a href="{{ route('user.form.index') }}">Anketa</a></li>
       @endauth
       <li><a href="#">Forum</a></li>
       <li><a href="#">Svodnaja</a></li>
@@ -68,6 +70,30 @@
       <li><a href="#">Help</a></li>
     </ul>
   </nav>
+
+  @if ($errors->count() || !empty($messages))
+    <div class="messages-wrap">
+      <ul>
+        @foreach($errors->all() as $msg)
+          <li class="error">
+            <div class="close"><i class="fas fa-times-circle"></i></div>
+            <div class="message-text">{{ $msg }}</div>
+          </li>
+        @endforeach
+
+        @if(!empty($messages))
+          @foreach($messages as $type => $message_list)
+            @foreach($message_list as $msg)
+              <li class="{{ $type }}">
+                <div class="close"><i class="fas fa-times-circle"></i></div>
+                <div class="message-text">{{ $msg }}</div>
+              </li>
+            @endforeach
+          @endforeach
+        @endif
+      </ul>
+    </div>
+  @endif
 </div>
 
 <div class="content-wrap">
@@ -79,6 +105,7 @@
 
   @include('main.layouts.real-scores')
 </div>
+
 
 @vite([
   'resources/js/main/app.js'

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Main;
 
-use App\Models\{Competition, CompetitionGame, UserForm};
+use App\Models\{Competition, CompetitionGame, UserForm, UserFormBets};
 use Illuminate\Http\{RedirectResponse, Request};
-use Illuminate\Support\Facades\{Auth, DB};
+use Illuminate\Support\Facades\{Auth, DB, Session, Validator};
 use Illuminate\View\View;
 
 class UserFormController
@@ -16,6 +16,10 @@ class UserFormController
      */
     public function index(): View
     {
+        // Get session messages
+        $messages = Session::has('messages') ? Session::get('messages') : [];
+        Session::remove('messages');
+        // Competition model
         $competition = Competition::with(['groups', 'teams'])->where('slug', 'world-cup-2022')->first();
 
         $teamIDs = $competition->teams->pluck('entity_id')->toArray();
@@ -24,9 +28,30 @@ class UserFormController
             ? $competition->teams[0]->entity::whereIn('id', $teamIDs)->orderBy('ua')->get()
             : [];
 
+        $user_form = UserForm::with('bets')
+            ->where('user_id', Auth::id())
+            ->where('competition_id', $competition->id)
+            ->first();
+
+        $bets = [];
+
+        foreach ($user_form->bets as $bet) {
+            $data = (object) [
+                'scores'  => $bet->scores,
+                'points'  => $bet->points
+            ];
+            if (!empty($bet->game_id)) {
+                $bets[$bet->group_id][$bet->game_id] = $data;
+            } else {
+                $bets[$bet->group_id] = $data;
+            }
+        }
+
         return view('main.user-form.index', [
             'competition' => $competition,
-            'teams'       => $teams
+            'messages'    => $messages,
+            'teams'       => $teams,
+            'bets'        => $bets
         ]);
     }
 
@@ -43,8 +68,23 @@ class UserFormController
         $user = Auth::user();
         // Request data
         $args = $request->only(['game', 'group']);
+
+        $validation = Validator::make($args, [
+            'game'  => ['required', 'array'],
+            'group' => ['required', 'array']
+        ]);
+
+        if ($validation->fails()) {
+            return redirect()->back()->withErrors($validation->messages());
+        }
+
         // Start database transactions
         DB::beginTransaction();
+
+        $user_form = UserForm::create([
+            'user_id'        => $user->id,
+            'competition_id' => $competition->id
+        ]);
 
         // Save groups score
         foreach ($args['game'] as $game_id => $score) {
@@ -55,14 +95,12 @@ class UserFormController
             }
             // Game entity
             $game = CompetitionGame::findOrFail($game_id);
-            if (empty($game)) dd($game, $game_id, $args);
-            // Create user form entity
-            UserForm::create([
-                'user_id'        => $user->id,
-                'competition_id' => $competition->id,
-                'group_id'       => $game->group_id,
-                'game_id'        => $game_id,
-                'scores'         => $score_data,
+            // Create user form bets entity
+            UserFormBets::create([
+                'user_form_id' => $user_form->id,
+                'group_id'     => $game->group_id,
+                'game_id'      => $game_id,
+                'scores'       => $score_data,
             ]);
         }
 
@@ -72,22 +110,25 @@ class UserFormController
                 if ($team_id == '0') {
                     DB::rollBack();
                     return redirect()->back()->withErrors([
-                        'error' => 'Невірно вказана команда'
+                        'error' => 'Невірно обрана команда'
                     ]);
                 }
             }
-            // Create user form entity
-            UserForm::create([
-                'user_id'        => $user->id,
-                'competition_id' => $competition->id,
-                'group_id'       => $group_id,
-                'scores'         => $team_ids,
+            // Create user form bets entity
+            UserFormBets::create([
+                'user_form_id' => $user_form->id,
+                'group_id'     => $group_id,
+                'scores'       => $team_ids,
             ]);
         }
         DB::commit();
 
         return redirect()->back()->with([
-            'message' => 'Ваша анкету було збережено'
+            'messages' => [
+                'success' => [
+                    'Ваша анкету було збережено'
+                ]
+            ]
         ]);
     }
 }
