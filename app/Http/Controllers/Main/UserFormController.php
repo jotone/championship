@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Main;
 
 use App\Models\{Competition, CompetitionGame, UserForm};
 use Illuminate\Http\{RedirectResponse, Request};
-use Illuminate\Support\Facades\{Auth, DB, Session};
+use Illuminate\Support\Facades\{Auth, DB};
 use Illuminate\View\View;
 
 class UserFormController
@@ -16,38 +16,31 @@ class UserFormController
      */
     public function index(): View
     {
-        $competition = Competition::where('slug', 'world-cup-2022')->first();
+        $competition = Competition::with(['groups', 'teams'])->where('slug', 'world-cup-2022')->first();
+
+        $teamIDs = $competition->teams->pluck('entity_id')->toArray();
+
+        $teams = !empty($teamIDs)
+            ? $competition->teams[0]->entity::whereIn('id', $teamIDs)->orderBy('ua')->get()
+            : [];
 
         return view('main.user-form.index', [
             'competition' => $competition,
-            'jwt_token'   => Session::get('jwt-token'),
-            'routes'      => [
-                'country' => [
-                    'list' => route('api.countries.index') . '?take=0&order[by]=ua'
-                ],
-                'team'    => [
-                    'list' => route('api.teams.index') . '?take=0&order[by]=ua'
-                ],
-                'group'   => [
-                    'list' => route('api.competition-groups.index') . '?take=0&with=games&where[competition_id]=' . $competition->id
-                ]
-            ]
+            'teams'       => $teams
         ]);
     }
 
     /**
      * Save User Form
      *
-     * @param string $md5_competition_id
+     * @param Competition $competition
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(string $md5_competition_id, Request $request): RedirectResponse
+    public function store(Competition $competition, Request $request): RedirectResponse
     {
         // Current User model
         $user = Auth::user();
-        // Current Competition model
-        $competition = Competition::whereRaw("md5(id) = '{$md5_competition_id}'")->firstOrFail();
         // Request data
         $args = $request->only(['game', 'group']);
         // Start database transactions

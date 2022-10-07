@@ -26,7 +26,7 @@ export default defineConfig({
         'resources/js/admin/team-list/app.js',
 
         'resources/js/main/app.js',
-        'resources/js/main/user-form/app.js'
+        'resources/js/main/user-form.js'
       ],
       refresh: true,
     }),
