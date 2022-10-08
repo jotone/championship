@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Main\{
-    AuthController, HomeController, PasswordResetController, RegistrationController, UserFormController
+    AuthController, HomeController, PasswordResetController, RegistrationController, UserController, UserFormController
 };
 use App\Models\Settings;
 use Illuminate\Support\Facades\{Route, View};
@@ -40,5 +40,6 @@ Route::group(['as' => 'password-reset.'], function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('/user/form', [UserFormController::class, 'index'])->name('user.form.index');
+Route::get('/user/form', [UserFormController::class, 'index'])->name('user.form.show');
 Route::post('/user/form/{competition}', [UserFormController::class, 'store'])->name('user.form.store');
+Route::get('/user/profile/{id?}', [UserController::class, 'show'])->name('user.profile.show');

@@ -1,7 +1,7 @@
 - ~~form (Questionnaire)~~
 - participants
   - ~~table~~
-  - view user page
+  - ~~view user page~~
   - view and compare page
 - cron task -> recount user points after match change score
 - profile

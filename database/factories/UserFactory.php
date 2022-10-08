@@ -35,7 +35,8 @@ class UserFactory extends Factory
             'password'          => '123456',
             'img_url'           => fake()->imageUrl(),
             'remember_token'    => Str::random(10),
-            'role_id'           => Role::where('slug', 'regular')->value('id')
+            'role_id'           => Role::where('slug', 'regular')->value('id'),
+            'info'              => mt_rand(0, 1) ? fake()->jobTitle . ' в ' . fake()->company : null,
         ];
     }
 
@@ -56,8 +57,8 @@ class UserFactory extends Factory
     /**
      * Call the "after creating" callbacks for the given model instances.
      *
-     * @param  Collection  $instances
-     * @param  Model|null  $parent
+     * @param Collection $instances
+     * @param Model|null $parent
      * @return void
      */
     public function callAfterCreating(Collection $instances, ?Model $parent = null): void

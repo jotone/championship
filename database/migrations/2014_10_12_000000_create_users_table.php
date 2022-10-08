@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('img_url')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->text('info')->nullable();
             $table->rememberToken();
             $table->unsignedInteger('role_id')->nullable();
             $table->unsignedInteger('created_by')->nullable();

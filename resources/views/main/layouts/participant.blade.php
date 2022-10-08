@@ -10,10 +10,13 @@
     <tbody>
     @if(!empty($results))
       @foreach($results as $i => $result)
+        @php
+        $route = route('user.profile.show', md5($result->user_id))
+        @endphp
         <tr>
-          <td><a href="#">{{ $i + 1 }}</a></td>
-          <td><a href="#">{{ $result->user->name }}</a></td>
-          <td><a href="#">{{ $result->points }}</a></td>
+          <td><a href="{{ $route }}">{{ $i + 1 }}</a></td>
+          <td><a href="{{ $route }}">{{ $result->user->name }}</a></td>
+          <td><a href="{{ $route }}">{{ $result->points }}</a></td>
         </tr>
       @endforeach
     @endif

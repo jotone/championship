@@ -47,7 +47,7 @@ class UserFormController extends BasicMainController
             }
         }
 
-        return $this->renderIndexPage('main.user-form.index', [
+        return $this->renderIndexPage('main.user.form', [
             'competition' => $competition,
             'teams'       => $teams,
             'bets'        => $bets
