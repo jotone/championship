@@ -1,10 +1,10 @@
 - ~~form (Questionnaire)~~
-- participants
-  - ~~table~~
-  - ~~view user page~~
-  - view and compare page
-- cron task -> recount user points after match change score
+- ~~participants~~
 - profile
+  - view
+  - update
+- cron task -> recount user points after match change score
+- view and compare page
 - custom pages (rules, help)
 - Pages:
   - Pivot table (united table)

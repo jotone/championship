@@ -68,13 +68,15 @@ class UsersController extends BasicApiController
                     'uploads/users/' . $user->id,
                     'user_img'
                 );
-                $user->save();
             } catch (\Exception $e) {
                 return response(['errors' => [
                     'img_url' => [$e->getMessage()]
                 ]], 400);
             }
+        } else {
+            $user->img_url = '/images/noname_big.jpg';
         }
+        $user->save();
 
         return response($user, 201);
     }

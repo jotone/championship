@@ -2,15 +2,15 @@
 
 @section('content')
   <div class="user-info-wrap">
-    <div class="user-name">
+    <a href="{{ route('user.results', md5($user->id)) }}" class="user-name">
       <h1>{{ $user->name }}</h1>
-    </div>
+    </a>
 
-    <div class="image-wrap">
+    <a href="{{ route('user.results', md5($user->id)) }}" class="image-wrap">
       @if(!empty($user->img_url))
         <img src="{{ $user->img_url }}" alt="">
       @endif
-    </div>
+    </a>
 
     <div class="user-score-wrap">
       <span>Набрані очки - "{{ $user->forms()->where('competition_id', 1)->value('points') }}"</span>

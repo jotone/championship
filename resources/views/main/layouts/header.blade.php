@@ -3,7 +3,7 @@
     <ul>
       @auth
         <li>
-          <a href="#">Good luck, {{ Auth::user()->name }}</a>
+          <a href="{{ route('user.profile.show') }}">Good luck, {{ Auth::user()->name }}</a>
         </li>
         <li>
           <a href="{{ route('auth.logout') }}">Sign Out</a>

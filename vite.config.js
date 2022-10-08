@@ -10,6 +10,7 @@ export default defineConfig({
     laravel({
       input: [
         'node_modules/air-datepicker/air-datepicker.css',
+        'node_modules/froala-editor/css/froala_editor.min.css',
         'resources/css/font-awesome/fontawesome.scss',
         'resources/css/font-awesome/solid.scss',
         'resources/css/reset.scss',
@@ -26,6 +27,7 @@ export default defineConfig({
         'resources/js/admin/team-list/app.js',
 
         'resources/js/main/app.js',
+        'resources/js/main/profile.js',
         'resources/js/main/user-form.js'
       ],
       refresh: true,

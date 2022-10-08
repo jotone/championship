@@ -15,7 +15,7 @@ class UserFormController extends BasicMainController
      *
      * @return View
      */
-    public function index(): View
+    public function show(): View
     {
         // Competition model
         $competition = Competition::with(['groups', 'teams'])->where('slug', 'world-cup-2022')->first();

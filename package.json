@@ -13,12 +13,25 @@
     "vite": "^3.0.4"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-autoformat": "^35.2.0",
+    "@ckeditor/ckeditor5-basic-styles": "^35.2.0",
+    "@ckeditor/ckeditor5-block-quote": "^35.2.0",
+    "@ckeditor/ckeditor5-dev-utils": "^31.1.1",
+    "@ckeditor/ckeditor5-dev-webpack-plugin": "^31.1.1",
+    "@ckeditor/ckeditor5-editor-inline": "^35.2.0",
+    "@ckeditor/ckeditor5-essentials": "^35.2.0",
+    "@ckeditor/ckeditor5-indent": "^35.2.0",
+    "@ckeditor/ckeditor5-list": "^35.2.0",
+    "@ckeditor/ckeditor5-paragraph": "^35.2.0",
+    "@ckeditor/ckeditor5-theme-lark": "^35.2.0",
     "@eastdesire/jscolor": "^2.5.0",
     "air-datepicker": "^3.3.0",
     "axios": "^0.27.2",
+    "css-loader": "^5.2.7",
     "debounce": "^1.2.1",
+    "froala-editor": "^4.0.14",
     "jquery": "^3.6.0",
-    "vue": "^3.2.37",
-    "sortablejs": "^1.15.0"
+    "sortablejs": "^1.15.0",
+    "vue": "^3.2.37"
   }
 }

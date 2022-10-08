@@ -84,6 +84,7 @@ class InstallApplication extends Command
                 'email'             => 'hereyouare1987@gmail.com',
                 'password'          => '123456',
                 'role_id'           => $roles['superadmin']->id,
+                'img_url'           => '/images/noname_big.jpg',
                 'email_verified_at' => now()
             ]);
         });

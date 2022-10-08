@@ -1,23 +1,10 @@
-@import "variables";
+@import "variables", "form";
 
 body {min-width: 320px}
 
 .flex-c {justify-content: center}
 .flex-fs {justify-content: flex-start}
 .flex-fe {justify-content: flex-end}
-
-.btn {
-  border: 1px solid $gray;
-  border-radius: 5px;
-  display: block;
-  font-size: 1rem;
-  padding: 10px 15px;
-
-  &.regular {
-    background-color: $blue;
-    color: white;
-  }
-}
 
 header {
   background-color: $blue;
@@ -250,6 +237,14 @@ header {
   }
 }
 
+.page-heading {
+  background-color: $heading;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
 .content-block-wrap {
   background-color: $white-bg;
   border: 1px solid $gray-light;
@@ -271,9 +266,13 @@ header {
     font-size: 1.5em;
     padding: 20px;
     text-align: center;
+    text-decoration: none;
+
+    &:hover {text-decoration: underline}
   }
 
   .image-wrap {
+    display: block;
     margin: 0 auto;
     width: 80%;
 

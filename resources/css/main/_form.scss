@@ -1,0 +1,79 @@
+.btn {
+  border: 1px solid $gray;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  padding: 10px 15px;
+  text-decoration: none;
+
+  &.regular {
+    background-color: $blue;
+    color: white;
+  }
+
+  &.success {
+    background-color: $green-dark;
+    color: white;
+  }
+}
+
+.form-fieldset {
+  margin: 20px auto;
+  width: 80%;
+
+  legend {
+    border-bottom: 1px solid $black;
+    color: $black;
+    font-size: 1.5em;
+    position: relative;
+    width: 100%;
+  }
+}
+
+.form-row {
+  margin: 20px 0;
+
+  .caption {display: block; font-size: 1rem}
+
+  .info-wrap {min-height: 400px}
+
+}
+
+.buttons-wrap {
+  margin: 20px auto;
+  width: 80%;
+}
+
+.form-input {
+  border: 1px solid $black;
+  border-radius: 2px;
+  color: $black;
+  padding: 5px 10px;
+  min-width: 250px;
+  width: 50%;
+}
+
+
+.image-upload-wrap {
+  align-items: stretch;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .image-upload-preview {
+    min-width: 320px;
+
+    img {
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+
+  .image-upload-controls {
+    align-items: flex-end;
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+}
