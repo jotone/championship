@@ -40,8 +40,12 @@ Route::group(['as' => 'password-reset.'], function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
-Route::get('/user/form', [UserFormController::class, 'show'])->name('user.form.show');
-Route::post('/user/form/{competition}', [UserFormController::class, 'store'])->name('user.form.store');
-Route::get('/user/profile/{id?}', [UserController::class, 'show'])->name('user.profile.show');
-Route::put('/user/profile', [UserController::class, 'update'])->name('user.profile.update');
-Route::get('/user/results/{id}', [UserController::class, 'results'])->name('user.results');
+Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
+    Route::get('/form', [UserFormController::class, 'show'])->name('form.show');
+    Route::post('/form/{competition}', [UserFormController::class, 'store'])->name('form.store');
+
+    Route::get('/profile/{id?}', [UserController::class, 'show'])->name('profile.show');
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+
+    Route::get('/results/{id}', [UserController::class, 'results'])->name('results');
+});

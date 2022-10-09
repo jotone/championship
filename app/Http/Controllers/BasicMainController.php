@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserForm;
+use App\Models\{Competition, UserForm};
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
@@ -22,8 +22,12 @@ class BasicMainController extends Controller
         Session::remove('messages');
 
         return view($view, array_merge([
-            'messages' => $messages,
-            'results'  => UserForm::with(['bets', 'user'])->where('competition_id', 1)->orderBy('points')->get()
+            'competition' => Competition::with(['groups' => fn ($q) => $q->with('games')])->find(1),
+            'messages'    => $messages,
+            'results'     => UserForm::with(['bets', 'user'])
+                ->where('competition_id', 1)
+                ->orderBy('points', 'desc')
+                ->get()
         ], $share));
     }
 }

@@ -3,6 +3,10 @@
 - ~~profile~~
 - ~~cron task -> recount user points after match change score~~
 - view and compare page
+  - ~~real scores~~
+  - view
+  - hover
+- No data tests
 - custom pages (rules, help)
 - Pages:
   - Pivot table (united table)

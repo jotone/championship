@@ -210,13 +210,33 @@ header {
 
     td {
       border: 1px solid $gray-light;
-      padding: 5px;
+      padding: 5px 10px;
       text-align: center;
+    }
+  }
+
+  tfoot {
+    tr {
+      background-color: $blue;
+
+      td {
+        color: $yellow;
+        font-size: 1.25rem;
+        text-align: center
+      }
     }
   }
 
   &.score-table tbody tr td {
     &:first-child, &:last-child {min-width: 280px}
+  }
+
+  &.real-score tbody tr td {
+    min-width: 40px;
+
+    &:first-child {text-align: right}
+
+    &:last-child {text-align: left}
   }
 
   &.participant {

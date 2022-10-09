@@ -21,9 +21,11 @@ class UserController extends BasicMainController
     {
         $view = empty($md5_id) ? 'main.user.profile' : 'main.user.info';
 
-        return $this->renderIndexPage($view, [
-            'user' => empty($md5_id) ? Auth::user() : User::whereRaw("md5(id) = '{$md5_id}'")->firstOrFail()
-        ]);
+        $user = empty($md5_id) ? Auth::user() : User::whereRaw("md5(id) = '{$md5_id}'")->first();
+
+        abort_if(!$user, 404);
+
+        return $this->renderIndexPage($view, ['user' => $user]);
     }
 
     /**
