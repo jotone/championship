@@ -65,7 +65,9 @@
       <legend>Додати інформацію про себе</legend>
 
       <div class="form-row">
-        <div class="editor" data-name="info">{{ $user->info }}</div>
+        <div class="editor" data-name="info">
+          {!! $user->info !!}
+        </div>
       </div>
     </fieldset>
 

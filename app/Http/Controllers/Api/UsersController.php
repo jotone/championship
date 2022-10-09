@@ -94,6 +94,7 @@ class UsersController extends BasicApiController
         $rules = [];
         foreach ($args as $key => $value) {
             switch ($key) {
+                case 'info':
                 case 'name':
                     $rules[$key] = ['required', 'string'];
                     $user->$key = $value;

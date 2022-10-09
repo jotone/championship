@@ -127,7 +127,7 @@ class UserFormController extends BasicMainController
 
         return redirect()->back()->with([
             'messages' => [
-                'success' => ['Ваша анкету було збережено']
+                'success' => ['Ваш профіль було збережено']
             ]
         ]);
     }

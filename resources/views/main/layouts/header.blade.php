@@ -53,9 +53,10 @@
     </ul>
   </nav>
 
-  @if ($errors->count() || !empty($messages))
-    <div class="messages-wrap">
-      <ul>
+
+  <div class="messages-wrap">
+    <ul>
+      @if ($errors->count() || !empty($messages))
         @foreach($errors->all() as $msg)
           <li class="error">
             <div class="close"><i class="fas fa-times-circle"></i></div>
@@ -73,7 +74,7 @@
             @endforeach
           @endforeach
         @endif
-      </ul>
-    </div>
-  @endif
+      @endif
+    </ul>
+  </div>
 </div>
