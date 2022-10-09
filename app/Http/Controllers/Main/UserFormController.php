@@ -18,7 +18,7 @@ class UserFormController extends BasicMainController
     public function show(): View
     {
         // Competition model
-        $competition = Competition::with(['groups', 'teams'])->where('slug', 'world-cup-2022')->first();
+        $competition = Competition::with(['groups', 'teams'])->firstWhere(['slug' => 'world-cup-2022']);
 
         $teamIDs = $competition->teams->pluck('entity_id')->toArray();
 
@@ -26,18 +26,18 @@ class UserFormController extends BasicMainController
             ? $competition->teams[0]->entity::whereIn('id', $teamIDs)->orderBy('ua')->get()
             : [];
 
-        $user_form = UserForm::with('bets')
-            ->where('user_id', Auth::id())
-            ->where('competition_id', $competition->id)
-            ->first();
+        $user_form = UserForm::with('bets')->firstWhere([
+            'user_id'        => Auth::id(),
+            'competition_id' => $competition->id
+        ]);
 
         $bets = [];
 
         if (!empty($user_form)) {
             foreach ($user_form->bets as $bet) {
-                $data = (object) [
-                    'scores'  => $bet->scores,
-                    'points'  => $bet->points
+                $data = (object)[
+                    'scores' => $bet->scores,
+                    'points' => $bet->points
                 ];
                 if (!empty($bet->game_id)) {
                     $bets[$bet->group_id][$bet->game_id] = $data;

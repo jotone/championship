@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BasicApiController;
 use App\Http\Requests\CompetitionGroupGameRequest;
-use App\Models\{CompetitionGame, CompetitionTeam, Country};
+use App\Models\{CompetitionGame, CompetitionTeam, Country, ServerQueue, UserForm};
 use Carbon\Carbon;
 use Illuminate\Http\{Request, Response};
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\{DB, Validator};
 
 class CompetitionGroupGameController extends BasicApiController
 {
@@ -43,8 +43,8 @@ class CompetitionGroupGameController extends BasicApiController
     {
         $args = $request->validated();
 
-        if(empty($args['entity'])) {
-            $team = CompetitionTeam::where('group_id', $args['group_id'])->first();
+        if (empty($args['entity'])) {
+            $team = CompetitionTeam::firstWhere(['group_id' => $args['group_id']]);
             $args['entity'] = $team->entity;
         }
 
@@ -70,11 +70,27 @@ class CompetitionGroupGameController extends BasicApiController
         $args = $request->only(['accept', 'host_team', 'guest_team', 'place', 'start_at', 'score']);
 
         $rules = [];
+
+        DB::beginTransaction();
         foreach ($args as $key => $val) {
             switch ($key) {
                 case 'accept':
                     $rules[$key] = ['required', 'numeric', 'min:0', 'max:1'];
                     $competition_group_game->$key = $val;
+
+                    $forms = UserForm::where('competition_id', $competition_group_game->group->competition_id)->get();
+                    foreach ($forms as $form) {
+                        if (!ServerQueue::where([
+                            'competition_id' => $competition_group_game->group->competition_id,
+                            'user_id'        => $form->user_id,
+                            'status'         => 0
+                        ])->count()) {
+                            ServerQueue::create([
+                                'competition_id' => $competition_group_game->group->competition_id,
+                                'user_id'        => $form->user_id
+                            ]);
+                        }
+                    }
                     break;
                 case 'host_team':
                     $table = Country::class == $competition_group_game->entity ? 'countries' : 'teams';
@@ -107,11 +123,12 @@ class CompetitionGroupGameController extends BasicApiController
             $validator = Validator::make($args, $rules);
 
             if ($validator->fails()) {
+                DB::rollBack();
                 return response($validator->errors()->all(), 400);
             }
 
             $competition_group_game->save();
-
+            DB::commit();
             if ($competition_group_game->group->stage == 0) {
                 $this->updateGroupsScore($competition_group_game->group);
             }

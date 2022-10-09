@@ -14,7 +14,7 @@ class CompetitionGroupGameRequest extends DefaultFormRequest
     public function rules(): array
     {
         if (empty($this->request->get('entity'))) {
-            $team = CompetitionTeam::where('group_id', $this->request->get('group_id'))->first();
+            $team = CompetitionTeam::firstWhere(['group_id' => $this->request->get('group_id')]);
             $entity = $team->entity;
         } else {
             $entity = $this->request->get('entity');

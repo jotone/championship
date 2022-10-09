@@ -11,7 +11,7 @@ use Illuminate\Http\{Request, Response};
 
 class CompetitionController extends BasicApiController
 {
-    protected string $group_chars = 'ABCDEFGHIKLMOPQRSTVXYZ';
+    protected string $group_chars = 'ABCDEFGHIJKLMOPQRSTVXYZ';
 
     /**
      * Get competition list

@@ -21,13 +21,12 @@ class AdminRedirect
             $user = Auth::user();
 
             if (!empty($user->role)) {
-                if($user->role->slug == 'superadmin') {
+                if ($user->role->slug == 'superadmin') {
                     return $next($request);
                 }
-                $permission = $user->role
-                    ->permissions()
-                    ->where('controller', $request->route()->getControllerClass())
-                    ->first();
+                $permission = $user->role->permissions()->firstWhere([
+                    'controller' => $request->route()->getControllerClass()
+                ]);
                 if ($permission && in_array($request->route()->getActionMethod(), $permission->allowed_methods)) {
                     return $next($request);
                 }
