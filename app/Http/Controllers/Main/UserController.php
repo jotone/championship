@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Main;
 
 use App\Classes\FileHelper;
 use App\Http\Controllers\BasicMainController;
+use App\Models\Competition;
 use App\Models\User;
 use Illuminate\Http\{Response, Request};
 use Illuminate\Support\Facades\{Auth, Hash, Validator};
@@ -35,8 +36,33 @@ class UserController extends BasicMainController
      */
     public function results(string $md5_id): View
     {
+        $user = User::with([
+            'forms' => function ($q) {
+                return $q->with('bets')->where('competition_id', 1);
+            }
+        ])->whereRaw("md5(id) = '{$md5_id}'")->firstOrFail();
+
+        $bets = [];
+        foreach ($user->forms[0]->bets as $bet) {
+            if (!empty($bet->game_id) && $bet->game->accept) {
+                $bets['group'][$bet->group_id][$bet->game_id] = $bet->scores;
+            } else {
+                $bets['playOff'][$bet->group_id] = $bet->scores;
+            }
+        }
+
+        $competition = Competition::with('teams')->findOrFail(1);
+
+        $teamIDs = $competition->teams->pluck('entity_id')->toArray();
+
+        $teams = !empty($teamIDs)
+            ? $competition->teams[0]->entity::whereIn('id', $teamIDs)->orderBy('ua')->get()
+            : [];
+
         return $this->renderIndexPage('main.user.results', [
-            'user' => User::whereRaw("md5(id) = '{$md5_id}'")->firstOrFail()
+            'bets'  => $bets,
+            'user'  => $user,
+            'teams' => $teams->keyBy('id')
         ]);
     }
 

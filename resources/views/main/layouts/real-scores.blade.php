@@ -39,7 +39,7 @@
     $groups = $competition->groups()->where('stage', '>', 0)->get()
     @endphp
     @foreach($groups as $i => $group)
-      <table class="content-table real-score">
+      <table class="content-table real-score" data-uuid="{{ md5($group->id) }}">
         <thead>
         <tr>
           <th colspan="2">
@@ -52,21 +52,20 @@
             $game = $groups[$i - 1]->games[0]
             @endphp
             <tr>
-              <td colspan="2" style="text-align: center">
-                @if ($game->score[$game->host_team] > $game->score[$game->guest_team])
-                  <span>{{ $game->hostTeam->ua }}</span>
-                @else
-                  <span>{{ $game->guestTeam->ua }}</span>
-                @endif
+              @php
+              $winner = $game->score[$game->host_team] > $game->score[$game->guest_team] ? $game->hostTeam : $game->guestTeam
+              @endphp
+              <td colspan="2" style="text-align: center" data-uuid="{{ md5($winner->id) }}">
+                <span>{{ $winner->ua }}</span>
               </td>
             </tr>
           @else
             @foreach($group->games as $game)
               <tr>
-                <td style="width: 50%">
+                <td style="width: 50%" data-uuid="{{ md5($game->host_team) }}">
                   <span>{{ $game->hostTeam->ua }}</span>
                 </td>
-                <td>
+                <td style="width: 50%" data-uuid="{{ md5($game->guest_team) }}">
                   <span>{{ $game->guestTeam->ua }}</span>
                 </td>
               </tr>

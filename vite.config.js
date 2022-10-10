@@ -28,6 +28,7 @@ export default defineConfig({
 
         'resources/js/main/app.js',
         'resources/js/main/profile.js',
+        'resources/js/main/results.js',
         'resources/js/main/user-form.js'
       ],
       refresh: true,

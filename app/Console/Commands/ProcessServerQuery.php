@@ -2,13 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\CompetitionGame;
-use App\Models\CompetitionGroup;
-use App\Models\ServerQueue;
-use App\Models\UserForm;
+use App\Models\{CompetitionGroup, ServerQueue, UserForm};
 use Illuminate\Console\Command;
-use function Psy\debug;
-use function Symfony\Component\String\s;
 
 class ProcessServerQuery extends Command
 {
@@ -58,13 +53,12 @@ class ProcessServerQuery extends Command
                         'real' => $bet->game->score[$bet->game->guest_team],
                         'user' => $bet->scores[$bet->game->guest_team]
                     ];
-                    // If user guess Exact score
-                    if ($host_score['real'] == $host_score['user'] && $guest_score['real'] == $guest_score['user']) {
-                        $user_points += 3;
-                    }
 
-                    // If user guess winner
-                    if (
+                    if ($host_score['real'] == $host_score['user'] && $guest_score['real'] == $guest_score['user']) {
+                        // If user guess Exact score
+                        $user_points += 3;
+                    } else if (
+                        // If user guess winner
                         ($host_score['real'] > $guest_score['real'] && $host_score['user'] > $guest_score['user'])
                         || ($host_score['real'] < $guest_score['real'] && $host_score['user'] < $guest_score['user'])
                         || ($host_score['real'] == $guest_score['real'] && $host_score['user'] == $guest_score['user'])
@@ -119,7 +113,8 @@ class ProcessServerQuery extends Command
                         if ($group->games->count()) {
                             if ($bet->group->games_number == 1) {
                                 // Final
-                                $user_points += count(array_intersect($bet->scores, array_keys($group->games[0]->score))) ? 8 : 0;
+                                $user_points += count(array_intersect($bet->scores, array_keys($group->games[0]->score))) ? 2 : 0;
+                                $user_points += count(array_intersect($bet->scores, array_keys($group->games[0]->score))) > 1 ? 8 : 0;
                             } else {
                                 // Champion
                                 $user_points += in_array($bet->scores[0], array_keys($group->games[0]->score)) ? 8 : 0;
@@ -128,7 +123,6 @@ class ProcessServerQuery extends Command
                     }
                 }
             }
-
             $form->update(['points' => $user_points]);
         }
         return 0;

@@ -20,14 +20,16 @@
 
 @include('main.layouts.header')
 
-<div class="content-wrap">
-  @include('main.layouts.participant')
+<div class="main-container">
+  <div class="content-wrap">
+    @include('main.layouts.participant')
 
-  <main class="page-content-wrap">
-    @yield('content')
-  </main>
+    <main class="page-content-wrap">
+      @yield('content')
+    </main>
 
-  @include('main.layouts.real-scores')
+    @include('main.layouts.real-scores')
+  </div>
 </div>
 
 @vite(['resources/js/main/app.js'])

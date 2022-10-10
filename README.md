@@ -5,6 +5,8 @@
 - view and compare page
   - ~~real scores~~
   - view
+    - highlight matches
+    - highlight champion
   - hover
 - No data tests
 - custom pages (rules, help)
