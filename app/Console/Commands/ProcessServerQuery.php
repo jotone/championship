@@ -124,6 +124,9 @@ class ProcessServerQuery extends Command
                 }
             }
             $form->update(['points' => $user_points]);
+
+            $item->status = 1;
+            $item->save();
         }
         return 0;
     }
