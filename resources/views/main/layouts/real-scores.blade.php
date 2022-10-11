@@ -48,17 +48,17 @@
         </thead>
         <tbody>
           @if($loop->last)
-            @php
-            $game = $groups[$i - 1]->games[0]
-            @endphp
-            <tr>
-              @php
-              $winner = $game->score[$game->host_team] > $game->score[$game->guest_team] ? $game->hostTeam : $game->guestTeam
-              @endphp
-              <td colspan="2" style="text-align: center" data-uuid="{{ md5($winner->id) }}">
-                <span style="font-size: 1.5em;">{{ $winner->ua }}</span>
-              </td>
-            </tr>
+            @if ($groups[$i - 1]->games->count())
+              <tr>
+                @php
+                $game = $groups[$i - 1]->games[0];
+                $winner = $game->score[$game->host_team] > $game->score[$game->guest_team] ? $game->hostTeam : $game->guestTeam;
+                @endphp
+                <td colspan="2" style="text-align: center" data-uuid="{{ md5($winner->id) }}">
+                  <span style="font-size: 1.5em;">{{ $winner->ua }}</span>
+                </td>
+              </tr>
+            @endif
           @else
             @foreach($group->games as $game)
               <tr>

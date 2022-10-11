@@ -33,23 +33,23 @@
   </div>
   <div>
     <button type="submit">YARRR</button>
-    <a href="{{ route('password-reset.index') }}" style="color: white">Forgot password</a>
+    <a href="{{ route('password-reset.index') }}" style="color: white">Забули пароль</a>
   </div>
 </form>
 
 <div class="banner-wrap" style="background-image: url('/images/header.jpg')">
   <nav class="site-menu-wrap">
     <ul>
-      <li><a href="{{ route('home.index') }}">Home</a></li>
+      <li><a href="{{ route('home.index') }}">Головна</a></li>
       @auth
-        <li><a href="{{ route('user.form.show') }}">Anketa</a></li>
+        <li><a href="{{ route('user.form.show') }}">Анкета</a></li>
       @endauth
-      <li><a href="#">Forum</a></li>
-      <li><a href="#">Svodnaja</a></li>
-      <li><a href="#">Rules</a></li>
-      <li><a href="#">Groups</a></li>
-      <li><a href="#">Raspisanie</a></li>
-      <li><a href="#">Help</a></li>
+      <li><a href="#">Форум</a></li>
+      <li><a href="#">Зведена таблиця</a></li>
+      <li><a href="#">Правила</a></li>
+      <li><a href="#">Групи</a></li>
+      <li><a href="#">Розклад</a></li>
+      <li><a href="#">Допомога</a></li>
     </ul>
   </nav>
 

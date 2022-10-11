@@ -3,7 +3,7 @@
 - ~~profile~~
 - ~~cron task -> recount user points after match change score~~
 - ~~view and compare page~~
-- No data tests
+- ~~No data tests~~
 - custom pages (rules, help)
 - Pages:
   - Pivot table (united table)

@@ -3,8 +3,8 @@
     <thead>
     <tr>
       <th>#</th>
-      <th>Participant</th>
-      <th>Score</th>
+      <th>Учасники</th>
+      <th>Очки</th>
     </tr>
     </thead>
     <tbody>
