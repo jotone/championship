@@ -217,10 +217,15 @@ header {
   tbody tr {
     background-color: $white-bg;
 
+    &.hovered {background-color: white}
+
     td {
       border: 1px solid $gray-light;
-      padding: 5px 10px;
+      padding: 8px 12px;
       text-align: center;
+
+      span {border-bottom: 1px solid transparent}
+      span.match {border-bottom-color: $green-dark}
     }
   }
 
@@ -229,6 +234,7 @@ header {
       background-color: $blue;
 
       td {
+        border: 1px solid $gray-light;
         color: $yellow;
         font-size: 1.25rem;
         padding: 5px 20px;
@@ -258,15 +264,7 @@ header {
     &:first-child, &:last-child {min-width: 280px}
   }
 
-  &.real-score {
-    tbody tr td {
-      min-width: 40px;
-
-      &:first-child {text-align: right}
-
-      &:last-child {text-align: left}
-    }
-  }
+  &.real-score tbody tr td {min-width: 40px}
 
   &.participant {
     tbody tr {

@@ -2,12 +2,7 @@
 - ~~participants~~
 - ~~profile~~
 - ~~cron task -> recount user points after match change score~~
-- view and compare page
-  - ~~real scores~~
-  - view
-    - highlight matches
-    - highlight champion
-  - hover
+- ~~view and compare page~~
 - No data tests
 - custom pages (rules, help)
 - Pages:

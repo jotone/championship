@@ -54,7 +54,20 @@ const groupPoints = totalPoints => {
   return totalPoints;
 }
 
+const hoverAction = (_this, type) => {
+  _this = _this.closest('tr')
+  const action = type ? 'addClass' : 'removeClass'
+  const index = _this.index()
+  _this[action]('hovered')
+
+  $(`.real-score-wrap .real-score:first tbody tr:eq(${index})`)[action]('hovered')
+}
+
 $(document).ready(() => {
+  $('.page-content-wrap .content-table:first tbody')
+    .on('mouseover', 'tr', e => hoverAction($(e.target), !0))
+    .on('mouseleave', 'tr', e => hoverAction($(e.target), !1))
+
   let totalPoints = groupPoints(0)
 
   let realTeams = {}, userTeams = {};
@@ -68,7 +81,7 @@ $(document).ready(() => {
     })
 
     const height = $(`.page-content-wrap .content-table:eq(${$(this).index()}) tfoot td`).height()
-    $(this).find('tfoot td').css({height: height + 10 + 'px'});
+    $(this).find('tfoot td').css({height: height + 12 + 'px'});
   })
 
   $('.page-content-wrap .content-table[data-uuid]').each(function () {
@@ -84,7 +97,11 @@ $(document).ready(() => {
   for (let groupID in userTeams) {
     const match = arrayIntersect(userTeams[groupID], realTeams[groupID])
 
-    let bonusPoints = 0, points = match.length
+    let bonusPoints = 0, points = match.length;
+    // Highlight winner teams
+    for( let i = 0; i < points; i++) {
+      $(`.page-content-wrap .content-table[data-uuid="${groupID}"] td[data-uuid="${match[i]}"] span`).addClass('match')
+    }
     if (match.length) {
       const wrap = $(`.page-content-wrap .content-table[data-uuid="${groupID}"]`)
       const groupType = wrap.find('tbody tr').length

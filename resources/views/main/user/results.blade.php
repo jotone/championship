@@ -72,7 +72,7 @@
               style="text-align: center"
               data-uuid="{{ md5($bets['playOff'][$group->id][0]) }}"
             >
-              <span>
+              <span style="font-size: 1.5em;">
                 @isset($bets['playOff'][$group->id][0])
                   {{ $teams[$bets['playOff'][$group->id][0]]->ua }}
                 @endif
