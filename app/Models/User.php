@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Traits\ModelThumbsTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany, HasOne};
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,7 +11,7 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, ModelThumbsTrait, Notifiable, SoftDeletes;
+    use ModelThumbsTrait, Notifiable, SoftDeletes;
 
     protected $settings_key = 'user_img';
 

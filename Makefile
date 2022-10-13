@@ -1,12 +1,17 @@
 include .env
 
 up:
-	@vendor/bin/sail up -d
+	@docker-compose up -d
 
 down:
-	@vendor/bin/sail down
+	@docker-compose down
+
+cmd:
+	@docker exec -it champ2022_php-fpm_1 bash -c "${c}"
 
 reset:
-	@vendor/bin/sail artisan migrate:fresh
-	@vendor/bin/sail artisan app:install
-	@npm run build
+	@docker exec -it champ2022_php-fpm_1 bash -c "php artisan migrate:fresh && php artisan app:install"
+	@npm run prod
+
+seed:
+	@docker exec -it champ2022_php-fpm_1 bash -c "${php artisan db:seed}"

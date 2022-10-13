@@ -1,7 +1,7 @@
-import FroalaEditor from 'froala-editor'
+// import FroalaEditor from 'froala-editor'
 
 $(document).ready(() => {
-  let editor = null
+  /*let editor = null
   new Promise(resolve => {
     setTimeout(() => {
       if (typeof FroalaEditor !== 'undefined') {
@@ -19,14 +19,14 @@ $(document).ready(() => {
           $('.fr-second-toolbar #fr-logo').remove()
         }
       }, 50)
-    })
+    })*/
 
   $('form').on('submit', function (e) {
     e.preventDefault()
 
     const formData = new FormData($(this)[0])
 
-    formData.append('info', editor.html.get())
+    // formData.append('info', editor.html.get())
 
     $.axios.post($(this).attr('action'), formData)
       .then(response => {

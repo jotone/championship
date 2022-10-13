@@ -19,5 +19,5 @@
 @endsection
 
 @section('scripts')
-  @vite(['resources/js/admin/competition-list/app.js'])
+  <script src="/js/admin/competition-list.js"></script>
 @endsection

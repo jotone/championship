@@ -3,8 +3,8 @@
 @section('content')
   <div class="page-controls-wrap">
     <div class="page-controls-buttons-wrap">
-      <a class="btn success" href="">
-        Create CustomPages
+      <a class="btn success" href="{{ route('admin.pages.create') }}">
+        Create Page
       </a>
     </div>
 
@@ -19,5 +19,5 @@
 @endsection
 
 @section('scripts')
-  @@vite(['resources/js/admin/custompages-list/app.js'])
+  <script src="/js/admin/custom-pages-list.js"></script>
 @endsection

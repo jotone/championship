@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BasicApiController;
 use App\Http\Requests\{CustomPagesStoreRequest, CustomPagesUpdateRequest};
-use App\Models\CustomPages;
+use App\Models\CustomPage;
 use Illuminate\Http\{Request, Response};
 
 class CustomPagesController extends BasicApiController
@@ -21,7 +21,7 @@ class CustomPagesController extends BasicApiController
         $args = $this->parseRequest($request);
 
         // Run query
-        $content = CustomPages::query();
+        $content = CustomPage::query();
 
         // Set search value
         $search = $args['search'] ?? null;
@@ -44,7 +44,7 @@ class CustomPagesController extends BasicApiController
         // Request data
         $args = $request->validated();
         // Create custompages
-        $custompages = CustomPages::create($args);
+        $custompages = CustomPage::create($args);
 
         return response($custompages, 201);
     }
@@ -52,11 +52,11 @@ class CustomPagesController extends BasicApiController
     /**
      * Update custompages
      *
-     * @param CustomPages $custompages
+     * @param CustomPage $custompages
      * @param CustomPagesUpdateRequest $request
      * @return Response
      */
-    public function update(CustomPages $custompages, CustomPagesUpdateRequest $request): Response
+    public function update(CustomPage $custompages, CustomPagesUpdateRequest $request): Response
     {
         // Request data
         $args = $request->validated();
@@ -70,10 +70,10 @@ class CustomPagesController extends BasicApiController
     /**
      * Remove custompages
      *
-     * @param CustomPages $custompages
+     * @param CustomPage $custompages
      * @return Response
      */
-    public function destroy(CustomPages $custompages): Response
+    public function destroy(CustomPage $custompages): Response
     {
         return $this->defaultRemove($custompages);
     }

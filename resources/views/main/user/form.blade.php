@@ -1,7 +1,7 @@
 @extends('main.layouts.default')
 
 @section('scripts')
-  @vite(['resources/js/main/user-form.js'])
+  <script src="/js/user-form.js"></script>
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('main.layouts.default')
 
 @section('scripts')
-  @vite(['resources/js/main/results.js'])
+  <script src="/js/results.js"></script>
 @endsection
 
 @section('content')

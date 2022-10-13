@@ -40,9 +40,7 @@
 @endsection
 
 @section('scripts')
-  @vite([
-    'resources/css/admin/competition.scss',
-    'node_modules/air-datepicker/air-datepicker.css',
-    'resources/js/admin/competition-form/app.js'
-  ])
+  <link rel="stylesheet" href="/css/admin/competition.css">
+  <link rel="stylesheet" href="/css/air-datepicker.css">
+  <script src="/js/admin/competition-form.js"></script>
 @endsection

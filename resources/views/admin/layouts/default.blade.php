@@ -11,13 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
-  @vite([
-    'resources/css/reset.scss',
-    'resources/css/font-awesome/fontawesome.scss',
-    'resources/css/font-awesome/solid.scss',
-    'resources/css/admin/app.scss',
-    'resources/js/admin/main.js'
-  ])
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/solid.css">
+  <link rel="stylesheet" href="/css/admin/app.css">
+  <script src="/js/admin/main.js"></script>
+
   <title>Document</title>
 </head>
 <body>
@@ -62,7 +61,7 @@
 </div>
 
 @yield('scripts')
-@vite(['resources/js/admin/app.js'])
 
+<script src="/js/admin/app.js"></script>
 </body>
 </html>

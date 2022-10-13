@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BasicAdminController;
-use App\Models\CustomPages;
+use App\Models\CustomPage;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -20,12 +20,13 @@ class CustomPagesController extends BasicAdminController
         // Get request parameters
         [$args, $query] = $this->requestData($request);
 
-        return $this->renderPage('admin.custompages.index', $request, [
+        return $this->renderPage('admin.custom-pages.index', $request, [
             'routes' => [
-
+                'list'    => route('api.pages.index') . '?' . implode('&', $query),
+                'index'   => route('admin.pages.index'),
             ],
             'search' => $args['search'] ?? '',
-            'title'  => 'CustomPages list'
+            'title'  => 'Pages list'
         ]);
     }
 
@@ -37,23 +38,23 @@ class CustomPagesController extends BasicAdminController
      */
     public function create(Request $request): View
     {
-        return $this->renderPage('admin.custompages.form', $request, [
-            'title' => 'Create CustomPages'
+        return $this->renderPage('admin.custom-pages.form', $request, [
+            'title' => 'Create Page'
         ]);
     }
 
     /**
      * CustomPages edit page
      *
-     * @param CustomPages $custompages
+     * @param CustomPage $custom_page
      * @param Request $request
      * @return View
      */
-    public function edit(CustomPages $custompages, Request $request): View
+    public function edit(CustomPage $custom_page, Request $request): View
     {
-        return $this->renderPage('admin.custompages.form', $request, [
-            'model' => $custompages,
-            'title' => 'Edit CustomPages'
+        return $this->renderPage('admin.custom-pages.form', $request, [
+            'model' => $custom_page,
+            'title' => 'Edit Page'
         ]);
     }
 }

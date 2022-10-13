@@ -1,8 +1,6 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\{Competition, UserForm, UserFormBets};
+use App\Models\{Competition, User, UserForm, UserFormBets};
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 
@@ -13,11 +11,11 @@ class UserFormSeeder extends Seeder
      *
      * @return void
      */
-    public function run($users)
+    public function run()
     {
         $competition = Competition::with(['games', 'groups', 'teams'])->where('slug', 'world-cup-2022')->first();
 
-        foreach ($users as $user) {
+        foreach (User::all() as $user) {
             $form = UserForm::create([
                 'user_id'        => $user->id,
                 'competition_id' => $competition->id

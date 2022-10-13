@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use App\Traits\ModelThumbsTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Team extends Model
 {
-    use HasFactory, ModelThumbsTrait;
+    use ModelThumbsTrait;
 
     protected $settings_key = 'team_img';
 

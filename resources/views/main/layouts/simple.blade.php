@@ -7,6 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/solid.css">
+  <link rel="stylesheet" href="/css/app.css">
   @vite(['resources/css/reset.scss', 'resources/css/main/app.scss'])
 
   @yield('styles')

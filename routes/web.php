@@ -6,8 +6,12 @@ use App\Http\Controllers\Main\{
 use App\Models\Settings;
 use Illuminate\Support\Facades\{Route, View};
 
-$settings = Settings::whereIn('key', ['registration_enable'])->get()->keyBy('key');
-View::share('settings', $settings);
+if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+    $settings = Settings::whereIn('key', ['registration_enable'])->get()->keyBy('key');
+    View::share('settings', $settings);
+} else {
+    $settings = null;
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +27,7 @@ View::share('settings', $settings);
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::any('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-if ($settings->count() && $settings['registration_enable']->converted_value) {
+if ($settings && isset($settings['registration_enable']) && $settings['registration_enable']->converted_value) {
     Route::group(['as' => 'registration.'], function () {
         Route::get('/registration', [RegistrationController::class, 'index'])->name('index');
         Route::post('/registration', [RegistrationController::class, 'store'])->name('store');

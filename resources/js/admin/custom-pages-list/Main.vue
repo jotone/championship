@@ -49,9 +49,9 @@ export default {
   },
   data() {
     return {
-      entity: 'custompages.1',
+      entity: 'customPages.1',
       models: [],
-      module: 'custompages',
+      module: 'customPages',
       pagination: {},
       routes: {}
     }

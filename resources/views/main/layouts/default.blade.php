@@ -7,12 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Чемпіонат 2022</title>
 
-  @vite([
-    'resources/css/reset.scss',
-    'resources/css/font-awesome/fontawesome.scss',
-    'resources/css/font-awesome/solid.scss',
-    'resources/css/main/app.scss'
-  ])
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/fontawesome.css">
+  <link rel="stylesheet" href="/css/solid.css">
+  <link rel="stylesheet" href="/css/app.css">
 
   @yield('styles')
 </head>
@@ -32,7 +30,8 @@
   </div>
 </div>
 
-@vite(['resources/js/main/app.js'])
+<script src="/js/app.js"></script>
+
 @yield('scripts')
 </body>
 </html>

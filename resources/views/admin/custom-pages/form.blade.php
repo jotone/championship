@@ -25,7 +25,7 @@
                 autocomplete="off"
                 class="form-input col-100"
                 name="name"
-                data-slug="input.slug"
+                data-slug="input.url"
                 placeholder="Name&hellip;"
                 required
                 value="{{ $model->name ?? '' }}"
@@ -35,15 +35,16 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Slug:</span>
+              <span>URL:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
-                name="slug"
-                placeholder="Slug&hellip;"
+                name="url"
+                placeholder="URL&hellip;"
                 required
-                value="{{ $model->slug ?? '' }}"
+                value="{{ $model->url ?? '' }}"
+                disabled
               >
             </label>
           </div>

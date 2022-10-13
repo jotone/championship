@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\{
     CompetitionGroupGameController,
     CompetitionGroupTeamController,
     CountryController,
+    CustomPagesController,
     RolesController,
     TeamController,
     UsersController
@@ -33,6 +34,8 @@ Route::resource('/competition-groups', CompetitionGroupController::class)->excep
 Route::resource('/competitions', CompetitionController::class)->except(['create', 'edit', 'show']);
 
 Route::resource('/countries', CountryController::class)->except(['create', 'edit', 'show']);
+
+Route::resource('/pages', CustomPagesController::class)->except(['create', 'edit', 'show']);
 
 Route::resource('/roles', RolesController::class)->except(['create', 'edit', 'show']);
 

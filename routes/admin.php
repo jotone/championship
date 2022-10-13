@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\{
     CompetitionController,
     CountryController,
+    CustomPagesController,
     DashboardController,
     RolesController,
     TeamController,
@@ -32,6 +33,8 @@ Route::group(['as' => 'countries.', 'prefix' => '/countries'], function () {
 });
 
 Route::resource('/countries', CountryController::class)->only(['index', 'create', 'edit']);
+
+Route::resource('/pages', CustomPagesController::class)->only(['index', 'create', 'edit']);
 
 // Users and roles
 Route::group(['as' => 'users.', 'prefix' => '/users'], function () {

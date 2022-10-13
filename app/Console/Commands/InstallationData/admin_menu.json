@@ -40,5 +40,10 @@
         "img_url": "fas fa-user-tag"
       }
     ]
+  },
+  {
+    "name": "Pages",
+    "url": "admin.pages.index",
+    "img_url": "fas fa-file"
   }
 ]
