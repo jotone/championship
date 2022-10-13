@@ -1,11 +1,7 @@
 @extends('main.layouts.default')
 
-@section('styles')
-  @vite(['node_modules/froala-editor/css/froala_editor.min.css',])
-@endsection
-
 @section('scripts')
-  @vite(['resources/js/main/profile.js'])
+  <script src="/js/profile.js"></script>
 @endsection
 
 @section('content')
