@@ -15,7 +15,10 @@
   <link rel="stylesheet" href="/css/fontawesome.css">
   <link rel="stylesheet" href="/css/solid.css">
   <link rel="stylesheet" href="/css/admin/app.css">
-  <script src="/js/admin/main.js"></script>
+
+  @yield('styles')
+
+  <script src="/js/jquery.js"></script>
 
   <title>Document</title>
 </head>
@@ -59,6 +62,8 @@
 
   @yield('popup')
 </div>
+
+<script src="/js/admin/main.js"></script>
 
 @yield('scripts')
 

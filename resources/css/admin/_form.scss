@@ -56,13 +56,13 @@
   }
 }
 
-.form-input, .form-select {
+.form-input, .form-select, .form-text {
   background-color: $secondary;
   border: 1px solid $headline;
   border-radius: 5px;
 }
 
-.form-input {
+.form-input, .form-text {
   max-width: 450px;
   min-width: 250px;
   padding: 5px 10px;
@@ -76,3 +76,10 @@
   background-size: 12px;
   padding: 5px 20px 5px 10px;
 }
+
+.form-text {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.ck-editor__editable[role="textbox"] {min-height: 200px}

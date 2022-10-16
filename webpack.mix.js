@@ -13,8 +13,16 @@ const mix = require('laravel-mix');
 
 mix
   .styles('./node_modules/air-datepicker/air-datepicker.css', './public/css/air-datepicker.css')
+  .copy('./node_modules/jquery/dist/jquery.min.js', './public/js/jquery.js')
+  /*.copy('./node_modules/ckeditor4/lang/uk.js', './public/js/ckeditor4/lang/uk.js')
+  .copy('./node_modules/ckeditor4/plugins', './public/js/ckeditor4/plugins')
+  .copy('./node_modules/ckeditor4/ckeditor.js', './public/js/ckeditor4/ckeditor.js')
+  .copy('./node_modules/ckeditor4/config.js', './public/js/ckeditor4/config.js')
+  .copy('./node_modules/ckeditor4/styles.js', './public/js/ckeditor4/styles.js')
+  .copy('./node_modules/ckeditor4/contents.css', './public/js/ckeditor4/contents.css')
+  .copy('./node_modules/ckeditor4/skins/moono-lisa', './public/js/ckeditor4/skins/moono-lisa')*/
   // Admin
-  .sass('./resources/css/reset.scss', './public/css/')
+  .sass('./resources/css/reset.scss', './public/css')
   .sass('./resources/css/font-awesome/fontawesome.scss', './public/css')
   .sass('./resources/css/font-awesome/solid.scss', './public/css')
   .sass('./resources/css/admin/app.scss', './public/css/admin')
@@ -22,6 +30,7 @@ mix
   .js('./resources/js/admin/competition-form/app.js', './public/js/admin/competition-form.js').vue()
   .js('./resources/js/admin/competition-list/app.js', './public/js/admin/competition-list.js').vue()
   .js('./resources/js/admin/country-list/app.js', './public/js/admin/country-list.js').vue()
+  .js('./resources/js/admin/custom-pages-form/app.js', './public/js/admin/custom-pages-form.js')
   .js('./resources/js/admin/custom-pages-list/app.js', './public/js/admin/custom-pages-list.js').vue()
   .js('./resources/js/admin/role-list/app.js', './public/js/admin/role-list.js').vue()
   .js('./resources/js/admin/team-list/app.js', './public/js/admin/team-list.js').vue()

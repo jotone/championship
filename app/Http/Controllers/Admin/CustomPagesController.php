@@ -24,6 +24,8 @@ class CustomPagesController extends BasicAdminController
             'routes' => [
                 'list'    => route('api.pages.index') . '?' . implode('&', $query),
                 'index'   => route('admin.pages.index'),
+                'edit'    => route('admin.pages.edit', 0),
+                'destroy' => route('api.pages.destroy', 0)
             ],
             'search' => $args['search'] ?? '',
             'title'  => 'Pages list'
@@ -46,14 +48,14 @@ class CustomPagesController extends BasicAdminController
     /**
      * CustomPages edit page
      *
-     * @param CustomPage $custom_page
+     * @param CustomPage $custompages
      * @param Request $request
      * @return View
      */
-    public function edit(CustomPage $custom_page, Request $request): View
+    public function edit(CustomPage $custompages, Request $request): View
     {
         return $this->renderPage('admin.custom-pages.form', $request, [
-            'model' => $custom_page,
+            'model' => $custompages,
             'title' => 'Edit Page'
         ]);
     }

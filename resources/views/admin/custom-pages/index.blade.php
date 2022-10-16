@@ -4,7 +4,7 @@
   <div class="page-controls-wrap">
     <div class="page-controls-buttons-wrap">
       <a class="btn success" href="{{ route('admin.pages.create') }}">
-        Create Page
+        Create CustomPages
       </a>
     </div>
 
@@ -19,5 +19,5 @@
 @endsection
 
 @section('scripts')
-  <script src="/js/admin/custom-pages-list.js"></script>
+  @@vite(['resources/js/admin/custom-pages-list/app.js'])
 @endsection

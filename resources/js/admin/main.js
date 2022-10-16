@@ -1,9 +1,7 @@
 import Axios from 'axios';
-import jQuery from 'jquery';
 
 import { Helpers } from './libs/helpers';
 
-window.$ = jQuery;
 window.$.axios = Axios
 window.Helpers = Helpers
 window.$.axios.interceptors.request.use(config => {

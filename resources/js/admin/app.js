@@ -74,7 +74,17 @@ $(document).ready(() => {
 
     e.preventDefault()
     // Form data
-    const formData = new FormData(this)
+    const tempFormData = new FormData(this)
+
+    const formData = new FormData();
+    for (let pair of tempFormData) {
+      if (typeof CKEDITOR !== 'undefined' && pair[0] in CKEDITOR.instances) {
+        formData.append(pair[0], CKEDITOR.instances[pair[0]].getData())
+      } else {
+        formData.append(pair[0], pair[1])
+      }
+    }
+
     // Form method
     const method = typeof $(this).attr('method') !== 'undefined' ? $(this).attr('method') : 'get';
     // Send request

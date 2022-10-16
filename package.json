@@ -18,17 +18,17 @@
         "resolve-url-loader": "^5.0.0",
         "sass": "^1.55.0",
         "sass-loader": "^13.1.0",
-        "vue-loader": "^16.8.3"
+        "vue-loader": "^17.0.0"
     },
     "dependencies": {
         "@eastdesire/jscolor": "^2.5.0",
         "air-datepicker": "^3.3.0",
         "autoprefixer": "^10.4.12",
+        "ckeditor4": "^4.20.0",
         "debounce": "^1.2.1",
         "jquery": "^3.6.1",
         "moment": "^2.29.4",
         "sortablejs": "^1.15.0",
-        "vue": "^3.2.40",
-        "vue-loader": "^17.0.0"
+        "vue": "^3.2.40"
     }
 }

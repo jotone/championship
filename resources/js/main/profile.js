@@ -1,25 +1,32 @@
-// import FroalaEditor from 'froala-editor'
-
 $(document).ready(() => {
-  /*let editor = null
-  new Promise(resolve => {
-    setTimeout(() => {
-      if (typeof FroalaEditor !== 'undefined') {
-        editor = new FroalaEditor($('.editor')[0], {
-          htmlAllowedTags: ['.*'],
-        })
-        resolve({})
+  CKEDITOR.replace('info', {
+    removePlugins: 'sourcearea',
+    // Define the toolbar groups as it is a more accessible solution.
+    toolbarGroups: [
+      {
+        "name": "basicstyles",
+        "groups": ["basicstyles"]
+      },
+      {
+        "name": "paragraph",
+        "groups": ["list", "blocks"]
+      },
+      {
+        "name": "document",
+        "groups": ["mode"]
+      },
+      {
+        "name": "styles",
+        "groups": ["styles"]
+      },
+      {
+        "name": "about",
+        "groups": ["about"]
       }
-    }, 50)
+    ],
+    // Remove the redundant buttons from toolbar groups defined above.
+    removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
   })
-    .then(() => {
-      setTimeout(() => {
-        if ($('.fr-second-toolbar').length) {
-          $('.editor .fr-element.fr-view').css({'min-height': '200px'})
-          $('.fr-second-toolbar #fr-logo').remove()
-        }
-      }, 50)
-    })*/
 
   $('form').on('submit', function (e) {
     e.preventDefault()

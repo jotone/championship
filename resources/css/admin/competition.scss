@@ -104,6 +104,8 @@
   align-items: stretch;
   display: flex;
   justify-content: flex-start;
+  overflow-x: scroll;
+  width: 100%;
 
   .stage-item-wrap {
     border-right: 1px solid $paragraph;
@@ -179,7 +181,7 @@
 }
 
 .group-caption-wrap {
-  min-width: 250px;
+  min-width: 210px;
   position: relative;
 
   > span {font-size: 32px; padding: 0 20px}
@@ -203,4 +205,10 @@
     top: 50%;
     transform: translateY(-50%);
   }
+}
+
+#playOffTable {
+  min-height: 90vh;
+  overflow-x: hidden;
+  width: 100%;
 }

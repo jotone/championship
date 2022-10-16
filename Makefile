@@ -7,10 +7,10 @@ down:
 	@docker-compose down
 
 cmd:
-	@docker exec -it champ2022_php-fpm_1 bash -c "${c}"
+	@docker exec -it championship_php-fpm_1 bash -c "${c}"
 
 reset:
-	@docker exec -it champ2022_php-fpm_1 bash -c "php artisan migrate:fresh && php artisan app:install"
+	@docker exec -it championship_php-fpm_1 bash -c "php artisan migrate:fresh && php artisan app:install"
 	@npm run prod
 
 seed:

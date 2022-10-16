@@ -26,7 +26,7 @@
       @endif
 
       @if($model->groups_number > 1 && $tab == 'play-offs')
-        <div class="col-100" id="playOffTable" data-routes="{{ json_encode($routes) }}" data-id="{{ $model->id }}"></div>
+        <div id="playOffTable" data-routes="{{ json_encode($routes) }}" data-id="{{ $model->id }}"></div>
       @endif
     @endisset
   </div>
@@ -39,8 +39,11 @@
   @include('admin.competitions.popup.add-team')
 @endsection
 
-@section('scripts')
+@section('styles')
   <link rel="stylesheet" href="/css/admin/competition.css">
   <link rel="stylesheet" href="/css/air-datepicker.css">
+@endsection
+
+@section('scripts')
   <script src="/js/admin/competition-form.js"></script>
 @endsection

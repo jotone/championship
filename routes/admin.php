@@ -34,11 +34,11 @@ Route::group(['as' => 'countries.', 'prefix' => '/countries'], function () {
 
 Route::resource('/countries', CountryController::class)->only(['index', 'create', 'edit']);
 
-Route::resource('/pages', CustomPagesController::class)->only(['index', 'create', 'edit']);
-
 // Users and roles
 Route::group(['as' => 'users.', 'prefix' => '/users'], function () {
     Route::resource('/roles', RolesController::class)->only(['index', 'create', 'edit']);
 });
 
 Route::resource('/users', UsersController::class)->only(['index', 'create', 'edit']);
+
+Route::resource('/pages', CustomPagesController::class)->only(['index', 'create', 'edit']);

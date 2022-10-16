@@ -32,30 +32,29 @@ $(document).ready(() => {
     $(this).closest('form').find('.team-selector').attr('data-url', url)
   })
 
+  if (groupTable.length || playOffTable.length) {
+    new Sortable(groupTable.length ? groupTable[0] : playOffTable.find('.stages-wrap')[0], {
+      animation: 150,
+      handle: '.move-group',
+      group: 'shared',
+      onSort: function () {
+        let formData = new FormData()
+        formData.append('_method', 'patch')
 
-  new Sortable(groupTable.length ? groupTable[0] : playOffTable.find('.stages-wrap')[0], {
-    animation: 150,
-    handle: '.move-group',
-    group: 'shared',
-    onSort: function () {
-      let formData = new FormData()
-      formData.append('_method', 'patch')
+        let routes = groupTable.length ? groupTable.data('routes') : playOffTable.data('routes')
 
-      let routes = groupTable.length ? groupTable.data('routes') : playOffTable.data('routes')
+        if (groupTable.length) {
+          $(this.el).children('div').each(function () {
+            formData.append('positions[]', $(this).find('.competition-table[data-id]').attr('data-id'))
+          })
+        } else {
+          $(this.el).children('.stage-item-wrap[data-id]').each(function () {
+            formData.append('stages[]', $(this).attr('data-id'))
+          })
+        }
 
-      if (groupTable.length) {
-        $(this.el).children('div').each(function () {
-          formData.append('positions[]', $(this).find('.competition-table[data-id]').attr('data-id'))
-        })
-      } else {
-        $(this.el).children('.stage-item-wrap[data-id]').each(function () {
-          formData.append('stages[]', $(this).attr('data-id'))
-        })
+        $.axios.post(routes.group.upgrade, formData)
       }
-
-      console.log(routes)
-
-      $.axios.post(routes.group.upgrade, formData)
-    }
-  })
+    })
+  }
 })

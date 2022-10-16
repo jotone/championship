@@ -10,7 +10,7 @@ use Illuminate\Http\{Request, Response};
 class CustomPagesController extends BasicApiController
 {
     /**
-     * Get custompages list
+     * Get custom pages list
      *
      * @param Request $request
      * @return Response
@@ -34,7 +34,7 @@ class CustomPagesController extends BasicApiController
     }
 
     /**
-     * Create custompages
+     * Create custom pages
      *
      * @param CustomPagesStoreRequest $request
      * @return Response
@@ -43,6 +43,8 @@ class CustomPagesController extends BasicApiController
     {
         // Request data
         $args = $request->validated();
+
+        dd($args);
         // Create custompages
         $custompages = CustomPage::create($args);
 

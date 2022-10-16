@@ -1,6 +1,7 @@
 @extends('main.layouts.default')
 
 @section('scripts')
+  <script src="/js/ckeditor4/ckeditor.js"></script>
   <script src="/js/profile.js"></script>
 @endsection
 
@@ -61,9 +62,9 @@
       <legend>Додати інформацію про себе</legend>
 
       <div class="form-row">
-        <div class="editor" data-name="info">
+        <textarea class="editor" name="info">
           {!! $user->info !!}
-        </div>
+        </textarea>
       </div>
     </fieldset>
 
