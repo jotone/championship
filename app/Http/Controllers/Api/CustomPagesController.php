@@ -41,42 +41,35 @@ class CustomPagesController extends BasicApiController
      */
     public function store(CustomPagesStoreRequest $request): Response
     {
-        // Request data
-        $args = $request->validated();
-
-        dd($args);
-        // Create custompages
-        $custompages = CustomPage::create($args);
-
-        return response($custompages, 201);
+        return response(CustomPage::create($request->validated()), 201);
     }
 
     /**
-     * Update custompages
+     * Update custom page
      *
-     * @param CustomPage $custompages
+     * @param CustomPage $page
      * @param CustomPagesUpdateRequest $request
      * @return Response
      */
-    public function update(CustomPage $custompages, CustomPagesUpdateRequest $request): Response
+    public function update(CustomPage $page, CustomPagesUpdateRequest $request): Response
     {
         // Request data
         $args = $request->validated();
+
         // Modify model
+        $page->update($args);
 
-        $custompages->save();
-
-        return response($custompages);
+        return response($page);
     }
 
     /**
-     * Remove custompages
+     * Remove custom pages
      *
-     * @param CustomPage $custompages
+     * @param CustomPage $page
      * @return Response
      */
-    public function destroy(CustomPage $custompages): Response
+    public function destroy(CustomPage $page): Response
     {
-        return $this->defaultRemove($custompages);
+        return $this->defaultRemove($page);
     }
 }

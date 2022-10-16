@@ -4,13 +4,10 @@
 - ~~cron task -> recount user points after match change score~~
 - ~~view and compare page~~
 - ~~No data tests~~
-- custom pages (rules, help)
-  - ~~Create~~
-  - Store
-  - List
-  - Remove
-  - Edit
-  - Update
+- custom pages
+  - ~~controls~~
+  - rules
+  - help
 - Pages:
   - Pivot table (united table)
   - Schedule

@@ -31,7 +31,10 @@ class AdminRedirect
                     return $next($request);
                 }
             }
+        } else {
+            abort(404);
         }
+
         return response([
             'errors' => [
                 'auth' => ['You do not have permissions to perform this action.']

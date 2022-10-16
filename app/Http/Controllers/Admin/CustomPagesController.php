@@ -48,14 +48,14 @@ class CustomPagesController extends BasicAdminController
     /**
      * CustomPages edit page
      *
-     * @param CustomPage $custompages
+     * @param CustomPage $page
      * @param Request $request
      * @return View
      */
-    public function edit(CustomPage $custompages, Request $request): View
+    public function edit(CustomPage $page, Request $request): View
     {
         return $this->renderPage('admin.custom-pages.form', $request, [
-            'model' => $custompages,
+            'model' => $page,
             'title' => 'Edit Page'
         ]);
     }

@@ -6,6 +6,18 @@
         <th data-field="id">
           <TableDirections text="#"></TableDirections>
         </th>
+        <th data-field="name">
+          <TableDirections text="Name"></TableDirections>
+        </th>
+        <th data-field="url">
+          <TableDirections text="URL"></TableDirections>
+        </th>
+        <th data-field="editable">
+          <TableDirections text="Editable"></TableDirections>
+        </th>
+        <th data-field="enabled">
+          <TableDirections text="Enabled"></TableDirections>
+        </th>
         <th data-field="created_at">
           <TableDirections text="Created"></TableDirections>
         </th>
@@ -18,6 +30,18 @@
       <tbody>
       <tr v-for="model in models" :data-id="model.id">
         <td><span>{{ model.id }}</span></td>
+        <td><span>{{ model.name }}</span></td>
+        <td><span>{{ model.url }}</span></td>
+        <td>
+          <span>
+            <i :class="`fas ${model.editable ? 'fa-check accept' : 'fa-times remove'}`"></i>
+          </span>
+        </td>
+        <td>
+          <span>
+            <i :class="`fas ${model.enabled ? 'fa-check accept' : 'fa-times remove'}`"></i>
+          </span>
+        </td>
         <td><span>{{ formatDate(model.created_at) }}</span></td>
         <td>
           <div class="controls">
@@ -49,7 +73,7 @@ export default {
   },
   data() {
     return {
-      entity: 'customPages.1',
+      entity: 'page.1',
       models: [],
       module: 'customPages',
       pagination: {},
