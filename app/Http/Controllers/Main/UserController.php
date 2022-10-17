@@ -44,7 +44,7 @@ class UserController extends BasicMainController
 
         $bets = [];
         foreach ($user->forms[0]->bets as $bet) {
-            if (!empty($bet->game_id) && $bet->game->accept) {
+            if (!empty($bet->game_id) && $bet->game) {
                 $bets['group'][$bet->group_id][$bet->game_id] = $bet->scores;
             } else {
                 $bets['playOff'][$bet->group_id] = $bet->scores;
