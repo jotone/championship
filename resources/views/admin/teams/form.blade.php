@@ -53,7 +53,10 @@
 
               <select name="country_id" class="form-select col-100">
                 @foreach($countries as $country)
-                  <option value="{{ $country->id }}" @selected(isset($model) && $model->country_id == $country->id)>
+                  <option
+                    value="{{ $country->id }}"
+                    @if(isset($model) && $model->country_id == $country->id) selected @endif
+                  >
                     {{ $country->ua }}
                   </option>
                 @endforeach

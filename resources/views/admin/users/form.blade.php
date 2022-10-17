@@ -88,7 +88,10 @@
 
               <select class="form-select" name="role_id">
                 @foreach($roles as $role)
-                  <option value="{{ $role->id }}" @selected(isset($model) && $role->id == $model->role_id)>
+                  <option
+                    value="{{ $role->id }}"
+                    @if(isset($model) && $role->id == $model->role_id) selected @endif
+                  >
                     {{ $role->name }}
                   </option>
                 @endforeach

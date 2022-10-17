@@ -25,7 +25,7 @@ class AdminRedirect
                     return $next($request);
                 }
                 $permission = $user->role->permissions()->firstWhere([
-                    'controller' => $request->route()->getControllerClass()
+                    'controller' => get_class($request->route()->getController())
                 ]);
                 if ($permission && in_array($request->route()->getActionMethod(), $permission->allowed_methods)) {
                     return $next($request);
