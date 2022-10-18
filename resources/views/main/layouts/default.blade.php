@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/css/solid.css">
   <link rel="stylesheet" href="/css/app.css">
 
+  <script src="/js/jquery.js"></script>
   @yield('styles')
 </head>
 <body>
