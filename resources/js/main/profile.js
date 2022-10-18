@@ -1,5 +1,6 @@
 $(document).ready(() => {
-  CKEDITOR.replace('info', {
+  CKEDITOR.replace($('textarea[name="info"]')[0], {
+    language: 'ua',
     removePlugins: 'sourcearea',
     // Define the toolbar groups as it is a more accessible solution.
     toolbarGroups: [
