@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="/css/fontawesome.css">
   <link rel="stylesheet" href="/css/solid.css">
   <link rel="stylesheet" href="/css/app.css">
-  @vite(['resources/css/reset.scss', 'resources/css/main/app.scss'])
 
+  <script src="/js/jquery.js"></script>
   @yield('styles')
 </head>
 
