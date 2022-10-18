@@ -12,9 +12,6 @@
         <th data-field="url">
           <TableDirections text="URL"></TableDirections>
         </th>
-        <th data-field="editable">
-          <TableDirections text="Editable"></TableDirections>
-        </th>
         <th data-field="enabled">
           <TableDirections text="Enabled"></TableDirections>
         </th>
@@ -32,11 +29,6 @@
         <td><span>{{ model.id }}</span></td>
         <td><span>{{ model.name }}</span></td>
         <td><span>{{ model.url }}</span></td>
-        <td>
-          <span>
-            <i :class="`fas ${model.editable ? 'fa-check accept' : 'fa-times remove'}`"></i>
-          </span>
-        </td>
         <td>
           <span>
             <i :class="`fas ${model.enabled ? 'fa-check accept' : 'fa-times remove'}`"></i>

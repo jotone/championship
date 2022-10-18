@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Головна",
+    "url": "/",
+    "editable": false,
+    "enabled": true
+  },
+  {
+    "name": "Форум",
+    "url": "/forum",
+    "editable": false,
+    "enabled": true
+  },
+  {
+    "name": "Зведена таблиця",
+    "url": "/summary",
+    "editable": false,
+    "enabled": true
+  },
+  {
+    "name": "Правила",
+    "url": "/rules",
+    "editable": true,
+    "enabled": true
+  },
+  {
+    "name": "Групи",
+    "url": "/groups",
+    "editable": false,
+    "enabled": true
+  },
+  {
+    "name": "Розклад",
+    "url": "/schedule",
+    "editable": false,
+    "enabled": true
+  },
+  {
+    "name": "Допомога",
+    "url": "/help",
+    "editable": true,
+    "enabled": true
+  }
+]

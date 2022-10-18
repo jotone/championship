@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\{AdminMenu, Country, Permission, Role, Settings, User};
+use App\Models\{AdminMenu, Country, CustomPage, Permission, Role, Settings, User};
 use App\Traits\PermissionsTrait;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -45,7 +45,8 @@ class InstallApplication extends Command
             'admin_menu' => json_decode(file_get_contents(base_path($this->files_path . 'admin_menu.json')), 1),
             'countries'  => json_decode(file_get_contents(base_path($this->files_path . 'countries.json')), 1),
             'roles'      => json_decode(file_get_contents(base_path($this->files_path . 'roles.json')), 1),
-            'settings'   => json_decode(file_get_contents(base_path($this->files_path . 'settings.json')), 1)
+            'settings'   => json_decode(file_get_contents(base_path($this->files_path . 'settings.json')), 1),
+            'pages'      => json_decode(file_get_contents(base_path($this->files_path . 'pages.json')), 1),
         ];
 
         // Create admin menu
@@ -114,6 +115,14 @@ class InstallApplication extends Command
                     'ua'      => $files['countries'][$i]['ua'],
                     'img_url' => $files['countries'][$i]['img_url']
                 ]);
+            }
+        });
+
+        // Create pages
+        $this->runWithTimer('Pages', function () use ($files) {
+            $n = count($files['pages']);
+            for ($i = 0; $i < $n; $i++) {
+                CustomPage::create($files['pages'][$i]);
             }
         });
         return 0;
