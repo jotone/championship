@@ -29,7 +29,7 @@
         <div class="image-upload-controls">
           <input name="img_url" type="file" style="display: none" accept="image/jpeg,image/png">
           <button name="uploadImage" type="button" class="btn regular">
-            Загрузити
+            Завантажити
           </button>
         </div>
       </div>

@@ -3,19 +3,19 @@
     <ul>
       @auth
         <li>
-          <a href="{{ route('user.profile.show') }}">Good luck, {{ Auth::user()->name }}</a>
+          <a href="{{ route('user.profile.show') }}">Бажаємо успіху, {{ Auth::user()->name }}</a>
         </li>
         <li>
-          <a href="{{ route('auth.logout') }}">Sign Out</a>
+          <a href="{{ route('auth.logout') }}">Вийти</a>
         </li>
       @else
         <li data-show="login-form">
-          <span>Sign In</span>
+          <span>Увійти</span>
         </li>
 
         @if($settings['registration_enable']->converted_value)
           <li>
-            <a href="{{ route('registration.index') }}">Sign Up</a>
+            <a href="{{ route('registration.index') }}">Зареєструватися</a>
           </li>
         @endisset
       @endauth
@@ -29,7 +29,7 @@
     <input name="email" type="email" placeholder="Email&hellip;">
   </div>
   <div>
-    <input name="password" type="password" placeholder="Password&hellip;">
+    <input name="password" type="password" placeholder="Пароль&hellip;">
   </div>
   <div>
     <button type="submit">YARRR</button>

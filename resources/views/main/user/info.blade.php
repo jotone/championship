@@ -3,7 +3,7 @@
 @section('content')
   <div class="user-info-wrap">
     <a href="{{ route('user.results', md5($user->id)) }}" class="user-name">
-      <h1>{{ $user->name }}</h1>
+      <h1>Переглянути анкету {{ $user->name }}</h1>
     </a>
 
     <a href="{{ route('user.results', md5($user->id)) }}" class="image-wrap">

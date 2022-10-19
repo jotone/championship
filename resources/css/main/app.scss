@@ -1,6 +1,16 @@
 @import "variables", "form";
 
-body {min-width: 320px}
+@font-face {
+  font-family: "Futturra";
+  src: url("/fonts/futturra/Futturra.eot");
+  src: url("/fonts/futturra/Futturra.eot?#iefix") format("embedded-opentype"),
+  url("/fonts/futturra/Futturra.woff") format("woff"),
+  url("/fonts/futturra/Futturra.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {min-width: 320px; font-family: "Futturra", sans-serif;}
 
 .flex-c {justify-content: center}
 
@@ -157,6 +167,7 @@ header {
 }
 
 .main-container {
+  background-color: $background;
   margin-bottom: 60px;
   padding: 0 20px;
 }
@@ -193,6 +204,68 @@ header {
   }
 
   .team-selector {min-width: 250px}
+}
+
+.page-title {
+  background-color: $heading;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin: 40px 0;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+
+  &:first-child {margin-top: 0}
+}
+
+.page-content {
+  background-color: white;
+  padding: 5%;
+  text-align: justify;
+
+  p {
+    font-size: 1.125rem;
+    padding: 5px 0;
+  }
+  blockquote {
+    background-color: $background;
+    margin: 10px 0;
+    padding: 10px;
+    width: 80%;
+  }
+
+  img {
+    margin: 5px 10%;
+    object-fit: contain;
+    width: 80%;
+  }
+}
+
+.page-list {
+  > li > span {
+    background-color: $gray-light;
+    color: white;
+    display: block;
+    font-size: 1.25rem;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+  }
+
+  ul {
+    list-style-type: '-';
+
+    > li {
+      padding: 5px;
+      margin: 5px 20px;
+
+      span {
+        font-size: 1.125rem;
+      }
+    }
+  }
 }
 
 .content-table {
