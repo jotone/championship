@@ -10,10 +10,10 @@
     name="userForm"
     method="post"
     data-teams="{{ base64_encode(json_encode($teams->pluck('ua', 'id')->toArray())) }}"
+    style="width: 100%; position: relative"
   >
     @csrf
 
-    <fieldset @if(!empty($bets)) disabled="disabled" @endif>
 
       @foreach($competition->groups as $group)
         <table class="content-table score-table">
@@ -94,7 +94,6 @@
           </tbody>
         </table>
       @endforeach
-    </fieldset>
 
     @empty($bets)
       <div class="content-block-wrap flex-c">

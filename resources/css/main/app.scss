@@ -3,7 +3,9 @@
 body {min-width: 320px}
 
 .flex-c {justify-content: center}
+
 .flex-fs {justify-content: flex-start}
+
 .flex-fe {justify-content: flex-end}
 
 header {
@@ -133,13 +135,13 @@ header {
 
       i {font-size: 20px}
     }
-    
+
     &.error {
       background-color: $red;
       border: 2px solid $red-dark;
       color: white;
     }
-    
+
     &.success {
       background-color: $green;
       border: 2px solid $green-dark;
@@ -156,7 +158,7 @@ header {
 
 .main-container {
   margin-bottom: 60px;
-  padding: 0 40px;
+  padding: 0 20px;
 }
 
 .content-wrap {
@@ -166,17 +168,15 @@ header {
   flex-wrap: wrap;
 
   .participant-list-wrap {
-    min-width: 240px;
-    width: 15%
+    width: 300px;
   }
 
   .page-content-wrap {
-    width: 53%;
+    width: 750px;
   }
 
   .real-score-wrap {
-    min-width: 320px;
-    width: 30%
+    width: 350px;
   }
 
   .team-score-input, .team-selector {
@@ -221,6 +221,7 @@ header {
       text-align: center;
 
       span {border-bottom: 1px solid transparent}
+
       span.match {border-bottom-color: $green-dark}
     }
   }
@@ -256,8 +257,12 @@ header {
     }
   }
 
-  &.score-table tbody tr td {
-    &:first-child, &:last-child {min-width: 280px}
+  &.score-table {
+    width: 750px;
+
+    tbody tr {
+      td:first-child, td:last-child {min-width: 250px}
+    }
   }
 
   &.real-score tbody tr td {min-width: 40px}
@@ -350,15 +355,52 @@ header {
   }
 }
 
-@media (max-width: 1510px) {
+@media (max-width: 1455px) {
   .content-wrap {
-    .page-content-wrap {width: 35%}
-    .real-score-wrap {width: 35%}
+    font-size: .75rem;
+
+    .participant-list-wrap {width: 240px}
+
+    .page-content-wrap {width: 445px}
+
+    .real-score-wrap {width: 280px}
+
+    .team-score-input {
+      font-size: .75rem;
+      width: 40px;
+    }
+
+    .team-selector {
+      font-size: .75rem;
+      min-width: 150px;
+    }
+  }
+
+  .content-table {
+    tbody tr td {
+      a, span {
+        font-size: .75rem;
+      }
+    }
+
+    &.score-table {
+      width: 445px;
+
+      tbody tr {
+        td:first-child, td:last-child {
+          min-width: 150px;
+        }
+      }
+    }
   }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1024px) {
   .content-wrap {
     .participant-list-wrap {width: 80%}
+
+    .page-content-wrap {width: 45%}
+
+    .real-score-wrap {width: 45%}
   }
 }
