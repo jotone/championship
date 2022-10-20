@@ -3,10 +3,10 @@
 use App\Http\Controllers\Main\{
     AuthController, HomeController, PasswordResetController, RegistrationController, UserController, UserFormController
 };
-use App\Models\Settings;
-use Illuminate\Support\Facades\{Route, View};
+use App\Models\{CustomPage, Settings};
+use Illuminate\Support\Facades\{Route, Schema, View};
 
-if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
+if (Schema::hasTable('settings')) {
     $settings = Settings::whereIn('key', ['registration_enable'])->get()->keyBy('key');
     View::share('settings', $settings);
 } else {
@@ -42,8 +42,6 @@ Route::group(['as' => 'password-reset.'], function () {
     Route::post('/password-reset/{token}', [PasswordResetController::class, 'update'])->name('update');
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
-
 Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
     Route::get('/form', [UserFormController::class, 'show'])->name('form.show');
     Route::post('/form/{competition}', [UserFormController::class, 'store'])->name('form.store');
@@ -53,3 +51,10 @@ Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
 
     Route::get('/results/{id}', [UserController::class, 'results'])->name('results');
 });
+
+// Custom pages
+if (Schema::hasTable('custom_pages')) {
+    foreach (CustomPage::where('editable', 1)->get() as $page) {
+        Route::get($page->url, [HomeController::class, 'index'])->name($page->slug . '.index');
+    }
+}

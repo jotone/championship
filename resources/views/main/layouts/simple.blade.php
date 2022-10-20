@@ -33,7 +33,7 @@
           <span>Sign In</span>
         </li>
 
-        @if($settings['registration_enable']->converted_value)
+        @if($setup['registration_enable']->converted_value)
           <li>
             <a href="{{ route('registration.index') }}">Sign Up</a>
           </li>

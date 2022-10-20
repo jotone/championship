@@ -13,7 +13,7 @@
           <span>Увійти</span>
         </li>
 
-        @if($settings['registration_enable']->converted_value)
+        @if($setup['registration_enable']->converted_value)
           <li>
             <a href="{{ route('registration.index') }}">Зареєструватися</a>
           </li>
@@ -46,10 +46,10 @@
       @endauth
       <li><a href="#">Форум</a></li>
       <li><a href="#">Зведена таблиця</a></li>
-      <li><a href="#">Правила</a></li>
+      <li><a href="{{ route('rules.index') }}">Правила</a></li>
       <li><a href="#">Групи</a></li>
       <li><a href="#">Розклад</a></li>
-      <li><a href="#">Допомога</a></li>
+      <li><a href="{{ route('help.index') }}">Допомога</a></li>
     </ul>
   </nav>
 

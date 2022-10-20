@@ -17,6 +17,7 @@ class CreateCustomPagesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('url');
+            $table->string('slug');
             $table->boolean('editable')->default(1);
             $table->boolean('enabled')->default(0);
             $table->string('meta_title')->nullable();

@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\{AdminMenu, Country, CustomPage, Permission, Role, Settings, User};
+use App\Models\{AdminMenu, CustomPage, Permission, Role, Settings, User};
 use App\Traits\PermissionsTrait;
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 

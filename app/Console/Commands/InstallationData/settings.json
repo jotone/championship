@@ -1,4 +1,11 @@
 {
+  "common": [
+    {
+      "caption": "Site title",
+      "key": "site_title",
+      "value": "Чемпіонат 2022"
+    }
+  ],
   "registration": [
     {
       "caption": "Enable registration",

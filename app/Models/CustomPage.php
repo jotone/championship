@@ -16,6 +16,7 @@ class CustomPage extends Model
     protected $fillable = [
         'name',
         'url',
+        'slug',
         'editable',
         'enabled',
         'meta_title',

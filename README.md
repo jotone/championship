@@ -6,6 +6,8 @@
 - ~~No data tests~~
 - ~~custom pages~~
 - Pages:
+  - ~~View page data~~ 
+  - Editable for admins 
   - Pivot table (united table)
   - Schedule
   - Comment (Forum)

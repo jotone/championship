@@ -14,4 +14,4 @@ reset:
 	@npm run prod
 
 seed:
-	@docker exec -it champ2022_php-fpm_1 bash -c "${php artisan db:seed}"
+	@docker exec -it championship_php-fpm_1 bash -c "${php artisan db:seed}"
