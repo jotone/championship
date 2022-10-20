@@ -5,7 +5,7 @@
     <form
       action="{{ isset($model) ? route('api.users.update', $model->id) : route('api.users.store') }}"
       data-xhr
-      data-msg="Role.name"
+      data-msg="User.name"
       method="POST"
     >
       @isset($model)
