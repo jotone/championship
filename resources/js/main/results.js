@@ -23,7 +23,6 @@ const groupPoints = totalPoints => {
       const userHost = userRow.find('td:eq(1)').text().trim()
       const guestHost = userRow.find('td:eq(2)').text().trim()
 
-
       if (userHost.length && guestHost.length) {
         const userScore = {
           host: parseInt(userHost),

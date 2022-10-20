@@ -18,5 +18,6 @@
     "/css/fontawesome.css": "/css/fontawesome.css",
     "/css/reset.css": "/css/reset.css",
     "/css/app.css": "/css/app.css",
-    "/css/admin/competition.css": "/css/admin/competition.css"
+    "/css/admin/competition.css": "/css/admin/competition.css",
+    "/css/air-datepicker.css": "/css/air-datepicker.css"
 }

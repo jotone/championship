@@ -12,15 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix
-  /*.styles('./node_modules/air-datepicker/air-datepicker.css', './public/css/air-datepicker.css')
-  .copy('./node_modules/jquery/dist/jquery.min.js', './public/js/jquery.js')
-  .copy('./node_modules/ckeditor4/lang', './public/js/ckeditor4/lang')
-  .copy('./node_modules/ckeditor4/plugins', './public/js/ckeditor4/plugins')
-  .copy('./node_modules/ckeditor4/ckeditor.js', './public/js/ckeditor4/ckeditor.js')
-  .copy('./node_modules/ckeditor4/config.js', './public/js/ckeditor4/config.js')
-  .copy('./node_modules/ckeditor4/styles.js', './public/js/ckeditor4/styles.js')
-  .copy('./node_modules/ckeditor4/contents.css', './public/js/ckeditor4/contents.css')
-  .copy('./node_modules/ckeditor4/skins/moono-lisa', './public/js/ckeditor4/skins/moono-lisa')*/
+  .styles('./node_modules/air-datepicker/air-datepicker.css', './public/css/air-datepicker.css')
   // Admin
   .sass('./resources/css/reset.scss', './public/css')
   .sass('./resources/css/font-awesome/fontawesome.scss', './public/css')

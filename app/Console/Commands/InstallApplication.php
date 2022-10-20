@@ -60,6 +60,16 @@ class InstallApplication extends Command
             $roles = [];
             foreach ($files['roles'] as $role_data) {
                 $roles[$role_data['slug']] = Role::create($role_data);
+
+                if (isset($role_data['permissions'])) {
+                    foreach ($role_data['permissions'] as $permission) {
+                        Permission::create([
+                            'role_id'         => $roles[$role_data['slug']]->id,
+                            'controller'      => $permission['controller'],
+                            'allowed_methods' => $permission['methods']
+                        ]);
+                    }
+                }
             }
             return $roles;
         });

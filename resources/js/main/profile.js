@@ -13,16 +13,8 @@ $(document).ready(() => {
         "groups": ["list", "blocks"]
       },
       {
-        "name": "document",
-        "groups": ["mode"]
-      },
-      {
         "name": "styles",
         "groups": ["styles"]
-      },
-      {
-        "name": "about",
-        "groups": ["about"]
       }
     ],
     // Remove the redundant buttons from toolbar groups defined above.

@@ -25,7 +25,7 @@
         "@eastdesire/jscolor": "^2.5.0",
         "air-datepicker": "^3.3.0",
         "autoprefixer": "^10.4.12",
-        "ckeditor4": "^4.15.1",
+        "ckeditor4": "^4.20.0",
         "debounce": "^1.2.1",
         "jquery": "^3.6.1",
         "moment": "^2.29.4",
