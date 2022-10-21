@@ -95,6 +95,7 @@ $(document).ready(() => {
 
           const message = `${entity} "${response.data[field]}" was successfully ${201 === response.status ? 'created' : 'modified'}.`
 
+          console.log(message)
           Notifications.push(message)
 
           if (forceRedirect) {
