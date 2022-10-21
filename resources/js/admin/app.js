@@ -5,6 +5,12 @@ $(document).ready(() => {
   // Show current notifications
   Notifications.show()
 
+  // Hide side menu empty drop-down
+  $('.side-menu > ul > li').each(function () {
+    if ($(this).children('ul').length && !$(this).find('li').length) {
+      $(this).hide()
+    }
+  })
   // Click side-menu element
   $('.side-menu').on('click', 'li', function () {
     if ($(this).children('ul').length) {

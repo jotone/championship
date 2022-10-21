@@ -90,7 +90,7 @@
                 @foreach($roles as $role)
                   <option
                     value="{{ $role->id }}"
-                    @if(isset($model) && $role->id == $model->role_id) selected @endif
+                    @if(isset($model) && $role->id == $model->role_id) selected @elseif($role->slug == 'regular') selected @endif
                   >
                     {{ $role->name }}
                   </option>
