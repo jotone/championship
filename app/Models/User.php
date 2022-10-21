@@ -140,7 +140,7 @@ class User extends Authenticatable implements JWTSubject
      */
     public function loginHistory(): HasMany
     {
-        return $this->hasMany(LoginHistory::class);
+        return $this->hasMany(LoginHistory::class, 'user_id', 'id');
     }
 
     /**
@@ -171,7 +171,14 @@ class User extends Authenticatable implements JWTSubject
         parent::boot();
 
         static::deleting(function ($model) {
-            TestingEntity::where(['entity' => self::class, 'entity_id' => $model->id])->delete();
+            // Remove user forms
+            $model->forms()->get()->each(fn($entity) => $entity->delete());
+            // Remove login history
+            $model->loginHistory()->get()->each(fn($entity) => $entity->delete());
+            // Remove password resets records
+            PasswordReset::where('email', $model->email)->get()->each(fn($entity) => $entity->delete());
+            // Remove email verification records
+            VerifiedEmail::where('email', $model->email)->get()->each(fn($entity) => $entity->delete());
         });
     }
 }

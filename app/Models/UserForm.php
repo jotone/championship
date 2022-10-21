@@ -47,4 +47,18 @@ class UserForm extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    /**
+     * Extend model behavior
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($model) {
+            // Remove related bets
+            $model->bets()->get()->each(fn($entity) => $entity->delete());
+        });
+    }
+
 }

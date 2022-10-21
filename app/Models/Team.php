@@ -47,8 +47,6 @@ class Team extends Model
             foreach ($model->thumbs as $thumb) {
                 unlink(public_path($thumb));
             }
-
-            TestingEntity::where(['entity' => self::class, 'entity_id' => $model->id])->delete();
         });
     }
 }

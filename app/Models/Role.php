@@ -46,8 +46,6 @@ class Role extends Model
         parent::boot();
 
         static::deleting(function ($model) {
-            TestingEntity::where(['entity' => self::class, 'entity_id' => $model->id])->delete();
-
             $model->permissions()->get()->each(fn($entity) => $entity->delete());
             $model->users()->get()->each(fn($entity) => $entity->role_id = null);
         });

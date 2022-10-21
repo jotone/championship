@@ -60,7 +60,6 @@ class CompetitionGroup extends Model
         parent::boot();
 
         static::deleting(function ($model) {
-            TestingEntity::where(['entity' => self::class, 'entity_id' => $model->id])->delete();
             // Remove teams
             $model->teams()->get()->each(fn($entity) => $entity->delete());
             // Remove games

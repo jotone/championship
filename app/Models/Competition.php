@@ -30,9 +30,19 @@ class Competition extends Model
      * @var array
      */
     public $casts = [
-        'start_at' => 'datetime',
+        'start_at'  => 'datetime',
         'finish_at' => 'datetime',
     ];
+
+    /**
+     * Related competition user forms
+     *
+     * @return HasMany
+     */
+    public function userForms()
+    {
+        return $this->hasMany(UserForm::class, 'competition_id', 'id');
+    }
 
     /**
      * Related games
@@ -86,9 +96,10 @@ class Competition extends Model
         parent::boot();
 
         static::deleting(function ($model) {
-            TestingEntity::where(['entity' => self::class, 'entity_id' => $model->id])->delete();
             // Remove groups
             $model->groups()->get()->each(fn($entity) => $entity->delete());
+            // Remove user forms
+            $model->userForms()->get()->each(fn($entity) => $entity->delete());
         });
     }
 }

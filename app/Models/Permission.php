@@ -43,16 +43,4 @@ class Permission extends Model
     {
         return $this->belongsTo(Role::class, 'role_id', 'id');
     }
-
-    /**
-     * Extend model behavior
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function ($model) {
-            TestingEntity::where(['entity' => self::class, 'entity_id' => $model->id])->delete();
-        });
-    }
 }
