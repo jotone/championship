@@ -1,18 +1,23 @@
 @extends('main.layouts.default')
 
 @section('content')
-  @foreach($competition->groups as $competition_group)
-    @if($competition_group->games->count())
-      <table class="content-table">
-        <thead>
-        <tr>
-          <th colspan="3"><span>{{ $competition_group->name }}</span></th>
-        </tr>
-        </thead>
+  <table class="content-table">
+    <thead>
+    <tr>
+      <th colspan="4"><span>Групи</span></th>
+    </tr>
+    </thead>
 
-        <tbody>
+    <tbody>
+    @foreach($competition->groups as $competition_group)
+      @if($competition_group->games->count())
         @foreach($competition_group->games as $game)
-          <tr>
+          <tr @if($loop->last) class="group-finish" @endif>
+            @if ($loop->first)
+            <td class="rotate" rowspan="{{ $competition_group->games->count() }}">
+              <span>{{ $competition_group->name }}</span>
+            </td>
+            @endif
             <td style="width: 30%">
               <span>{{ $game->hostTeam->ua }}</span>
             </td>
@@ -24,8 +29,8 @@
             </td>
           </tr>
         @endforeach
-        </tbody>
-      </table>
-    @endif
-  @endforeach
+      @endif
+    @endforeach
+    </tbody>
+  </table>
 @endsection

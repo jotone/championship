@@ -56,18 +56,15 @@ header {
   position: relative;
 
   .site-menu-wrap {
-    ul {
-
-      li {
-        a {
-          color: $black;
-          display: block;
-          font-size: 1.25rem;
-          font-weight: bold;
-          text-shadow: 0 0 5px white;
-          padding: 10px;
-          text-decoration: none;
-        }
+    ul li {
+      a {
+        color: $black;
+        display: block;
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-shadow: 0 0 5px white;
+        padding: 10px;
+        text-decoration: none;
       }
     }
   }
@@ -84,10 +81,7 @@ header {
   top: 50px;
   z-index: 101;
 
-  input {
-    margin: 10px 0;
-    padding: 4px 8px;
-  }
+  input {margin: 10px 0; padding: 4px 8px}
 
   &.active {display: block}
 }
@@ -178,17 +172,11 @@ header {
   justify-content: space-evenly;
   flex-wrap: wrap;
 
-  .participant-list-wrap {
-    width: 300px;
-  }
+  .participant-list-wrap {width: 300px}
 
-  .page-content-wrap {
-    width: 750px;
-  }
+  .page-content-wrap {width: 700px}
 
-  .real-score-wrap {
-    width: 350px;
-  }
+  .real-score-wrap {width: 402px}
 
   .team-score-input, .team-selector {
     background-color: white;
@@ -198,10 +186,7 @@ header {
     font-size: 1rem;
   }
 
-  .team-score-input {
-    text-align: center;
-    width: 60px;
-  }
+  .team-score-input {text-align: center; width: 60px}
 
   .team-selector {min-width: 250px}
 }
@@ -225,10 +210,8 @@ header {
   padding: 5%;
   text-align: justify;
 
-  p {
-    font-size: 1.125rem;
-    padding: 5px 0;
-  }
+  p {font-size: 1.125rem; padding: 5px 0}
+
   blockquote {
     background-color: $background;
     margin: 10px 0;
@@ -261,9 +244,7 @@ header {
       padding: 5px;
       margin: 5px 20px;
 
-      span {
-        font-size: 1.125rem;
-      }
+      span {font-size: 1.125rem}
     }
   }
 }
@@ -274,7 +255,7 @@ header {
 
   thead tr {
     background-color: $heading;
-    border: 2px solid $black;
+    border: 1px solid $black;
 
     th {
       color: white;
@@ -288,6 +269,8 @@ header {
 
     &.hovered {background-color: white}
 
+    &.group-finish:not(:last-child) {border-bottom: 2px solid $black}
+
     td {
       border: 1px solid $gray-light;
       padding: 8px 12px;
@@ -296,6 +279,14 @@ header {
       span {border-bottom: 1px solid transparent}
 
       span.match {border-bottom-color: $green-dark}
+    }
+
+    .rotate {
+      background-color: $heading;
+      border: 1px solid $black;
+      color: white;
+      text-orientation: upright;
+      writing-mode: vertical-rl;
     }
   }
 
@@ -331,14 +322,18 @@ header {
   }
 
   &.score-table {
-    width: 750px;
+    width: 700px;
 
     tbody tr {
       td:first-child, td:last-child {min-width: 250px}
     }
   }
 
-  &.real-score tbody tr td {min-width: 40px}
+  &.real-score tbody tr td {
+    min-width: 40px;
+
+    &:first-child, &:last-child {min-width: 160px}
+  }
 
   &.participant {
     tbody tr {
@@ -451,8 +446,16 @@ header {
 
   .content-table {
     tbody tr td {
-      a, span {
-        font-size: .75rem;
+      padding: 6px 8px;
+
+      a, span {font-size: .75rem}
+    }
+
+    &.real-score {
+      width: 322px;
+
+      tbody tr td {
+        &:first-child, &:last-child {min-width: 120px}
       }
     }
 
@@ -460,9 +463,7 @@ header {
       width: 445px;
 
       tbody tr {
-        td:first-child, td:last-child {
-          min-width: 150px;
-        }
+        td:first-child, td:last-child {min-width: 150px}
       }
     }
   }

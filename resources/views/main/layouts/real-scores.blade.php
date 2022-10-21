@@ -9,7 +9,7 @@
       <tbody>
       @foreach($competition->groups()->where('stage', 0)->get() as $group)
         @foreach($group->games as $game)
-          <tr>
+          <tr @if($loop->last) class="group-finish" @endif>
             <td>
               <span>{{ $game->hostTeam->ua }}</span>
             </td>
