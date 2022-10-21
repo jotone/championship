@@ -49,7 +49,7 @@ class PasswordResetController extends Controller
         // Check user exists
         if (!$user) {
             return view('main.password-reset.report', [
-                'message' => 'User with such email has not been found.'
+                'message' => 'Користувача з данним email-ом не знайдено.'
             ]);
         }
         // Fill password reset entity
@@ -69,7 +69,7 @@ class PasswordResetController extends Controller
         }
         // Render result page
         return view('main.password-reset.report', [
-            'message' => 'The letter with the further instructions was send to your email: ' . $args['email'] . '.'
+            'message' => 'Лист з наступними інструкціями був відісланий на ваш email: ' . $args['email'] . '.'
         ]);
     }
 
@@ -82,13 +82,15 @@ class PasswordResetController extends Controller
      */
     public function update(string $token, PasswordResetRequest $request): View
     {
+        // Resets entity
         $reset = PasswordReset::where('token', $token)->firstOrFail();
-
+        // Request data
         $args = $request->validated();
-
+        // Set user password
         $reset->user->password = $args['password'];
+        // Save user data
         $reset->user->save();
-
+        // Remove resets entity
         DB::delete('DELETE FROM password_resets WHERE email = ?', [$reset->email]);
 
         return view('main.password-reset.success');

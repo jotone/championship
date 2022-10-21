@@ -17,34 +17,41 @@ class AuthController extends Controller
      */
     public function login(Request $request): RedirectResponse
     {
+        // Get request data
         $credentials = $request->validate([
             'email'    => ['required', 'email'],
             'password' => ['required'],
         ]);
 
+        // Search user
         $user = User::firstWhere('email', $credentials['email']);
 
+        // Check if user verified his email
         if ($user && empty($user->email_verified_at)) {
             return back()
-                ->withErrors(['email' => 'You have not verified your email yet.'])
+                ->withErrors(['email' => 'Ваш email ще не підтверджено.'])
                 ->onlyInput('email');
         }
 
+        // Run authorization
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            // Create login history record
             LoginHistory::create([
                 'user_id'    => $user->id,
                 'ip'         => $request->ips(),
                 'user_agent' => $request->userAgent()
             ]);
+            // Set jwt to session
             Session::put('jwt-token', auth('api')->login($user));
+            // Regenerate session data
             $request->session()->regenerate();
 
             return redirect()->intended();
         }
 
         return back()
-            ->withErrors(['email' => 'The provided credentials do not match our records.'])
+            ->withErrors(['email' => 'Дані введені вами не відповідають жодному з наших записів.'])
             ->onlyInput('email');
     }
 
@@ -56,8 +63,9 @@ class AuthController extends Controller
      */
     public function logout(Request $request): RedirectResponse
     {
+        // Sign Out
         Auth::logout();
-
+        // Invalidate jwt session
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\AlreadyExists;
 
-class CustomPagesUpdateRequest extends CustomPagesStoreRequest
+class CustomPagesUpdateRequest extends DefaultFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -18,7 +18,8 @@ class CustomPagesUpdateRequest extends CustomPagesStoreRequest
             : $this->route()->parameter('page')->id;
         return [
             'name'             => ['required', 'string'],
-            'url'              => ['required', 'string', new AlreadyExists('custom_pages', $id)],
+            'url'              => ['nullable', 'string', new AlreadyExists('custom_pages', $id)],
+            'slug'             => ['nullable', 'string', new AlreadyExists('custom_pages', $id)],
             'editable'         => ['required'],
             'enabled'          => ['required'],
             'meta_title'       => ['nullable', 'string'],
@@ -26,5 +27,20 @@ class CustomPagesUpdateRequest extends CustomPagesStoreRequest
             'meta_keywords'    => ['nullable', 'string'],
             'content'          => ['nullable', 'string']
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation(): void
+    {
+        $url = $this->request->get('url', '');
+        $this->merge([
+            'url'      => !empty($url) ? ($url[0] !== '/' ? '/' . $url : $url) : null,
+            'editable' => checkboxResponseToBool($this->request->get('editable', false)),
+            'enabled'  => checkboxResponseToBool($this->request->get('enabled', false))
+        ]);
     }
 }

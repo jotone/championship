@@ -32,7 +32,7 @@ class RegistrationController extends Controller
     {
         // Create user
         $user = User::create($request->validated());
-        // Create verification enitity
+        // Create verification entity
         VerifiedEmail::create([
             'email' => $user->email,
             'token' => md5(uniqid() . $user->email)

@@ -44,7 +44,7 @@ class CompetitionGroupGameController extends BasicApiController
         $args = $request->validated();
 
         if (empty($args['entity'])) {
-            $team = CompetitionTeam::firstWhere(['group_id' => $args['group_id']]);
+            $team = CompetitionTeam::firstWhere('group_id', $args['group_id']);
             $args['entity'] = $team->entity;
         }
 

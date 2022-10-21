@@ -17,39 +17,34 @@ class UserFormController extends BasicMainController
      */
     public function show(): View
     {
-        // Competition model
-        $competition = Competition::with(['groups', 'teams'])->firstWhere(['slug' => 'world-cup-2022']);
-
-        $teamIDs = $competition->teams->pluck('entity_id')->toArray();
-
-        $teams = !empty($teamIDs)
-            ? $competition->teams[0]->entity::whereIn('id', $teamIDs)->orderBy('ua')->get()
-            : [];
-
-        $user_form = UserForm::with('bets')->firstWhere([
-            'user_id'        => Auth::id(),
-            'competition_id' => $competition->id
-        ]);
-
+        // Default values
         $bets = [];
+        $teamIDs = $this->teamIDs();
 
-        if (!empty($user_form)) {
-            foreach ($user_form->bets as $bet) {
-                $data = (object)[
-                    'scores' => $bet->scores,
-                    'points' => $bet->points
-                ];
-                if (!empty($bet->game_id)) {
-                    $bets[$bet->group_id][$bet->game_id] = $data;
-                } else {
-                    $bets[$bet->group_id] = $data;
+        if ($this->competition) {
+            $user_form = UserForm::with('bets')->firstWhere([
+                'user_id'        => Auth::id(),
+                'competition_id' => $this->competition->id
+            ]);
+
+            if (!empty($user_form)) {
+                foreach ($user_form->bets as $bet) {
+                    $data = (object)[
+                        'scores' => $bet->scores,
+                        'points' => $bet->points
+                    ];
+                    if (!empty($bet->game_id)) {
+                        $bets[$bet->group_id][$bet->game_id] = $data;
+                    } else {
+                        $bets[$bet->group_id] = $data;
+                    }
                 }
             }
         }
 
         return $this->renderIndexPage('main.user.form', [
-            'competition' => $competition,
-            'teams'       => $teams,
+            'competition' => $this->competition,
+            'teams'       => $this->teamList(false),
             'bets'        => $bets
         ]);
     }

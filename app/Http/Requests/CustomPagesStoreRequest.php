@@ -14,6 +14,7 @@ class CustomPagesStoreRequest extends DefaultFormRequest
         return [
             'name'             => ['required', 'string'],
             'url'              => ['required', 'string', 'unique:custom_pages,url'],
+            'slug'             => ['required', 'string', 'unique:custom_pages,slug'],
             'editable'         => ['required'],
             'enabled'          => ['required'],
             'meta_title'       => ['nullable', 'string'],
@@ -33,6 +34,7 @@ class CustomPagesStoreRequest extends DefaultFormRequest
         $url = $this->request->get('url');
         $this->merge([
             'url'      => $url[0] !== '/' ? '/' . $url : $url,
+            'slug'     => generateUrl($this->request->get('name')),
             'editable' => checkboxResponseToBool($this->request->get('editable', false)),
             'enabled'  => checkboxResponseToBool($this->request->get('enabled', false))
         ]);

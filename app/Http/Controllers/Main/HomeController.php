@@ -10,17 +10,34 @@ use Illuminate\View\View;
 class HomeController extends BasicMainController
 {
     /**
-     * Index page data
+     * Index page
      *
      * @param Request $request
      * @return View
      */
     public function index(Request $request): View
     {
+        // Get page slug
         $slug = str_replace('.index', '', $request->route()->getName());
 
         return $this->renderIndexPage('main.home.index', [
-            'page_data' => CustomPage::firstWhere(['slug' => $slug])
+            // Get page data by slug
+            'page_data' => CustomPage::firstWhere('slug', $slug)
+        ]);
+    }
+
+    /**
+     * Schedule page
+     *
+     * @return View
+     */
+    public function schedule(): View
+    {
+        return $this->renderIndexPage('main.home.schedule', [
+            // Get schedule page data
+            'page_data' => CustomPage::firstWhere('slug', 'schedule'),
+            // Competition team list
+            'teams'     => $this->teamList()
         ]);
     }
 }

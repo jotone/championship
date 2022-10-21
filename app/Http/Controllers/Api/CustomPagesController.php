@@ -56,6 +56,15 @@ class CustomPagesController extends BasicApiController
         // Request data
         $args = $request->validated();
 
+        if (empty($args['slug'])) {
+            $args['slug'] = $page->slug;
+        }
+        if (empty($args['url'])) {
+            $args['url'] = $page->url;
+        }
+
+        dd($args);
+
         // Modify model
         $page->update($args);
 

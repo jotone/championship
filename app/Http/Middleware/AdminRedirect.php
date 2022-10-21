@@ -24,9 +24,9 @@ class AdminRedirect
                 if ($user->role->slug == 'superadmin') {
                     return $next($request);
                 }
-                $permission = $user->role->permissions()->firstWhere([
-                    'controller' => get_class($request->route()->getController())
-                ]);
+                $permission = $user->role
+                    ->permissions()
+                    ->firstWhere('controller', get_class($request->route()->getController()));
                 if ($permission && in_array($request->route()->getActionMethod(), $permission->allowed_methods)) {
                     return $next($request);
                 }

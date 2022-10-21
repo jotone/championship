@@ -5,6 +5,10 @@
   <script src="/js/admin/custom-pages-form.js"></script>
 @endsection
 
+@php
+$disabled = isset($model) && !(Auth::user()->role->slug === 'superadmin' && !$model->editable);
+@endphp
+
 @section('content')
   <div class="form-wrap">
     <form
@@ -30,7 +34,7 @@
                 autocomplete="off"
                 class="form-input col-100"
                 name="name"
-                data-slug="input.url"
+                @if(!$disabled) data-slug="input.url" @endif
                 placeholder="Name&hellip;"
                 required
                 value="{{ $model->name ?? '' }}"
@@ -45,6 +49,7 @@
               <input
                 autocomplete="off"
                 class="form-input col-100"
+                @if($disabled) disabled @endif
                 name="url"
                 placeholder="URL&hellip;"
                 required
@@ -54,6 +59,21 @@
           </div>
 
           @if(Auth::user()->role->slug === 'superadmin')
+            <div class="form-row">
+              <label class="caption">
+                <span>Slug:</span>
+
+                <input
+                  autocomplete="off"
+                  class="form-input col-100"
+                  name="slug"
+                  placeholder="Slug&hellip;"
+                  required
+                  value="{{ $model->slug ?? '' }}"
+                >
+              </label>
+            </div>
+
             <div class="form-row">
               <label>
                 <input name="editable" type="checkbox" @if(isset($model) && $model->editable) checked @endif>
@@ -69,7 +89,6 @@
             </label>
           </div>
         </fieldset>
-
 
         <fieldset class="col-50">
           <legend>

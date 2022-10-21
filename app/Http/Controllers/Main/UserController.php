@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Main;
 
 use App\Classes\FileHelper;
 use App\Http\Controllers\BasicMainController;
-use App\Models\Competition;
 use App\Models\User;
 use Illuminate\Http\{Response, Request};
 use Illuminate\Support\Facades\{Auth, Hash, Validator};
@@ -20,28 +19,35 @@ class UserController extends BasicMainController
      */
     public function show(string $md5_id = null): View
     {
-        $view = empty($md5_id) ? 'main.user.profile' : 'main.user.info';
-
+        // View current user data if user ID encoded with md5 does not exist
         $user = empty($md5_id) ? Auth::user() : User::whereRaw("md5(id) = '{$md5_id}'")->first();
-
+        // Throw 404 if the user not fount
         abort_if(!$user, 404);
+        // if $md5_id does not exist -> view current user | view selected profile
+        $view = empty($md5_id) ? 'main.user.profile' : 'main.user.info';
 
         return $this->renderIndexPage($view, ['user' => $user]);
     }
 
     /**
-     * @param string $md5_id
+     * View user results
      *
+     * @param string $md5_id
      * @return View
      */
     public function results(string $md5_id): View
     {
+        // Return 404 if there is no active competition
+        abort_if(empty($this->competition), 404);
+
+        // User model
         $user = User::with([
             'forms' => function ($q) {
-                return $q->with('bets')->where('competition_id', 1);
+                return $q->with('bets')->where('competition_id', $this->competition->id);
             }
         ])->whereRaw("md5(id) = '{$md5_id}'")->firstOrFail();
 
+        // Get user form bets
         $bets = [];
         foreach ($user->forms[0]->bets as $bet) {
             if (!empty($bet->game_id) && $bet->game) {
@@ -51,18 +57,10 @@ class UserController extends BasicMainController
             }
         }
 
-        $competition = Competition::with('teams')->findOrFail(1);
-
-        $teamIDs = $competition->teams->pluck('entity_id')->toArray();
-
-        $teams = !empty($teamIDs)
-            ? $competition->teams[0]->entity::whereIn('id', $teamIDs)->orderBy('ua')->get()
-            : [];
-
         return $this->renderIndexPage('main.user.results', [
             'bets'  => $bets,
             'user'  => $user,
-            'teams' => $teams->keyBy('id')
+            'teams' => $this->teamList()
         ]);
     }
 

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Classes\FileHelper;
 use App\Http\Controllers\BasicApiController;
 use App\Http\Requests\UserStoreRequest;
-use App\Models\User;
+use App\Jobs\SendRegistrationVerificationEmail;
+use App\Models\{Settings, User, VerifiedEmail};
 use App\Rules\AlreadyExists;
 use Illuminate\Http\{Request, Response};
 use Illuminate\Support\Facades\{Auth, Validator};
@@ -55,10 +56,15 @@ class UsersController extends BasicApiController
      */
     public function store(UserStoreRequest $request): Response
     {
+        // Check the free registration is enabled
+        $registration_enable = Settings::firstWhere('key', 'registration_enable');
+        // Additional arguments
+        $args = [
+            'created_by'        => Auth::id(),
+            'email_verified_at' => $registration_enable->converted_value ? null : now()
+        ];
         // Create user
-        $user = User::create(array_merge($request->validated(), [
-            'created_by' => Auth::id()
-        ]));
+        $user = User::create(array_merge($request->validated(), $args));
         // Check img_url file exists
         if ($request->hasFile('img_url')) {
             try {
@@ -77,6 +83,18 @@ class UsersController extends BasicApiController
             $user->img_url = '/images/noname_big.jpg';
         }
         $user->save();
+
+        if ($registration_enable->converted_value) {
+            // Create verification entity
+            VerifiedEmail::create([
+                'email' => $user->email,
+                'token' => md5(uniqid() . $user->email)
+            ]);
+            // Send email confirmation
+            if (config('app.env') !== 'testing') {
+                SendRegistrationVerificationEmail::dispatch($user);
+            }
+        }
 
         return response($user, 201);
     }

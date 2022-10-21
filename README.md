@@ -7,9 +7,10 @@
 - ~~custom pages~~
 - Pages:
   - ~~View page data~~ 
-  - Editable for admins 
+  - ~~Editable for admins~~
+  - ~~Schedule~~
+  - Groups
   - Pivot table (united table)
-  - Schedule
   - Comment (Forum)
 - Dashboard for admin
 - Admin
