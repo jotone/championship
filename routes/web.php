@@ -65,6 +65,7 @@ Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
 
 // Games Schedule page
 Route::get('/schedule', [HomeController::class, 'schedule'])->name('schedule.index');
+Route::get('/groups', [HomeController::class, 'groups'])->name('groups.index');
 
 // Custom pages
 if (Schema::hasTable('custom_pages')) {

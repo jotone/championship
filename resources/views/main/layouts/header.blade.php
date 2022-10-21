@@ -47,7 +47,7 @@
       <li><a href="#">Форум</a></li>
       <li><a href="#">Зведена таблиця</a></li>
       <li><a href="{{ route('rules.index') }}">Правила</a></li>
-      <li><a href="#">Групи</a></li>
+      <li><a href="{{ route('groups.index') }}">Групи</a></li>
       <li><a href="{{ route('schedule.index') }}">Розклад</a></li>
       <li><a href="{{ route('help.index') }}">Допомога</a></li>
     </ul>

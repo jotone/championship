@@ -20,7 +20,7 @@ class BasicMainController extends Controller
             'groups' => fn($q) => $q->with([
                 'games' => fn ($inner_query) => $inner_query->orderBy('start_at')
             ])->orderBy('stage')->orderBy('position'),
-            'teams'
+            'teams' => fn ($q) => $q->orderBy('score')
         ])->firstWhere('slug', 'world-cup-2022');
     }
 
