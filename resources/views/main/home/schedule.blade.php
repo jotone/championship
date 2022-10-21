@@ -13,13 +13,13 @@
         <tbody>
         @foreach($competition_group->games as $game)
           <tr>
-            <td>
+            <td style="width: 30%">
               <span>{{ $game->hostTeam->ua }}</span>
             </td>
-            <td>
+            <td style="width: 30%">
               <span>{{ $game->guestTeam->ua }}</span>
             </td>
-            <td>
+            <td style="width: 40%">
               <span>{{ !empty($game->start_at) ? $game->start_at->translatedFormat('j/M/Y H:i') : '' }}</span>
             </td>
           </tr>

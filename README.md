@@ -9,14 +9,19 @@
   - ~~View page data~~ 
   - ~~Editable for admins~~
   - ~~Schedule~~
-  - Groups
+  - ~~Groups~~
   - Pivot table (united table)
   - Comment (Forum)
 - Dashboard for admin
 - Admin
-  - Set games number to group
   - Settings
     - header image
     - logo image
     - Registration
     - Comments
+    - Languages
+    - User interface lang
+  - Edit group
+    - edit page
+    - Set games number to group
+    - texts
