@@ -10,14 +10,44 @@
   - ~~Editable for admins~~
   - ~~Schedule~~
   - ~~Groups~~
+  - Comments (Forum)
+    - Front (Sections)
+      - Model
+      - Create
+      - Store
+      - List
+      - Edit
+      - Update
+    - Admin (Sections)
+      - Create
+      - Store
+      - List
+      - Remove
+      - Edit
+      - Update
+    - Front (Comments)
+      - Model
+      - Create
+      - Store
+      - List
+      - Edit
+      - Update
+      - Remove
+    - Admin (Comments)
+      - Create
+      - Store
+      - List
+      - Edit
+      - Update
+      - Remove
   - Pivot table (united table)
-  - Comment (Forum)
 - Dashboard for admin
 - Admin
   - Settings
     - header image
     - logo image
-    - Registration
+    - Registration (enable)
+    - Forum (enable)
     - Comments
     - Languages
     - User interface lang

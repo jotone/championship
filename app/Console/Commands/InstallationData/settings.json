@@ -28,6 +28,14 @@
         "thumb_large": [150, 90],
         "resize": [400, 300]
       }
+    },
+    {
+      "caption": "Forum image",
+      "key": "forum_img",
+      "value": {
+        "thumb_large": [150, 90],
+        "resize": [400, 300]
+      }
     }
   ]
 }
