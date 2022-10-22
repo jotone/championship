@@ -4,10 +4,9 @@ namespace App\Models;
 
 use App\Traits\ModelThumbsTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, HasMany};
 
-class ForumSection extends Model
+class ForumTopic extends Model
 {
     use ModelThumbsTrait;
 
@@ -24,7 +23,6 @@ class ForumSection extends Model
         'img_url',
         'description',
         'text',
-        'images',
         'pinned',
         'position'
     ];
@@ -35,12 +33,11 @@ class ForumSection extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'images' => 'array',
         'pinned' => 'boolean',
     ];
 
     /**
-     * Section related author
+     * Forum topic related author
      *
      * @return BelongsTo
      */
@@ -50,13 +47,13 @@ class ForumSection extends Model
     }
 
     /**
-     * Forum section messages
+     * Forum topic messages
      *
      * @return HasMany
      */
     public function messages(): HasMany
     {
-        return $this->hasMany(ForumMessage::class, 'section_id', 'id');
+        return $this->hasMany(ForumMessage::class, 'topic_id', 'id');
     }
 
     /**
@@ -67,16 +64,8 @@ class ForumSection extends Model
         parent::boot();
 
         static::deleting(function ($model) {
-            // remove forum images
-            unlink(public_path($model->img_url));
-            foreach ($model->thumbs as $thumb) {
-                unlink(public_path($thumb));
-            }
-            if (!empty($model->images)) {
-                foreach ($model->images as $img)  {
-                    unlink(public_path($img));
-                }
-            }
+            // remove forum image
+            self::removeImage($model);
             // Remove related messages
             $model->messages()->get()->each(fn($entity) => $entity->delete());
         });

@@ -43,10 +43,7 @@ class Team extends Model
 
         static::deleting(function ($model) {
             // remove team image
-            unlink(public_path($model->img_url));
-            foreach ($model->thumbs as $thumb) {
-                unlink(public_path($thumb));
-            }
+            self::removeImage($model);
         });
     }
 }

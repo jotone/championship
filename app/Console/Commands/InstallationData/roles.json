@@ -22,11 +22,19 @@
         "methods": ["index", "create", "edit"]
       },
       {
+        "controller": "App\\Http\\Controllers\\Admin\\ForumController",
+        "methods": ["index", "create", "edit"]
+      },
+      {
         "controller": "App\\Http\\Controllers\\Api\\UsersController",
         "methods": ["index", "show", "store", "update", "destroy"]
       },
       {
         "controller": "App\\Http\\Controllers\\Api\\CustomPagesController",
+        "methods": ["index", "store", "update", "destroy"]
+      },
+      {
+        "controller": "App\\Http\\Controllers\\Api\\ForumController",
         "methods": ["index", "store", "update", "destroy"]
       }
     ]

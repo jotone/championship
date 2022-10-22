@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\{DB, Validator};
 class CompetitionGroupGameController extends BasicApiController
 {
     /**
-     * Get competition groups list
+     * Get competition game list
      *
      * @param Request $request
      * @return Response
@@ -142,6 +142,7 @@ class CompetitionGroupGameController extends BasicApiController
      *
      * @param CompetitionGame $competition_group_game
      * @return Response
+     * @throws \Exception
      */
     public function destroy(CompetitionGame $competition_group_game): Response
     {

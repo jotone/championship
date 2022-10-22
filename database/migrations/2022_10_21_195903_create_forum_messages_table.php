@@ -15,7 +15,7 @@ class CreateForumMessagesTable extends Migration
     {
         Schema::create('forum_messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('section_id');
+            $table->unsignedInteger('topic_id');
             $table->unsignedInteger('user_id');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('message');

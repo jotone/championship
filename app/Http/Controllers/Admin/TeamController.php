@@ -11,7 +11,7 @@ use Illuminate\View\View;
 class TeamController extends BasicAdminController
 {
     /**
-     * Country list page
+     * Team list page
      *
      * @param Request $request
      * @return View

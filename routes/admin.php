@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\{
     CountryController,
     CustomPagesController,
     DashboardController,
+    ForumController,
     RolesController,
     TeamController,
     UsersController
@@ -40,5 +41,7 @@ Route::group(['as' => 'users.', 'prefix' => '/users'], function () {
 });
 
 Route::resource('/users', UsersController::class)->only(['index', 'create', 'edit']);
+
+Route::resource('/forum', ForumController::class)->only(['index', 'create', 'edit']);
 
 Route::resource('/pages', CustomPagesController::class)->only(['index', 'create', 'edit']);

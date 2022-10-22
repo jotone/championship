@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForumSectionsTable extends Migration
+class CreateForumTopicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateForumSectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('forum_sections', function (Blueprint $table) {
+        Schema::create('forum_topics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('url');
@@ -21,7 +21,6 @@ class CreateForumSectionsTable extends Migration
             $table->string('img_url')->nullable();
             $table->string('description')->nullable();
             $table->text('text')->nullable();
-            $table->json('images')->nullable();
             $table->boolean('pinned')->default(0);
             $table->unsignedSmallInteger('position');
             $table->timestamps();
@@ -35,6 +34,6 @@ class CreateForumSectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forum_sections');
+        Schema::dropIfExists('forum_topics');
     }
 }

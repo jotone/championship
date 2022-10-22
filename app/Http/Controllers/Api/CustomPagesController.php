@@ -17,20 +17,7 @@ class CustomPagesController extends BasicApiController
      */
     public function index(Request $request): Response
     {
-        // Get request data
-        $args = $this->parseRequest($request);
-
-        // Run query
-        $content = CustomPage::query();
-
-        // Set search value
-        $search = $args['search'] ?? null;
-        // Check search value isset
-        if (!empty($search)) {
-            $content = $content->where('name', 'like', '%' . $search . '%');
-        }
-
-        return $this->apiIndexResponse($content, $args);
+        return $this->renderIndexPage($request, CustomPage::class);
     }
 
     /**
@@ -62,8 +49,6 @@ class CustomPagesController extends BasicApiController
         if (empty($args['url'])) {
             $args['url'] = $page->url;
         }
-
-        dd($args);
 
         // Modify model
         $page->update($args);

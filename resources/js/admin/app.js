@@ -27,6 +27,11 @@ $(document).ready(() => {
   }
   $(`.side-menu a[href="${url}"]`).parents('li').addClass('active')
 
+  // Init CKEDITOR
+  if (typeof CKEDITOR !== 'undefined') {
+    CKEDITOR.replaceAll('.cke-init')
+  }
+
   // Convert text to slug
   $('[data-slug]').each(function () {
     // Get converter options

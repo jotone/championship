@@ -70,9 +70,10 @@ class CompetitionGroupTeamController extends BasicApiController
 
     /**
      * Remove competition team
-     *
+     *\
      * @param CompetitionTeam $competition_group_team
      * @return Response
+     * @throws \Exception
      */
     public function destroy(CompetitionTeam $competition_group_team): Response
     {

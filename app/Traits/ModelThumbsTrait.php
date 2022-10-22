@@ -28,4 +28,22 @@ trait ModelThumbsTrait
 
         return $result;
     }
+
+    /**
+     * Remove images
+     *
+     * @param $model
+     * @return void
+     */
+    protected static function removeImage($model)
+    {
+        if (is_file(public_path($model->img_url))) {
+            unlink(public_path($model->img_url));
+        }
+        foreach ($model->thumbs as $thumb) {
+            if (is_file(public_path($thumb))) {
+                unlink(public_path($thumb));
+            }
+        }
+    }
 }

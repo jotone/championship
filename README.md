@@ -11,20 +11,11 @@
   - ~~Schedule~~
   - ~~Groups~~
   - Comments (Forum)
+    - ~~Admin (Sections)~~
     - Front (Sections)
       - Model
-      - Create
-      - Store
       - List
-      - Edit
-      - Update
-    - Admin (Sections)
-      - Create
-      - Store
-      - List
-      - Remove
-      - Edit
-      - Update
+      - Pin
     - Front (Comments)
       - Model
       - Create
