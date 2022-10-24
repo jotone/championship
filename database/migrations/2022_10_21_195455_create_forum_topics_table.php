@@ -19,7 +19,7 @@ class CreateForumTopicsTable extends Migration
             $table->string('url');
             $table->unsignedInteger('created_by');
             $table->string('img_url')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->text('text')->nullable();
             $table->boolean('pinned')->default(0);
             $table->unsignedSmallInteger('position');

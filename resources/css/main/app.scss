@@ -423,6 +423,61 @@ header {
   }
 }
 
+.forum-list-wrap {
+  width: 100%;
+
+  li {
+    background-color: white;
+    margin: 15px 0;
+
+    .forum-list-item {
+      padding: 20px 20px 0 20px;
+
+      img {
+        float: left;
+        object-fit: contain;
+        max-width: 175px;
+        padding: 0 20px 8px 0;
+      }
+    }
+  }
+
+  .forum-list-body {
+    .forum-list-title {
+      color: $heading;
+      display: block;
+      font-size: 1.25rem;
+      font-weight: bold;
+      padding-bottom: 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover {text-decoration: underline}
+    }
+
+    .forum-list-description {font-size: 1rem}
+  }
+
+  .forum-list-info {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    .forum-list-text, .forum-list-pin, .forum-list-edit {
+      color: $gray;
+      font-size: 0.875rem;
+      margin-left: 8px;
+      padding: 10px;
+    }
+
+    .forum-list-edit:hover, .forum-list-pin:hover {color: $red}
+
+    .forum-list-pin {rotate: 0deg; transition: rotate .5s ease}
+
+    .forum-list-pin:hover {rotate: 45deg;transition: rotate .5s ease}
+  }
+}
+
 @media (max-width: 1455px) {
   .content-wrap {
     font-size: .75rem;

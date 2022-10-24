@@ -64,7 +64,7 @@ class ForumController extends BasicApiController
      */
     public function update(ForumTopic $forum, Request $request): Response
     {
-        $args = $request->only(['name', 'url', 'img_url', 'description', 'text', 'position']);
+        $args = $request->only(['name', 'url', 'img_url', 'description', 'text', 'position', 'pinned']);
 
         $rules = [];
         foreach ($args as $key => $val) {
@@ -80,6 +80,10 @@ class ForumController extends BasicApiController
                     break;
                 case 'img_url':
                     $rules[$key] = ['nullable', 'file', 'mimes:jpeg,jpg,png'];
+                    break;
+                case 'pinned':
+                    $rules[$key] = ['required', 'numeric'];
+                    $forum->$key = checkboxResponseToBool($val);
                     break;
                 case 'position':
                     $rules[$key] = ['required', 'numeric'];
@@ -112,6 +116,12 @@ class ForumController extends BasicApiController
 
         $forum->save();
 
+
+        $author_name = $forum->author()->first()->name;
+
+        $forum->messages_count = $forum->messages()->count();
+        $forum->author = ['name' => $author_name];
+
         return response($forum, 200);
     }
 
@@ -124,5 +134,17 @@ class ForumController extends BasicApiController
     public function destroy(ForumTopic $forum): Response
     {
         return $this->defaultRemove($forum);
+    }
+
+    /**
+     * List query. Add messages count row
+     *
+     * @param $model
+     * @return mixed
+     */
+    protected function map($model)
+    {
+        $model->messages_count = $model->messages()->count();
+        return $model;
     }
 }

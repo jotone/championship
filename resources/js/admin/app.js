@@ -1,4 +1,4 @@
-import {Notifications} from "./libs/notifications";
+import {Notifications} from './libs/notifications';
 import {debounce} from "debounce";
 
 $(document).ready(() => {

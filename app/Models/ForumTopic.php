@@ -41,7 +41,7 @@ class ForumTopic extends Model
      *
      * @return BelongsTo
      */
-    public function createdBy(): BelongsTo
+    public function author(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }

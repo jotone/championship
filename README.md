@@ -13,24 +13,25 @@
   - Comments (Forum)
     - ~~Admin (Sections)~~
     - Front (Sections)
-      - Model
-      - List
-      - Pin
-    - Front (Comments)
-      - Model
-      - Create
-      - Store
-      - List
-      - Edit
-      - Update
-      - Remove
+      - ~~List~~
+      - ~~Pin~~
+      - Sort
     - Admin (Comments)
+      - Model
       - Create
       - Store
       - List
       - Edit
       - Update
       - Remove
+    - Front (Comments)
+      - Create
+      - Store
+      - List
+      - Edit
+      - Update
+      - Remove
+    
   - Pivot table (united table)
 - Dashboard for admin
 - Admin

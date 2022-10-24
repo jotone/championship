@@ -9,15 +9,17 @@
     "/js/admin/user-list.js": "/js/admin/user-list.js",
     "/js/admin/app.js": "/js/admin/app.js",
     "/js/admin/main.js": "/js/admin/main.js",
+    "/js/forum-topics.js": "/js/forum-topics.js",
     "/js/app.js": "/js/app.js",
     "/js/profile.js": "/js/profile.js",
     "/js/results.js": "/js/results.js",
     "/js/user-form.js": "/js/user-form.js",
-    "/css/admin/app.css": "/css/admin/app.css",
     "/css/solid.css": "/css/solid.css",
+    "/css/regular.css": "/css/regular.css",
     "/css/fontawesome.css": "/css/fontawesome.css",
     "/css/reset.css": "/css/reset.css",
     "/css/app.css": "/css/app.css",
     "/css/admin/competition.css": "/css/admin/competition.css",
+    "/css/admin/app.css": "/css/admin/app.css",
     "/css/air-datepicker.css": "/css/air-datepicker.css"
 }

@@ -75,7 +75,7 @@ Route::get('/schedule', [HomeController::class, 'schedule'])->name('schedule.ind
 // Games by groups
 Route::get('/groups', [HomeController::class, 'groups'])->name('groups.index');
 // Forum
-Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
+Route::resource('/forum', ForumController::class)->only(['index', 'show']);
 
 // Custom pages
 if (Schema::hasTable('custom_pages')) {

@@ -37,3 +37,16 @@ function checkboxResponseToBool($value): bool
 {
     return in_array('' . $value, ['1', 'true', 'on']);
 }
+
+/**
+ * Uppercase first letter
+ *
+ * @param string $str
+ * @param string $encoding
+ * @return string
+ */
+function mb_ucfirst(string $str, string $encoding = 'UTF-8'): string
+{
+    $firstChar = mb_substr($str, 0, 1, $encoding);
+    return mb_strtoupper($firstChar, $encoding) . mb_substr($str, 1, null, $encoding);
+}

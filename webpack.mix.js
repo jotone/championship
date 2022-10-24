@@ -16,6 +16,7 @@ mix
   // Admin
   .sass('./resources/css/reset.scss', './public/css')
   .sass('./resources/css/font-awesome/fontawesome.scss', './public/css')
+  .sass('./resources/css/font-awesome/regular.scss', './public/css')
   .sass('./resources/css/font-awesome/solid.scss', './public/css')
   .sass('./resources/css/admin/app.scss', './public/css/admin')
   .sass('./resources/css/admin/competition.scss', './public/css/admin')
@@ -31,6 +32,7 @@ mix
   .js('./resources/js/admin/main.js', './public/js/admin/main.js')
   // Main
   .sass('./resources/css/main/app.scss', './public/css/')
+  .js('./resources/js/main/forum-topics/app.js','./public/js/forum-topics.js').vue()
   .js('./resources/js/main/app.js','./public/js/app.js')
   .js('./resources/js/main/profile.js','./public/js/profile.js')
   .js('./resources/js/main/results.js','./public/js/results.js')
