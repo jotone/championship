@@ -29,6 +29,10 @@
     <a :href="editRoute(topic.id)" class="forum-list-edit">
       <i class="far fa-edit"></i>
     </a>
+    <span class="forum-list-move">
+      <i class="fas fa-ellipsis-v"></i>
+      <i class="fas fa-ellipsis-v"></i>
+    </span>
   </div>
 </template>
 

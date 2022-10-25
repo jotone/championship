@@ -42,19 +42,6 @@
           <div class="forum-list-info">
             <span class="forum-list-text">Cтворив: {{ $topic->author->name }}</span>
             <span class="forum-list-text">Комментарів: {{ $topic->messages->count() }}</span>
-
-            {{--@if(Auth::check() && Auth::user()->role->slug != 'regular')
-              <a
-                href="{{ route('forum.update', $topic->id) }}"
-                class="forum-list-pin"
-                title="Закріпити тему"
-              >
-                <i class="{{ $topic->pinned ? 'fas' : 'far' }} fa-thumbtack"></i>
-              </a>
-              <a href="{{ route('admin.forum.edit', $topic->id) }}" class="forum-list-edit">
-                <i class="far fa-edit"></i>
-              </a>
-            @endif--}}
           </div>
         </li>
       @endforeach

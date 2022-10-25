@@ -12,10 +12,7 @@
   - ~~Groups~~
   - Comments (Forum)
     - ~~Admin (Sections)~~
-    - Front (Sections)
-      - ~~List~~
-      - ~~Pin~~
-      - Sort
+    - ~~Front (Sections)~~
     - Admin (Comments)
       - Model
       - Create

@@ -19,9 +19,10 @@ class ForumController extends BasicMainController
         return $this->renderIndexPage('main.forum.index', [
             'jwt'    => Session::has('jwt-token') ? Session::get('jwt-token') : null,
             'routes' => [
-                'list'   => route('api.forum.index') . '?take=0&with[]=author&order[by]=name',
-                'edit'   => route('admin.forum.edit', 0),
-                'update' => route('api.forum.update', 0)
+                'list'    => route('api.forum.index') . '?take=0&with[]=author&order[by]=name',
+                'edit'    => route('admin.forum.edit', 0),
+                'update'  => route('api.forum.update', 0),
+                'upgrade' => route('api.forum.upgrade')
             ],
             'topics' => ForumTopic::with('messages')->orderBy('pinned', 'desc')->orderBy('position')->get()
         ]);

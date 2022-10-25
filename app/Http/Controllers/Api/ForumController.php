@@ -126,6 +126,21 @@ class ForumController extends BasicApiController
     }
 
     /**
+     * Update forum topics position
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function upgrade(Request $request): Response
+    {
+        $positions = $request->get('positions', []);
+        foreach ($positions as $position => $id) {
+            ForumTopic::where('id', $id)->update(['position' => $position]);
+        }
+        return response([]);
+    }
+
+    /**
      * Remove forum topic
      *
      * @param ForumTopic $forum

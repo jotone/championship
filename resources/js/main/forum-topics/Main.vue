@@ -1,5 +1,5 @@
 <template>
-  <ul class="forum-list-wrap">
+  <ul class="forum-list-wrap" :data-route="routes.upgrade">
     <li data-pin v-for="(topic) in pinned" :data-id="topic.id">
       <Topic :topic="topic"></Topic>
     </li>
@@ -26,15 +26,6 @@ export default {
     this.routes = $('#forumList').data('routes')
   },
   mounted() {
-    window.$.axios.interceptors.request.use(config => {
-      const $jwt = $('meta[name="jwt"]')
-      if ($jwt.length) {
-        config.headers.Authorization = `Bearer ${$jwt.attr('content')}`;
-      }
-
-      return config;
-    });
-
     $.axios.get(this.routes.list).then(response => {
       const topics = response.data.collection
       topics.sort((a, b) => a.position > b.position ? 1 : -1)

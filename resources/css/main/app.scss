@@ -58,11 +58,11 @@ header {
   .site-menu-wrap {
     ul li {
       a {
-        color: $black;
+        color: white;
         display: block;
         font-size: 1.25rem;
         font-weight: bold;
-        text-shadow: 0 0 5px white;
+        text-shadow: 0 0 5px $black;
         padding: 10px;
         text-decoration: none;
       }
@@ -463,7 +463,7 @@ header {
     display: flex;
     justify-content: flex-end;
 
-    .forum-list-text, .forum-list-pin, .forum-list-edit {
+    .forum-list-text, .forum-list-pin, .forum-list-edit, .forum-list-move {
       color: $gray;
       font-size: 0.875rem;
       margin-left: 8px;
@@ -475,6 +475,14 @@ header {
     .forum-list-pin {rotate: 0deg; transition: rotate .5s ease}
 
     .forum-list-pin:hover {rotate: 45deg;transition: rotate .5s ease}
+
+    .forum-list-move {
+      cursor: grab;
+
+      i {margin-left: 2px}
+
+      &:active {cursor: grabbing}
+    }
   }
 }
 
