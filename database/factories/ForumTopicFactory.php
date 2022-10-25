@@ -12,8 +12,8 @@ $factory->define(ForumTopic::class, function (Faker $faker) {
         'url'         => generateUrl($name),
         'created_by'  => User::where('role_id', Role::where('slug', 'superadmin')->value('id'))->value('id'),
         'img_url'     => mt_rand(0, 1) ? $faker->imageUrl : null,
-        'description' => implode(' ', $faker->words(mt_rand(45, 100))),
-        'text'        => $faker->realText,
+        'description' => $faker->realText(mt_rand(45, 100)),
+        'text'        => '<p>' . $faker->realText(600) . '</p>',
         'pinned'      => mt_rand(0, 1),
         'position'    => 0
     ];

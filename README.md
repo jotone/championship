@@ -13,22 +13,21 @@
   - Comments (Forum)
     - ~~Admin (Sections)~~
     - ~~Front (Sections)~~
-    - Admin (Comments)
-      - Model
-      - Create
-      - Store
-      - List
-      - Edit
-      - Update
-      - Remove
+    - ~~Admin (Comments)~~
     - Front (Comments)
-      - Create
-      - Store
-      - List
-      - Edit
-      - Update
-      - Remove
-    
+      - ~~List~~
+      - User action
+        - ~~Highlight user answers~~
+        - ~~Create~~
+        - ~~Store~~
+        - ~~Answer~~
+        - Edit
+        - Update
+        - Remove
+      - Admin Actions
+        - Edit
+        - Remove
+        - Select specified user comments
   - Pivot table (united table)
 - Dashboard for admin
 - Admin

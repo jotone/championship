@@ -11,6 +11,7 @@ class ForumTopic extends Model
     use ModelThumbsTrait;
 
     protected $settings_key = 'forum_img';
+
     /**
      * The attributes that are mass assignable.
      *

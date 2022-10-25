@@ -1,10 +1,10 @@
 <template>
-  <div class="forum-list-item" :data-i="JSON.stringify(topic)">
-    <a href="#" v-if="!!topic.img_url">
+  <div class="forum-list-item">
+    <a :href="showRoute(topic.url)" v-if="!!topic.img_url">
       <img :src="topic.img_url" alt="Зображення відсутнє&hellip;">
     </a>
     <div class="forum-list-body">
-      <a class="forum-list-title" href="#">
+      <a class="forum-list-title" :href="showRoute(topic.url)">
         {{ topic.name }}
       </a>
 
@@ -16,7 +16,7 @@
 
   <div class="forum-list-info">
     <span class="forum-list-text">Cтворив: {{ topic.author.name }}</span>
-    <span class="forum-list-text">Комментарів: {{ topic.messages_count }}</span>
+    <a :href="showRoute(topic.url)" class="forum-list-text">Коментарів: {{ topic.messages_count }}</a>
 
     <a
       :href="updateRoute(topic.id)"
@@ -64,6 +64,15 @@ export default {
      */
     editRoute(id) {
       return this.buildUrl(this.$parent.routes.edit, id, 2)
+    },
+    /**
+     * Topic page route
+     *
+     * @param url
+     * @returns {string}
+     */
+    showRoute(url) {
+      return this.buildUrl(this.$parent.routes.show, url, 1)
     },
     /**
      * Update forum topic link

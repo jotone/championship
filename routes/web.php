@@ -3,6 +3,7 @@
 use App\Http\Controllers\Main\{
     AuthController,
     ForumController,
+    ForumMessageController,
     HomeController,
     PasswordResetController,
     RegistrationController,
@@ -76,6 +77,8 @@ Route::get('/schedule', [HomeController::class, 'schedule'])->name('schedule.ind
 Route::get('/groups', [HomeController::class, 'groups'])->name('groups.index');
 // Forum
 Route::resource('/forum', ForumController::class)->only(['index', 'show']);
+// Forum message
+Route::resource('/forum-message', ForumMessageController::class)->only(['store', 'update', 'destroy']);
 
 // Custom pages
 if (Schema::hasTable('custom_pages')) {

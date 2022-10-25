@@ -47,7 +47,7 @@ class AuthController extends Controller
             // Regenerate session data
             $request->session()->regenerate();
 
-            return redirect()->intended();
+            return redirect()->back();
         }
 
         return back()

@@ -16,7 +16,7 @@ class CreateForumMessagesTable extends Migration
         Schema::create('forum_messages', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('topic_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('author_id');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('message');
             $table->boolean('pinned')->default(0);
@@ -24,6 +24,7 @@ class CreateForumMessagesTable extends Migration
             $table->unsignedInteger('edited_by')->nullable();
             $table->string('edit_reason')->nullable();
             $table->timestamp('edited_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

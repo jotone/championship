@@ -24,12 +24,12 @@
         <li @if($topic->pinned) data-pin @endif>
           <div class="forum-list-item">
             @if(!empty($topic->img_url))
-              <a href="#">
+              <a href="{{ route('forum.show', $topic->url) }}">
                 <img src="{{ $topic->img_url }}" alt="Зображення відсутнє&hellip;">
               </a>
             @endif
             <div class="forum-list-body">
-              <a class="forum-list-title" href="#">
+              <a class="forum-list-title" href="{{ route('forum.show', $topic->url) }}">
                 {!! $topic->name !!}
               </a>
 
@@ -41,7 +41,9 @@
 
           <div class="forum-list-info">
             <span class="forum-list-text">Cтворив: {{ $topic->author->name }}</span>
-            <span class="forum-list-text">Комментарів: {{ $topic->messages->count() }}</span>
+            <a href="{{ route('forum.show', $topic->url) }}" class="forum-list-text">
+              Коментарів: {{ $topic->messages->count() }}
+            </a>
           </div>
         </li>
       @endforeach

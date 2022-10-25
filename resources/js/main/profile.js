@@ -1,33 +1,13 @@
+import { initCKE } from "./libs/common"
+
 $(document).ready(() => {
-  CKEDITOR.replace($('textarea[name="info"]')[0], {
-    language: 'ua',
-    removePlugins: 'sourcearea',
-    // Define the toolbar groups as it is a more accessible solution.
-    toolbarGroups: [
-      {
-        "name": "basicstyles",
-        "groups": ["basicstyles"]
-      },
-      {
-        "name": "paragraph",
-        "groups": ["list", "blocks"]
-      },
-      {
-        "name": "styles",
-        "groups": ["styles"]
-      }
-    ],
-    // Remove the redundant buttons from toolbar groups defined above.
-    removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar,PasteFromWord'
-  })
+  initCKE($('textarea[name="info"]'))
 
   $('form').on('submit', function (e) {
     e.preventDefault()
 
     const formData = new FormData($(this)[0])
-
-    // formData.append('info', editor.html.get())
-
+    formData.append('info', CKEDITOR.instances.info.getData())
     $.axios.post($(this).attr('action'), formData)
       .then(response => {
         if (200 === response.status) {

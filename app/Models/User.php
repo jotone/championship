@@ -164,6 +164,16 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * User forum messages
+     *
+     * @return HasMany
+     */
+    public function forumMessages(): HasMany
+    {
+        return $this->hasMany(ForumMessage::class, 'author_id', 'id');
+    }
+
+    /**
      * User role
      *
      * @return BelongsTo
@@ -187,6 +197,8 @@ class User extends Authenticatable implements JWTSubject
             $model->forms()->get()->each(fn($entity) => $entity->delete());
             // Remove related forum topics
             $model->forumTopics()->get()->each(fn($entity) => $entity->delete());
+            // Remove related forum messages
+            $model->forumMessages()->get()->each(fn($entity) => $entity->delete());
             // Remove login history
             $model->loginHistory()->get()->each(fn($entity) => $entity->delete());
             // Remove password resets records
