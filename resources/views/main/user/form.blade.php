@@ -19,7 +19,7 @@
         <h1>Зараз не відбувається ніяких змагань</h1>
       </div>
     @else
-      <fieldset @if(!empty($bets)) disabled @endif>
+      <fieldset @if(!empty($bets) || time() > $competition->start_at->timestamp) disabled @endif>
         @foreach($competition->groups as $group)
           <table class="content-table score-table">
             <thead>
@@ -102,7 +102,7 @@
       </fieldset>
     @endempty
 
-    @if(empty($bets) && $competition)
+    @if((empty($bets) || time() > $competition->start_at->timestamp) && $competition)
       <div class="content-block-wrap flex-c">
         <button type="submit" class="btn regular">
           <span>Отправить анкету</span>
