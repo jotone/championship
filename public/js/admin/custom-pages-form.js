@@ -1,1 +1,6 @@
-$(document).ready((function(){CKEDITOR.replace("content")}));
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	
+/******/ 	
+/******/ })()
+;

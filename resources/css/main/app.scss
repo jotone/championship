@@ -10,7 +10,11 @@
   font-weight: normal;
 }
 
-body {min-width: 320px; font-family: "Futturra", sans-serif;}
+body {
+  background-color: $background;
+  min-width: 320px;
+  font-family: "Futturra", sans-serif;
+}
 
 .flex-c {justify-content: center}
 
@@ -161,7 +165,6 @@ header {
 }
 
 .main-container {
-  background-color: $background;
   margin-bottom: 60px;
   padding: 0 20px;
 }
@@ -359,6 +362,125 @@ header {
   width: 100%;
 }
 
+.subject-image-wrap {
+  text-align: center;
+  width: 100%;
+
+  img {
+    object-fit: cover;
+    max-height: 450px;
+    width: 100%;
+  }
+}
+
+.subject-text-wrap {
+  background-color: $white-bg;
+  line-height: 1.375rem;
+  font-size: 1.125rem;
+  margin: 15px 0;
+  padding: 15px;
+  text-indent: 1.5rem;
+
+  p {line-height: 1.375rem; font-size: 1.125rem}
+
+  .subject-controls-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 15px;
+
+    .subject-etc {color: $gray; font-size: .75rem}
+  }
+}
+
+.comment-list-wrap {
+  position: relative;
+
+  .comment-etc-wrap .comment-misc, .comment-etc-wrap .answer-action, .comment-form-misc > span {
+    color: $gray;
+    font-size: .75rem;
+    margin-left: 10px
+  }
+
+  #comment-form {
+    display: none;
+    margin-top: 15px;
+    position: relative;
+    width: 100%;
+
+    .comment-form-misc {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+  }
+
+  .add-comment-wrap {margin: 25px 0 10px}
+
+  .comment-form-misc, .add-comment-wrap {
+    button {
+      background-color: $background;
+      border: 1px solid $heading;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.25rem;
+      padding: 10px;
+
+      &:active, &.active {background-color: $green-dark;color: $background}
+    }
+  }
+  .comment-form-misc button {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+
+  > ul {
+    padding: 10px;
+    position: relative;
+
+    li {
+      margin: 15px 0;
+
+      &.comment-author {background-color: $white-bg}
+
+      > ul {
+        margin-left: 25px;
+        position: relative;
+      }
+
+      > ul > ul > ul > ul > ul {margin-left: 0}
+    }
+  }
+
+  .comment-text-wrap {
+    border-left: 1px solid $gray-light;
+    padding: 5px 5px 5px 15px;
+
+    .comment-text {line-height: 1.125rem; font-size: 1rem}
+
+    .comment-reason {
+      font-size: 1rem;
+      color: $blue;
+      font-style: italic;
+    }
+  }
+
+  .comment-etc-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+
+    .answer-action {
+      border-bottom: 1px dashed $gray;
+      text-decoration: none;
+
+      &.active {border-bottom-color: transparent}
+    }
+  }
+}
+
 .content-block-wrap {
   background-color: $white-bg;
   border: 1px solid $gray-light;
@@ -423,6 +545,72 @@ header {
   }
 }
 
+.forum-list-wrap {
+  width: 100%;
+
+  li {
+    background-color: white;
+    margin: 15px 0;
+
+    .forum-list-item {
+      min-height: 120px;
+      padding: 20px 20px 0 20px;
+
+      img {
+        float: left;
+        object-fit: contain;
+        max-width: 175px;
+        padding: 0 20px 8px 0;
+      }
+    }
+  }
+
+  .forum-list-body {
+    .forum-list-title {
+      color: $heading;
+      display: block;
+      font-size: 1.25rem;
+      font-weight: bold;
+      padding-bottom: 20px;
+      text-decoration: none;
+      text-transform: uppercase;
+
+      &:hover {text-decoration: underline}
+    }
+
+    .forum-list-description {font-size: 1rem}
+  }
+
+  .forum-list-info {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+
+    .forum-list-text, .forum-list-pin, .forum-list-edit, .forum-list-move {
+      color: $gray;
+      font-size: 0.875rem;
+      margin-left: 8px;
+      padding: 10px;
+      text-decoration: none;
+    }
+
+    a.forum-list-text:hover {text-decoration: underline}
+
+    .forum-list-edit, .forum-list-pin, .forum-list-move {&:hover {color: $red}}
+
+    .forum-list-pin {rotate: 0deg; transition: rotate .5s ease}
+    .forum-list-pin:hover {rotate: 45deg; transition: rotate .5s ease}
+
+    .forum-list-move {
+      cursor: grab;
+
+      i {margin-left: 2px}
+
+      &:active {cursor: grabbing}
+    }
+  }
+}
+
 @media (max-width: 1455px) {
   .content-wrap {
     font-size: .75rem;
@@ -443,6 +631,8 @@ header {
       min-width: 150px;
     }
   }
+
+  .subject-image-wrap img {max-height: 350px}
 
   .content-table {
     tbody tr td {
@@ -477,4 +667,6 @@ header {
 
     .real-score-wrap {width: 45%}
   }
+
+  .subject-image-wrap img {max-height: 250px}
 }

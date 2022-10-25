@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\{
     CompetitionGroupTeamController,
     CountryController,
     CustomPagesController,
+    ForumController,
     RolesController,
     TeamController,
     UsersController
@@ -34,6 +35,9 @@ Route::resource('/competition-groups', CompetitionGroupController::class)->excep
 Route::resource('/competitions', CompetitionController::class)->except(['create', 'edit', 'show']);
 
 Route::resource('/countries', CountryController::class)->except(['create', 'edit', 'show']);
+
+Route::patch('/forum/upgrade', [ForumController::class, 'upgrade'])->name('forum.upgrade');
+Route::resource('/forum', ForumController::class)->except(['create', 'edit', 'show']);
 
 Route::resource('/pages', CustomPagesController::class)->except(['create', 'edit', 'show']);
 

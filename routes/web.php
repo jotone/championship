@@ -1,7 +1,14 @@
 <?php
 
 use App\Http\Controllers\Main\{
-    AuthController, HomeController, PasswordResetController, RegistrationController, UserController, UserFormController
+    AuthController,
+    ForumController,
+    ForumMessageController,
+    HomeController,
+    PasswordResetController,
+    RegistrationController,
+    UserController,
+    UserFormController
 };
 use App\Models\{CustomPage, Settings};
 use Illuminate\Support\Facades\{Route, Schema};
@@ -33,7 +40,8 @@ if (!empty($registration_enable) && $registration_enable->converted_value) {
         // Send registration request
         Route::post('/registration', [RegistrationController::class, 'store'])->name('store');
         // Email confirmation route
-        Route::get('/email-confirmation/{token}', [RegistrationController::class, 'confirmation'])->name('confirmation');
+        Route::get('/email-confirmation/{token}', [RegistrationController::class,
+                                                   'confirmation'])->name('confirmation');
     });
 }
 
@@ -65,7 +73,12 @@ Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
 
 // Games Schedule page
 Route::get('/schedule', [HomeController::class, 'schedule'])->name('schedule.index');
+// Games by groups
 Route::get('/groups', [HomeController::class, 'groups'])->name('groups.index');
+// Forum
+Route::resource('/forum', ForumController::class)->only(['index', 'show']);
+// Forum message
+Route::resource('/forum-message', ForumMessageController::class)->only(['store', 'update', 'destroy']);
 
 // Custom pages
 if (Schema::hasTable('custom_pages')) {

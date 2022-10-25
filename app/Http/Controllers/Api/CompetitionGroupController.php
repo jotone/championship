@@ -128,6 +128,7 @@ class CompetitionGroupController extends BasicApiController
      *
      * @param CompetitionGroup $competition_group
      * @return Response
+     * @throws \Exception
      */
     public function destroy(CompetitionGroup $competition_group): Response
     {

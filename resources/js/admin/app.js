@@ -1,4 +1,4 @@
-import {Notifications} from "./libs/notifications";
+import {Notifications} from './libs/notifications';
 import {debounce} from "debounce";
 
 $(document).ready(() => {
@@ -26,6 +26,11 @@ $(document).ready(() => {
     url = urlPath.slice(0, -2).join('/')
   }
   $(`.side-menu a[href="${url}"]`).parents('li').addClass('active')
+
+  // Init CKEDITOR
+  if (typeof CKEDITOR !== 'undefined') {
+    CKEDITOR.replaceAll('.cke-init')
+  }
 
   // Convert text to slug
   $('[data-slug]').each(function () {

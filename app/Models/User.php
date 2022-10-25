@@ -154,6 +154,26 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Related forum topics
+     *
+     * @return HasMany
+     */
+    public function forumTopics(): HasMany
+    {
+        return $this->hasMany(ForumTopic::class, 'created_by', 'id');
+    }
+
+    /**
+     * User forum messages
+     *
+     * @return HasMany
+     */
+    public function forumMessages(): HasMany
+    {
+        return $this->hasMany(ForumMessage::class, 'author_id', 'id');
+    }
+
+    /**
      * User role
      *
      * @return BelongsTo
@@ -171,8 +191,14 @@ class User extends Authenticatable implements JWTSubject
         parent::boot();
 
         static::deleting(function ($model) {
+            // remove user image
+            self::removeImage($model);
             // Remove user forms
             $model->forms()->get()->each(fn($entity) => $entity->delete());
+            // Remove related forum topics
+            $model->forumTopics()->get()->each(fn($entity) => $entity->delete());
+            // Remove related forum messages
+            $model->forumMessages()->get()->each(fn($entity) => $entity->delete());
             // Remove login history
             $model->loginHistory()->get()->each(fn($entity) => $entity->delete());
             // Remove password resets records
