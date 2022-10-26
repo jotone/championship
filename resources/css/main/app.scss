@@ -23,7 +23,7 @@ body {
 .flex-fe {justify-content: flex-end}
 
 header {
-  background-color: $blue;
+  background-color: $heading;
   align-items: center;
   display: flex;
   justify-content: flex-end;
@@ -55,8 +55,8 @@ header {
   align-items: flex-start;
   display: flex;
   justify-content: flex-end;
-  min-height: 250px;
-  padding: 40px;
+  min-height: 150px;
+  padding: 20px;
   position: relative;
 
   .site-menu-wrap {
@@ -64,10 +64,10 @@ header {
       a {
         color: white;
         display: block;
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-weight: bold;
         text-shadow: 0 0 5px $black;
-        padding: 10px;
+        padding: 5px;
         text-decoration: none;
       }
     }
@@ -396,7 +396,10 @@ header {
 .comment-list-wrap {
   position: relative;
 
-  .comment-etc-wrap .comment-misc, .comment-etc-wrap .answer-action, .comment-form-misc > span {
+  .comment-etc-wrap .comment-misc,
+  .comment-etc-wrap .answer-action,
+  .comment-etc-wrap .comment-link,
+  .comment-form-misc > span {
     color: $gray;
     font-size: .75rem;
     margin-left: 10px
