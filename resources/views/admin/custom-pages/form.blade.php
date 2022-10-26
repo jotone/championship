@@ -24,18 +24,18 @@ $disabled = isset($model) && !(Auth::user()->role->slug === 'superadmin' && !$mo
 
       <div class="row col-100">
         <fieldset class="col-30">
-          <legend>Main information</legend>
+          <legend>Основна інформація</legend>
 
           <div class="form-row">
             <label class="caption">
-              <span>Name:</span>
+              <span>Назва:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="name"
                 @if(!$disabled) data-slug="input.url" @endif
-                placeholder="Name&hellip;"
+                placeholder="Назва&hellip;"
                 required
                 value="{{ $model->name ?? '' }}"
               >
@@ -61,13 +61,13 @@ $disabled = isset($model) && !(Auth::user()->role->slug === 'superadmin' && !$mo
           @if(Auth::user()->role->slug === 'superadmin')
             <div class="form-row">
               <label class="caption">
-                <span>Slug:</span>
+                <span>Аліас:</span>
 
                 <input
                   autocomplete="off"
                   class="form-input col-100"
                   name="slug"
-                  placeholder="Slug&hellip;"
+                  placeholder="Аліас&hellip;"
                   required
                   value="{{ $model->slug ?? '' }}"
                 >
@@ -143,7 +143,7 @@ $disabled = isset($model) && !(Auth::user()->role->slug === 'superadmin' && !$mo
 
       <div class="row">
         <button type="submit" class="btn success">
-          Save
+          Зберегти
         </button>
       </div>
     </form>

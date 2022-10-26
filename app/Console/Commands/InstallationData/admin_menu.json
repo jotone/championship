@@ -1,53 +1,53 @@
 [
   {
-    "name": "Dashboard",
+    "name": "Адмін панель",
     "url": "admin.index",
     "img_url": "fas fa-home"
   },
   {
-    "name": "Championship",
+    "name": "Чемпіонати",
     "url": "admin.competitions.index",
     "img_url": "fas fa-sitemap"
   },
   {
-    "name": "Teams And Counties",
+    "name": "Команди та країни",
     "img_url": "fas fa-globe",
     "inner": [
       {
-        "name": "Countries",
+        "name": "Країни",
         "url": "admin.countries.index",
         "img_url": "fas fa-globe-africa"
       },
       {
-        "name": "Teams",
+        "name": "Команди",
         "url": "admin.countries.teams.index",
         "img_url": "fas fa-users-class"
       }
     ]
   },
   {
-    "name": "Users and Permissions",
+    "name": "Ролі та користувачі",
     "img_url": "fas fa-users",
     "inner": [
       {
-        "name": "Users",
+        "name": "Користувачі",
         "url": "admin.users.index",
         "img_url": "fas fa-user"
       },
       {
-        "name": "Roles",
+        "name": "Ролі",
         "url": "admin.users.roles.index",
         "img_url": "fas fa-user-tag"
       }
     ]
   },
   {
-    "name": "Forum",
+    "name": "Форум",
     "url": "admin.forum.index",
     "img_url": "fas fa-user-tie"
   },
   {
-    "name": "Pages",
+    "name": "Сторінки",
     "url": "admin.pages.index",
     "img_url": "fas fa-file"
   }

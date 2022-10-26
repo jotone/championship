@@ -28,7 +28,7 @@ class CompetitionController extends BasicAdminController
                 'destroy' => route('api.competitions.destroy', 0)
             ],
             'search' => $args['search'] ?? '',
-            'title'  => 'Competition list'
+            'title'  => 'Список Чемпіонатів'
         ]);
     }
 
@@ -42,7 +42,7 @@ class CompetitionController extends BasicAdminController
     {
         return $this->renderPage('admin.competitions.form', $request, [
             'tab'   => 'competition',
-            'title' => 'Create Competition'
+            'title' => 'Створення Чемпіонату'
         ]);
     }
 
@@ -58,7 +58,7 @@ class CompetitionController extends BasicAdminController
         return $this->renderPage('admin.competitions.form', $request, [
             'model'  => $competition,
             'tab'    => $request->has('tab') ? $request->get('tab') : 'competition',
-            'title'  => 'Edit Competition',
+            'title'  => 'Редагування Чемпіонату',
             'routes' => [
                 'competition' => [
                     'list' => route('api.competitions.index') . '?with[]=groups'

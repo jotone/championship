@@ -31,7 +31,7 @@ class RolesController extends BasicAdminController
                 'destroy' => route('api.roles.destroy', 0)
             ],
             'search' => $args['search'] ?? '',
-            'title'  => 'Role list'
+            'title'  => 'Список Ролей'
         ]);
     }
 
@@ -45,7 +45,7 @@ class RolesController extends BasicAdminController
     {
         return $this->renderPage('admin.roles.form', $request, [
             'permissions' => $this->permissionList(['app/Http/Controllers/Admin', 'app/Http/Controllers/Api']),
-            'title'       => 'Create Role'
+            'title'       => 'Створення Ролі'
         ]);
     }
 
@@ -62,7 +62,7 @@ class RolesController extends BasicAdminController
             'model'             => $role,
             'model_permissions' => $role->permissions()->get()->keyBy('controller')->toArray(),
             'permissions'       => $this->permissionList(['app/Http/Controllers/Admin', 'app/Http/Controllers/Api']),
-            'title'             => 'Edit Role'
+            'title'             => 'Редагування Ролі'
         ]);
     }
 }

@@ -1,28 +1,28 @@
 {
   "common": [
     {
-      "caption": "Site title",
+      "caption": "Назва сайту",
       "key": "site_title",
       "value": "Чемпіонат 2022"
     }
   ],
   "registration": [
     {
-      "caption": "Enable registration",
+      "caption": "Увімкнути реєстрацію",
       "key": "registration_enable",
       "value": false
     }
   ],
   "images": [
     {
-      "caption": "User image",
+      "caption": "Зображення користувача",
       "key": "user_img",
       "value": {
         "resize": [400, 300]
       }
     },
     {
-      "caption": "Team image",
+      "caption": "Зображення команди",
       "key": "team_img",
       "value": {
         "thumb_large": [150, 90],
@@ -30,7 +30,7 @@
       }
     },
     {
-      "caption": "Forum image",
+      "caption": "Зображення форуму",
       "key": "forum_img",
       "value": {
         "thumb_large": [150, 90],

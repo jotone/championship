@@ -16,14 +16,14 @@
       <div class="row col-100">
         <div class="form-row col-100">
           <label class="caption">
-            <span>Type:</span>
+            <span>Тип:</span>
 
             <select name="entity" class="form-select col-100">
               <option value="App\Models\Team" data-url="{{ route('api.teams.index') }}?order[by]=ua">
-                Team
+                Команда
               </option>
               <option value="App\Models\Country" data-url="{{ route('api.countries.index') }}?order[by]=ua">
-                Country
+                Країна
               </option>
             </select>
           </label>
@@ -38,7 +38,7 @@
 
       <div class="row" style="margin-top: 15px">
         <button type="submit" class="btn success">
-          Save
+          Зберегти
         </button>
       </div>
     </form>

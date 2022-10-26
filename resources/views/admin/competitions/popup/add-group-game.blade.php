@@ -17,7 +17,7 @@
       <div class="row col-100">
         <div class="form-row col-100">
           <label class="caption">
-            <span>Host team:</span>
+            <span>Господарі:</span>
 
             <select name="host_team" class="form-select col-100">
             </select>
@@ -26,7 +26,7 @@
 
         <div class="form-row col-100">
           <label class="caption">
-            <span>Guest team:</span>
+            <span>Гості:</span>
 
             <select name="guest_team" class="form-select col-100">
             </select>
@@ -36,7 +36,7 @@
 
       <div class="row" style="margin-top: 15px">
         <button type="submit" class="btn success">
-          Save
+          Зберегти
         </button>
       </div>
     </form>

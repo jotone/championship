@@ -5,10 +5,14 @@
     "level": 0
   },
   {
-    "name": "Admin",
+    "name": "Адміністратор",
     "slug": "admin",
     "level": 127,
     "permissions": [
+      {
+        "controller": "App\\Http\\Controllers\\Admin\\CompetitionController",
+        "methods": ["index", "create", "edit"]
+      },
       {
         "controller": "App\\Http\\Controllers\\Admin\\UsersController",
         "methods": ["index", "create", "edit"]
@@ -30,6 +34,22 @@
         "methods": ["index", "show", "store", "update", "destroy"]
       },
       {
+        "controller": "App\\Http\\Controllers\\Api\\CompetitionController",
+        "methods": ["index", "store", "update", "destroy"]
+      },
+      {
+        "controller": "App\\Http\\Controllers\\Api\\CompetitionGroupController",
+        "methods": ["index", "store", "update", "upgrade", "destroy"]
+      },
+      {
+        "controller": "App\\Http\\Controllers\\Api\\CompetitionGroupGameController",
+        "methods": ["index", "show", "store", "update", "destroy"]
+      },
+      {
+        "controller": "App\\Http\\Controllers\\Api\\CompetitionGroupTeamController",
+        "methods": ["store", "destroy"]
+      },
+      {
         "controller": "App\\Http\\Controllers\\Api\\CustomPagesController",
         "methods": ["index", "store", "update", "destroy"]
       },
@@ -40,7 +60,7 @@
     ]
   },
   {
-    "name": "Regular",
+    "name": "Звичайний",
     "slug": "regular",
     "level": 255
   }

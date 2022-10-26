@@ -30,7 +30,7 @@ class UsersController extends BasicAdminController
                 'role'    => route('admin.users.roles.edit', 0)
             ],
             'search' => $args['search'] ?? '',
-            'title'  => 'User list'
+            'title'  => 'Список Користувачів'
         ]);
     }
 
@@ -44,7 +44,7 @@ class UsersController extends BasicAdminController
     {
         return $this->renderPage('admin.users.form', $request, [
             'roles' => Role::where('level', '>=', 0)->orderBy('name')->get(),
-            'title' => 'Create User'
+            'title' => 'Створення Користувача'
         ]);
     }
 
@@ -60,7 +60,7 @@ class UsersController extends BasicAdminController
         return $this->renderPage('admin.users.form', $request, [
             'model' => $user,
             'roles' => Role::where('level', '>=', 0)->orderBy('name')->get(),
-            'title' => 'Create User'
+            'title' => 'Редагування Користувача'
         ]);
     }
 }

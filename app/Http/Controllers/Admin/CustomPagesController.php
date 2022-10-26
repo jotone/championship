@@ -28,7 +28,7 @@ class CustomPagesController extends BasicAdminController
                 'destroy' => route('api.pages.destroy', 0)
             ],
             'search' => $args['search'] ?? '',
-            'title'  => 'Pages list'
+            'title'  => 'Список Сторінок'
         ]);
     }
 
@@ -41,7 +41,7 @@ class CustomPagesController extends BasicAdminController
     public function create(Request $request): View
     {
         return $this->renderPage('admin.custom-pages.form', $request, [
-            'title' => 'Create Page'
+            'title' => 'Створення Сторінки'
         ]);
     }
 
@@ -56,7 +56,7 @@ class CustomPagesController extends BasicAdminController
     {
         return $this->renderPage('admin.custom-pages.form', $request, [
             'model' => $page,
-            'title' => 'Edit Page'
+            'title' => 'Редагування Сторінки'
         ]);
     }
 }

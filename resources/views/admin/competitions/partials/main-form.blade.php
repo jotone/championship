@@ -13,18 +13,18 @@
 
   <div class="row col-100">
     <fieldset class="col-30">
-      <legend>Main information</legend>
+      <legend>Основна інформація</legend>
 
       <div class="form-row">
         <label class="caption">
-          <span>Name:</span>
+          <span>Назва:</span>
 
           <input
             autocomplete="off"
             class="form-input col-100"
             name="name"
             data-slug="input.slug"
-            placeholder="Name&hellip;"
+            placeholder="Назва&hellip;"
             required
             value="{{ $model->name ?? '' }}"
           >
@@ -33,13 +33,13 @@
 
       <div class="form-row">
         <label class="caption">
-          <span>Slug:</span>
+          <span>Аліас:</span>
 
           <input
             autocomplete="off"
             class="form-input col-100"
             name="slug"
-            placeholder="Slug&hellip;"
+            placeholder="Аліас&hellip;"
             required
             value="{{ $model->slug ?? '' }}"
           >
@@ -48,13 +48,13 @@
 
       <div class="form-row">
         <label class="caption">
-          <span>Start date:</span>
+          <span>Дата початку:</span>
 
           <input
             autocomplete="off"
             class="form-input col-100 datepicker"
             name="start_at"
-            placeholder="Start date&hellip;"
+            placeholder="Дата початку&hellip;"
             required
             value="{{ isset($model) ? $model->start_at->format('d.m.Y') : '' }}"
           >
@@ -63,13 +63,13 @@
 
       <div class="form-row">
         <label class="caption">
-          <span>Finish date:</span>
+          <span>Дата закінчення:</span>
 
           <input
             autocomplete="off"
             class="form-input col-100 datepicker"
             name="finish_at"
-            placeholder="Finish date&hellip;"
+            placeholder="Дата закінчення&hellip;"
             value="{{ isset($model) ? $model->finish_at->format('d.m.Y') : '' }}"
           >
         </label>
@@ -77,13 +77,13 @@
 
       <div class="form-row">
         <label class="caption">
-          <span>Number of Groups:</span>
+          <span>Кількість груп:</span>
 
           <input
             autocomplete="off"
             class="form-input col-100"
             name="groups_number"
-            placeholder="Number of Groups&hellip;"
+            placeholder="Кількість груп&hellip;"
             required
             type="number"
             min="1"
@@ -95,13 +95,13 @@
 
       <div class="form-row">
         <label class="caption">
-          <span>Number of Rounds:</span>
+          <span>Кількість раундів:</span>
 
           <input
             autocomplete="off"
             class="form-input col-100"
             name="rounds"
-            placeholder="Number of Rounds&hellip;"
+            placeholder="Кількість раундів&hellip;"
             required
             type="number"
             min="1"
@@ -113,12 +113,12 @@
     </fieldset>
 
     <fieldset class="col-50">
-      <legend>Misc information</legend>
+      <legend>Додаткова інформація</legend>
 
       <div class="form-row">
 
         <label class="caption">
-          <span>Upload Image:</span>
+          <span>Завантажити зображення:</span>
         </label>
 
         <div class="image-upload-wrap">
@@ -130,10 +130,10 @@
           <div class="buttons-wrap">
             <input name="img_url" type="file" style="display: none" accept="image/jpeg,image/png,image/svg+xml">
             <button name="upload" class="btn" type="button">
-              <span>Upload</span>
+              <span>Завантажити</span>
             </button>
             <button name="clear" class="btn cancel" type="button">
-              <span>Clear</span>
+              <span>Очистити</span>
             </button>
           </div>
         </div>
@@ -141,14 +141,14 @@
 
       <div class="form-row">
         <label class="caption">
-          <span>Background color:</span>
+          <span>Колір фону:</span>
 
           <input
             autocomplete="off"
             class="form-input col-100"
             name="bg_color"
             data-jscolor="{format:&quot;hex&quot;}"
-            placeholder="Background color&hellip;"
+            placeholder="Колір фону&hellip;"
             required
             value="{{ $model->bg_color ?? '#ffffff' }}"
           >
@@ -157,14 +157,14 @@
 
       <div class="form-row">
         <label class="caption">
-          <span>Text color:</span>
+          <span>Колір тексту:</span>
 
           <input
             autocomplete="off"
             class="form-input col-100"
             name="text_color"
             data-jscolor="{format:&quot;hex&quot;}"
-            placeholder="Text color&hellip;"
+            placeholder="Колір тексту&hellip;"
             required
             value="{{ $model->text_color ?? '#0d0d0d' }}"
           >
@@ -175,7 +175,7 @@
 
   <div class="row">
     <button type="submit" class="btn success">
-      Save
+      Зберегти
     </button>
   </div>
 </form>

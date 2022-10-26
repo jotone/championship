@@ -28,7 +28,7 @@ class ForumController extends BasicAdminController
                 'destroy' => route('api.forum.destroy', 0)
             ],
             'search' => $args['search'] ?? '',
-            'title'  => 'Forum Topic list'
+            'title'  => 'Список Форумів'
         ]);
     }
 
@@ -41,7 +41,7 @@ class ForumController extends BasicAdminController
     public function create(Request $request): View
     {
         return $this->renderPage('admin.forum.form', $request, [
-            'title' => 'Create Forum Topic'
+            'title' => 'Створення Форуму'
         ]);
     }
 
@@ -56,7 +56,7 @@ class ForumController extends BasicAdminController
     {
         return $this->renderPage('admin.forum.form', $request, [
             'model' => $forum,
-            'title' => 'Edit Forum Topic'
+            'title' => 'Редагування Форуму'
         ]);
     }
 }

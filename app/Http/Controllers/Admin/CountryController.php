@@ -28,7 +28,7 @@ class CountryController extends BasicAdminController
                 'destroy' => route('api.countries.destroy', 0)
             ],
             'search' => $args['search'] ?? '',
-            'title'  => 'Country list'
+            'title'  => 'Список Країн'
         ]);
     }
 
@@ -41,7 +41,7 @@ class CountryController extends BasicAdminController
     public function create(Request $request): View
     {
         return $this->renderPage('admin.countries.form', $request, [
-            'title' => 'Create Country'
+            'title' => 'Створення Країни'
         ]);
     }
 
@@ -56,7 +56,7 @@ class CountryController extends BasicAdminController
     {
         return $this->renderPage('admin.countries.form', $request, [
             'model' => $country,
-            'title' => 'Edit Country'
+            'title' => 'Редагування Країни'
         ]);
     }
 }

@@ -15,7 +15,7 @@
 
       <div class="row col-100">
         <fieldset class="col-30">
-          <legend>Main information</legend>
+          <legend>Основна інформація</legend>
 
           <div class="form-row">
             <label class="caption">
@@ -130,7 +130,7 @@
       </div>
       <div class="row">
         <button type="submit" class="btn success">
-          Save
+          Зберегти
         </button>
       </div>
     </form>

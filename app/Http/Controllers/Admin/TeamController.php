@@ -30,7 +30,7 @@ class TeamController extends BasicAdminController
                 'country' => route('admin.countries.edit', 0)
             ],
             'search' => $args['search'] ?? '',
-            'title'  => 'Team list'
+            'title'  => 'Список Команд'
         ]);
     }
 
@@ -44,7 +44,7 @@ class TeamController extends BasicAdminController
     {
         return $this->renderPage('admin.teams.form', $request, [
             'countries' => Country::orderBy('ua')->get(),
-            'title'     => 'Create Team'
+            'title'     => 'Створення Команди'
         ]);
     }
 
@@ -60,7 +60,7 @@ class TeamController extends BasicAdminController
         return $this->renderPage('admin.teams.form', $request, [
             'countries' => Country::orderBy('ua')->get(),
             'model'     => $team,
-            'title'     => 'Edit Team'
+            'title'     => 'Редагування Команди'
         ]);
     }
 }

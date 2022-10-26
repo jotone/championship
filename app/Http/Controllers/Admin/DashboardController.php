@@ -11,7 +11,7 @@ class DashboardController extends BasicAdminController
     public function index(Request $request): View
     {
         return $this->renderPage('admin.dashboard.index', $request, [
-            'title'  => 'Dashboard'
+            'title'  => 'Адмін панель'
         ]);
     }
 }
