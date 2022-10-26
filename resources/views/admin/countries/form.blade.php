@@ -5,7 +5,7 @@
     <form
       action="{{ isset($model) ? route('api.countries.update', $model->id) : route('api.countries.store') }}"
       data-xhr
-      data-msg="Country.ua"
+      data-msg="Країна.ua"
       method="POST"
     >
       @isset($model)
@@ -19,13 +19,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Country code:</span>
+              <span>Код країни:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="code"
-                placeholder="Country code&hellip;"
+                placeholder="Код країни&hellip;"
                 required
                 value="{{ $model->code ?? '' }}"
               >
@@ -34,13 +34,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Country UA:</span>
+              <span>Українська назва:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="ua"
-                placeholder="Country UA&hellip;"
+                placeholder="Українська назва&hellip;"
                 required
                 value="{{ $model->ua ?? '' }}"
               >
@@ -49,13 +49,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Country EN:</span>
+              <span>Міжнародна Назва:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="en"
-                placeholder="Country EN&hellip;" required
+                placeholder="Міжнародна Назва&hellip;" required
                 value="{{ $model->en ?? '' }}"
               >
             </label>
@@ -63,29 +63,18 @@
         </fieldset>
 
         <fieldset class="col-50">
-          <legend>Image</legend>
+          <legend>Зображення</legend>
 
           <div class="form-row">
             <label class="caption">
-              <span>Upload SVG:</span>
+              <span>Завантажити SVG:</span>
             </label>
 
-            <div class="image-upload-wrap">
-              <div class="image-upload-preview">
-                @if(isset($model) && !empty($model->img_url))
-                  <img src="{{ $model->img_url }}" alt="No image&hellip;">
-                @endif
-              </div>
-              <div class="buttons-wrap">
-                <input name="img_url" type="file" style="display: none" accept="image/svg+xml">
-                <button name="upload" class="btn" type="button">
-                  <span>Upload</span>
-                </button>
-                <button name="clear" class="btn cancel" type="button">
-                  <span>Clear</span>
-                </button>
-              </div>
-            </div>
+            @include('admin.layouts.image-upload', [
+              'model'  => $model ?? null,
+              'field'  => 'img_url',
+              'accept' => 'image/svg+xml'
+            ])
           </div>
         </fieldset>
       </div>

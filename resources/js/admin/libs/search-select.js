@@ -7,7 +7,7 @@ export class SearchSelect {
     url: null,
     field: 'title',
     preventOverlay: false,
-    placeholder: 'Enter at least 2 chars to start search&hellip;'
+    placeholder: 'Введіть принаймні 2 символи, щоб почати пошук&hellip;'
   }
 
   constructor(wrap, options = {}) {

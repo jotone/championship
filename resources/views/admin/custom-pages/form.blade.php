@@ -14,7 +14,7 @@ $disabled = isset($model) && !(Auth::user()->role->slug === 'superadmin' && !$mo
     <form
       action="{{ isset($model) ? route('api.pages.update', $model->id) : route('api.pages.store') }}"
       data-xhr
-      data-msg="Page.name"
+      data-msg="Сторінка.name"
       method="POST"
     >
       @isset($model)
@@ -77,7 +77,7 @@ $disabled = isset($model) && !(Auth::user()->role->slug === 'superadmin' && !$mo
             <div class="form-row">
               <label>
                 <input name="editable" type="checkbox" @if(isset($model) && $model->editable) checked @endif>
-                <span style="margin-left: 10px">Editable</span>
+                <span style="margin-left: 10px">Можна редагувати</span>
               </label>
             </div>
           @endif
@@ -85,23 +85,23 @@ $disabled = isset($model) && !(Auth::user()->role->slug === 'superadmin' && !$mo
           <div class="form-row">
             <label>
               <input name="enabled" type="checkbox" @if(isset($model) && $model->enabled) checked @endif>
-              <span style="margin-left: 10px">Enabled</span>
+              <span style="margin-left: 10px">Увімкнено</span>
             </label>
           </div>
         </fieldset>
 
         <fieldset class="col-50">
           <legend>
-            Meta Data
+            Метадані
           </legend>
 
           <div class="form-row">
             <label class="caption">
-              <span>Meta Title</span>
+              <span>Заголовок сторінки</span>
               <input
                 name="meta_title"
                 class="form-input col-100"
-                placeholder="Meta title&hellip;"
+                placeholder="Заголовок сторінки&hellip;"
                 value="{{ $model->meta_title ?? '' }}"
               >
             </label>
@@ -133,7 +133,7 @@ $disabled = isset($model) && !(Auth::user()->role->slug === 'superadmin' && !$mo
 
       <div class="row">
         <fieldset class="col-80">
-          <legend>Content</legend>
+          <legend>Вміст</legend>
 
           <div class="form-row">
             <textarea name="content" class=".cke-init">{{ $model->content ?? '' }}</textarea>

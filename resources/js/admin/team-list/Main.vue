@@ -13,13 +13,13 @@
           <TableDirections text="EN"></TableDirections>
         </th>
         <th data-field="country">
-          <TableDirections text="Country"></TableDirections>
+          <TableDirections text="Країна"></TableDirections>
         </th>
         <th>
-          <div class="col-name">Image</div>
+          <div class="col-name">Зображення</div>
         </th>
         <th data-field="created_at">
-          <TableDirections text="Created"></TableDirections>
+          <TableDirections text="Створено"></TableDirections>
         </th>
         <th>
           <div class="col-name"><i class="fas fa-cogs"></i></div>
@@ -39,10 +39,10 @@
         <td><span>{{ formatDate(model.created_at) }}</span></td>
         <td>
           <div class="controls">
-            <a class="edit" :href="editRoute(model.id)">
+            <a class="edit" :href="editRoute(model.id)" title="Редагувати">
               <i class="fas fa-edit"></i>
             </a>
-            <a class="remove" :href="removeRoute(model.id)" @click.prevent="removeEvent">
+            <a class="remove" :href="removeRoute(model.id)" @click.prevent="removeEvent" title="Видалити">
               <i class="fas fa-times"></i>
             </a>
           </div>
@@ -67,7 +67,7 @@ export default {
   },
   data() {
     return {
-      entity: 'country.1',
+      entity: 'команду.1',
       models: [],
       module: 'roles',
       pagination: {},

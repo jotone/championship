@@ -20,8 +20,9 @@
 
   <script src="/js/jquery.js"></script>
 
-  <title>Document</title>
+  <title>{{ $setup['site_title']->value }}</title>
 </head>
+
 <body>
 @include('admin.layouts.header')
 

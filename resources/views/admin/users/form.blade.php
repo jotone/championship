@@ -19,13 +19,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>User name:</span>
+              <span>Ім'я користувача:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="name"
-                placeholder="User name&hellip;"
+                placeholder="Ім'я користувача&hellip;"
                 required
                 value="{{ $model->name ?? '' }}"
               >
@@ -50,13 +50,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Password:</span>
+              <span>Пароль:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="password"
-                placeholder="Password&hellip;"
+                placeholder="Пароль&hellip;"
                 @if(!isset($model)) required @endif
                 type="password"
               >
@@ -65,13 +65,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Password confirmation:</span>
+              <span>Підтвердження паролю:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="confirmation"
-                placeholder="Password confirmation&hellip;"
+                placeholder="Підтвердження паролю&hellip;"
                 @if(!isset($model)) required @endif
                 type="password"
               >
@@ -80,11 +80,11 @@
         </fieldset>
 
         <fieldset class="col-50">
-          <legend>Etc</legend>
+          <legend>Додаткова інформація</legend>
 
           <div class="form-row">
             <label class="caption">
-              <span>Role:</span>
+              <span>Роль:</span>
 
               <select class="form-select" name="role_id">
                 @foreach($roles as $role)
@@ -101,32 +101,21 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Image:</span>
+              <span>Зображення:</span>
             </label>
 
-            <div class="image-upload-wrap">
-              <div class="image-upload-preview">
-                @if(isset($model) && !empty($model->img_url))
-                  <img src="{{ $model->img_url }}" alt="No image&hellip;">
-                @endif
-              </div>
-              <div class="buttons-wrap">
-                <input name="img_url" type="file" style="display: none" accept="image/jpeg,image/png">
-                <button name="upload" class="btn" type="button">
-                  <span>Upload</span>
-                </button>
-                <button name="clear" class="btn cancel" type="button">
-                  <span>Clear</span>
-                </button>
-              </div>
-            </div>
+            @include('admin.layouts.image-upload', [
+              'model' => $model ?? null,
+              'field' => 'img_url',
+              'accept' => 'image/jpeg,image/png'
+            ])
           </div>
         </fieldset>
       </div>
 
       <div class="row">
         <button type="submit" class="btn success">
-          Зберегти
+          Зберегт
         </button>
       </div>
     </form>

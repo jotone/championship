@@ -13,16 +13,16 @@
             <span>{{ group.name }}</span>
 
             <div class="group-controls">
-              <a class="edit" @click.prevent="showGroupNameEditor" title="Edit group name">
+              <a class="edit" @click.prevent="showGroupNameEditor" title="Редагувати назву групи">
                 <i class="fas fa-edit"></i>
               </a>
-              <a class="remove" @click.prevent="groupRemove" :href="groupRemoveRoute(group.id)" title="Remove group">
+              <a class="remove" @click.prevent="groupRemove" :href="groupRemoveRoute(group.id)" title="Видалити групу">
                 <i class="fas fa-times"></i>
               </a>
               <a
                 class="accept"
                 style="display: none; padding-right: 20px"
-                title="Accept changes"
+                title="Прийняти зміни"
                 :href="groupUpdateRoute(group.id)"
                 @click.prevent="groupUpdateName"
               >
@@ -31,12 +31,12 @@
             </div>
           </div>
         </th>
-        <th>Games</th>
-        <th>Wins</th>
-        <th>Draws</th>
-        <th>Loses</th>
-        <th>Balls</th>
-        <th>Score</th>
+        <th>Ігри</th>
+        <th>Перемоги</th>
+        <th>Нічиї</th>
+        <th>Програші</th>
+        <th>М'ячі</th>
+        <th>Рахунок</th>
         <th></th>
       </tr>
       </thead>
@@ -63,7 +63,7 @@
       <tr data-role="add-team">
         <td colspan="8">
           <button class="btn success" name="addTeam" @click="showTeamPopup" type="button">
-            Add Team
+            Додати команду
           </button>
         </td>
       </tr>
@@ -73,11 +73,11 @@
     <table class="competition-table" :data-id="group.id">
       <thead>
       <tr>
-        <th>Game Date</th>
-        <th colspan="3">Teams</th>
-        <th>Score</th>
-        <th>Accept</th>
-        <th>Place</th>
+        <th>Дата Матчу</th>
+        <th colspan="3">Команди</th>
+        <th>Рахунок</th>
+        <th>Прийнято</th>
+        <th>Місце</th>
         <th></th>
       </tr>
       </thead>
@@ -98,7 +98,7 @@
           <button
             name="swapTeams"
             type="button"
-            title="Swap host and guest teams"
+            title="Поміняти місцями команди господарів і гостей"
             class="swap-btn"
             @click="swapTeams"
           >
@@ -128,7 +128,7 @@
         <td>
           <input
             class="form-input"
-            placeholder="Set game place&hellip;"
+            placeholder="Встановити місце гри&hellip;"
             @keyup="gameChangePlace"
             :name="`gamePlace[${game.id}]`"
             :value="game.place || ''"
@@ -146,7 +146,7 @@
       <tr data-role="add-team">
         <td colspan="8">
           <button class="btn success" name="addGame" @click="showGamePopup" type="button">
-            Add game
+            Додати матч
           </button>
         </td>
       </tr>
@@ -186,7 +186,7 @@ export default {
 
       const id = parseInt(_this.closest('tr').attr('data-id'));
       const groupID = parseInt(_this.closest('.competition-table').attr('data-id'))
-      const confirm = new Confirmation(`Do you really want to remove this game?`).open()
+      const confirm = new Confirmation(`Ви справді хочете видалити цей матч?`).open()
 
       confirm.then(answer => answer && $.axios
         .delete(_this.attr('href'))
@@ -214,7 +214,7 @@ export default {
       const id = parseInt(_this.closest('.competition-table').attr('data-id'))
 
       const name = _this.closest('.group-caption-wrap').children('span').text().trim()
-      const confirm = new Confirmation(`Do you really want to remove group "${name}"?`).open()
+      const confirm = new Confirmation(`Ви справді хочете видалити групу "${name}"?`).open()
 
       confirm.then(answer => answer && $.axios
         .delete(_this.attr('href'))
@@ -303,7 +303,7 @@ export default {
 
       const name = _this.closest('tr').find('td:eq(0) span').text().trim()
 
-      const confirm = new Confirmation(`Do you really want to remove team "${name}"?`).open()
+      const confirm = new Confirmation(`Ви справді хочете видалити команду "${name}"?`).open()
 
       confirm.then(answer =>
         answer && $.axios.delete(_this.attr('href')).then(

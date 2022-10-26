@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminMenu;
+use App\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\{Auth, Session};
 use Illuminate\View\View;
@@ -24,6 +25,7 @@ class BasicAdminController extends Controller
             'breadcrumbs' => $this->breadcrumbs($request),
             'menu'        => AdminMenu::whereNull('parent_id')->with('subMenus')->orderBy('position')->get(),
             'jwt_token'   => Session::get('jwt-token'),
+            'setup'       => Settings::whereIn('key', ['registration_enable', 'site_title'])->get()->keyBy('key'),
             'user'        => $user
         ], $share));
     }

@@ -4,7 +4,7 @@
   <div class="page-controls-wrap">
     <div class="page-controls-buttons-wrap">
       <a class="btn success" href="{{ route('admin.pages.create') }}">
-        Create Page
+        Додати Сторінку
       </a>
     </div>
 

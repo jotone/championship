@@ -4,7 +4,7 @@
   <div class="page-controls-wrap">
     <div class="page-controls-buttons-wrap">
       <a class="btn success" href="{{ route('admin.forum.create') }}">
-        Create Forum Topic
+        Створити Форум
       </a>
     </div>
 

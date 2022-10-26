@@ -7,19 +7,19 @@
           <TableDirections text="#"></TableDirections>
         </th>
         <th data-field="name">
-          <TableDirections text="Name"></TableDirections>
+          <TableDirections text="Назва"></TableDirections>
         </th>
         <th data-field="start_at">
-          <TableDirections text="Start"></TableDirections>
+          <TableDirections text="Початок"></TableDirections>
         </th>
         <th data-field="finish_at">
-          <TableDirections text="Finish"></TableDirections>
+          <TableDirections text="Завершення"></TableDirections>
         </th>
         <th>
-          <div class="col-name">Image</div>
+          <div class="col-name">Зображення</div>
         </th>
         <th data-field="created_at">
-          <TableDirections text="Created"></TableDirections>
+          <TableDirections text="Створено"></TableDirections>
         </th>
         <th>
           <div class="col-name"><i class="fas fa-cogs"></i></div>
@@ -39,10 +39,10 @@
         <td><span>{{ formatDate(model.created_at) }}</span></td>
         <td>
           <div class="controls">
-            <a class="edit" :href="editRoute(model.id)">
+            <a class="edit" :href="editRoute(model.id)" title="Редагувати">
               <i class="fas fa-edit"></i>
             </a>
-            <a class="remove" :href="removeRoute(model.id)" @click.prevent="removeEvent">
+            <a class="remove" :href="removeRoute(model.id)" @click.prevent="removeEvent" title="Видалити">
               <i class="fas fa-times"></i>
             </a>
           </div>
@@ -67,7 +67,7 @@ export default {
   },
   data() {
     return {
-      entity: 'competition.1',
+      entity: 'чемпіонат.1',
       models: [],
       module: 'competitions',
       pagination: {},

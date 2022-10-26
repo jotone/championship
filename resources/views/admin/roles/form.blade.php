@@ -19,14 +19,14 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Role name:</span>
+              <span>Назва:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="name"
                 data-slug="input.slug"
-                placeholder="Role name&hellip;"
+                placeholder="Назва&hellip;"
                 required
                 value="{{ $model->name ?? '' }}"
               >
@@ -35,13 +35,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Role slug:</span>
+              <span>Аліас:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="slug"
-                placeholder="Role slug&hellip;"
+                placeholder="Аліас&hellip;"
                 required
                 value="{{ $model->slug ?? '' }}"
               >
@@ -50,13 +50,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Role level:</span>
+              <span>Рівень:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="level"
-                placeholder="Role level&hellip;"
+                placeholder="Рівень&hellip;"
                 max="255"
                 min="{{ $user->role->level }}"
                 type="number"
@@ -67,19 +67,19 @@
         </fieldset>
 
         <fieldset class="col-70">
-          <legend>Permission list</legend>
+          <legend>Список дозволів</legend>
 
           <table class="info-table">
             <thead>
             <tr>
               <th>
-                <span>Controller</span>
+                <span>Контролер</span>
               </th>
               <th>
-                <span>Type</span>
+                <span>Тип</span>
               </th>
               <th>
-                <span>Methods</span>
+                <span>Методи</span>
               </th>
             </tr>
             </thead>

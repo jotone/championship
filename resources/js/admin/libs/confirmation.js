@@ -1,9 +1,9 @@
 export class Confirmation {
   constructor(text, options = null) {
-    this.text = text || 'Confirm your action.'
+    this.text = text || 'Підтвердьте свою дію.'
     this.options = {
       ok: 'OK',
-      cancel: 'Cancel'
+      cancel: 'Скасувати'
     }
     if (options) {
       this.options = {...this.options, ...options}

@@ -1,5 +1,5 @@
 <template>
-  <input class="set-date" :name="name" :value="value || 'The date is not set'">
+  <input class="set-date" :name="name" :value="value || 'Дата не встановлена'">
 </template>
 
 <script>

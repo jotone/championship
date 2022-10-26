@@ -33,9 +33,9 @@ export default {
         Session.update(this.$parent.module, order)
         // Run request
         $.axios.get(requestUrl)
-            // Set table collection
-            .then(response => this.$parent.models = response.data.collection)
-            .finally(() => $('.overlay, .overlay .preload').hide())
+          // Set table collection
+          .then(response => this.$parent.models = response.data.collection)
+          .finally(() => $('.overlay, .overlay .preload').hide())
       }
     }
   },

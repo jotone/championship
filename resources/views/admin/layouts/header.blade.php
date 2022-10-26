@@ -2,7 +2,7 @@
   <ul>
     <li>
       <a href="#">
-        <span>Hi, {{ Auth::user()->name }}</span>
+        <span>Привіт, {{ Auth::user()->name }}</span>
       </a>
     </li>
     <li>

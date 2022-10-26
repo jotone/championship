@@ -10,16 +10,16 @@
         <span>{{ stage[0].name }}</span>
 
         <div class="group-controls">
-          <a class="edit" @click.prevent="showGroupNameEditor" title="Edit group name">
+          <a class="edit" @click.prevent="showGroupNameEditor" title="Редагувати назву групи">
             <i class="fas fa-edit"></i>
           </a>
-          <a class="remove" @click.prevent="groupRemove" :href="groupRemoveRoute(stage[0].id)" title="Remove group">
+          <a class="remove" @click.prevent="groupRemove" :href="groupRemoveRoute(stage[0].id)" title="Видалити групу">
             <i class="fas fa-times"></i>
           </a>
           <a
             class="accept"
             style="display: none; padding-right: 20px"
-            title="Accept changes"
+            title="Прийняти зміни"
             :href="groupUpdateRoute(stage[0].id)"
             @click.prevent="groupUpdateName"
           >
@@ -61,12 +61,12 @@
                 v-model="game.accept"
                 @click="gameAccept"
               >
-              <span style="margin-left: 10px">Accept</span>
+              <span style="margin-left: 10px">Прийняти</span>
             </label>
           </div>
 
           <div class="game-controls-wrap">
-            <a class="remove" :href="gameRemoveRoute(game.id)" title="Remove game" @click.prevent="gameRemove">
+            <a class="remove" :href="gameRemoveRoute(game.id)" title="Видалити гру" @click.prevent="gameRemove">
               <i class="fas fa-times"></i>
             </a>
           </div>
@@ -75,13 +75,13 @@
 
       <div class="add-game-wrap">
         <button class="btn success" name="addGame" type="button" @click="showGamePopup">
-          Add Play-off Game
+          Додати гру плей-офф
         </button>
       </div>
     </div>
     <div class="add-stage-wrap">
       <button class="btn" name="addStage" type="button" @click="groupAdd">
-        Add Play-off Step
+        Додати стадію плей-офу
       </button>
     </div>
   </div>
@@ -117,7 +117,7 @@ export default {
 
       const id = parseInt(_this.closest('li').attr('data-id'));
       const groupID = parseInt(_this.closest('.stage-item-wrap').attr('data-id'))
-      const confirm = new Confirmation(`Do you really want to remove this game?`).open()
+      const confirm = new Confirmation(`Ви дійсно хочете видалити цей матч?`).open()
 
       confirm.then(answer => answer && $.axios
         .delete(_this.attr('href'))
@@ -165,7 +165,7 @@ export default {
 
       const name = parent.find('.group-caption-wrap span').text().trim()
 
-      const confirm = new Confirmation(`Do you really want to remove stage "${name}"?`).open()
+      const confirm = new Confirmation(`Ви дійсно хочете видалити стадію "${name}"?`).open()
 
       confirm.then(answer => answer && $.axios
         .delete(_this.attr('href'))

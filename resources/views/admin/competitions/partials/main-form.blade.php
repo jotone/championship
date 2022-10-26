@@ -121,22 +121,10 @@
           <span>Завантажити зображення:</span>
         </label>
 
-        <div class="image-upload-wrap">
-          <div class="image-upload-preview">
-            @if(isset($model) && !empty($model->img_url))
-              <img src="{{ $model->img_url }}" alt="No image&hellip;">
-            @endif
-          </div>
-          <div class="buttons-wrap">
-            <input name="img_url" type="file" style="display: none" accept="image/jpeg,image/png,image/svg+xml">
-            <button name="upload" class="btn" type="button">
-              <span>Завантажити</span>
-            </button>
-            <button name="clear" class="btn cancel" type="button">
-              <span>Очистити</span>
-            </button>
-          </div>
-        </div>
+        @include('admin.layouts.image-upload', [
+          'model' => $model ?? null,
+          'field' => 'img_url'
+        ])
       </div>
 
       <div class="form-row">

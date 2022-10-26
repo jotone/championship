@@ -9,7 +9,7 @@
     <form
       action="{{ isset($model) ? route('api.forum.update', $model->id) : route('api.forum.store') }}"
       data-xhr
-      data-msg="Forum Topic.name"
+      data-msg="Форум.name"
       method="POST"
     >
       @isset($model)
@@ -54,13 +54,13 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Position:</span>
+              <span>Позиція:</span>
 
               <input
                 autocomplete="off"
                 class="form-input col-100"
                 name="position"
-                placeholder="Position&hellip;"
+                placeholder="Позиція&hellip;"
                 required
                 type="number"
                 min="0"
@@ -71,48 +71,33 @@
 
           <div class="form-row">
             <label class="caption">
-              <span>Description:</span>
+              <span>Опис:</span>
 
               <textarea
                 name="description"
                 class="form-text col-100"
-                placeholder="Description (max 255 chars)&hellip;"
+                placeholder="Опис (максимум 255 символів)&hellip;"
               >{!! $model->description ?? '' !!}</textarea>
             </label>
           </div>
         </fieldset>
 
         <fieldset class="col-50">
-          <legend>Etc</legend>
+          <legend>Додаткова інформація</legend>
 
           <div class="form-row">
             <label class="caption">
-              <span>Image:</span>
+              <span>Завантажити зображення:</span>
             </label>
 
-            <div class="image-upload-wrap">
-              <div class="image-upload-preview">
-                @if(isset($model) && !empty($model->img_url))
-                  <img src="{{ $model->img_url }}" alt="No image&hellip;">
-                @endif
-              </div>
-              <div class="buttons-wrap">
-                <input name="img_url" type="file" style="display: none" accept="image/jpeg,image/png">
-                <button name="upload" class="btn" type="button">
-                  <span>Upload</span>
-                </button>
-                <button name="clear" class="btn cancel" type="button">
-                  <span>Clear</span>
-                </button>
-              </div>
-            </div>
+            @include('admin.layouts.image-upload', ['model' => $model ?? null, 'field' => 'img_url'])
           </div>
         </fieldset>
       </div>
 
       <div class="row col-80">
         <fieldset class="col-100">
-          <legend>Text</legend>
+          <legend>Текст</legend>
 
           <div class="form-row">
             <textarea name="text" class=".cke-init">{{ $model->text ?? '' }}</textarea>
