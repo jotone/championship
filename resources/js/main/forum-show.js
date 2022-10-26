@@ -22,12 +22,13 @@ const commentTemplate = data => `
   <div class="comment-text-wrap">
     <div class="comment-text">${data.message}</div>
     <div class="comment-etc-wrap">
-    <span class="comment-misc" title="Автор коменатря">Написав: ${data.author}</span>
-    <span class="comment-misc" title="Дата створення коментаря">${data.created}</span>        
-    <a class="answer-action" href="#" title="Написати відповідь до цього коментаря">Відповісти</a>
+      <span class="comment-misc" title="Автор коменатря">Написав: ${data.author}</span>
+      <span class="comment-misc" title="Дата створення коментаря">${data.created}</span>        
+      <a class="answer-action" href="#" title="Написати відповідь до цього коментаря">Відповісти</a>
+    </div>
+    <div class="comment-form-wrap"></div>
   </div>
-  <div class="comment-form-wrap"></div>
-</div>
+  <ul></ul>
 </li>`
 
 $(document).ready(() => {
@@ -59,7 +60,8 @@ $(document).ready(() => {
 
       $.axios.post(url, formData).then(response => {
         if (201 === response.status) {
-          const parent = $(`.comment-list-wrap > ul li[data-post="${response.data.parent}"]`)
+          const parent = $(`.comment-list-wrap li[data-post="${response.data.parent}"]`)
+          console.log(parent)
           const container = parent.length ? parent.children('ul') : $('.comment-list-wrap > ul')
 
           container.append(commentTemplate(response.data))
