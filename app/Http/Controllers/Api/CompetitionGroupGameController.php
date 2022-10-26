@@ -226,9 +226,9 @@ class CompetitionGroupGameController extends BasicApiController
      * @param $winner
      * @param $loser
      * @param $score
-     * @return mixed
+     * @return array
      */
-    protected function updateWinner($result, $winner, $loser, $score): mixed
+    protected function updateWinner($result, $winner, $loser, $score): array
     {
         $result[$winner]->games++;
         $result[$winner]->wins++;
