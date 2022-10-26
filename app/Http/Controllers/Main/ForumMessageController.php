@@ -11,6 +11,25 @@ use Illuminate\Support\Facades\Auth;
 class ForumMessageController extends BasicMainController
 {
     /**
+     * View topic comment data
+     *
+     * @param string $md5_id
+     * @return Response
+     */
+    public function show(string $md5_id): Response
+    {
+        $comment = ForumMessage::whereRaw("md5(id) = '{$md5_id}'")->with('author')->firstOrFail();
+
+        return response([
+            'id'      => md5($comment->id),
+            'author'  => $comment->author->name,
+            'parent'  => md5($comment->parent_id),
+            'message' => $comment->message,
+            'created' => $comment->created_at->translatedFormat('j/F/Y о H:i')
+        ]);
+    }
+
+    /**
      * Create topic comment
      *
      * @param ForumMessageStoreRequest $request
@@ -41,7 +60,11 @@ class ForumMessageController extends BasicMainController
             'author'  => Auth::user()->name,
             'parent'  => md5($comment->parent_id),
             'message' => $comment->message,
-            'created' => $comment->created_at->translatedFormat('j/F/Y о H:i')
+            'created' => $comment->created_at->translatedFormat('j/F/Y о H:i'),
+            'routes' => [
+                'show'   => route('forum-message.show', md5($comment->id)),
+                'update' => route('forum-message.update', md5($comment->id))
+            ]
         ], 201);
     }
 

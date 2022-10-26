@@ -32,7 +32,7 @@
     <input name="password" type="password" placeholder="Пароль&hellip;">
   </div>
   <div>
-    <button type="submit">YARRR</button>
+    <button type="submit">Увійти</button>
     <a href="{{ route('password-reset.index') }}" style="color: white">Забули пароль</a>
   </div>
 </form>

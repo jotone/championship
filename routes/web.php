@@ -78,7 +78,7 @@ Route::get('/groups', [HomeController::class, 'groups'])->name('groups.index');
 // Forum
 Route::resource('/forum', ForumController::class)->only(['index', 'show']);
 // Forum message
-Route::resource('/forum-message', ForumMessageController::class)->only(['store', 'update', 'destroy']);
+Route::resource('/forum-message', ForumMessageController::class)->except(['index', 'create', 'edit']);
 
 // Custom pages
 if (Schema::hasTable('custom_pages')) {

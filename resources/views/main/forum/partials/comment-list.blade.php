@@ -25,6 +25,16 @@
           <a class="answer-action" href="#" title="Написати відповідь до цього коментаря">
             Відповісти
           </a>
+
+          @if($comment->author_id == Auth::id() && $comment->created_at->addMinutes(30)->timestamp > time())
+            <a
+              class="comment-link"
+              href="{{ route('forum-message.show', md5($comment->id)) }}"
+              title="Редагувати коментар"
+            >
+              <i class="fas fa-edit"></i>
+            </a>
+          @endif
         @endauth
       </div>
       <div class="comment-form-wrap"></div>

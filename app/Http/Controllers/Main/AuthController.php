@@ -24,7 +24,7 @@ class AuthController extends Controller
         ]);
 
         // Search user
-        $user = User::firstWhere('email', $credentials['email']);
+        $user = User::firstWhere('email', mb_strtolower($credentials['email']));
 
         // Check if user verified his email
         if ($user && empty($user->email_verified_at)) {
