@@ -110,6 +110,7 @@ class UsersController extends BasicApiController
     {
         $args = $request->only(['name', 'email', 'img_url', 'password', 'confirmation', 'role_id']);
         $rules = [];
+
         foreach ($args as $key => $value) {
             switch ($key) {
                 case 'info':
@@ -127,7 +128,7 @@ class UsersController extends BasicApiController
                 case 'password':
                     $rules[$key] = ['nullable', 'string', 'min:6'];
                     $rules['confirmation'] = ['nullable', 'string', 'same:password'];
-                    if (!empty($validation)) {
+                    if (!empty($value)) {
                         $user->$key = $value;
                     }
                     break;
