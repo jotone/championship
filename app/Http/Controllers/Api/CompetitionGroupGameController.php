@@ -72,7 +72,7 @@ class CompetitionGroupGameController extends BasicApiController
                 'host_team' => 0,
                 'entity'    => $args['entity'],
                 'score'     => [$args['team']],
-                'acceps'    => true
+                'accept'    => true
             ]);
         } else {
             $score = $game->score;

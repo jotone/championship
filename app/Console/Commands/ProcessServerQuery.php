@@ -66,16 +66,11 @@ class ProcessServerQuery extends Command
                         $user_points += 1;
                     }
                 } else {
-                    // Play-off games
-                    $teams_in_group = [];
                     // Play off group games
                     $group_games = $bet->group->games()->where('accept', 1)->get();
                     // Get group teams
-                    foreach ($group_games as $group) {
-                        $teams_in_group[] = $group->host_team;
-                        $teams_in_group[] = $group->guest_team;
-                    }
-                    $teams_in_group = array_values(array_unique($teams_in_group));
+                    $teams_in_group = isset($group_games[0]) ? $group_games[0]->score : [];
+
                     // Calculate match teams
                     $match_scores = count(array_intersect($bet->scores, $teams_in_group));
                     // Score multiplication value
@@ -125,7 +120,7 @@ class ProcessServerQuery extends Command
             }
             $form->update(['points' => $user_points]);
 
-            $item->status = 1;
+//            $item->status = 1;
             $item->save();
         }
         return 0;
