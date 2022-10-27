@@ -31,7 +31,7 @@
   <div>
     <input name="password" type="password" placeholder="Пароль&hellip;">
   </div>
-  <div>
+  <div class="form-buttons">
     <button type="submit">Увійти</button>
     <a href="{{ route('password-reset.index') }}" style="color: white">Забули пароль</a>
   </div>
