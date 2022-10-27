@@ -21,8 +21,8 @@
         - ~~Create~~
         - ~~Store~~
         - ~~Answer~~
-        - Edit
-        - Update
+        - ~~Edit~~
+        - ~~Update~~
         - Remove
       - Admin Actions
         - Edit

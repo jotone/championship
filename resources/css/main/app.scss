@@ -467,6 +467,12 @@ header {
       color: $blue;
       font-style: italic;
     }
+
+    .comment-edited {
+      font-size: 1rem;
+      color: $gray-light;
+      font-style: italic;
+    }
   }
 
   .comment-etc-wrap {

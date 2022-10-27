@@ -7,6 +7,14 @@
       <div class="comment-text">
         @empty($comment->deleted_at)
           {!! $comment->message !!}
+          @if (!is_null($comment->edited_at))
+            <em
+              title="Редаговано"
+              class="{{ $comment->author_id != $comment->edited_by ? 'comment-reason' : 'comment-edited' }}"
+            >
+              (ред.)
+            </em>
+          @endif
         @else
           <em>Цей коментар був видалений по причині:</em>
           <span class="comment-reason">{{ $comment->edit_reason }}</span>
@@ -41,7 +49,11 @@
     </div>
 
     <ul>
-      @includeWhen($comment->subComments->count(), 'main.forum.partials.comment-list', ['comments' => $comment->subComments])
+      @includeWhen(
+        $comment->subComments->count(),
+        'main.forum.partials.comment-list',
+        ['comments' => $comment->subComments]
+      )
     </ul>
   </li>
 @endforeach

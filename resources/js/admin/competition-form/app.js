@@ -1,6 +1,6 @@
+import '@eastdesire/jscolor';
 import { createApp } from 'vue';
 import { SearchSelect } from '../libs/search-select';
-import '@eastdesire/jscolor';
 import AirDatepicker from 'air-datepicker';
 import EnLocale from 'air-datepicker/locale/en';
 import Groups from './Groups.vue';

@@ -13,9 +13,9 @@ const buildTeams = (teams, exclude = [], selected = null) => {
     options += `<option value="${selected.id}" selected>${selected.text}</option>`
   }
   // Append teams to options
-  for (let id in teams) {
-    if (exclude.indexOf(id) < 0) {
-      options += `<option value="${id}">${teams[id]}</option>`
+  for (let i = 0, n = teams.length; i < n; i++) {
+    if (exclude.indexOf(teams[i].id) < 0) {
+      options += `<option value="${teams[i].id}">${teams[i].name}</option>`
     }
   }
 
@@ -24,7 +24,11 @@ const buildTeams = (teams, exclude = [], selected = null) => {
 
 $(document).ready(() => {
   // Get team list
-  const teams = JSON.parse(atob($('form[name="userForm"]').attr('data-teams')))
+  const dataTeams = JSON.parse(atob($('form[name="userForm"]').attr('data-teams')))
+
+  let teams = []
+  for (let id in dataTeams) teams.push({id: id, name: dataTeams[id]})
+  teams.sort((a, b) => a.name.localeCompare(b.name))
 
   // Fill selectors
   $('form[name="userForm"] .content-table select[name^="group"]').each(function () {

@@ -198,8 +198,8 @@ export default {
      */
     teamsOptionsList(selected = null) {
       let options = ''
-      for (let id in this.teams) {
-        options += `<option value="${id}"${selected === parseInt(id) ? 'selected' : ''}>${this.teams[id].ua}</option>`
+      for (let i = 0, n = this.teams.length; i < n; i++) {
+        options += `<option value="${this.teams[i].id}"${selected === parseInt(this.teams[i].id) ? 'selected' : ''}>${this.teams[i].ua}</option>`
       }
       return options
     },
@@ -261,13 +261,14 @@ export default {
             .then(response => {
               if (200 === response.status) {
                 // Result teams values
-                let result = {}
+                let result = []
 
                 // Convert teams data into proper view groupID -> teamPosition -> teamData
                 for (let i = 0; i < response.data.collection.length; i++) {
-                  result[response.data.collection[i].id] = response.data.collection[i]
+                  result.push(response.data.collection[i])
                 }
                 // Set teams
+                result.sort((a, b) => a.ua.localeCompare(b.ua))
                 this.teams = result
               }
             })

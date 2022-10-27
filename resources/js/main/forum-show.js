@@ -1,7 +1,13 @@
 import {initCKE} from "./libs/common"
 
+const commentForm = $('#comment-form')
+const saveUrl = commentForm.attr('action')
+
 const showCommentForm = (_this, parent) => {
-  const commentForm = $('#comment-form')
+  // Remove method field
+  commentForm.find('input[name="_method"]').remove()
+  // Reset form action
+  commentForm.attr('action', saveUrl)
 
   if (_this.hasClass('active')) {
     _this.removeClass('active')
@@ -25,11 +31,13 @@ const commentTemplate = data => `
       <span class="comment-misc" title="Автор коменатря">Написав: ${data.author}</span>
       <span class="comment-misc" title="Дата створення коментаря">${data.created}</span>        
       <a class="answer-action" href="#" title="Написати відповідь до цього коментаря">Відповісти</a>
+      <a class="comment-link" href="${data.routes.show}" title="Редагувати коментар"><i class="fas fa-edit"></i></a>
     </div>
     <div class="comment-form-wrap"></div>
   </div>
   <ul></ul>
 </li>`
+
 
 $(document).ready(() => {
   initCKE($('textarea[name="message"]'))
@@ -44,31 +52,54 @@ $(document).ready(() => {
       e.preventDefault()
       showCommentForm($(this), $(this).closest('.comment-text-wrap').find('.comment-form-wrap'))
     })
+    // Click edit comment
+    .on('click', 'a.comment-link', function (e) {
+      e.preventDefault()
 
-  $('#comment-form').on('submit', function (e) {
+      const url = $(this).attr('href')
+
+      if (typeof url !== 'undefined') {
+        $.axios.get(url).then(response => {
+          if (200 === response.status) {
+            CKEDITOR.instances.message.setData(response.data.message);
+            commentForm.appendTo($(this).closest('.comment-text-wrap').find('.comment-form-wrap'))
+            commentForm.show(150)
+
+            commentForm.append('<input name="_method" type="hidden" value="patch">')
+            commentForm.attr('action', response.data.routes.update)
+          }
+        })
+      }
+    })
+
+  commentForm.on('submit', function (e) {
     e.preventDefault()
 
-    const url = $(this).attr('action')
+    const topic = window.location.pathname
+    let formData = new FormData($(this)[0])
 
-    if (typeof url !== 'undefined') {
-      const topic = window.location.pathname
-      let formData = new FormData($(this)[0])
+    formData.append('message', CKEDITOR.instances.message.getData())
+    formData.append('parent', $(this).closest('li').attr('data-post') || 0)
+    formData.append('topic', topic.substring(topic.lastIndexOf('/') + 1))
 
-      formData.append('message', CKEDITOR.instances.message.getData())
-      formData.append('parent', $(this).closest('li').attr('data-post') || 0)
-      formData.append('topic', topic.substring(topic.lastIndexOf('/') + 1))
-
-      $.axios.post(url, formData).then(response => {
-        if (201 === response.status) {
-          const parent = $(`.comment-list-wrap li[data-post="${response.data.parent}"]`)
-          console.log(parent)
-          const container = parent.length ? parent.children('ul') : $('.comment-list-wrap > ul')
-
-          container.append(commentTemplate(response.data))
-        }
-        $('#comment-form').hide(150)
+    const url = commentForm.find('input[name="_method"]').length > 0 ? $(this).attr('action') : saveUrl
+    $.axios.post(url, formData).then(response => {
+      if (201 === response.status) {
+        const parent = $(`.comment-list-wrap li[data-post="${response.data.parent}"]`)
+        const container = parent.length ? parent.children('ul') : $('.comment-list-wrap > ul')
+        container.append(commentTemplate(response.data))
         CKEDITOR.instances.message.setData('')
-      })
-    }
+      } else if (200 === response.status) {
+        const parent = $(`.comment-list-wrap li[data-post="${response.data.id}"]`)
+        parent.find('.comment-text').html(
+          `${response.data.message}
+          <em
+           title="Редаговано"
+           class="${response.data.author !== response.data.author ? 'comment-reason' : 'comment-edited' }"
+          >(ред.)</em>`
+        )
+      }
+      commentForm.hide(150)
+    })
   })
 })
