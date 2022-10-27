@@ -47,20 +47,16 @@
         </tr>
         </thead>
         <tbody>
-        @if($loop->last)
-          @if (isset($groups[$i - 1]) && $groups[$i - 1]->games->count())
-            <tr>
-              @php
-                $game = $groups[$i - 1]->games[0];
-                $winner = $game->score[$game->host_team] > $game->score[$game->guest_team] ? $game->hostTeam : $game->guestTeam;
-              @endphp
-              <td colspan="2" style="text-align: center" data-uuid="{{ md5($winner->id) }}">
-                <span style="font-size: 1.5em;">{{ $winner->ua }}</span>
-              </td>
-            </tr>
-          @endif
-        @else
-          @if($group->games->count())
+        @if($group->games->count())
+          @if($loop->last)
+              <tr>
+                @isset($group->games[0]->score[0])
+                <td colspan="2" style="text-align: center" data-uuid="{{ md5($group->games[0]->score[0]) }}">
+                  <span style="font-size: 1.5em;">{{ $teams[$group->games[0]->score[0]]->ua }}</span>
+                </td>
+                @endisset
+              </tr>
+          @else
             @foreach($group->games[0]->score as $j => $team_id)
               @if($j % 2 == 0)
                 <tr>
