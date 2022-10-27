@@ -115,7 +115,7 @@
 
       <div class="row">
         <button type="submit" class="btn success">
-          Зберегт
+          Зберегти
         </button>
       </div>
     </form>
