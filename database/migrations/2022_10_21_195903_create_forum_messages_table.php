@@ -20,9 +20,7 @@ class CreateForumMessagesTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('message');
             $table->boolean('pinned')->default(0);
-            $table->boolean('banned')->default(0);
             $table->unsignedInteger('edited_by')->nullable();
-            $table->string('edit_reason')->nullable();
             $table->timestamp('edited_at')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();

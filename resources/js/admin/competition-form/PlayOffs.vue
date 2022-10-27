@@ -13,7 +13,7 @@
           <a class="edit" @click.prevent="showGroupNameEditor" title="Редагувати назву групи">
             <i class="fas fa-edit"></i>
           </a>
-          <a class="remove" @click.prevent="groupRemove" :href="groupRemoveRoute(stage[0].id)" title="Видалити групу">
+          <a class="remove" @click.prevent="stageRemove" :href="groupRemoveRoute(stage[0].id)" title="Видалити групу">
             <i class="fas fa-times"></i>
           </a>
           <a
@@ -28,47 +28,20 @@
         </div>
       </div>
 
-      <ul class="play-off-games-list">
-        <li v-for="(game) in stage[0].games" :data-id="game.id">
+      <ul class="play-off-games-list" v-if="stage[0].games.length > 0">
+        <li v-for="(gameTeamID) in stage[0].games[0].score" :data-id="gameTeamID">
           <div class="game-teams-wrap">
-            <span>{{ !!teams[game.host_team] ? teams[game.host_team].ua : '' }}</span>
-            <span>vs</span>
-            <span>{{ !!teams[game.guest_team] ? teams[game.guest_team].ua : '' }}</span>
-          </div>
-          <div class="game-date-wrap">
-            <DatePicker
-              :name="`gameDate[${game.id}]`"
-              :value="game.hasOwnProperty('start_at') && null !== game.start_at ? formatDate(game.start_at) : 'The date is not set'"
-            ></DatePicker>
-          </div>
-          <div class="game-place-wrap">
-            <input
-              class="form-input"
-              placeholder="Set game place&hellip;"
-              @keyup="gameChangePlace"
-              :name="`gamePlace[${game.id}]`"
-              :value="game.place || ''"
-            >
-          </div>
-          <form class="game-teams-score-wrap">
-            <GameScore :game="game"></GameScore>
-          </form>
-          <div class="game-accept-wrap">
-            <label>
-              <input
-                name="accept"
-                type="checkbox"
-                v-model="game.accept"
-                @click="gameAccept"
+            <div class="game-teams-name">{{ !!teamsByID[gameTeamID] ? teamsByID[gameTeamID].ua : '' }}</div>
+            <div class="game-controls-wrap">
+              <a
+                class="remove"
+                title="Видалити гру"
+                :href="teamRemoveRoute(stage[0].games[0].id, gameTeamID)"
+                @click.prevent="teamRemove"
               >
-              <span style="margin-left: 10px">Прийняти</span>
-            </label>
-          </div>
-
-          <div class="game-controls-wrap">
-            <a class="remove" :href="gameRemoveRoute(game.id)" title="Видалити гру" @click.prevent="gameRemove">
-              <i class="fas fa-times"></i>
-            </a>
+                <i class="fas fa-times"></i>
+              </a>
+            </div>
           </div>
         </li>
       </ul>
@@ -80,7 +53,7 @@
       </div>
     </div>
     <div class="add-stage-wrap">
-      <button class="btn" name="addStage" type="button" @click="groupAdd">
+      <button class="btn" name="addStage" type="button" @click="stageAdd">
         Додати стадію плей-офу
       </button>
     </div>
@@ -102,6 +75,7 @@ export default {
       entity: null,
       stages: {},
       teams: [],
+      teamsByID: {},
       module: 'play-offs',
       routes: {},
       addGamePopup: null
@@ -109,10 +83,73 @@ export default {
   },
   methods: {
     /**
+     * View add game popup
+     * @param e
+     */
+    showGamePopup(e) {
+      // Stage group id
+      const groupID = $(e.target).closest('.stage-item-wrap').attr('data-id')
+      // Add variables to game popup
+      this.addGamePopup.wrap.find('input[name="group_id"]').val(groupID)
+      this.addGamePopup.wrap.find('input[name="entity"]').val(this.entity)
+      this.addGamePopup.wrap.find('.stage-teams-list select[name="team"]').html(this.teamsOptionsList())
+      // Show popup
+      this.addGamePopup.open()
+    },
+    /**
+     * Create a new stage
+     */
+    stageAdd() {
+      // Fill form data
+      let formData = new FormData()
+      formData.append('competition_id', $('#playOffTable').data('id'))
+      formData.append('stage', $('#playOffTable').find('.stage-item-wrap').length + 1)
+      // Send request
+      $.axios.post(this.routes.group.store, formData).then(response => {
+        // 201 - Created
+        if (201 === response.status) {
+          // Check if states exist
+          if (typeof this.stages[response.data.stage] === 'undefined') {
+            this.stages[response.data.stage] = []
+          }
+          this.stages[response.data.stage].push(response.data)
+        }
+      })
+    },
+    /**
+     * Remove a stage
+     * @param e
+     */
+    stageRemove(e) {
+      // Link object
+      const _this = $(e.target).closest('a')
+      // Parent item
+      const parent = _this.closest('.stage-item-wrap')
+      // Stage ID
+      const id = parseInt(parent.attr('data-id'))
+      // Stage name
+      const name = parent.find('.group-caption-wrap span').text().trim()
+      // Set Confirmation message and open its window
+      const confirm = new Confirmation(`Ви дійсно хочете видалити стадію "${name}"?`).open()
+
+      confirm.then(answer => answer && $.axios.delete(_this.attr('href'))
+        .then(response => {
+          // 204 - Removed
+          if (204 === response.status) {
+            // Remove stage item from list
+            for (let i in this.stages) {
+              this.stages[i][0].id === id && delete this.stages[i]
+            }
+          }
+        })
+        .finally(() => $('.overlay, .overlay .preload').hide())
+      )
+    },
+    /**
      * Remove game
      * @param e
      */
-    gameRemove(e) {
+    teamRemove(e) {
       const _this = $(e.target).closest('a')
 
       const id = parseInt(_this.closest('li').attr('data-id'));
@@ -125,8 +162,9 @@ export default {
           if (204 === response.status) {
             for (let i in this.stages) {
               if (groupID === this.stages[i][0].id) {
-                for (let j = 0, m = this.stages[i][0].games.length; j < m; j++) {
-                  this.stages[i][0].games[j].id === id && this.stages[i][0].games.splice(j, 1)
+                for (let j = 0, m = this.stages[i][0].games[0].score; j < m; j++) {
+                  // Remove team from play-off
+                  this.stages[i][0].games[0].score[j] === id && this.stages[i][0].games[0].score.splice(j, 1)
                 }
               }
             }
@@ -135,61 +173,13 @@ export default {
       )
     },
     /**
-     * Create a new stage
+     * Team remove route
+     * @param gameId
+     * @param teamId
+     * @returns {string}
      */
-    groupAdd() {
-      let formData = new FormData()
-      formData.append('competition_id', $('#playOffTable').data('id'))
-      formData.append('stage', $('#playOffTable').find('.stage-item-wrap').length + 1)
-
-      $.axios
-        .post(this.routes.group.store, formData)
-        .then(response => {
-          if (201 === response.status) {
-            if (typeof this.stages[response.data.stage] === 'undefined') {
-              this.stages[response.data.stage] = []
-            }
-            this.stages[response.data.stage].push(response.data)
-          }
-        })
-    },
-    /**
-     * Remove a stage
-     * @param e
-     */
-    groupRemove(e) {
-      const _this = $(e.target).closest('a')
-
-      const parent = _this.closest('.stage-item-wrap')
-      const index = parent.index() + 1
-
-      const name = parent.find('.group-caption-wrap span').text().trim()
-
-      const confirm = new Confirmation(`Ви дійсно хочете видалити стадію "${name}"?`).open()
-
-      confirm.then(answer => answer && $.axios
-        .delete(_this.attr('href'))
-        .then(response => {
-          if (204 === response.status) {
-            delete this.stages[index]
-          }
-        })
-        .finally(() => $('.overlay, .overlay .preload').hide())
-      )
-    },
-    /**
-     * View add game popup
-     * @param e
-     */
-    showGamePopup(e) {
-      const groupID = $(e.target).closest('.stage-item-wrap').attr('data-id')
-
-      this.addGamePopup.wrap.find('input[name="group_id"]').val(groupID)
-      this.addGamePopup.wrap.find('input[name="entity"]').val(this.entity)
-
-      this.addGamePopup.wrap.find('select[name="host_team"]').html(this.teamsOptionsList())
-      this.addGamePopup.wrap.find('select[name="guest_team"]').html(this.teamsOptionsList())
-      this.addGamePopup.open()
+    teamRemoveRoute(gameId, teamId) {
+      return window.Helpers.buildUrl(window.Helpers.buildUrl(this.routes.game.delete, gameId, 2), teamId, 1)
     },
     /**
      * View teams as select options list
@@ -197,22 +187,11 @@ export default {
      * @returns {string}
      */
     teamsOptionsList(selected = null) {
-      let options = ''
-      for (let i = 0, n = this.teams.length; i < n; i++) {
-        options += `<option value="${this.teams[i].id}"${selected === parseInt(this.teams[i].id) ? 'selected' : ''}>${this.teams[i].ua}</option>`
-      }
-      return options
-    },
-    /**
-     * Update games entities
-     * @param data
-     */
-    updateGames(data) {
-      for (let i in this.stages) {
-        if (this.stages[i][0].id === data.id) {
-          this.stages[i][0] = data
-        }
-      }
+      return this.teams.reduce(
+        (sum, cur) => sum +
+          `<option value="${cur.id}" ${selected === parseInt(cur.id) ? 'selected' : ''}>${cur.ua}</option>`,
+        ''
+      )
     }
   },
   beforeMount() {
@@ -265,7 +244,9 @@ export default {
 
                 // Convert teams data into proper view groupID -> teamPosition -> teamData
                 for (let i = 0; i < response.data.collection.length; i++) {
-                  result.push(response.data.collection[i])
+                  const team = response.data.collection[i]
+                  this.teamsByID[team.id] = team
+                  result.push(team)
                 }
                 // Set teams
                 result.sort((a, b) => a.ua.localeCompare(b.ua))
@@ -276,7 +257,7 @@ export default {
       })
 
     // Popup handler
-    this.addGamePopup = new Popup($('#add-group-game'))
+    this.addGamePopup = new Popup($('#add-play-off-game'))
 
     // Popup game form submit event
     this.addGamePopup.wrap.find('form').on('submit', e => {
@@ -293,10 +274,14 @@ export default {
         if (201 === response.status) {
           for (let i in this.stages) {
             if (this.stages[i][0].id === parseInt(response.data.group_id)) {
+              // Create stage games if not exist
               if (!this.stages[i][0].hasOwnProperty('games')) {
                 this.stages[i][0].games = []
               }
-              this.stages[i][0].games.push(response.data)
+              // Create game score if not exists
+              !this.stages[i][0].games.length && this.stages[i][0].games.push({score: []})
+              // Set game score
+              this.stages[i][0].games[0].score = response.data.score
             }
           }
         }

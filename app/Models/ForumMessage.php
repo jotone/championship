@@ -18,7 +18,6 @@ class ForumMessage extends Model
         'parent_id',
         'message',
         'pinned',
-        'banned',
         'edited_by',
         'edit_reason',
         'edited_at',
@@ -32,7 +31,6 @@ class ForumMessage extends Model
      */
     protected $casts = [
         'pinned'     => 'boolean',
-        'banned'     => 'boolean',
         'edited_at'  => 'datetime',
         'deleted_at' => 'datetime'
     ];
@@ -86,5 +84,18 @@ class ForumMessage extends Model
     public function topic(): BelongsTo
     {
         return $this->belongsTo(ForumTopic::class, 'topic_id', 'id');
+    }
+
+    /**
+     * Extend model behavior
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($model) {
+            // Remove related comments
+            $model->subComment()->get()->each(fn($entity) => $entity->delete());
+        });
     }
 }

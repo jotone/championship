@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BasicApiController;
 use App\Http\Requests\CompetitionGroupGameRequest;
-use App\Models\{CompetitionGame, CompetitionTeam, Country, ServerQueue, UserForm};
+use App\Models\{CompetitionGame, CompetitionGroup, CompetitionTeam, Country, ServerQueue, UserForm};
 use Carbon\Carbon;
 use Illuminate\Http\{Request, Response};
 use Illuminate\Support\Facades\{DB, Validator};
@@ -31,6 +31,57 @@ class CompetitionGroupGameController extends BasicApiController
     public function show(CompetitionGame $competition_group_game): Response
     {
         return response($competition_group_game);
+    }
+
+    /**
+     * Add play-off game
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function create(Request $request): Response
+    {
+        // Request data
+        $args = $request->only(['group_id', 'entity', 'team']);
+        // Current group
+        $group = CompetitionGroup::findOrFail($args['group_id']);
+        // Real games number
+        $games_limit = $group->games_number > 0 ? $group->games_number * 2 : 1;
+        // Check games limit for current stage
+        if ($games_limit <= CompetitionGame::where('group_id')->count()) {
+            return response([
+                'errors' => [
+                    'games' => ['Набрана максимальна кількість команд для поточної стадії']
+                ]
+            ], 400);
+        }
+        // Get Team entity
+        if (empty($args['entity'])) {
+            $team = CompetitionTeam::firstWhere('group_id', $args['group_id']);
+            $args['entity'] = $team->entity;
+        }
+        // Get Game entity
+        $game = CompetitionGame::firstWhere([
+            'group_id' => $args['group_id'],
+            'entity'   => $args['entity']
+        ]);
+        // Check Game entity exists
+        if (!$game) {
+            $game = CompetitionGame::create([
+                'group_id'  => $args['group_id'],
+                'host_team' => 0,
+                'entity'    => $args['entity'],
+                'score'     => [$args['team']],
+                'acceps'    => true
+            ]);
+        } else {
+            $score = $game->score;
+            $score[] = $args['team'];
+            $game->score = $score;
+            $game->save();
+        }
+
+        return response($game, 201);
     }
 
     /**
@@ -147,6 +198,25 @@ class CompetitionGroupGameController extends BasicApiController
     public function destroy(CompetitionGame $competition_group_game): Response
     {
         $competition_group_game->delete();
+
+        return response([], 204);
+    }
+
+    /**
+     * Remove play-off team
+     *
+     * @param CompetitionGame $competition_group_game
+     * @param int $team_id
+     * @return Response
+     */
+    public function delete(CompetitionGame $competition_group_game, int $team_id): Response
+    {
+        $score = $competition_group_game->score;
+        if (($key = array_search($team_id, $score)) !== false) {
+            unset($score[$key]);
+        }
+        $competition_group_game->score = array_values($score);
+        $competition_group_game->save();
 
         return response([], 204);
     }

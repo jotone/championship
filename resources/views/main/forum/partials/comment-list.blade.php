@@ -1,9 +1,8 @@
 @foreach($comments as $comment)
-  <li
-    data-post="{{ md5($comment->id) }}"
-    @if(Auth::check() && Auth::user()->id == $comment->author_id) class="comment-author" @endif
-  >
-    <div class="comment-text-wrap">
+  <li data-post="{{ md5($comment->id) }}">
+    <div
+      class="comment-text-wrap @if(Auth::check() && Auth::user()->id == $comment->author_id) comment-author @endif"
+    >
       <div class="comment-text">
         @empty($comment->deleted_at)
           {!! $comment->message !!}
@@ -16,8 +15,7 @@
             </em>
           @endif
         @else
-          <em>Цей коментар був видалений по причині:</em>
-          <span class="comment-reason">{{ $comment->edit_reason }}</span>
+          <em>Цей коментар був видалений</em>
         @endempty
       </div>
 
@@ -34,13 +32,20 @@
             Відповісти
           </a>
 
-          @if($comment->author_id == Auth::id() && $comment->created_at->addMinutes(30)->timestamp > time())
+          @if($comment->author_id == Auth::id() && $comment->created_at->addMinutes(10)->timestamp > time())
             <a
               class="comment-link"
               href="{{ route('forum-message.show', md5($comment->id)) }}"
               title="Редагувати коментар"
             >
               <i class="fas fa-edit"></i>
+            </a>
+            <a
+              class="remove-comment-link"
+              href="{{ route('forum-message.destroy', md5($comment->id)) }}"
+              title="Видалити коментар"
+            >
+              <i class="fas fa-times"></i>
             </a>
           @endif
         @endauth

@@ -2,7 +2,7 @@
   <div class="popup-close">
     <i class="fas fa-times"></i>
   </div>
-  <div class="popup-title">Add Game. Select teams</div>
+  <div class="popup-title">Додавання Гри. Виберіть команди</div>
 
   <div class="popup-content-wrap">
     <form

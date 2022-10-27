@@ -27,11 +27,13 @@
 
   <div class="comment-list-wrap">
     @auth
-      <div class="add-comment-wrap">
-        <button name="showCommentForm" type="button">
-          <span>Коментувати</span>
-        </button>
-      </div>
+      @if($topic->messages->count())
+        <div class="add-comment-wrap">
+          <button name="showCommentForm" type="button">
+            <span>Коментувати</span>
+          </button>
+        </div>
+      @endif
     @endauth
 
     <ul>

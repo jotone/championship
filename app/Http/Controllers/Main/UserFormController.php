@@ -19,7 +19,6 @@ class UserFormController extends BasicMainController
     {
         // Default values
         $bets = [];
-        $teamIDs = $this->teamIDs();
 
         if ($this->competition) {
             $user_form = UserForm::with('bets')->firstWhere([
@@ -44,7 +43,6 @@ class UserFormController extends BasicMainController
 
         return $this->renderIndexPage('main.user.form', [
             'competition' => $this->competition,
-            'teams'       => $this->teamList(false),
             'bets'        => $bets
         ]);
     }

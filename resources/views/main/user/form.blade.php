@@ -7,7 +7,7 @@
 @section('content')
   <form
     @if(!empty($competition)) action="{{ route('user.form.store', $competition->id) }}" @endif
-  name="userForm"
+    name="userForm"
     method="post"
     @if(!empty($teams)) data-teams="{{ base64_encode(json_encode($teams->pluck('ua', 'id')->toArray())) }}" @endif
     style="width: 100%; position: relative"

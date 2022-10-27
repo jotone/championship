@@ -105,6 +105,12 @@
         </fieldset>
       </div>
 
+      @isset($model)
+        <div class="form-row">
+          <a href="{{ route('admin.forum.show', $model->id) }}">Перейти до списку коментарів</a>
+        </div>
+      @endisset
+
       <div class="row">
         <button type="submit" class="btn success">
           Зберегти

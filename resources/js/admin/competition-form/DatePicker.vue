@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import {debounce} from 'debounce';
+import { debounce } from 'debounce';
 import AirDatepicker from 'air-datepicker';
 import enLocale from 'air-datepicker/locale/en';
 

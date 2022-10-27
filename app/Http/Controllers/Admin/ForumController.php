@@ -33,6 +33,30 @@ class ForumController extends BasicAdminController
     }
 
     /**
+     * View forum comments
+     *
+     * @param ForumTopic $forum
+     * @param Request $request
+     * @return View
+     */
+    public function show(ForumTopic $forum, Request $request): View
+    {
+        $page_title = 'Список коментарів';
+
+        return $this->renderPage('admin.forum.show', $request, [
+            'breadcrumbs' => array_merge($this->breadcrumbs($request), [
+                [
+                    'url'  => route('admin.forum.edit', $forum->id),
+                    'name' => 'Редагування Форуму "' . $forum->name . '"'
+                ],
+                ['name' => $page_title]
+            ]),
+            'title'       => $page_title,
+            'comments'    => $forum->messages()->with('subComments')->get()
+        ]);
+    }
+
+    /**
      * Forum topic creating page
      *
      * @param Request $request

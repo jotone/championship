@@ -57,7 +57,9 @@ class BasicMainController extends Controller
                 ->where('competition_id', 1)
                 ->orderBy('points', 'desc')
                 ->get(),
-            'setup'       => $setup
+            'setup'       => $setup,
+            // Competition team list
+            'teams'     => $this->teamList()
         ], $share));
     }
 

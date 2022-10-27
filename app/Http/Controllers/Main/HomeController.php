@@ -43,9 +43,7 @@ class HomeController extends BasicMainController
     {
         return $this->renderIndexPage('main.home.groups', [
             // Get groups page data
-            'page_data' => CustomPage::firstWhere('slug', 'schedule'),
-            // Competition team list
-            'teams'     => $this->teamList()
+            'page_data' => CustomPage::firstWhere('slug', 'schedule')
         ]);
     }
 }

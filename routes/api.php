@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\{
     CountryController,
     CustomPagesController,
     ForumController,
+    ForumMessageController,
     RolesController,
     TeamController,
     UsersController
@@ -25,7 +26,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/competition-group-games', CompetitionGroupGameController::class)->only(['store', 'update', 'destroy']);
+Route::group(['prefix' => '/competition-group-games', 'as' => 'competition-group-games.'], function () {
+    Route::post('/create', [CompetitionGroupGameController::class, 'create'])->name('create');
+    Route::post('/', [CompetitionGroupGameController::class, 'store'])->name('store');
+    Route::match(
+        ['patch', 'put'],
+        '/{competition_group_game}',
+        [CompetitionGroupGameController::class, 'update']
+    )->name('update');
+    Route::delete('/{competition_group_game}', [CompetitionGroupGameController::class, 'destroy'])->name('destroy');
+    Route::delete('/{competition_group_game}/{team_id}', [CompetitionGroupGameController::class, 'delete'])->name('delete');
+});
 
 Route::resource('/competition-group-teams', CompetitionGroupTeamController::class)->only(['store', 'destroy']);
 
@@ -38,6 +49,8 @@ Route::resource('/countries', CountryController::class)->except(['create', 'edit
 
 Route::patch('/forum/upgrade', [ForumController::class, 'upgrade'])->name('forum.upgrade');
 Route::resource('/forum', ForumController::class)->except(['create', 'edit', 'show']);
+
+Route::resource('/forum-messages', ForumMessageController::class)->only(['update', 'destroy']);
 
 Route::resource('/pages', CustomPagesController::class)->except(['create', 'edit', 'show']);
 

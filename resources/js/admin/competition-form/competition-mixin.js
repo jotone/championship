@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {debounce} from 'debounce';
+import { debounce } from 'debounce';
 
 export const CompetitionMixin = {
   methods: {
@@ -45,14 +45,6 @@ export const CompetitionMixin = {
         .post(this.gameUpdateRoute(id), formData)
         .then(response => 200 === response.status && this.updateGames(response.data))
     }, 500),
-    /**
-     *
-     * @param id
-     * @returns {string}
-     */
-    gameRemoveRoute(id) {
-      return window.Helpers.buildUrl(this.routes.game.destroy, id, 1)
-    },
     /**
      *
      * @param id

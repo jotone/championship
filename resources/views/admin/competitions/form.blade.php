@@ -36,6 +36,8 @@
 @section('popup')
   @include('admin.competitions.popup.add-group-game')
 
+  @include('admin.competitions.popup.add-play-off-game')
+
   @include('admin.competitions.popup.add-team')
 @endsection
 

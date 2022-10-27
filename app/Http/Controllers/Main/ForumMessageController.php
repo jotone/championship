@@ -98,8 +98,20 @@ class ForumMessageController extends BasicMainController
         ]);
     }
 
-    public function destroy(string $md5_id)
+    /**
+     * Remove user's comment
+     *
+     * @param string $md5_id
+     * @return Response
+     */
+    public function destroy(string $md5_id): Response
     {
-        dd($md5_id);
+        $comment = ForumMessage::whereRaw("md5(id) = '{$md5_id}'")->firstOrFail();
+
+        abort_if($comment->author_id != Auth::id(), 403);
+
+        $comment->delete();
+
+        return response([], 204);
     }
 }

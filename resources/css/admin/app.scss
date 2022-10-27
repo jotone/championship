@@ -162,3 +162,34 @@ header {
     }
   }
 }
+
+.comment-list-wrap {
+  ul {
+    margin-left: 25px;
+    position: relative;
+
+    li {
+      display: block;
+      padding: 10px;
+    }
+
+    form {position: relative}
+
+    .comment-etc {
+      color: $paragraph;
+      font-size: 12px;
+    }
+
+    .comments-controls {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: absolute;
+      left: 455px;
+      top: 0;
+
+      a {text-decoration: none}
+    }
+  }
+}

@@ -104,7 +104,7 @@ $(document).ready(() => {
         if (typeof $(this).attr('data-msg') !== 'undefined') {
           const [entity, field] = $(this).attr('data-msg').split('.')
 
-          const message = `${entity} "${response.data[field]}" was successfully ${201 === response.status ? 'created' : 'modified'}.`
+          const message = `${entity} "${response.data[field]}" успішно ${201 === response.status ? 'створено' : 'змінено'}.`
 
           Notifications.push(message)
 

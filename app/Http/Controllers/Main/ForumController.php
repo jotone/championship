@@ -44,7 +44,7 @@ class ForumController extends BasicMainController
         return $this->renderIndexPage('main.forum.show', [
             'topic' => ForumTopic::with([
                 'messages' => function ($q) {
-                    return $q->whereNull('parent_id')->with('subComments');
+                    return $q->whereNull('parent_id')->with('subComments')->orderBy('pinned', 'desc');
                 }
             ])->where('url', $forum_url)->firstOrFail()
         ]);

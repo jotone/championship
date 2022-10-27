@@ -1,7 +1,7 @@
 import moment from 'moment/moment';
 import { Confirmation } from '../libs/confirmation';
+import { Notifications } from '../libs/notifications';
 import { Session } from '../libs/session';
-import {Notifications} from "../libs/notifications";
 
 export const ContentTableMixin = {
   methods: {

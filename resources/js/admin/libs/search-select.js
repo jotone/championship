@@ -43,19 +43,14 @@ export class SearchSelect {
 
         if (value.length > 2) {
           const url =  wrap.attr('data-url') + (this.options.url.indexOf('?') >= 0 ? '&' : '?') + 'search=' + value
-          $.axios.get(url, {
-            preventOverlay: this.options.preventOverlay
-          })
+          $.axios
+            .get(url, {preventOverlay: this.options.preventOverlay})
             .then(response => 200 === response.status && list
               .show()
               .empty()
               .append(response.data.collection.reduce((sum, cur) => sum + this.templates.listItem(cur), ''))
             )
-            .finally(() => {
-              if (!this.options.preventOverlay) {
-                $('.overlay, .overlay .preload').hide()
-              }
-            })
+            .finally(() => !this.options.preventOverlay && $('.overlay, .overlay .preload').hide())
         }
       }, 205))
       // Switch item

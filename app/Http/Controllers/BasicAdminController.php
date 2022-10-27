@@ -47,13 +47,11 @@ class BasicAdminController extends Controller
             $route = $temp . 'index';
             if ($i == count($path) - 1) {
                 switch ($path[$i]) {
-                    case 'index':
-                        break;
                     case 'create':
-                        $breadcrumbs[] = ['name' => 'Create'];
+                        $breadcrumbs[] = ['name' => 'Створення'];
                         break;
                     case 'edit':
-                        $breadcrumbs[] = ['name' => 'Edit'];
+                        $breadcrumbs[] = ['name' => 'Редагування'];
                         break;
                 }
             } else {

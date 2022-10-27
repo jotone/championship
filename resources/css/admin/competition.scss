@@ -118,10 +118,7 @@
       text-align: center;
     }
 
-    .add-game-wrap {
-      margin-top: 50px;
-      text-align: center;
-    }
+    .add-game-wrap {margin-top: 50px; text-align: center}
   }
 
   .play-off-games-list {
@@ -133,28 +130,13 @@
       margin: 20px 10px;
       position: relative;
 
-      .game-date-wrap {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-      }
-
-      .game-teams-wrap, .game-teams-score-wrap {
+      .game-teams-wrap {
         align-items: center;
         display: flex;
         justify-content: space-around;
         margin: 10px 0;
 
         span {font-size: 16px}
-      }
-
-      .game-place-wrap input{min-width: 198px}
-
-      .game-teams-score-wrap {min-width: 120px}
-
-      .game-accept-wrap, .game-place-wrap {
-        margin: 10px 0;
-        text-align: center
       }
 
       .game-controls-wrap {

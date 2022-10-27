@@ -60,5 +60,4 @@ class UserForm extends Model
             $model->bets()->get()->each(fn($entity) => $entity->delete());
         });
     }
-
 }

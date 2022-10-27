@@ -59,8 +59,7 @@ class UserController extends BasicMainController
 
         return $this->renderIndexPage('main.user.results', [
             'bets'  => $bets,
-            'user'  => $user,
-            'teams' => $this->teamList()
+            'user'  => $user
         ]);
     }
 

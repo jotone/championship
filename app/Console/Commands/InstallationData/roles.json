@@ -27,7 +27,7 @@
       },
       {
         "controller": "App\\Http\\Controllers\\Admin\\ForumController",
-        "methods": ["index", "create", "edit"]
+        "methods": ["index", "show", "create", "edit"]
       },
       {
         "controller": "App\\Http\\Controllers\\Api\\UsersController",

@@ -19,8 +19,6 @@ export class Popup {
   }
 
   close() {
-    this.wrap.fadeOut(125, function () {
-      $('.overlay').fadeOut(50)
-    })
+    this.wrap.fadeOut(125, () => $('.overlay').fadeOut(50))
   }
 }

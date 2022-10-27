@@ -71,6 +71,23 @@ $(document).ready(() => {
         })
       }
     })
+    // Remove comment
+    .on('click', 'a.remove-comment-link', function (e) {
+      e.preventDefault()
+
+      const res = confirm('Ви дійсно хочете видалити цей коментар?')
+
+      if (res) {
+        const _this = $(this)
+        const url = $(this).attr('href')
+
+        if (typeof url !== 'undefined') {
+          $.axios
+            .delete(url)
+            .then(response => 204 === response.status && _this.closest('.comment-text-wrap').parent('li').remove())
+        }
+      }
+    })
 
   commentForm.on('submit', function (e) {
     e.preventDefault()

@@ -157,9 +157,9 @@
 
 <script>
 
-import { CompetitionMixin } from './competition-mixin';
-import { Confirmation } from '../libs/confirmation';
-import { Popup } from '../libs/popup';
+import {CompetitionMixin} from './competition-mixin';
+import {Confirmation} from '../libs/confirmation';
+import {Popup} from '../libs/popup';
 import DatePicker from './DatePicker.vue';
 import GameScore from './GameScore.vue';
 import Team from './Team.vue';
@@ -228,6 +228,14 @@ export default {
         })
         .finally(() => $('.overlay, .overlay .preload').hide())
       )
+    },
+    /**
+     * Groups remove game
+     * @param id
+     * @returns {string}
+     */
+    gameRemoveRoute(id) {
+      return window.Helpers.buildUrl(this.routes.game.destroy, id, 1)
     },
     /**
      * Show Add game popup
@@ -305,9 +313,9 @@ export default {
 
       const confirm = new Confirmation(`Ви справді хочете видалити команду "${name}"?`).open()
 
-      confirm.then(answer =>
-        answer && $.axios.delete(_this.attr('href')).then(
-          response => 204 === response.status && window.location.reload())
+      confirm.then(answer => answer && $.axios
+        .delete(_this.attr('href'))
+        .then(response => 204 === response.status && window.location.reload())
       )
     },
     /**
@@ -360,10 +368,7 @@ export default {
                 type = team.entity
               }
 
-              teams.push({
-                group: group.id,
-                id: team.entity_id
-              })
+              teams.push({group: group.id, id: team.entity_id})
               // This is need to get teams data
               teamIDs.push(team.entity_id)
             }
@@ -371,10 +376,8 @@ export default {
 
           // Set groups
           for (let i = 0, n = response.data.collection.length; i < n; i++) {
-            const group = response.data.collection[i]
-            if (0 === parseInt(group.stage)) {
-              this.groups.push(group)
-            }
+            const group = response.data.collection[i];
+            0 === parseInt(group.stage) && this.groups.push(group);
           }
 
           // Teams are countries or clubs
