@@ -1,3 +1,7 @@
+const overlay = $('.overlay')
+
+$(document).keyup(e => e.key === 'Escape' && $('.popup-wrap:visible').fadeOut(125, () => overlay.fadeOut(50)))
+
 export class Popup {
   wrap = null
 
@@ -12,13 +16,13 @@ export class Popup {
   }
 
   open() {
-    $('.overlay').fadeIn(100)
+    overlay.fadeIn(100)
     $('.overlay .preload, .overlay .popup-wrap').hide()
 
     this.wrap.fadeIn(250)
   }
 
   close() {
-    this.wrap.fadeOut(125, () => $('.overlay').fadeOut(50))
+    this.wrap.fadeOut(125, () => overlay.fadeOut(50))
   }
 }
