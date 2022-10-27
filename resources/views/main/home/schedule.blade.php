@@ -10,7 +10,7 @@
 
     <tbody>
     @foreach($competition->groups as $competition_group)
-      @if($competition_group->games->count())
+      @if(!$competition_group->stage && $competition_group->games->count())
         @foreach($competition_group->games as $game)
           <tr @if($loop->last) class="group-finish" @endif>
             @if ($loop->first)

@@ -29,4 +29,12 @@ $(document).ready(() => {
       $(this).remove()
     })
   })
+
+  // Hide login form on miss
+  $(document).on('click', function (e) {
+    const _this = $(e.target);
+    if ($('.login-form').hasClass('active') && !_this.closest('.login-form').length && !_this.closest('.login-form-menu').length) {
+      $('.login-form').removeClass('active')
+    }
+  })
 })

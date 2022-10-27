@@ -2,7 +2,7 @@
 
 @section('content')
   @foreach($competition->groups as $competition_group)
-    @if($competition_group->games->count() && !$competition_group->stag)
+    @if(!$competition_group->stage && $competition_group->games->count())
       <table class="content-table">
         <thead>
         <tr>
