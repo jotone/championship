@@ -48,8 +48,7 @@
         </thead>
         <tbody>
         @if($loop->last)
-          @if ($groups[$i - 1]->games->count())
-            @dd($groups[$i - 1]->games)
+          @if (isset($groups[$i - 1]) && $groups[$i - 1]->games->count())
             <tr>
               @php
                 $game = $groups[$i - 1]->games[0];
