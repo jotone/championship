@@ -10,12 +10,8 @@
   - ~~Editable for admins~~
   - ~~Schedule~~
   - ~~Groups~~
-  - Comments (Forum)
-    - ~~Admin (Sections)~~
-    - ~~Front (Sections)~~
-    - ~~Admin (Comments)~~
-    - ~~Front (Comments)~~
-  - Pivot table (united table)
+  - ~~Comments (Forum)~~
+  - Pivot table (summary)
 - Dashboard for admin
 - Admin
   - Settings

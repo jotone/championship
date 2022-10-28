@@ -74,7 +74,7 @@ class ProcessServerQuery extends Command
                     // Calculate match teams
                     $match_scores = count(array_intersect($bet->scores, $teams_in_group));
                     // Score multiplication value
-                    $mult = $bet->group->games_number == 0 ? 0 : ($bet->group->games_number == 1 ? 2 : 1);
+                    $mult = $bet->group->games_number > 1 ? 1 : 2;
                     // Calculate user points
                     $user_points += $match_scores * $mult;
                     // Add bonus points
@@ -100,21 +100,12 @@ class ProcessServerQuery extends Command
                             case 3:$user_points += 6;break;
                             case 4:$user_points += 8;break;
                         }
-                    } else if ($bet->group->games_number <= 1) {
-                        $group = CompetitionGroup::with('games')->firstWhere([
-                            'competition_id' => $item->competition_id,
-                            'games_number' => 1
-                        ]);
-                        if ($group->games->count()) {
-                            if ($bet->group->games_number == 1) {
-                                // Final
-                                $user_points += count(array_intersect($bet->scores, array_keys($group->games[0]->score))) ? 2 : 0;
-                                $user_points += count(array_intersect($bet->scores, array_keys($group->games[0]->score))) > 1 ? 8 : 0;
-                            } else {
-                                // Champion
-                                $user_points += in_array($bet->scores[0], array_keys($group->games[0]->score)) ? 8 : 0;
-                            }
-                        }
+                    } else if ($bet->group->games_number == 1 && 4 == $match_scores) {
+                        // Final
+                        $user_points += 8;
+                    } else if ($bet->group->games_number == 0 && $match_scores > 0) {
+                        // Champion
+                        $user_points += 6;
                     }
                 }
             }

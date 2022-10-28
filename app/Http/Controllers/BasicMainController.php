@@ -54,7 +54,7 @@ class BasicMainController extends Controller
             'competition' => $this->competition,
             'messages'    => $messages,
             'results'     => UserForm::with(['bets', 'user'])
-                ->where('competition_id', 1)
+                ->where('competition_id', $this->competition->id)
                 ->orderBy('points', 'desc')
                 ->get(),
             'setup'       => $setup,

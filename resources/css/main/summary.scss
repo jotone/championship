@@ -1,0 +1,76 @@
+@import "variables";
+
+.summary-wrapper {position: relative}
+
+.games-list {
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 350px;
+
+  ul {
+    font-size: .875rem;
+
+    ul > li {cursor: pointer}
+
+    li.game-teams-list {
+      border-right: 1px solid $gray-light;
+      padding: 8px;
+      text-align: center
+    }
+
+    li.group-games-list {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+
+      .game-team-names, .game-score {padding: 8px}
+
+      .game-team-names {
+        display: flex;
+        justify-content: center;
+        flex-wrap: nowrap;
+        width: 250px
+      }
+
+      .game-score {
+        border-left: 1px solid $gray-light;
+        border-right: 1px solid $gray-light;
+        text-align: center;
+        width: 100px
+      }
+    }
+  }
+
+  .group-name {
+    background-color: $heading;
+    color: white;
+    height: 30px;
+    padding: 8px;
+    text-align: center;
+  }
+}
+
+.user-list-wrap {
+  margin-left: 380px;
+  overflow-x: scroll;
+  overflow-y: visible;
+  padding-top: 200px;
+  width: 100%;
+}
+
+.user-list {
+  overflow-y: visible;
+
+  thead {
+    th.rotate {
+      height: 140px;
+      white-space: nowrap;
+
+      div {transform: translate(25px, 51px) rotate(315deg); width: 30px}
+
+      span {border-bottom: 1px solid #ccc; padding: 5px 10px}
+    }
+  }
+}

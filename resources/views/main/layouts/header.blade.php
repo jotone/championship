@@ -45,7 +45,7 @@
         <li><a href="{{ route('user.form.show') }}">Анкета</a></li>
       @endauth
       <li><a href="{{ route('forum.index') }}">Форум</a></li>
-      <li><a href="#">Зведена таблиця</a></li>
+      <li><a href="{{ route('summary.index') }}">Зведена таблиця</a></li>
       <li><a href="{{ route('rules.index') }}">Правила</a></li>
       <li><a href="{{ route('groups.index') }}">Групи</a></li>
       <li><a href="{{ route('schedule.index') }}">Розклад</a></li>

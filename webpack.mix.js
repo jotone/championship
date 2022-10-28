@@ -33,6 +33,7 @@ mix
   .js('./resources/js/admin/main.js', './public/js/admin/main.js')
   // Main
   .sass('./resources/css/main/app.scss', './public/css/')
+  .sass('./resources/css/main/summary.scss', './public/css/')
   .js('./resources/js/main/forum-topics/app.js','./public/js/forum-topics.js').vue()
   .js('./resources/js/main/app.js','./public/js/app.js')
   .js('./resources/js/main/forum-show.js','./public/js/forum-show.js')

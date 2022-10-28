@@ -75,6 +75,8 @@ Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
 Route::get('/schedule', [HomeController::class, 'schedule'])->name('schedule.index');
 // Games by groups
 Route::get('/groups', [HomeController::class, 'groups'])->name('groups.index');
+// Summary pivot table
+Route::get('/summary', [HomeController::class, 'summary'])->name('summary.index');
 // Forum
 Route::resource('/forum', ForumController::class)->only(['index', 'show']);
 // Forum message
