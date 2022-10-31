@@ -1,8 +1,13 @@
 [
   {
+    "name": "Головна",
+    "url": "home.index",
+    "img_url": "fas fa-home"
+  },
+  {
     "name": "Адмін панель",
     "url": "admin.index",
-    "img_url": "fas fa-home"
+    "img_url": "fas fas fa-tachometer-alt-fastest"
   },
   {
     "name": "Чемпіонати",
