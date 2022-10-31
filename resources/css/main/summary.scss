@@ -1,17 +1,37 @@
 @import "variables";
 
-.summary-wrapper {position: relative}
+#summary-wrapper {position: relative}
 
-.games-list {
+.games-list-wrap {
   left: 0;
   position: absolute;
-  top: 0;
-  width: 350px;
+  min-height: 280px;
+  width: 315px;
 
-  ul {
+  ul.participant-list-wrap {
     font-size: .875rem;
 
-    ul > li {cursor: pointer}
+    li {
+      padding: 5px 0;
+      margin: 5px 0;
+
+      label {
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      input {
+        margin: 0 5px;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  ul.game-list {
+    font-size: .875rem;
+
+    ul > li {border-bottom: 1px solid $gray-light; cursor: pointer}
 
     li.game-teams-list {
       border-right: 1px solid $gray-light;
@@ -29,9 +49,11 @@
 
       .game-team-names {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         flex-wrap: nowrap;
-        width: 250px
+        width: 215px;
+
+        span:nth-child(2) {padding: 0 2px}
       }
 
       .game-score {
@@ -45,6 +67,7 @@
 
   .group-name {
     background-color: $heading;
+    border-right: 1px solid $gray-light;
     color: white;
     height: 30px;
     padding: 8px;
@@ -53,11 +76,9 @@
 }
 
 .user-list-wrap {
-  margin-left: 380px;
+  margin-left: 314px;
   overflow-x: scroll;
   overflow-y: visible;
-  padding-top: 200px;
-  width: 100%;
 }
 
 .user-list {
@@ -65,12 +86,83 @@
 
   thead {
     th.rotate {
-      height: 140px;
+      height: 80px;
       white-space: nowrap;
 
-      div {transform: translate(25px, 51px) rotate(315deg); width: 30px}
+      div {
+        margin-left: 15px;
+        transform: translate(25px, 51px) rotate(315deg);
+        width: 30px
+      }
 
-      span {border-bottom: 1px solid #ccc; padding: 5px 10px}
+      span {border-bottom: 1px solid $gray-light; padding: 5px 10px}
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid $gray-light;
+
+      &.user-list-heading {
+        border-color: $gray;
+        background-color: $heading;
+        color: white;
+
+        td {border-left-color: $heading}
+
+        &:first-child {border-bottom: none}
+      }
+
+      td {
+        border-left: 1px solid $gray-light;
+        height: 30px;
+        text-align: center;
+        width: 100px;
+
+        &:last-child {border-right: 1px solid $gray-light}
+        &.green {background-color: #aee571}
+        &.yellow {background-color: #fff176}
+
+        div {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+          height: 28px;
+        }
+      }
+    }
+
+    .user-list-value {
+      height: 30px;
+      position: relative;
+      width: 100px;
+
+      .user-list-team, .user-list-score {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        font-size: .75rem;
+        height: 30px;
+        left: 0;
+        position: absolute;
+        width: 100px;
+      }
+
+      .user-list-team {
+        flex-wrap: nowrap;
+        padding: 0 4px;
+        overflow: hidden;
+        word-break: keep-all;
+      }
+
+      .user-list-score span:nth-child(2) {padding: 0 2px}
+
+      .user-list-points {
+        font-size: .75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+        right: 4px;
+      }
     }
   }
 }

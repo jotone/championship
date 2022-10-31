@@ -13,21 +13,24 @@ window.$.axios.interceptors.request.use(config => {
 createApp(Main).mount('#forumList')
 
 const list = $('#forumList .forum-list-wrap')
-new Sortable(list[0], {
-  animation: 150,
-  handle: '.forum-list-move',
-  group: 'shared',
-  onSort: function () {
-    const route = list.attr('data-route')
-    if (typeof route !== 'undefined') {
 
-      let formData = new FormData()
-      formData.append('_method', 'patch')
-      list.children('li').each(function () {
-        formData.append('positions[]', $(this).attr('data-id'))
-      })
+if (list.length) {
+  new Sortable(list[0], {
+    animation: 150,
+    handle: '.forum-list-move',
+    group: 'shared',
+    onSort: function () {
+      const route = list.attr('data-route')
+      if (typeof route !== 'undefined') {
 
-      $.axios.post(route, formData)
+        let formData = new FormData()
+        formData.append('_method', 'patch')
+        list.children('li').each(function () {
+          formData.append('positions[]', $(this).attr('data-id'))
+        })
+
+        $.axios.post(route, formData)
+      }
     }
-  }
-})
+  })
+}

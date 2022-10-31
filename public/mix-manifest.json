@@ -11,6 +11,7 @@
     "/js/admin/app.js": "/js/admin/app.js",
     "/js/admin/main.js": "/js/admin/main.js",
     "/js/forum-topics.js": "/js/forum-topics.js",
+    "/js/summary.js": "/js/summary.js",
     "/js/app.js": "/js/app.js",
     "/js/forum-show.js": "/js/forum-show.js",
     "/js/profile.js": "/js/profile.js",

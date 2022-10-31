@@ -85,17 +85,12 @@ class HomeController extends BasicMainController
         ])->firstWhere('slug', 'world-cup-2022');
 
         $group_data = [];
-        $users = [];
 
         foreach ($competition->userForms as $form) {
-            $users[] = [
-                'user_id' => $form->user_id,
-                'name'    => $form->user->name,
-                'points'  => $form->points
-            ];
             foreach ($form->bets as $bet) {
                 if (!isset($group_data[$bet->group_id])) {
                     $group_data[$bet->group_id] = [
+                        'group_id' => md5($bet->group_id),
                         'name'     => $bet->group->name,
                         'position' => ($bet->group->stage + 1) * 100 + $bet->group->position
                     ];
@@ -103,7 +98,13 @@ class HomeController extends BasicMainController
 
                 if ($bet->group->stage > 0) {
                     $game = $bet->group->games()->where('accept', 1)->first();
-                    $game_teams = $game->entity::whereIn('id', $game->score ?? [])->pluck('ua', 'id')->toArray();
+                    $game_teams = $game->entity::whereIn('id', $game->score ?? [])->get()
+                        ->map(function ($model) {
+                            $model->uuid = md5($model->id);
+                            return $model;
+                        })
+                        ->pluck('ua', 'uuid')
+                        ->toArray();
 
                     if ($game) {
                         $match_scores = count(array_intersect($bet->scores, $game->score));
@@ -115,44 +116,24 @@ class HomeController extends BasicMainController
                         if ($bet->group->games_number == 8) {
                             // 1/8
                             switch ($match_scores) {
-                                case 12:
-                                    $points += 4;
-                                    break;
-                                case 13:
-                                    $points += 6;
-                                    break;
-                                case 14:
-                                    $points += 8;
-                                    break;
-                                case 15:
-                                    $points += 9;
-                                    break;
-                                case 16:
-                                    $points += 10;
-                                    break;
+                                case 12:$points += 4;break;
+                                case 13:$points += 6;break;
+                                case 14:$points += 8;break;
+                                case 15:$points += 9;break;
+                                case 16:$points += 10;break;
                             }
                         } else if ($bet->group->games_number == 4) {
                             // 1/4
                             switch ($match_scores) {
-                                case 6:
-                                    $points += 4;
-                                    break;
-                                case 7:
-                                    $points += 6;
-                                    break;
-                                case 8:
-                                    $points += 8;
-                                    break;
+                                case 6:$points += 4;break;
+                                case 7:$points += 6;break;
+                                case 8:$points += 8;break;
                             }
                         } else if ($bet->group->games_number == 2) {
                             // 1/2
                             switch ($match_scores) {
-                                case 3:
-                                    $points += 6;
-                                    break;
-                                case 4:
-                                    $points += 8;
-                                    break;
+                                case 3:$points += 6;break;
+                                case 4:$points += 8;break;
                             }
                         } else if ($bet->group->games_number == 1 && 4 == $match_scores) {
                             // Final
@@ -162,14 +143,25 @@ class HomeController extends BasicMainController
                             $points += 6;
                         }
 
-                        $group_data[$game->group_id]['playOff'][$form->user_id] = [
-                            'game_id' => $game->id,
-                            'user'    => $form->user->name,
-                            'teams'   => [
-                                'real' => $game_teams,
-                                'user' => $game->entity::whereIn('id', $bet->scores ?? [])->pluck('ua', 'id')->toArray()
-                            ],
-                            'points'  => $points
+                        if (!isset($group_data[$game->group_id]['playOff'])) {
+                            $group_data[$game->group_id]['playOff'] = [
+                                'game_id' => md5($game->id),
+                                'teams'   => $game_teams,
+                                'users'   => []
+                            ];
+                        }
+
+                        $group_data[$game->group_id]['playOff']['users'][] = [
+                            'id'     => md5($form->user_id),
+                            'name'   => $form->user->name,
+                            'points' => $points,
+                            'teams'  => $game->entity::whereIn('id', $bet->scores ?? [])->get()
+                                ->map(function ($model) {
+                                    $model->uuid = md5($model->id);
+                                    return $model;
+                                })
+                                ->pluck('ua', 'uuid')
+                                ->toArray()
                         ];
                     }
                 } else {
@@ -200,29 +192,35 @@ class HomeController extends BasicMainController
                         $points = 1;
                     }
 
-                    $group_data[$bet->game->group_id]['games'][$bet->game->id][$form->user_id] = [
-                        'user'   => $form->user->name,
-                        'host'   => $bet->game->hostTeam->ua,
-                        'guest'  => $bet->game->guestTeam->ua,
-                        'scores' => [
-                            'real' => $bet->game->score,
-                            'user' => $bet->scores
-                        ],
-                        'points' => $points
+                    $game_id = md5($bet->game->id);
+                    if (!isset($group_data[$bet->game->group_id]['games'][$game_id])) {
+                        $group_data[$bet->game->group_id]['games'][$game_id] = [
+                            'host'  => $bet->game->hostTeam,
+                            'guest' => $bet->game->guestTeam,
+                            'score' => $bet->game->score,
+                            'users' => []
+                        ];
+                    }
+
+                    $group_data[$bet->game->group_id]['games'][$game_id]['users'][] = [
+                        'id'     => md5($form->user_id),
+                        'name'   => $form->user->name,
+                        'points' => $points,
+                        'score'  => $bet->scores
                     ];
                 }
             }
         }
 
+//        dd($group_data[10]);
+
         return view('main.home.summary', [
-            'groups'    => collect($group_data)->sortBy('position'),
+            'groups'    => $group_data,
             'messages'  => $messages,
             // Get groups page data
             'page_data' => CustomPage::firstWhere('slug', 'summary'),
             // Settings
             'setup'     => $setup,
-            // User List
-            'users'     => collect($users)->sortByDesc('points')
         ]);
     }
 }

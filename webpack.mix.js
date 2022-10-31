@@ -35,6 +35,7 @@ mix
   .sass('./resources/css/main/app.scss', './public/css/')
   .sass('./resources/css/main/summary.scss', './public/css/')
   .js('./resources/js/main/forum-topics/app.js','./public/js/forum-topics.js').vue()
+  .js('./resources/js/main/summary/app.js','./public/js/summary.js').vue()
   .js('./resources/js/main/app.js','./public/js/app.js')
   .js('./resources/js/main/forum-show.js','./public/js/forum-show.js')
   .js('./resources/js/main/profile.js','./public/js/profile.js')
