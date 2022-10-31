@@ -11,7 +11,7 @@
   - ~~Schedule~~
   - ~~Groups~~
   - ~~Comments (Forum)~~
-  - Pivot table (summary)
+  - ~~Pivot table (summary)~~
 - Dashboard for admin
 - Admin
   - Settings

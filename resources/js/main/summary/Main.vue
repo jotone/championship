@@ -1,6 +1,11 @@
 <template>
   <div class="games-list-wrap">
-    <ul class="participant-list-wrap">
+    <div class="show-block active" @click="hideUserBlock">
+      <span>Список користувачів</span>
+      <i class="fas fa-angle-right"></i>
+    </div>
+
+    <ul class="participant-list-wrap active">
       <li v-for="user in users">
         <label>
           <input name="viewUser" :value="user.id" type="checkbox" checked @change="changeUserVisibility">
@@ -8,7 +13,8 @@
         </label>
       </li>
     </ul>
-    <ul class="game-list">
+
+    <ul class="game-list active">
       <li :data-group="group.group_id" v-for="group in groups">
         <div class="group-name">
           {{ group.name }}
@@ -39,6 +45,7 @@
   </div>
 
   <div class="user-list-wrap">
+    <div class="expand-box active"></div>
     <table class="user-list">
       <thead>
       <tr>
@@ -132,11 +139,19 @@ export default {
   data() {
     return {
       backbone: {},
+      height: 0,
       groups: {},
       users: {}
     }
   },
   methods: {
+    expandBoxHeight() {
+      $('.expand-box').css({'height': ($('.participant-list-wrap').height() - 40) + 'px'})
+    },
+    /**
+     * View or hide user column
+     * @param e
+     */
     changeUserVisibility(e) {
       const input = $(e.target)
       for (let i = 0; i < this.users.length; i++) {
@@ -145,6 +160,18 @@ export default {
           break;
         }
       }
+    },
+    /**
+     * Hide / show participant list
+     * @param e
+     */
+    hideUserBlock(e) {
+      const _this = $(e.target).closest('.show-block')
+      _this.toggleClass('active')
+      $('.participant-list-wrap, .game-list').toggleClass('active')
+      $('.expand-box').toggleClass('active')
+
+      $('.expand-box').hasClass('active') && this.expandBoxHeight()
     },
     /**
      * Convert iterable object to array
@@ -238,6 +265,8 @@ export default {
     })
       // Fill user-list table backbone
       .then(() => {
+        this.expandBoxHeight()
+
         let backbone = {
           gameData: {},
           teamData: {}
@@ -278,9 +307,6 @@ export default {
       })
       // Figure out user score points
       .then(() => {
-        const height = $('.participant-list-wrap').height() - 70
-        $('.user-list-wrap').css({'padding-top': height + 'px'})
-
         let totalGroupPoints = {}
         let rowIndex = {
           group: 0,

@@ -9,7 +9,10 @@
   width: 315px;
 
   ul.participant-list-wrap {
+    display: none;
     font-size: .875rem;
+
+    &.active {display: block}
 
     li {
       padding: 5px 0;
@@ -30,6 +33,9 @@
 
   ul.game-list {
     font-size: .875rem;
+    margin-top: 200px;
+
+    &.active {margin-top: 0}
 
     ul > li {border-bottom: 1px solid $gray-light; cursor: pointer}
 
@@ -79,6 +85,32 @@
   margin-left: 314px;
   overflow-x: scroll;
   overflow-y: visible;
+
+  .expand-box:not(.active) {
+    height: 150px !important;
+  }
+}
+
+.show-block {
+  background-color: $heading;
+  color: white;
+  padding: 7px;
+  position: relative;
+  text-align: center;
+
+  i {
+    cursor: pointer;
+    padding: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
+    position: absolute;
+  }
+
+  &.active i {
+    transform: rotate(90deg);
+    top: -10%;
+  }
 }
 
 .user-list {
