@@ -14,7 +14,7 @@
       @csrf
 
       <div class="row col-100">
-        <fieldset class="col-50">
+        <fieldset class="col-50" @if(isset($model) && $user->role->level > $model->role->level) disabled @endif>
           <legend>Основна інформація</legend>
 
           <div class="form-row">
@@ -79,7 +79,7 @@
           </div>
         </fieldset>
 
-        <fieldset class="col-50">
+        <fieldset class="col-50" @if(isset($model) && $user->role->level > $model->role->level) disabled @endif>
           <legend>Додаткова інформація</legend>
 
           <div class="form-row">
@@ -113,11 +113,13 @@
         </fieldset>
       </div>
 
-      <div class="row">
-        <button type="submit" class="btn success">
-          Зберегти
-        </button>
-      </div>
+      @if(isset($model) && $user->role->level <= $model->role->level)
+        <div class="row">
+          <button type="submit" class="btn success">
+            Зберегти
+          </button>
+        </div>
+      @endif
     </form>
   </div>
 @endsection

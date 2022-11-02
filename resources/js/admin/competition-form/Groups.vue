@@ -82,7 +82,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="(game) in group.games" :data-id="game.id">
+      <tr v-for="(game) in group.games" :data-id="game.id" :id="`game${group.id}_${game.id}`">
         <td>
           <DatePicker
             :name="`gameDate[${game.id}]`"
@@ -203,6 +203,9 @@ export default {
           }
         })
       )
+    },
+    goto(href) {
+      return $('html').animate({scrollTop: href.offset().top - 65}, 500)
     },
     /**
      * Remove group
@@ -402,6 +405,7 @@ export default {
             .finally(() => this.sortGamesAndTeams())
         }
       })
+      .finally(() => !!window.location.hash && this.goto($(`tr${window.location.hash}`)))
 
     // Popup handler
     this.addGamePopup = new Popup($('#add-group-game'))

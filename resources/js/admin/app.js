@@ -118,6 +118,7 @@ $(document).ready(() => {
         }
       })
       .catch(({response}) => {
+        console.log(response)
         if (400 <= response.status && 500 >= response.status) {
           if (response.data.hasOwnProperty('message')) {
             Notifications.push(response.data.message, 'error')

@@ -6,9 +6,11 @@ body {background-color: $paragraph; font-family: Verdana, sans-serif;}
 
 .col-100 {width: 100%}
 .col-80 {width: 80%}
+.col-75 {width: 75%}
 .col-70 {width: 70%}
 .col-50 {width: 50%}
 .col-30 {width: 30%}
+.col-25 {width: 25%}
 
 .accept, .edit, .remove, .view {cursor: pointer; padding: 4px}
 .accept {color: $green-stroke}
@@ -163,22 +165,54 @@ header {
   }
 }
 
+.game-timer-wrap {
+  border: 3px solid $blue-stroke;
+  border-radius: 5px;
+  display: none;
+  margin: 20px auto;
+  width: 90%;
+  padding: 10px;
+  text-align: center;
+
+  &.green {
+    border-color: $green-stroke;
+
+    .count-down-timer-wrap span {color: $green-stroke}
+  }
+  &.yellow {
+    border-color: $yellow-stroke;
+
+    .count-down-timer-wrap span {color: $yellow-stroke}
+  }
+  &.red {
+    border-color: $red-stroke;
+
+    .count-down-timer-wrap span {color: $red-stroke}
+  }
+
+  .count-down-timer-wrap span {font-size: 3rem; line-height: 3.5rem}
+
+  .game-timer-teams {
+    color: $blue;
+    padding: 10px 0;
+    text-decoration: none;
+
+    &:hover {text-decoration: underline}
+
+    b {font-size: 1.5rem; line-height: 2rem}
+  }
+}
+
 .comment-list-wrap {
   ul {
     margin-left: 25px;
     position: relative;
 
-    li {
-      display: block;
-      padding: 10px;
-    }
+    li {display: block; padding: 10px}
 
     form {position: relative}
 
-    .comment-etc {
-      color: $paragraph;
-      font-size: 12px;
-    }
+    .comment-etc {color: $paragraph; font-size: 12px}
 
     .comments-controls {
       align-items: center;
@@ -191,5 +225,27 @@ header {
 
       a {text-decoration: none}
     }
+  }
+}
+
+.admin-default-list {
+  li {
+    font-size: 1rem;
+    margin: 5px 0;
+
+    a {
+      color: $blue;
+      display: block;
+      padding: 5px;
+      text-decoration: none;
+
+      &:hover {color: $blue-stroke; text-decoration: underline}
+    }
+  }
+
+  .inline-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
   }
 }

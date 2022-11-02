@@ -109,6 +109,13 @@ class UsersController extends BasicApiController
     public function update(User $user, Request $request): Response
     {
         $args = $request->only(['name', 'email', 'img_url', 'password', 'confirmation', 'role_id']);
+
+        if (auth('api')->user()->role->level > $user->role->level) {
+            return response(['errors' => [
+                'role_id' => ['У вас недостатньо прав для виконання цієї дії.']
+            ]], 403);
+        }
+
         $rules = [];
 
         foreach ($args as $key => $value) {

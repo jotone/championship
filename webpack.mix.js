@@ -30,6 +30,7 @@ mix
   .js('./resources/js/admin/team-list/app.js', './public/js/admin/team-list.js').vue()
   .js('./resources/js/admin/user-list/app.js', './public/js/admin/user-list.js').vue()
   .js('./resources/js/admin/app.js', './public/js/admin/app.js')
+  .js('./resources/js/admin/dashboard/app.js', './public/js/admin/dashboard.js')
   .js('./resources/js/admin/main.js', './public/js/admin/main.js')
   // Main
   .sass('./resources/css/main/app.scss', './public/css/')

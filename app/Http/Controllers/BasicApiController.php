@@ -99,6 +99,7 @@ class BasicApiController extends Controller
 
     /**
      * Parse request data
+     *
      * @param Request $request
      * @return array
      */
@@ -165,6 +166,7 @@ class BasicApiController extends Controller
      *
      * @param Model $model
      * @return Response
+     * @throws \Exception
      */
     protected function defaultRemove(Model $model): Response
     {

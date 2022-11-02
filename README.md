@@ -13,6 +13,10 @@
   - ~~Comments (Forum)~~
   - ~~Pivot table (summary)~~
 - Dashboard for admin
+  - ~~List of user points~~
+  - ~~Next game time~~
+  - ~~Last active users list~~
+  - Last forum comments
 - Admin
   - Settings
     - header image
