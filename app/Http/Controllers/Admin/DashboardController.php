@@ -19,7 +19,7 @@ class DashboardController extends BasicAdminController
         ])
             ->leftJoin('competition_groups', 'competition_group_games.group_id', '=', 'competition_groups.id')
             ->where('competition_groups.stage', 0)
-            ->where('competition_group_games.start_at', '>=', now()->addDays(20))
+            ->where('competition_group_games.start_at', '>=', now())
             ->orderBy('competition_group_games.start_at')
             ->first();
 
