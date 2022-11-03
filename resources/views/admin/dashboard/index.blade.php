@@ -94,7 +94,7 @@
     </div>
 
     <div class="row col-100">
-      <fieldset>
+      <fieldset class="col-100">
         <legend>Останні повідомлення на форумах</legend>
 
         <div class="forum-list-wrap">
