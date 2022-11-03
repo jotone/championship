@@ -1,4 +1,5 @@
 import {Confirmation} from '../libs/confirmation';
+import {Helpers} from '../libs/helpers';
 import {Notifications} from '../libs/notifications';
 
 $(document).ready(() => {
@@ -62,4 +63,6 @@ $(document).ready(() => {
           .then(response => 204 === response.status && window.location.reload())
       )
     })
+
+  !!window.location.hash && Helpers.goto($('li' + window.location.hash))
 })

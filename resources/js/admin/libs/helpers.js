@@ -21,6 +21,7 @@ export const Helpers = {
     resultLink = resultLink.join('/');
     return resultLink;
   },
+  goto: href => $('html').animate({scrollTop: href.offset().top - 65}, 500),
   /**
    * Parse url with it parameters
    *

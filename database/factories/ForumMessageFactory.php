@@ -15,10 +15,11 @@ $factory->define(ForumMessage::class, function (Faker $faker) {
     $user = User::inRandomOrder()->first();
 
     return [
-        'topic_id'  => $topic->id,
-        'author_id' => $user->id,
-        'parent_id' => $parent->id ?? null,
-        'message'   => '<p>' . $faker->realText(mt_rand(45, 100)) . '</p>',
-        'pinned'    => mt_rand(0, 10) > 9
+        'topic_id'   => $topic->id,
+        'author_id'  => $user->id,
+        'parent_id'  => $parent->id ?? null,
+        'message'    => '<p>' . $faker->realText(mt_rand(45, 100)) . '</p>',
+        'pinned'     => mt_rand(0, 10) > 9,
+        'created_at' => now()->subDays(mt_rand(0, 10))
     ];
 });

@@ -3,14 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BasicAdminController;
-use App\Models\{CompetitionGame, User, UserForm};
+use App\Models\{CompetitionGame, ForumTopic, User, UserForm};
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class DashboardController extends BasicAdminController
 {
+    /**
+     * Dashboard page
+     *
+     * @param Request $request
+     * @return View
+     */
     public function index(Request $request): View
     {
+        // Closest match date
         $next_games_date = CompetitionGame::select([
             'competition_group_games.id',
             'competition_group_games.group_id',
@@ -40,15 +47,14 @@ class DashboardController extends BasicAdminController
                 ->whereBetween('start_at', [$date . ' 00:00:00', $date . ' 23:59:59'])
                 ->orderBy('start_at')
                 ->get();
-        } else {
-            $games = [];
         }
 
         return $this->renderPage('admin.dashboard.index', $request, [
             'forms'       => UserForm::with('user')->orderBy('points', 'desc')->get(),
             'last_active' => User::orderBy('last_activity', 'desc')->get(),
-            'next_games'  => $games,
+            'next_games'  => $games ?? [],
             'title'       => 'Адмін панель',
+            'topics'      => ForumTopic::all()
         ]);
     }
 }

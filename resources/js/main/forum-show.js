@@ -1,7 +1,9 @@
-import {initCKE} from "./libs/common"
+import {initCKE} from './libs/common'
 
 const commentForm = $('#comment-form')
 const saveUrl = commentForm.attr('action')
+
+const goto = href => $('html').animate({scrollTop: href.offset().top - 65}, 500);
 
 const showCommentForm = (_this, parent) => {
   // Remove method field
@@ -119,4 +121,16 @@ $(document).ready(() => {
       commentForm.hide(150)
     })
   })
+
+  if (!!window.location.hash) {
+    const hash = window.location.hash.split('#').filter(String)
+
+    const item = $(`li[data-post="${hash[0]}"]`)
+    goto(item)
+
+    if (!!hash[1] && hash[1] == 'answer') {
+      item.find(' > .comment-text-wrap  .comment-etc-wrap .answer-action').trigger('click')
+    }
+  }
+   // && goto()
 })

@@ -1,0 +1,127 @@
+@import "variables";
+
+.game-timer-wrap {
+  border: 3px solid $blue-stroke;
+  border-radius: 5px;
+  display: none;
+  margin: 20px auto;
+  width: 90%;
+  padding: 10px;
+  text-align: center;
+
+  &.green {
+    border-color: $green-stroke;
+
+    .count-down-timer-wrap span {color: $green-stroke}
+  }
+  &.yellow {
+    border-color: $yellow-stroke;
+
+    .count-down-timer-wrap span {color: $yellow-stroke}
+  }
+  &.red {
+    border-color: $red-stroke;
+
+    .count-down-timer-wrap span {color: $red-stroke}
+  }
+
+  .count-down-timer-wrap span {font-size: 3rem; line-height: 3.5rem}
+
+  .game-timer-teams {
+    color: $blue;
+    padding: 10px 0;
+    text-decoration: none;
+
+    &:hover {text-decoration: underline}
+
+    b {font-size: 1.5rem; line-height: 2rem}
+  }
+}
+
+.admin-default-list {
+  li {
+    font-size: 1rem;
+    margin: 5px 0;
+
+    a {
+      color: $blue;
+      display: block;
+      padding: 5px;
+      text-decoration: none;
+
+      &:hover {color: $blue-stroke; text-decoration: underline}
+    }
+  }
+
+  .inline-wrap {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
+
+.forum-list-wrap {
+  align-items: stretch;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  .forum-wrap {
+    background-color: $secondary;
+    border: 1px solid $headline;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px 20px 0 20px;
+    width: 440px;
+  }
+
+  .forum-name a {
+    color: $blue;
+    display: block;
+    font-size: 1.125rem;
+    font-weight: bold;
+    padding: 5px 0;
+    text-decoration: none;
+
+    &:hover {color: $blue-stroke; text-decoration: underline}
+  }
+
+  ul {
+    margin-top: 30px;
+
+    li {
+      border-top: 1px solid $paragraph;
+      padding: 5px 0;
+
+      .comment-data-wrap {
+        a, p {
+          color: $paragraph;
+          font-size: .75rem;
+        }
+      }
+
+      .comment-text {
+        font-size: .875rem;
+        line-height: 1.25rem;
+        padding: 5px 0;
+      }
+
+      .comments-controls {
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+
+        a {
+          color: $blue;
+          display: block;
+          font-size: .75rem;
+          padding: 5px;
+          text-decoration: none;
+
+          &:hover {color: $blue-stroke; text-decoration: underline}
+        }
+      }
+    }
+  }
+}

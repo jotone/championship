@@ -20,6 +20,7 @@ mix
   .sass('./resources/css/font-awesome/solid.scss', './public/css')
   .sass('./resources/css/admin/app.scss', './public/css/admin')
   .sass('./resources/css/admin/competition.scss', './public/css/admin')
+  .sass('./resources/css/admin/dashboard.scss', './public/css/admin')
   .js('./resources/js/admin/forum-messages-list/app.js', './public/js/admin/forum-messages-list.js').vue()
   .js('./resources/js/admin/competition-form/app.js', './public/js/admin/competition-form.js').vue()
   .js('./resources/js/admin/competition-list/app.js', './public/js/admin/competition-list.js').vue()

@@ -1,5 +1,9 @@
 @extends('admin.layouts.default')
 
+@section('styles')
+  <link rel="stylesheet" href="/css/admin/dashboard.css">
+@endsection
+
 @section('scripts')
   <script src="/js/admin/dashboard.js"></script>
 @endsection
@@ -17,7 +21,7 @@
                 <span class="count-down-timer-value" data-role="days" title="Дні"></span>
                 <span class="count-down-timer-value" data-role="hours" title="Години"></span>
                 <span class="count-down-timer-value" data-role="minutes" title="Хвилини"></span>
-{{--                <span class="count-down-timer-value" data-role="seconds" title="Секунди"></span>--}}
+                {{--                <span class="count-down-timer-value" data-role="seconds" title="Секунди"></span>--}}
               </div>
 
               <a
@@ -87,6 +91,58 @@
           </ul>
         </fieldset>
       </div>
+    </div>
+
+    <div class="row col-100">
+      <fieldset>
+        <legend>Останні повідомлення на форумах</legend>
+
+        <div class="forum-list-wrap">
+          @foreach($topics as $topic)
+            <div class="forum-wrap">
+              <div class="forum-name">
+                <a href="{{ route('admin.forum.edit', $topic->id) }}">
+                  {{ $topic->name }}
+                </a>
+              </div>
+
+              <ul>
+                @foreach($topic->messages()->with('author')->where('pinned', 0)->orderBy('created_at', 'desc')->limit(3)->get() as $comment)
+                  <li>
+                    <div class="comment-data-wrap">
+                      <p>
+                        Автор: <a href="{{ route('admin.users.edit', $comment->author_id) }}">
+                          {{ $comment->author->name }}
+                        </a>
+                      </p>
+                      <p>Дата створення: {{ $comment->created_at->translatedFormat('j/M/Y H:i') }}</p>
+                    </div>
+                    <div class="comment-text">
+                      {{ $comment->message }}
+                    </div>
+                    <div class="comments-controls">
+                      <a
+                        href="{{ route('admin.forum.show', $topic->id) }}#{{ md5($comment->id) }}"
+                        class="view-comment"
+                        target="_blank"
+                      >
+                        Перейти
+                      </a>
+                      <a
+                        href="{{ route('forum.show', $topic->url) }}#{{ md5($comment->id) }}#answer"
+                        class="answer-comment"
+                        target="_blank"
+                      >
+                        Відповісти
+                      </a>
+                    </div>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
+          @endforeach
+        </div>
+      </fieldset>
     </div>
   </form>
 @endsection

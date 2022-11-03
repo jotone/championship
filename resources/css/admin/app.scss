@@ -165,44 +165,6 @@ header {
   }
 }
 
-.game-timer-wrap {
-  border: 3px solid $blue-stroke;
-  border-radius: 5px;
-  display: none;
-  margin: 20px auto;
-  width: 90%;
-  padding: 10px;
-  text-align: center;
-
-  &.green {
-    border-color: $green-stroke;
-
-    .count-down-timer-wrap span {color: $green-stroke}
-  }
-  &.yellow {
-    border-color: $yellow-stroke;
-
-    .count-down-timer-wrap span {color: $yellow-stroke}
-  }
-  &.red {
-    border-color: $red-stroke;
-
-    .count-down-timer-wrap span {color: $red-stroke}
-  }
-
-  .count-down-timer-wrap span {font-size: 3rem; line-height: 3.5rem}
-
-  .game-timer-teams {
-    color: $blue;
-    padding: 10px 0;
-    text-decoration: none;
-
-    &:hover {text-decoration: underline}
-
-    b {font-size: 1.5rem; line-height: 2rem}
-  }
-}
-
 .comment-list-wrap {
   ul {
     margin-left: 25px;
@@ -225,27 +187,5 @@ header {
 
       a {text-decoration: none}
     }
-  }
-}
-
-.admin-default-list {
-  li {
-    font-size: 1rem;
-    margin: 5px 0;
-
-    a {
-      color: $blue;
-      display: block;
-      padding: 5px;
-      text-decoration: none;
-
-      &:hover {color: $blue-stroke; text-decoration: underline}
-    }
-  }
-
-  .inline-wrap {
-    align-items: center;
-    display: flex;
-    justify-content: flex-start;
   }
 }

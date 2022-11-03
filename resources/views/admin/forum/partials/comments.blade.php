@@ -1,5 +1,5 @@
 @foreach($comments as $comment)
-  <li data-id="{{ $comment->id }}">
+  <li data-id="{{ $comment->id }}" id="{{ md5($comment->id) }}">
     <form>
       @empty($comment->deleted_at)
         <textarea class="form-text" style="width: 100%" name="message">{{ $comment->message }}</textarea>

@@ -35,8 +35,8 @@ $(document).ready(() => {
           s: +Math.floor(timestamp % 60)
         }
 
-        changeTimerValues(timer, timerWrap)
-        _this.show()
+        changeTimerValues(timer, timerWrap);
+        _this.show();
 
         const interval = setInterval(() => {
           if (timer.s <= 0) {
@@ -54,7 +54,7 @@ $(document).ready(() => {
             timer.s--
           }
 
-          changeTimerValues(timer, timerWrap)
+          changeTimerValues(timer, timerWrap);
 
           (timer.h < 12 && timer.h > 6) && _this.addClass('green')
           (timer.h < 6 && timer.h > 1)  && _this.removeClass('green').addClass('yellow')

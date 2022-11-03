@@ -24,6 +24,7 @@
     "/css/reset.css": "/css/reset.css",
     "/css/summary.css": "/css/summary.css",
     "/css/app.css": "/css/app.css",
+    "/css/admin/dashboard.css": "/css/admin/dashboard.css",
     "/css/admin/competition.css": "/css/admin/competition.css",
     "/css/admin/app.css": "/css/admin/app.css",
     "/css/air-datepicker.css": "/css/air-datepicker.css"
