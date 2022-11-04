@@ -10,7 +10,7 @@
 
   ul.participant-list-wrap {
     display: none;
-    min-height: 200px;
+    min-height: 120px;
     font-size: .875rem;
 
     &.active {display: block}
@@ -25,10 +25,7 @@
         justify-content: flex-start;
       }
 
-      input {
-        margin: 0 5px;
-        transform: scale(1.2);
-      }
+      input {margin: 0 5px; transform: scale(1.2)}
     }
   }
 
