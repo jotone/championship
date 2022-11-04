@@ -17,6 +17,12 @@
   - Settings
     - ~~Main Settings~~
     - Color schemes
+      - ~~View~~
+      - ~~Save~~
+      - Generate
+      - Apply
+    - Languages
+      - User interface lang
       - View
       - Save
       - Apply
@@ -27,11 +33,6 @@
     - SMTP
       - View
       - Save
-      - Apply
-    - Languages
-      - User interface lang
-      - View 
-      - Save 
       - Apply
   - Messages
   - Edit group

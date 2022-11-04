@@ -57,7 +57,7 @@
   }
 }
 
-.form-input, .form-select, .form-text {
+.form-input, .form-select, .form-text, .form-textarea {
   background-color: $secondary;
   border: 1px solid $headline;
   border-radius: 5px;
@@ -81,6 +81,13 @@
 .form-text {
   min-height: 100px;
   resize: vertical;
+}
+
+.form-textarea {
+  padding: 5px 10px;
+  min-height: 300px;
+  resize: vertical;
+  width: 100%;
 }
 
 .ck-editor__editable[role="textbox"] {min-height: 200px}

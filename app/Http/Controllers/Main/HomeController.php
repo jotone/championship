@@ -62,19 +62,6 @@ class HomeController extends BasicMainController
         $messages = Session::has('messages') ? Session::get('messages') : [];
         Session::remove('messages');
 
-        // Get default settings list
-        $setup = Settings::whereIn('key', ['site_title', 'registration_enable'])->get()->keyBy('key');
-        // Get site title
-        $site_title = !empty($setup['site_title']->value) ? $setup['site_title']->value : '';
-        // Concat site title and meta title
-        $meta_title = (array_diff(
-            isset($share['page_data'])
-                ? [$site_title, $share['page_data']->meta_title]
-                : [$site_title],
-            ['', null]));
-        // Set meta title
-        $setup->put('meta_title', implode(' | ', $meta_title));
-
         $competition = Competition::with([
             'userForms' => fn($q) => $q->with([
                 'bets' => fn($bet_query) => $bet_query->with([
@@ -222,7 +209,7 @@ class HomeController extends BasicMainController
             // Get groups page data
             'page_data' => CustomPage::firstWhere('slug', 'summary'),
             // Settings
-            'setup'     => $setup,
+            'setup'     => $this->settingsData(),
         ]);
     }
 }

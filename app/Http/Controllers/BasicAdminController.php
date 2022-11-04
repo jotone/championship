@@ -28,7 +28,7 @@ class BasicAdminController extends Controller
             unset($setup['fav_icon']);
         }
 
-        if (empty($setup['logo_img_url']) || !file_exists(public_path($setup['logo_img_url']->value))) {
+        if (empty($setup['logo_img_url']->value) || !file_exists(public_path($setup['logo_img_url']->value))) {
             unset($setup['logo_img_url']);
         }
 

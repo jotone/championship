@@ -9,6 +9,7 @@
     "/js/admin/team-list.js": "/js/admin/team-list.js",
     "/js/admin/user-list.js": "/js/admin/user-list.js",
     "/js/admin/app.js": "/js/admin/app.js",
+    "/js/admin/color-scheme.js": "/js/admin/color-scheme.js",
     "/js/admin/dashboard.js": "/js/admin/dashboard.js",
     "/js/admin/main.js": "/js/admin/main.js",
     "/js/forum-topics.js": "/js/forum-topics.js",
@@ -25,6 +26,7 @@
     "/css/summary.css": "/css/summary.css",
     "/css/app.css": "/css/app.css",
     "/css/admin/dashboard.css": "/css/admin/dashboard.css",
+    "/css/admin/color-settings.css": "/css/admin/color-settings.css",
     "/css/admin/competition.css": "/css/admin/competition.css",
     "/css/admin/app.css": "/css/admin/app.css",
     "/css/air-datepicker.css": "/css/air-datepicker.css"

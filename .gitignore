@@ -1,8 +1,8 @@
 /.idea
 /node_modules
-/public/hot
+/public/css/custom.css
+/public/css/override.css
 /public/favicon
-/public/storage
 /public/images/header.*
 /public/images/logo.*
 /public/images/uploads

@@ -64,6 +64,11 @@
         "name": "Основні налаштування",
         "url": "admin.settings.index",
         "img_url": "fas fa-cogs"
+      },
+      {
+        "name": "Кольорова схема",
+        "url": "admin.settings.color-scheme.index",
+        "img_url": "fas fa-palette"
       }
     ]
   }

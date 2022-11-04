@@ -3,6 +3,8 @@
     <a class="logo-image-wrap" href="/">
       <img src="{{ $setup['logo_img_url']->value }}" alt="">
     </a>
+  @else
+    <div></div>
   @endisset
   <nav class="login-form-menu">
     <ul>

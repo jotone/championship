@@ -11,6 +11,16 @@
       "value": "#ffffff"
     },
     {
+      "caption": "Колір тла форми входу",
+      "key": "login_form_bg_color",
+      "value": "#9a1032"
+    },
+    {
+      "caption": "Колір тексту форми входу",
+      "key": "login_form_font_color",
+      "value": "#ffffff"
+    },
+    {
       "caption": "Колір тла заголовку",
       "key": "title_bg_color",
       "value": "#2c4649"
@@ -20,7 +30,16 @@
       "key": "title_font_color",
       "value": "#ffffff"
     },
-
+    {
+      "caption": "Колір основного тексту",
+      "key": "text_main_color",
+      "value": "#0d0d0d"
+    },
+    {
+      "caption": "Колір другорядного тексту",
+      "key": "text_secondary_color",
+      "value": "#333333"
+    },
     {
       "caption": "Колір тла заголовку таблиць",
       "key": "table_th_bg_color",
@@ -38,7 +57,7 @@
     },
     {
       "caption": "Колір тексту комірок таблиць",
-      "key": "table_td_bg_color",
+      "key": "table_td_font_color",
       "value": "#0d0d0d"
     },
     {
@@ -72,16 +91,6 @@
           "color": "#ffffff"
         }
       }
-    },
-    {
-      "caption": "Колір тла форми входу",
-      "key": "login_form_bg_color",
-      "value": "#9a1032"
-    },
-    {
-      "caption": "Колір тексту форми входу",
-      "key": "login_form_font_color",
-      "value": "#ffffff"
     }
   ],
   "common": [

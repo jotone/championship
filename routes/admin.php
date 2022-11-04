@@ -49,6 +49,10 @@ Route::resource('/forum', ForumController::class)->only(['index', 'show', 'creat
 Route::resource('/pages', CustomPagesController::class)->only(['index', 'create', 'edit']);
 // Settings
 Route::group(['as' => 'settings.', 'prefix' => '/settings'], function () {
+    // Main settings
     Route::get('/', [SettingsController::class, 'index'])->name('index');
+    // Color scheme settings
+    Route::get('/color-scheme', [SettingsController::class, 'colorScheme'])->name('color-scheme.index');
+    // Update settings
     Route::patch('/', [SettingsController::class, 'update'])->name('update');
 });

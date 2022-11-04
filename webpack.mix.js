@@ -20,6 +20,7 @@ mix
   .sass('./resources/css/font-awesome/solid.scss', './public/css')
   .sass('./resources/css/admin/app.scss', './public/css/admin')
   .sass('./resources/css/admin/competition.scss', './public/css/admin')
+  .sass('./resources/css/admin/color-settings.scss', './public/css/admin')
   .sass('./resources/css/admin/dashboard.scss', './public/css/admin')
   .js('./resources/js/admin/forum-messages-list/app.js', './public/js/admin/forum-messages-list.js').vue()
   .js('./resources/js/admin/competition-form/app.js', './public/js/admin/competition-form.js').vue()
@@ -31,6 +32,7 @@ mix
   .js('./resources/js/admin/team-list/app.js', './public/js/admin/team-list.js').vue()
   .js('./resources/js/admin/user-list/app.js', './public/js/admin/user-list.js').vue()
   .js('./resources/js/admin/app.js', './public/js/admin/app.js')
+  .js('./resources/js/admin/color-scheme/app.js', './public/js/admin/color-scheme.js')
   .js('./resources/js/admin/dashboard/app.js', './public/js/admin/dashboard.js')
   .js('./resources/js/admin/main.js', './public/js/admin/main.js')
   // Main

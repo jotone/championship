@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\FileHelper;
 use App\Http\Controllers\BasicAdminController;
 use App\Models\Settings;
-use Illuminate\Http\Request;
+use Faker\Factory as Faker;
+use Illuminate\Http\{Request, Response};
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
@@ -14,6 +15,12 @@ use SVG\SVG;
 
 class SettingsController extends BasicAdminController
 {
+    /**
+     * Custom styles file path
+     * @var string
+     */
+    protected string $custom_styles_file = '/css/custom.css';
+
     /**
      * Main settings page
      * @param Request $request
@@ -27,17 +34,54 @@ class SettingsController extends BasicAdminController
         ]);
     }
 
-    public function update(Request $request)
+    /**
+     * Color scheme settings page
+     * @param Request $request
+     * @return View
+     */
+    public function colorScheme(Request $request): View
+    {
+        return $this->renderPage('admin.settings.color-scheme', $request, [
+            'content'       => Settings::where('section', 'color-scheme')->get()->keyBy('key'),
+            'custom_styles' => file_exists(public_path($this->custom_styles_file))
+                ? file_get_contents(public_path($this->custom_styles_file))
+                : '',
+            'faker'         => Faker::create(config('app.faker_locale')),
+            'title'         => 'Налаштування кольорової схеми'
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     * @throws \ImagickException
+     */
+    public function update(Request $request): Response
     {
         // Request data
         $args = $request->only([
-            'site_title',
+            'comment_date_format',
+            'custom_styles',
+            'date_format',
             'fav_icon',
             'header_img_url',
+            'login_form_bg_color',
+            'login_form_font_color',
             'logo_img_url',
-            'date_format',
-            'comment_date_format'
+            'primary_btn',
+            'secondary_btn',
+            'site_title',
+            'table_td_bg_color',
+            'table_td_font_color',
+            'table_th_font_color',
+            'text_main_color',
+            'text_secondary_color',
+            'title_bg_color',
+            'title_font_color',
+            'top_menu_bg_color',
+            'top_menu_font_color',
         ]);
+
         // Rules array
         $rules = [];
         // Data array
@@ -47,8 +91,25 @@ class SettingsController extends BasicAdminController
             switch ($key) {
                 case 'date_format':
                 case 'comment_date_format':
+                case 'login_form_bg_color':
+                case 'login_form_font_color':
                 case 'site_title':
+                case 'table_td_bg_color':
+                case 'table_td_font_color':
+                case 'table_th_font_color':
+                case 'text_main_color':
+                case 'text_secondary_color':
+                case 'title_bg_color':
+                case 'title_font_color':
+                case 'top_menu_bg_color':
+                case 'top_menu_font_color':
                     $rules[$key] = ['required', 'string'];
+                    $data[$key] = $val;
+                    break;
+                case 'primary_btn':
+                case 'secondary_btn':
+                    $rules[$key] = ['required', 'array'];
+                    $rules[$key . '.*'] = ['required', 'array'];
                     $data[$key] = $val;
                     break;
                 case 'header_img_url':
@@ -84,13 +145,13 @@ class SettingsController extends BasicAdminController
                         file_put_contents(public_path($dir . '/manifest.webmanifest'), json_encode([
                             'icons' => [
                                 [
-                                    'src' => $dir. '/icon-192.png',
-                                    'type' => 'image/png',
+                                    'src'   => $dir . '/icon-192.png',
+                                    'type'  => 'image/png',
                                     'sizes' => '192x192'
                                 ],
                                 [
-                                    'src' => $dir. '/icon-512.png',
-                                    'type' => 'image/png',
+                                    'src'   => $dir . '/icon-512.png',
+                                    'type'  => 'image/png',
                                     'sizes' => '512x512'
                                 ]
                             ],
@@ -127,6 +188,12 @@ class SettingsController extends BasicAdminController
             $model->value = $val;
             $model->save();
         }
+
+        if (!empty(trim($args['custom_styles'] ?? ''))) {
+            file_put_contents(public_path($this->custom_styles_file), $args['custom_styles']);
+        }
+
+
 
         return response(Settings::whereIn('key', array_keys($args))->get()->toArray());
     }

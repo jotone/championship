@@ -78,6 +78,8 @@ $(document).ready(() => {
       reader.readAsDataURL(file)
     })
 
+  //
+
   // Form submit
   $('form[data-xhr]').on('submit', function (e) {
     // Redirect to option
