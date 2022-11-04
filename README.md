@@ -15,13 +15,25 @@
 - ~~Dashboard for admin~~
 - Admin
   - Settings
-    - header image
-    - logo image
-    - Registration (enable)
-    - Forum (enable)
-    - Comments
+    - ~~Main Settings~~
+    - Color schemes
+      - View
+      - Save
+      - Apply
+    - Pages
+      - Registration (enable)
+      - Forum (enable)
+      - Summary (enable)
+    - SMTP
+      - View
+      - Save
+      - Apply
     - Languages
-    - User interface lang
+      - User interface lang
+      - View 
+      - Save 
+      - Apply
+  - Messages
   - Edit group
     - edit page
     - Set games number to group

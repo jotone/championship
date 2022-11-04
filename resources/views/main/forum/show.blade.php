@@ -21,7 +21,9 @@
 
     <div class="subject-controls-wrap">
       <span class="subject-etc">Cтворив: {{ $topic->author->name }}</span>
-      <span class="subject-etc">Дата створення: {{ $topic->created_at->translatedFormat('j/F/Y о H:i') }}</span>
+      <span class="subject-etc">
+        Дата створення: {{ $topic->created_at->translatedFormat($setup['comment_date_format']->value) }}
+      </span>
     </div>
   </div>
 

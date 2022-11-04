@@ -55,5 +55,16 @@
     "name": "Сторінки",
     "url": "admin.pages.index",
     "img_url": "fas fa-file"
+  },
+  {
+    "name": "Налаштування",
+    "img_url": "fas fa-tools",
+    "inner": [
+      {
+        "name": "Основні налаштування",
+        "url": "admin.settings.index",
+        "img_url": "fas fa-cogs"
+      }
+    ]
   }
 ]

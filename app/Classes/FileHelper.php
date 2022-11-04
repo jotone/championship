@@ -3,6 +3,7 @@
 namespace App\Classes;
 
 use App\Models\Settings;
+use DirectoryIterator;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -61,7 +62,7 @@ class FileHelper
         $file_info = pathinfo($filename);
 
         $is_image = true;
-        switch ($file->getMimeType()) {
+        switch ($file->getClientMimeType()) {
             case 'image/png':
                 $ext = 'png';
                 break;
@@ -130,6 +131,31 @@ class FileHelper
             $width = ceil($img->width() / $scale);
             $height = ceil($img->height() / $scale);
             $img->resize($width, $height);
+        }
+    }
+
+    /**
+     * Recursive remove folder
+     * @param string $path
+     */
+    public static function recursiveRemove(string $path): void
+    {
+        if (is_file($path)) {
+            unlink($path);
+        } else {
+            $files = new DirectoryIterator($path);
+
+            foreach ($files as $file) {
+                if (!$file->isDot()) {
+                    if ($file->isDir()) {
+                        self::recursiveRemove($file->getPathname());
+                    } else {
+                        unlink($file->getPathname());
+                    }
+                }
+            }
+
+            rmdir($path);
         }
     }
 }

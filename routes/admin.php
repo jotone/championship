@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\{
     DashboardController,
     ForumController,
     RolesController,
+    SettingsController,
     TeamController,
     UsersController
 };
@@ -37,11 +38,17 @@ Route::resource('/countries', CountryController::class)->only(['index', 'create'
 
 // Users and roles
 Route::group(['as' => 'users.', 'prefix' => '/users'], function () {
+    // Role list
     Route::resource('/roles', RolesController::class)->only(['index', 'create', 'edit']);
 });
-
+// User list
 Route::resource('/users', UsersController::class)->only(['index', 'create', 'edit']);
-
+// Forum topic list
 Route::resource('/forum', ForumController::class)->only(['index', 'show', 'create', 'edit']);
-
+// Custom page list
 Route::resource('/pages', CustomPagesController::class)->only(['index', 'create', 'edit']);
+// Settings
+Route::group(['as' => 'settings.', 'prefix' => '/settings'], function () {
+    Route::get('/', [SettingsController::class, 'index'])->name('index');
+    Route::patch('/', [SettingsController::class, 'update'])->name('update');
+});

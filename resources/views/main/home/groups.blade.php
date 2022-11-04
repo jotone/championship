@@ -12,12 +12,12 @@
           <th title="Кількість нічиїх"><span>Н</span></th>
           <th title="Кількість програшів"><span>П</span></th>
           <th title="М'ячі: забиті-пропущені"><span>М</span></th>
-          <th title="Рахунок"><span>Р</span></th>
+          <th title="Кількість очок"><span>О</span></th>
         </tr>
         </thead>
 
         <tbody>
-        @foreach($competition_group->teams as $team)
+        @foreach($competition_group->teams()->orderBy('score', 'desc')->get() as $team)
           <tr>
             <td>{{ $teams[$team->entity_id]->ua }}</td>
             <td><span>{{ $team->games }}</span></td>

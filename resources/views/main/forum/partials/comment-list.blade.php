@@ -24,7 +24,7 @@
           Написав: {{ $comment->author->name }}
         </span>
         <span class="comment-misc" title="Дата створення коментаря">
-          {{ $comment->created_at->translatedFormat('j/F/Y о H:i') }}
+          {{ $comment->created_at->translatedFormat($setup['comment_date_format']->value) }}
         </span>
 
         @auth

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\AdminMenu;
 use App\Models\Settings;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Auth, Session};
+use Illuminate\Support\Facades\{Auth, Schema, Session};
 use Illuminate\View\View;
 
 class BasicAdminController extends Controller
@@ -21,11 +21,22 @@ class BasicAdminController extends Controller
     public function renderPage(string $view, Request $request, array $share = []): View
     {
         $user = Auth::user();
+
+        $setup = Settings::whereIn('key', ['site_title', 'fav_icon', 'logo_img_url'])->get()->keyBy('key');
+
+        if (empty($setup['fav_icon']->value) || !file_exists(public_path($setup['fav_icon']->value))) {
+            unset($setup['fav_icon']);
+        }
+
+        if (empty($setup['logo_img_url']) || !file_exists(public_path($setup['logo_img_url']->value))) {
+            unset($setup['logo_img_url']);
+        }
+
         return view($view, array_merge([
             'breadcrumbs' => $this->breadcrumbs($request),
             'menu'        => AdminMenu::whereNull('parent_id')->with('subMenus')->orderBy('position')->get(),
             'jwt_token'   => Session::get('jwt-token'),
-            'setup'       => Settings::whereIn('key', ['registration_enable', 'site_title'])->get()->keyBy('key'),
+            'setup'       => $setup,
             'user'        => $user
         ], $share));
     }

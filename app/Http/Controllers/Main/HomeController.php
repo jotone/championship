@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\BasicMainController;
-use App\Models\{Competition, CustomPage, Settings};
+use App\Models\{Competition, CompetitionGame, CustomPage, Settings};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
@@ -98,15 +98,15 @@ class HomeController extends BasicMainController
 
                 if ($bet->group->stage > 0) {
                     $game = $bet->group->games()->where('accept', 1)->first();
-                    $game_teams = $game->entity::whereIn('id', $game->score ?? [])->get()
-                        ->map(function ($model) {
-                            $model->uuid = md5($model->id);
-                            return $model;
-                        })
-                        ->pluck('ua', 'uuid')
-                        ->toArray();
 
                     if ($game) {
+                        $game_teams = $game->entity::whereIn('id', $game->score ?? [])->get()
+                            ->map(function ($model) {
+                                $model->uuid = md5($model->id);
+                                return $model;
+                            })
+                            ->pluck('ua', 'uuid')
+                            ->toArray();
                         $match_scores = count(array_intersect($bet->scores, $game->score));
                         // Score multiplication value
                         $mult = $bet->group->games_number > 1 ? 1 : 2;
@@ -165,49 +165,51 @@ class HomeController extends BasicMainController
                         ];
                     }
                 } else {
-                    $real = $bet->game->score;
-                    $user = $bet->scores;
                     $points = 0;
+                    if ($bet->game) {
+                        $real = $bet->game->score;
+                        $user = $bet->scores;
 
-                    // Calculate user points
-                    if (
-                        $real[$bet->game->host_team] == $user[$bet->game->host_team]
-                        && $real[$bet->game->guest_team] == $user[$bet->game->guest_team]
-                    ) {
-                        // If user guess Exact score
-                        $points = 3;
-                    } else if (
-                        // If user guess winner
-                        (
-                            $real[$bet->game->host_team] > $real[$bet->game->guest_team]
-                            && $user[$bet->game->host_team] > $user[$bet->game->guest_team]
-                        ) || (
-                            $real[$bet->game->host_team] < $real[$bet->game->guest_team]
-                            && $user[$bet->game->host_team] < $user[$bet->game->guest_team]
-                        ) || (
-                            $real[$bet->game->host_team] == $real[$bet->game->guest_team]
-                            && $user[$bet->game->host_team] == $user[$bet->game->guest_team]
-                        )
-                    ) {
-                        $points = 1;
-                    }
+                        // Calculate user points
+                        if (
+                            $real[$bet->game->host_team] == $user[$bet->game->host_team]
+                            && $real[$bet->game->guest_team] == $user[$bet->game->guest_team]
+                        ) {
+                            // If user guess Exact score
+                            $points = 3;
+                        } else if (
+                            // If user guess winner
+                            (
+                                $real[$bet->game->host_team] > $real[$bet->game->guest_team]
+                                && $user[$bet->game->host_team] > $user[$bet->game->guest_team]
+                            ) || (
+                                $real[$bet->game->host_team] < $real[$bet->game->guest_team]
+                                && $user[$bet->game->host_team] < $user[$bet->game->guest_team]
+                            ) || (
+                                $real[$bet->game->host_team] == $real[$bet->game->guest_team]
+                                && $user[$bet->game->host_team] == $user[$bet->game->guest_team]
+                            )
+                        ) {
+                            $points = 1;
+                        }
 
-                    $game_id = md5($bet->game->id);
-                    if (!isset($group_data[$bet->game->group_id]['games'][$game_id])) {
-                        $group_data[$bet->game->group_id]['games'][$game_id] = [
-                            'host'  => $bet->game->hostTeam,
-                            'guest' => $bet->game->guestTeam,
-                            'score' => $bet->game->score,
-                            'users' => []
+                        $game_id = md5($bet->game->id);
+                        if (!isset($group_data[$bet->game->group_id]['games'][$game_id])) {
+                            $group_data[$bet->game->group_id]['games'][$game_id] = [
+                                'host'  => $bet->game->hostTeam,
+                                'guest' => $bet->game->guestTeam,
+                                'score' => $bet->game->score,
+                                'users' => []
+                            ];
+                        }
+
+                        $group_data[$bet->game->group_id]['games'][$game_id]['users'][] = [
+                            'id'     => md5($form->user_id),
+                            'name'   => $form->user->name,
+                            'points' => $points,
+                            'score'  => $bet->scores
                         ];
                     }
-
-                    $group_data[$bet->game->group_id]['games'][$game_id]['users'][] = [
-                        'id'     => md5($form->user_id),
-                        'name'   => $form->user->name,
-                        'points' => $points,
-                        'score'  => $bet->scores
-                    ];
                 }
             }
         }

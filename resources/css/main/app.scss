@@ -26,8 +26,19 @@ header {
   background-color: $heading;
   align-items: center;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 10px 20px;
+
+  .logo-image-wrap {
+    display: block;
+    text-decoration: none;
+
+    img {
+      height: 50px;
+      object-fit: cover;
+      width: 50px;
+    }
+  }
 
   .login-form-menu ul {
     align-items: center;

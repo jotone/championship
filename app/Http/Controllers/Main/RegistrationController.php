@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRequest;
 use App\Jobs\SendRegistrationVerificationEmail;
-use Illuminate\Support\Facades\DB;
 use App\Models\{User, VerifiedEmail};
-use Illuminate\Support\Facades\Auth;
+use App\Traits\SetupVariablesTrait;
+use Illuminate\Support\Facades\{Auth, DB};
 use Illuminate\View\View;
 
 class RegistrationController extends Controller
 {
+    use SetupVariablesTrait;
+
     /**
      * View registration page
      *
@@ -19,7 +21,9 @@ class RegistrationController extends Controller
      */
     public function index(): View
     {
-        return view('main.registration.index');
+        return view('main.registration.index', [
+            'setup' => $this->settingsData()
+        ]);
     }
 
     /**
@@ -43,7 +47,8 @@ class RegistrationController extends Controller
         }
         // Render result page
         return view('main.registration.thank-you', [
-            'email' => $user->email
+            'email' => $user->email,
+            'setup' => $this->settingsData()
         ]);
     }
 
@@ -64,7 +69,7 @@ class RegistrationController extends Controller
             DB::table('verified_emails')
                 ->where('email', $verify->email)
                 ->update([
-                    'token' => md5($token . $verify->email),
+                    'token'      => md5($token . $verify->email),
                     'created_at' => now()->format('Y-m-d H:i:s')
                 ]);
             // Send new letter with instructions
@@ -80,6 +85,7 @@ class RegistrationController extends Controller
 
         return view('main.registration.confirmation', [
             'expired' => $expired,
+            'setup'   => $this->settingsData(),
             'verify'  => $verify
         ]);
     }

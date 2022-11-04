@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Competition, Settings, UserForm};
+use App\Traits\SetupVariablesTrait;
+use App\Models\{Competition, UserForm};
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class BasicMainController extends Controller
 {
+    use SetupVariablesTrait;
+
     /**
      * @var Competition
      */
@@ -18,9 +21,9 @@ class BasicMainController extends Controller
     {
         $this->competition = Competition::with([
             'groups' => fn($q) => $q->with([
-                'games' => fn ($inner_query) => $inner_query->orderBy('start_at')
+                'games' => fn($inner_query) => $inner_query->orderBy('start_at')
             ])->orderBy('stage')->orderBy('position'),
-            'teams' => fn ($q) => $q->orderBy('score')
+            'teams'  => fn($q) => $q->orderBy('score')
         ])->firstWhere('slug', 'world-cup-2022');
     }
 
@@ -37,19 +40,6 @@ class BasicMainController extends Controller
         $messages = Session::has('messages') ? Session::get('messages') : [];
         Session::remove('messages');
 
-        // Get default settings list
-        $setup = Settings::whereIn('key', ['site_title', 'registration_enable'])->get()->keyBy('key');
-        // Get site title
-        $site_title = !empty($setup['site_title']->value) ? $setup['site_title']->value : '';
-        // Concat site title and meta title
-        $meta_title = (array_diff(
-            isset($share['page_data'])
-                ? [$site_title, $share['page_data']->meta_title]
-                : [$site_title],
-            ['', null]));
-        // Set meta title
-        $setup->put('meta_title', implode(' | ', $meta_title));
-
         return view($view, array_merge([
             'competition' => $this->competition,
             'messages'    => $messages,
@@ -57,9 +47,9 @@ class BasicMainController extends Controller
                 ->where('competition_id', $this->competition->id)
                 ->orderBy('points', 'desc')
                 ->get(),
-            'setup'       => $setup,
+            'setup'       => $this->settingsData(),
             // Competition team list
-            'teams'     => $this->teamList()
+            'teams'       => $this->teamList()
         ], $share));
     }
 

@@ -1,16 +1,141 @@
 {
+  "color-scheme": [
+    {
+      "caption": "Колір тла верхнього меню",
+      "key": "top_menu_bg_color",
+      "value": "#2c4649"
+    },
+    {
+      "caption": "Колір тексту верхнього меню",
+      "key": "top_menu_font_color",
+      "value": "#ffffff"
+    },
+    {
+      "caption": "Колір тла заголовку",
+      "key": "title_bg_color",
+      "value": "#2c4649"
+    },
+    {
+      "caption": "Колір тексту заголовку",
+      "key": "title_font_color",
+      "value": "#ffffff"
+    },
+
+    {
+      "caption": "Колір тла заголовку таблиць",
+      "key": "table_th_bg_color",
+      "value": "#2c4649"
+    },
+    {
+      "caption": "Колір тексту заголовку таблиць",
+      "key": "table_th_font_color",
+      "value": "#ffffff"
+    },
+    {
+      "caption": "Колір тла комірок таблиць",
+      "key": "table_td_bg_color",
+      "value": "#deecee"
+    },
+    {
+      "caption": "Колір тексту комірок таблиць",
+      "key": "table_td_bg_color",
+      "value": "#0d0d0d"
+    },
+    {
+      "caption": "Основні кнопки",
+      "key": "primary_btn",
+      "value": {
+        "normal": {
+          "background-color": "#228b22",
+          "border-color": "#333333",
+          "color": "#ffffff"
+        },
+        "hover": {
+          "background-color": "#228b22",
+          "border-color": "#333333",
+          "color": "#ffffff"
+        }
+      }
+    },
+    {
+      "caption": "Другорядні кнопки",
+      "key": "secondary_btn",
+      "value": {
+        "normal": {
+          "background-color": "#0799bf",
+          "border-color": "#333333",
+          "color": "#ffffff"
+        },
+        "hover": {
+          "background-color": "#0799bf",
+          "border-color": "#333333",
+          "color": "#ffffff"
+        }
+      }
+    },
+    {
+      "caption": "Колір тла форми входу",
+      "key": "login_form_bg_color",
+      "value": "#9a1032"
+    },
+    {
+      "caption": "Колір тексту форми входу",
+      "key": "login_form_font_color",
+      "value": "#ffffff"
+    }
+  ],
   "common": [
     {
       "caption": "Назва сайту",
       "key": "site_title",
       "value": "Чемпіонат 2022"
+    },
+    {
+      "caption": "Зображення у заголовку",
+      "key": "header_img_url",
+      "value": "/images/header.jpg"
+    },
+    {
+      "caption": "Лого",
+      "key": "logo_img_url",
+      "value": ""
+    },
+    {
+      "caption": "Значок веб-сайту",
+      "key": "fav_icon",
+      "value": ""
+    },
+    {
+      "caption": "Мова сайту",
+      "key": "main_lang",
+      "value": "uk"
+    },
+    {
+      "caption": "Формат дати",
+      "key": "date_format",
+      "value": "j/M/Y H:i"
+    },
+    {
+      "caption": "Формат дати коментарів",
+      "key": "comment_date_format",
+      "value": "j/M/Y о H:i"
     }
   ],
-  "registration": [
+  "pages": [
     {
       "caption": "Увімкнути реєстрацію",
       "key": "registration_enable",
-      "value": false
+      "value": true
+    },
+    {
+      "caption": "Увімкнути форум",
+      "key": "forum_enable",
+      "value": true
+    },
+    {
+      "caption": "Увімкнути зведену таблицю",
+      "key": "summary_enable",
+      "value": true
     }
   ],
   "images": [
@@ -36,6 +161,43 @@
         "thumb_large": [150, 90],
         "resize": [400, 300]
       }
+    }
+  ],
+  "smtp": [
+    {
+      "caption": "Username",
+      "key": "smtp_username",
+      "value": ""
+    },
+    {
+      "caption": "Password",
+      "key": "smtp_password",
+      "value": ""
+    },
+    {
+      "caption": "Host",
+      "key": "smtp_host",
+      "value": ""
+    },
+    {
+      "caption": "Port",
+      "key": "smtp_port",
+      "value": ""
+    },
+    {
+      "caption": "Encryption",
+      "key": "smtp_encryption",
+      "value": ""
+    },
+    {
+      "caption": "From Address",
+      "key": "smtp_from_address",
+      "value": ""
+    },
+    {
+      "caption": "From name",
+      "key": "smtp_from_name",
+      "value": ""
     }
   ]
 }

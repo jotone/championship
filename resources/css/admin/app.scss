@@ -19,7 +19,26 @@ body {background-color: $paragraph; font-family: Verdana, sans-serif;}
 .view {color: $blue}
 
 header {
+  align-items: center;
   background-color: $paragraph;
+  display: flex;
+  justify-content: space-between;
+
+  .logo-image-wrap {
+    cursor: pointer;
+    display: block;
+    padding: 3px 10px;
+    position: relative;
+    text-decoration: none;
+
+    img {
+      border-radius: 50%;
+      object-fit: cover;
+      height: 60px;
+      text-align: center;
+      width: 60px;
+    }
+  }
 
   ul {
     align-items: center;

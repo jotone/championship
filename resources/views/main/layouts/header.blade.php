@@ -1,4 +1,9 @@
 <header>
+  @isset($setup['logo_img_url'])
+    <a class="logo-image-wrap" href="/">
+      <img src="{{ $setup['logo_img_url']->value }}" alt="">
+    </a>
+  @endisset
   <nav class="login-form-menu">
     <ul>
       @auth
@@ -37,15 +42,21 @@
   </div>
 </form>
 
-<div class="banner-wrap" style="background-image: url('/images/header.jpg')">
+<div
+  class="banner-wrap"
+  @if(!empty($setup['header_img_url']->value)) style="background-image: url({{ $setup['header_img_url']->value }})" @endif>
   <nav class="site-menu-wrap">
     <ul>
       <li><a href="{{ route('home.index') }}">Головна</a></li>
       @auth
         <li><a href="{{ route('user.form.show') }}">Анкета</a></li>
       @endauth
-      <li><a href="{{ route('forum.index') }}">Форум</a></li>
-      <li><a href="{{ route('summary.index') }}">Зведена таблиця</a></li>
+      @if($setup['forum_enable']->converted_value)
+        <li><a href="{{ route('forum.index') }}">Форум</a></li>
+      @endif
+      @if($setup['summary_enable']->converted_value)
+        <li><a href="{{ route('summary.index') }}">Зведена таблиця</a></li>
+      @endif
       <li><a href="{{ route('rules.index') }}">Правила</a></li>
       <li><a href="{{ route('groups.index') }}">Групи</a></li>
       <li><a href="{{ route('schedule.index') }}">Розклад</a></li>

@@ -25,7 +25,9 @@
               <span>{{ $game->guestTeam->ua }}</span>
             </td>
             <td style="width: 40%">
-              <span>{{ !empty($game->start_at) ? $game->start_at->translatedFormat('j/M/Y H:i') : '' }}</span>
+              <span>
+                {{ !empty($game->start_at) ? $game->start_at->translatedFormat($setup['date_format']->value) : '' }}
+              </span>
             </td>
           </tr>
         @endforeach

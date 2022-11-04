@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\{PasswordResetRequest, PasswordResetoreRequest};
 use App\Jobs\SendPasswordResetEmail;
 use App\Models\{PasswordReset, User};
+use App\Traits\SetupVariablesTrait;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class PasswordResetController extends Controller
 {
+    use SetupVariablesTrait;
+
     /**
      * View password restoration request form
      *
@@ -18,7 +21,9 @@ class PasswordResetController extends Controller
      */
     public function index(): View
     {
-        return view('main.password-reset.index');
+        return view('main.password-reset.index', [
+            'setup' => $this->settingsData()
+        ]);
     }
 
     /**
@@ -30,7 +35,8 @@ class PasswordResetController extends Controller
     public function form(string $token): View
     {
         return view('main.password-reset.form', [
-            'reset'  => PasswordReset::where('token', $token)->firstOrFail()
+            'reset' => PasswordReset::where('token', $token)->firstOrFail(),
+            'setup' => $this->settingsData()
         ]);
     }
 
@@ -69,7 +75,8 @@ class PasswordResetController extends Controller
         }
         // Render result page
         return view('main.password-reset.report', [
-            'message' => 'Лист з наступними інструкціями був відісланий на ваш email: ' . $args['email'] . '.'
+            'message' => 'Лист з наступними інструкціями був відісланий на ваш email: ' . $args['email'] . '.',
+            'setup'   => $this->settingsData()
         ]);
     }
 
@@ -93,6 +100,8 @@ class PasswordResetController extends Controller
         // Remove resets entity
         DB::delete('DELETE FROM password_resets WHERE email = ?', [$reset->email]);
 
-        return view('main.password-reset.success');
+        return view('main.password-reset.success', [
+            'setup' => $this->settingsData()
+        ]);
     }
 }

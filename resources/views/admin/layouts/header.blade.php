@@ -1,13 +1,14 @@
 <header>
+  @isset($setup['logo_img_url'])
+    <a class="logo-image-wrap" href="{{ route('admin.index') }}">
+      <img src="{{ $setup['logo_img_url']->value }}" alt="">
+    </a>
+  @endisset
+
   <ul>
     <li>
       <a href="#">
         <span>Привіт, {{ Auth::user()->name }}</span>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <i class="fas fa-envelope"></i>
       </a>
     </li>
     <li>

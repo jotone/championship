@@ -164,7 +164,7 @@ export default {
               if (groupID === this.stages[i][0].id) {
                 for (let j = 0, m = this.stages[i][0].games[0].score; j < m; j++) {
                   // Remove team from play-off
-                  this.stages[i][0].games[0].score[j] === id && this.stages[i][0].games[0].score.splice(j, 1)
+                  id === parseInt(this.stages[i][0].games[0].score[j]) && this.stages[i][0].games[0].score.splice(j, 1)
                 }
               }
             }

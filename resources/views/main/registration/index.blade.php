@@ -2,7 +2,9 @@
 
 @section('content')
   @auth
-    <p>You are already registered</p>
+    <div class="registration-form">
+      <p style="font-size: 4rem">You are already registered</p>
+    </div>
   @else
     <form class="registration-form" method="post" action="{{ route('registration.store') }}">
       @csrf

@@ -16,6 +16,15 @@
   <link rel="stylesheet" href="/css/solid.css">
   <link rel="stylesheet" href="/css/admin/app.css">
 
+  @isset($setup['fav_icon'])
+    <link rel="icon" href="/favicon/favicon.ico" sizes="any">
+    @if(pathinfo($setup['fav_icon']->value, PATHINFO_EXTENSION) == 'svg')
+        <link rel="icon" href="/favicon/icon.svg" type="image/svg+xml">
+        <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+        <link rel="manifest" href="/favicon/manifest.webmanifest">
+    @endif
+  @endisset
+
   @yield('styles')
 
   <script src="/js/jquery.js"></script>
