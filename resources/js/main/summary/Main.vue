@@ -146,7 +146,7 @@ export default {
   },
   methods: {
     expandBoxHeight() {
-      $('.expand-box').css({'height': ($('.participant-list-wrap').height() - 40) + 'px'})
+      $('.expand-box').css({'height': ($('.participant-list-wrap').height() - 45) + 'px'})
     },
     /**
      * View or hide user column
