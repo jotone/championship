@@ -81,6 +81,9 @@ class CompetitionGroupGameController extends BasicApiController
             $game->save();
         }
 
+        // Set tasks to server queue
+        $this->serverQueueAddTasks($group->competition_id);
+
         return response($game, 201);
     }
 
@@ -129,19 +132,8 @@ class CompetitionGroupGameController extends BasicApiController
                     $rules[$key] = ['required', 'numeric', 'min:0', 'max:1'];
                     $competition_group_game->$key = $val;
 
-                    $forms = UserForm::where('competition_id', $competition_group_game->group->competition_id)->get();
-                    foreach ($forms as $form) {
-                        if (!ServerQueue::where([
-                            'competition_id' => $competition_group_game->group->competition_id,
-                            'user_id'        => $form->user_id,
-                            'status'         => 0
-                        ])->count()) {
-                            ServerQueue::create([
-                                'competition_id' => $competition_group_game->group->competition_id,
-                                'user_id'        => $form->user_id
-                            ]);
-                        }
-                    }
+                    // Set tasks to server queue
+                    $this->serverQueueAddTasks($competition_group_game->group->competition_id);
                     break;
                 case 'host_team':
                     $table = Country::class == $competition_group_game->entity ? 'countries' : 'teams';
@@ -330,5 +322,27 @@ class CompetitionGroupGameController extends BasicApiController
             'misses' => 0,
             'score'  => 0
         ];
+    }
+
+    /**
+     * Set tasks to Server Queue
+     * @param $competition_id
+     * @return void
+     */
+    protected function serverQueueAddTasks($competition_id)
+    {
+        $forms = UserForm::where('competition_id', $competition_id)->get();
+        foreach ($forms as $form) {
+            if (!ServerQueue::where([
+                'competition_id' => $competition_id,
+                'user_id'        => $form->user_id,
+                'status'         => 0
+            ])->count()) {
+                ServerQueue::create([
+                    'competition_id' => $competition_id,
+                    'user_id'        => $form->user_id
+                ]);
+            }
+        }
     }
 }
