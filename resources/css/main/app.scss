@@ -244,7 +244,7 @@ header {
 }
 
 .page-list {
-  > li > span {
+  > ul > li > span {
     background-color: $gray-light;
     color: white;
     display: block;
@@ -254,7 +254,7 @@ header {
     width: 100%;
   }
 
-  ul {
+  ul ul {
     list-style-type: '-';
 
     > li {
@@ -267,7 +267,6 @@ header {
 }
 
 .content-table {
-  margin: 5px 0;
   width: 100%;
 
   thead tr {

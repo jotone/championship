@@ -74,7 +74,7 @@ class ProcessServerQuery extends Command
                     // Calculate match teams
                     $match_scores = count(array_intersect($bet->scores, $teams_in_group));
                     // Score multiplication value
-                    $mult = $bet->group->games_number > 1 ? 1 : 2;
+                    $mult = $bet->group->games_number > 2 ? 1 : 2;
                     // Calculate user points
                     $user_points += $match_scores * $mult;
                     // Add bonus points

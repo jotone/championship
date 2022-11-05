@@ -119,7 +119,7 @@
                 Чемпіона
               @endif
 
-              <br>(команди - <em class="commands">0</em> / бонус - <em class="bonus">0</em>)
+              <br>(команди - <em class="commands">0</em> @if($group->games_number > 0) / бонус - <em class="bonus">0</em> @endif)
             </span>
 
             <div class="total-points">

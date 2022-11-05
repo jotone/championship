@@ -119,6 +119,7 @@ $(document).ready(() => {
           case 8: bonusPoints += 8;break;
         }
       } else if (2 === groupType) {
+        points *= 2
         switch (match.length) {
           case 3: bonusPoints += 6;break;
           case 4: bonusPoints += 8;break;
@@ -131,8 +132,7 @@ $(document).ready(() => {
           }
         } else {
           if (1 === match.length) {
-            points = 2
-            bonusPoints += 8
+            points = 8
           }
         }
       }

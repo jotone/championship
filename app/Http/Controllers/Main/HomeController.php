@@ -96,7 +96,7 @@ class HomeController extends BasicMainController
                             ->toArray();
                         $match_scores = count(array_intersect($bet->scores, $game->score));
                         // Score multiplication value
-                        $mult = $bet->group->games_number > 1 ? 1 : 2;
+                        $mult = $bet->group->games_number > 2 ? 1 : 2;
                         // Calculate user points
                         $points = $match_scores * $mult;
                         // Add bonus points

@@ -28,7 +28,9 @@ header .login-form-menu ul li a, header .login-form-menu ul li span { color: {{ 
 .comment-list-wrap .comment-etc-wrap .remove-comment-link { color: {{ $data['text_secondary_color'] }} }
 
 .content-table thead tr { background-color: {{ $data['table_th_bg_color'] }} }
-.content-table thead tr th { color: {{ $data['table_th_font_color'] }} }
+.content-table thead tr th,
+.content-table tbody tr .rotate span { color: {{ $data['table_th_font_color'] }} }
+
 .content-table tbody tr,
 .user-list tbody tr,
 .games-list-wrap ul.game-list li.group-games-list { background-color: {{ $data['table_td_bg_color'] }} }
