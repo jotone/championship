@@ -115,9 +115,19 @@
       "value": ""
     },
     {
-      "caption": "Мова сайту",
+      "caption": "Мова адмінки",
+      "key": "admin_lang",
+      "value": "uk"
+    },
+    {
+      "caption": "Мова сайту по замовчуванню",
       "key": "main_lang",
       "value": "uk"
+    },
+    {
+      "caption": "Мови інтерфейсу доступні користувачу",
+      "key": "lang_list",
+      "value": ["uk", "en", "pl", "ru"]
     },
     {
       "caption": "Формат дати",

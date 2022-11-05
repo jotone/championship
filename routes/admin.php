@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\{
     CustomPagesController,
     DashboardController,
     ForumController,
+    LanguageController,
     RolesController,
     SettingsController,
     TeamController,
@@ -55,4 +56,8 @@ Route::group(['as' => 'settings.', 'prefix' => '/settings'], function () {
     Route::get('/color-scheme', [SettingsController::class, 'colorScheme'])->name('color-scheme.index');
     // Update settings
     Route::patch('/', [SettingsController::class, 'update'])->name('update');
+    // Language settings page
+    Route::get('/languages', [LanguageController::class, 'index'])->name('languages.index');
+    // Update language settings
+    Route::patch('/languages', [LanguageController::class, 'update'])->name('languages.update');
 });

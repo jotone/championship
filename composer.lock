@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f88e9b98326e0c92c2e34276fce485b",
+    "content-hash": "1534bc02ddfcbb588f4603dd5eb6d5b5",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1019,6 +1019,81 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "laravel-lang/lang",
+            "version": "12.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Lang/lang.git",
+                "reference": "3b5693254f615a65febb9c9599e3b9c6cbb1a957"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/3b5693254f615a65febb9c9599e3b9c6cbb1a957",
+                "reference": "3b5693254f615a65febb9c9599e3b9c6cbb1a957",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "conflict": {
+                "laravel-lang/publisher": "<14.0"
+            },
+            "require-dev": {
+                "laravel-lang/publisher": "^14.0",
+                "laravel-lang/status-generator": "^1.3.7",
+                "php": "^8.1",
+                "phpunit/phpunit": "^9.5",
+                "symfony/var-dumper": "^5.0 || ^6.0"
+            },
+            "suggest": {
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel",
+                "laravel-lang/attributes": "Translations for field names of the forms",
+                "laravel-lang/http-statuses": "Translations for HTTP statuses",
+                "laravel-lang/publisher": "Easy installation and update of translation files for your project"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaravelLang\\Lang\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaravelLang\\Lang\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laravel-Lang Team",
+                    "homepage": "https://github.com/Laravel-Lang"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "support": {
+                "issues": "https://github.com/Laravel-Lang/lang/issues",
+                "source": "https://github.com/Laravel-Lang/lang"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/laravel-lang",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2022-10-30T09:25:55+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2072,6 +2147,69 @@
                 "source": "https://github.com/opis/closure/tree/3.6.3"
             },
             "time": "2022-01-27T09:35:39+00:00"
+        },
+        {
+            "name": "petercoles/multilingual-language-list",
+            "version": "1.16.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/petercoles/Multilingual-Language-List.git",
+                "reference": "8c4a80a917f2dfd1c0faa9a119d644ce79930a8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/petercoles/Multilingual-Language-List/zipball/8c4a80a917f2dfd1c0faa9a119d644ce79930a8c",
+                "reference": "8c4a80a917f2dfd1c0faa9a119d644ce79930a8c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5|~6|~7|~8|~9",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1",
+                "phpunit/phpunit": ">=8"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PeterColes\\Languages\\LanguagesServiceProvider"
+                    ],
+                    "aliases": {
+                        "Languages": "PeterColes\\Languages\\LanguagesFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PeterColes\\Languages\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Peter Coles",
+                    "email": "peterdcoles@gmail.com",
+                    "homepage": "https://petercoles.com"
+                }
+            ],
+            "description": "Lookup Objects for Language Names and Codes",
+            "homepage": "https://github.com/petercoles/multilingual-language-list",
+            "keywords": [
+                "language codes",
+                "language lists",
+                "language lookup",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/petercoles/multilingual-language-list/issues",
+                "source": "https://github.com/petercoles/Multilingual-Language-List/tree/1.16.1"
+            },
+            "time": "2022-02-17T12:39:18+00:00"
         },
         {
             "name": "php-open-source-saver/jwt-auth",

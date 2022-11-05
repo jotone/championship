@@ -69,6 +69,11 @@
         "name": "Кольорова схема",
         "url": "admin.settings.color-scheme.index",
         "img_url": "fas fa-palette"
+      },
+      {
+        "name": "Налаштування мови",
+        "url": "admin.settings.languages.index",
+        "img_url": "fas fa-language"
       }
     ]
   }
