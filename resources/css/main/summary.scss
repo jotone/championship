@@ -70,9 +70,7 @@
   }
 
   .group-name {
-    background-color: $heading;
     border-right: 1px solid $gray-light;
-    color: white;
     height: 30px;
     padding: 8px;
     text-align: center;
@@ -84,9 +82,7 @@
   overflow-x: scroll;
   overflow-y: visible;
 
-  .expand-box:not(.active) {
-    height: 150px !important;
-  }
+  .expand-box:not(.active) {height: 150px !important}
 }
 
 .show-block {
@@ -134,8 +130,6 @@
 
       &.user-list-heading {
         border-color: $gray;
-        background-color: $heading;
-        color: white;
 
         td {border-left-color: $heading}
 

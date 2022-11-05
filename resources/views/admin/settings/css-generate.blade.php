@@ -14,7 +14,7 @@ header .login-form-menu ul li a, header .login-form-menu ul li span { color: {{ 
 .forum-list-wrap .forum-list-body .forum-list-title,
 .forum-list-wrap .forum-list-body .forum-list-description,
 .user-list thead th.rotate span,
-.games-list-wrap ul.participant-list-wrap li input,
+.games-list-wrap ul.participant-list-wrap li,
 .comment-list-wrap .comment-text-wrap .comment-text > * { color: {{ $data['text_main_color'] }} }
 
 .forum-list-wrap .forum-list-info .forum-list-text,
@@ -36,7 +36,29 @@ header .login-form-menu ul li a, header .login-form-menu ul li span { color: {{ 
 .content-table tbody tr td a,
 .content-table tbody tr td span,
 .user-list tbody .user-list-value .user-list-score,
-.user-list tbody .user-list-value .user-list-team { background-color: {{ $data['table_td_font_color'] }} }
+.user-list tbody .user-list-value .user-list-team { color: {{ $data['table_td_font_color'] }} }
 
 .user-list tbody tr.user-list-heading,
 .games-list-wrap .group-name { background-color: {{ $data['table_th_bg_color'] }}; color: {{ $data['table_th_font_color'] }} }
+
+.btn.regular {
+  background-color: {{ $data['secondary_btn']['normal']['background-color'] }};
+  border: 1px solid {{ $data['secondary_btn']['normal']['border-color'] }};
+  color: {{ $data['secondary_btn']['normal']['color'] }};
+}
+.btn.regular:hover {
+  background-color: {{ $data['secondary_btn']['hover']['background-color'] }};
+  border: 1px solid {{ $data['secondary_btn']['hover']['border-color'] }};
+  color: {{ $data['secondary_btn']['hover']['color'] }};
+}
+
+.btn.success {
+  background-color: {{ $data['primary_btn']['normal']['background-color'] }};
+  border: 1px solid {{ $data['primary_btn']['normal']['border-color'] }};
+  color: {{ $data['primary_btn']['normal']['color'] }};
+}
+.btn.success:hover {
+  background-color: {{ $data['primary_btn']['hover']['background-color'] }};
+  border: 1px solid {{ $data['primary_btn']['hover']['border-color'] }};
+  color: {{ $data['primary_btn']['hover']['color'] }};
+}

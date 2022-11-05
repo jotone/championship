@@ -73,6 +73,7 @@ class SettingsController extends BasicAdminController
             'site_title',
             'table_td_bg_color',
             'table_td_font_color',
+            'table_th_bg_color',
             'table_th_font_color',
             'text_main_color',
             'text_secondary_color',
@@ -96,6 +97,7 @@ class SettingsController extends BasicAdminController
                 case 'site_title':
                 case 'table_td_bg_color':
                 case 'table_td_font_color':
+                case 'table_th_bg_color':
                 case 'table_th_font_color':
                 case 'text_main_color':
                 case 'text_secondary_color':
@@ -189,13 +191,32 @@ class SettingsController extends BasicAdminController
             $model->save();
         }
 
+        // Generate custom.css
         if (!empty(trim($args['custom_styles'] ?? ''))) {
             file_put_contents(public_path($this->custom_styles_file), $args['custom_styles']);
         }
-
-
+        // Generate override.css
+        if (isset($data['table_td_bg_color'])) {
+            try {
+                $this->generateOverrideCSS($data);
+            } catch (\Exception $e) {
+                return response(['errors' => [$e->getMessage()]], 500);
+            }
+        }
 
         return response(Settings::whereIn('key', array_keys($args))->get()->toArray());
+    }
+
+    /**
+     * Generate override css file content
+     * @param $data
+     * @return void
+     * @throws \Throwable
+     */
+    protected function generateOverrideCSS($data)
+    {
+        $html = view('admin.settings.css-generate', ['data' => $data])->render();
+        file_put_contents(public_path('/css/override.css'), $html);
     }
 
     /**

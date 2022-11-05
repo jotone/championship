@@ -6,16 +6,6 @@
   font-size: 1rem;
   padding: 10px 15px;
   text-decoration: none;
-
-  &.regular {
-    background-color: $blue;
-    color: white;
-  }
-
-  &.success {
-    background-color: $green-dark;
-    color: white;
-  }
 }
 
 .form-fieldset {
@@ -24,7 +14,6 @@
 
   legend {
     border-bottom: 1px solid $black;
-    color: $black;
     font-size: 1.5em;
     position: relative;
     width: 100%;

@@ -16,11 +16,7 @@
 - Admin
   - Settings
     - ~~Main Settings~~
-    - Color schemes
-      - ~~View~~
-      - ~~Save~~
-      - Generate
-      - Apply
+    - ~~Color schemes~~
     - Languages
       - User interface lang
       - View

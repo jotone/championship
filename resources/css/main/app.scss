@@ -23,7 +23,6 @@ body {
 .flex-fe {justify-content: flex-end}
 
 header {
-  background-color: $heading;
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -47,7 +46,6 @@ header {
 
     li {
       span, a {
-        color: white;
         cursor: pointer;
         display: block;
         padding: 10px 15px;
@@ -88,7 +86,6 @@ header {
 .login-form {
   border: 1px solid $black;
   border-radius: 5px;
-  background-color: $red-dark;
   display: none;
   padding: 15px;
   position: absolute;
@@ -105,13 +102,7 @@ header {
     display: flex;
     justify-content: space-between;
 
-    button {
-      border: 1px solid $black;
-      border-radius: 5px;
-      color: $black;
-      cursor: pointer;
-      padding: 5px 10px;
-    }
+    button {padding: 5px 10px}
   }
 }
 
@@ -220,8 +211,6 @@ header {
 }
 
 .page-title {
-  background-color: $heading;
-  color: white;
   font-size: 1.125rem;
   font-weight: bold;
   margin: 40px 0;
@@ -282,19 +271,12 @@ header {
   width: 100%;
 
   thead tr {
-    background-color: $heading;
     border: 1px solid $black;
 
-    th {
-      color: white;
-      padding: 10px;
-      text-align: center;
-    }
+    th {padding: 10px; text-align: center}
   }
 
   tbody tr {
-    background-color: $white-bg;
-
     &.hovered {background-color: white}
 
     &.group-finish:not(:last-child) {border-bottom: 2px solid $black}
@@ -380,8 +362,6 @@ header {
 }
 
 .page-heading {
-  background-color: $heading;
-  color: white;
   padding: 10px;
   text-align: center;
   width: 100%;
@@ -414,7 +394,7 @@ header {
     justify-content: flex-end;
     padding-top: 15px;
 
-    .subject-etc {color: $gray; font-size: .75rem}
+    .subject-etc {font-size: .75rem}
   }
 }
 
@@ -422,11 +402,7 @@ header {
   position: relative;
 
   .comment-etc-wrap {
-    .comment-misc, .answer-action, .comment-link, .remove-comment-link {
-      color: $gray;
-      font-size: .75rem;
-      margin-left: 10px
-    }
+    .comment-misc, .answer-action, .comment-link, .remove-comment-link {font-size: .75rem; margin-left: 10px}
   }
 
   #comment-form {
@@ -598,7 +574,6 @@ header {
 
   .forum-list-body {
     .forum-list-title {
-      color: $heading;
       display: block;
       font-size: 1.25rem;
       font-weight: bold;
@@ -618,7 +593,6 @@ header {
     justify-content: flex-end;
 
     .forum-list-text, .forum-list-pin, .forum-list-edit, .forum-list-move {
-      color: $gray;
       font-size: 0.875rem;
       margin-left: 8px;
       padding: 10px;
@@ -673,6 +647,7 @@ header {
     }
 
     &.real-score {
+      margin: 0 auto;
       width: 322px;
 
       tbody tr td {

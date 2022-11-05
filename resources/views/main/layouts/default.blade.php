@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="/css/fontawesome.css">
   <link rel="stylesheet" href="/css/solid.css">
   <link rel="stylesheet" href="/css/app.css">
+  <link rel="stylesheet" href="/css/override.css">
 
   <script src="/js/jquery.js"></script>
   @yield('styles')
