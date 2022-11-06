@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BasicAdminController;
 use App\Models\Settings;
+use DirectoryIterator;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use PeterColes\Languages\LanguagesFacade;
@@ -48,7 +49,7 @@ class LanguageController extends BasicAdminController
         'ja',
         'ka',
         'kk',
-        'km' => 'Central Khmer',
+        'km',
         'kn',
         'ko',
         'lt',
@@ -94,10 +95,23 @@ class LanguageController extends BasicAdminController
     public function index(Request $request): View
     {
         $settings = Settings::whereIn('key', ['admin_lang', 'main_lang', 'lang_list'])->get()->keyBy('key');
+
+        $installed_langs = ['en'];
+        $folders = new DirectoryIterator(resource_path('lang'));
+        foreach ($folders as $folder) {
+            if ($folder->isDir() && !$folder->isDot()) {
+                $folder_name = $folder->getFilename();
+                if (!in_array($folder_name, $installed_langs)) {
+                    $installed_langs[] = $folder_name;
+                }
+            }
+        }
+
         return $this->renderPage('admin.settings.languages', $request, [
-            'content' => $settings,
-            'langs'   => LanguagesFacade::lookup($this->languages, $settings['admin_lang']->value),
-            'title'   => 'Налаштування мови'
+            'content'   => $settings,
+            'installed' => $installed_langs,
+            'langs'     => LanguagesFacade::lookup($this->languages, $settings['admin_lang']->value),
+            'title'     => 'Налаштування мови'
         ]);
     }
 }

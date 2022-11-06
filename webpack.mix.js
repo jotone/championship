@@ -34,6 +34,7 @@ mix
   .js('./resources/js/admin/app.js', './public/js/admin/app.js')
   .js('./resources/js/admin/color-scheme/app.js', './public/js/admin/color-scheme.js')
   .js('./resources/js/admin/dashboard/app.js', './public/js/admin/dashboard.js')
+  .js('./resources/js/admin/languages-form/app.js', './public/js/admin/languages-form.js')
   .js('./resources/js/admin/main.js', './public/js/admin/main.js')
   // Main
   .sass('./resources/css/main/app.scss', './public/css/')

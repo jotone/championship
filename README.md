@@ -18,7 +18,6 @@
     - ~~Main Settings~~
     - ~~Color schemes~~
     - Languages
-      - User interface lang
       - View
       - Save
       - Apply

@@ -11,6 +11,7 @@
     "/js/admin/app.js": "/js/admin/app.js",
     "/js/admin/color-scheme.js": "/js/admin/color-scheme.js",
     "/js/admin/dashboard.js": "/js/admin/dashboard.js",
+    "/js/admin/languages-form.js": "/js/admin/languages-form.js",
     "/js/admin/main.js": "/js/admin/main.js",
     "/js/forum-topics.js": "/js/forum-topics.js",
     "/js/summary.js": "/js/summary.js",

@@ -6,6 +6,7 @@
 /public/images/header.*
 /public/images/logo.*
 /public/images/uploads
+/resources/lang
 /storage/*.key
 /storage/db
 /vendor

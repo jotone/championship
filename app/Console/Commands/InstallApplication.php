@@ -3,13 +3,14 @@
 namespace App\Console\Commands;
 
 use App\Models\{AdminMenu, CustomPage, Permission, Role, Settings, User};
-use App\Traits\PermissionsTrait;
+use App\Classes\FileHelper;
+use App\Traits\{PermissionsTrait, SettingsTrait};
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
 class InstallApplication extends Command
 {
-    use PermissionsTrait;
+    use PermissionsTrait, SettingsTrait;
 
     /**
      * The name and signature of the console command.
@@ -36,21 +37,24 @@ class InstallApplication extends Command
      * Execute the console command.
      *
      * @return int
+     * @throws \Throwable
      */
     public function handle()
     {
-        // retrieve installation data
+        // Retrieve files with the installation data
         $files = [
             'admin_menu' => json_decode(file_get_contents(base_path($this->files_path . 'admin_menu.json')), 1),
             'countries'  => json_decode(file_get_contents(base_path($this->files_path . 'countries.json')), 1),
             'roles'      => json_decode(file_get_contents(base_path($this->files_path . 'roles.json')), 1),
             'settings'   => json_decode(file_get_contents(base_path($this->files_path . 'settings.json')), 1),
             'pages'      => json_decode(file_get_contents(base_path($this->files_path . 'pages.json')), 1),
+            'lang'       => json_decode(file_get_contents(base_path($this->files_path . 'lang.json')), 1)
         ];
 
-        // Create admin menu
+        // Create the admin menu
         $this->runWithTimer('Dashboard side menu', function () use ($files) {
             foreach ($files['admin_menu'] as $position => $item) {
+                // Process admin menu data
                 $this->createAdminMenuItem($position, $item);
             }
         });
@@ -59,8 +63,9 @@ class InstallApplication extends Command
         $roles = $this->runWithTimer('Application user roles', function () use ($files) {
             $roles = [];
             foreach ($files['roles'] as $role_data) {
+                // Create role entity
                 $roles[$role_data['slug']] = Role::create($role_data);
-
+                // Create permissions for the current role
                 if (isset($role_data['permissions'])) {
                     foreach ($role_data['permissions'] as $permission) {
                         Permission::create([
@@ -74,8 +79,9 @@ class InstallApplication extends Command
             return $roles;
         });
 
-        // Create role permissions
+        // Create role permissions for superadmin
         $this->runWithTimer('Application role permissions', function () use ($roles) {
+            // Get all permissions
             $permissions = $this->permissionList(['app/Http/Controllers/Admin', 'app/Http/Controllers/Api']);
             $n = count($permissions);
             for ($i = 0; $i < $n; $i++) {
@@ -112,6 +118,47 @@ class InstallApplication extends Command
                     ]);
                 }
             }
+            // Generate a custom color scheme css file
+            $this->generateOverrideCSS(
+                Settings::where('section', 'color-scheme')->get()
+                    ->map(function ($model) {
+                        // Convert object to array
+                        $model->val = json_decode(json_encode($model->converted_value), true);
+                        return $model;
+                    })
+                    ->pluck('val', 'key')
+                    ->toArray()
+            );
+        });
+
+        // Create language files
+        $this->runWithTimer('Installing Language Packages', function () use ($files) {
+            // Get default languages list
+            $language_list = Settings::where('key', 'lang_list')->first();
+            // Create a package for all languages
+            foreach ($language_list->converted_value as $lang) {
+                // Process language file data
+                foreach ($files['lang'] as $file_name => $data) {
+                    // Check if the language folder exists
+                    if (!is_dir(resource_path('lang/' . $lang))) {
+                        FileHelper::createFolder(resource_path('lang/' . $lang));
+                    }
+                    // Get translations for foreign languages
+                    $locale = $lang != 'en'
+                        ? json_decode(file_get_contents(base_path('vendor/laravel-lang/lang/locales/' . $lang . '/php.json')), 1)
+                        : [];
+                    // Generate language file content
+                    $new_file_content = '';
+                    foreach ($data as $key => $value) {
+                        $new_file_content .= $this->processContent($key, $value, $locale);
+                    }
+
+                    file_put_contents(
+                        resource_path('lang/' . $lang . '/' . $file_name . '.php'),
+                        '<?php' . "\n\n" . 'return [' . "\n" . $new_file_content . '];'
+                    );
+                }
+            }
         });
 
         // Create countries
@@ -135,6 +182,33 @@ class InstallApplication extends Command
             }
         });
         return 0;
+    }
+
+    /**
+     * Build lang file content
+     * @param string $key
+     * @param $value
+     * @param array $locale
+     * @param string $shift
+     * @return string
+     */
+    protected function processContent(string $key, $value, array $locale = [], string $shift = '    '): string
+    {
+        $result = '';
+        if (is_array($value)) {
+            $temp = '';
+            foreach ($value as $inner_key => $inner_value) {
+                $temp .= $this->processContent($inner_key, $inner_value, $locale, $shift . '    ');
+            }
+            $result .= "$shift'$key' => [\n$temp$shift],\n";
+        } else {
+            if (!empty($locale)) {
+                $value = $locale[$key];
+            }
+            $value = preg_replace('/\'/', '&apos;', $value);
+            $result .= "$shift'$key' => '$value',\n";
+        }
+        return $result;
     }
 
     /**
@@ -165,6 +239,7 @@ class InstallApplication extends Command
      */
     protected function createAdminMenuItem(int $position, array $data, $parent_id = null)
     {
+        // Menu entity
         $menu = AdminMenu::create([
             'name'       => $data['name'],
             'url'        => $data['url'] ?? '#',
@@ -176,6 +251,7 @@ class InstallApplication extends Command
 
         if (!empty($data['inner'])) {
             foreach ($data['inner'] as $position => $item) {
+                // Add submenu item to the database
                 $this->createAdminMenuItem($position, $item, $menu->id);
             }
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Classes\FileHelper;
 use App\Http\Controllers\BasicAdminController;
 use App\Models\Settings;
+use App\Traits\SettingsTrait;
 use Faker\Factory as Faker;
 use Illuminate\Http\{Request, Response};
 use Illuminate\Support\Facades\Validator;
@@ -15,6 +16,8 @@ use SVG\SVG;
 
 class SettingsController extends BasicAdminController
 {
+    use SettingsTrait;
+
     /**
      * Custom styles file path
      * @var string
@@ -207,17 +210,7 @@ class SettingsController extends BasicAdminController
         return response(Settings::whereIn('key', array_keys($args))->get()->toArray());
     }
 
-    /**
-     * Generate override css file content
-     * @param $data
-     * @return void
-     * @throws \Throwable
-     */
-    protected function generateOverrideCSS($data)
-    {
-        $html = view('admin.settings.css-generate', ['data' => $data])->render();
-        file_put_contents(public_path('/css/override.css'), $html);
-    }
+
 
     /**
      * Convert svg to png

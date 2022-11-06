@@ -1,5 +1,5 @@
-import {Notifications} from './libs/notifications';
-import {debounce} from "debounce";
+import { debounce } from 'debounce';
+import { Notifications } from './libs/notifications';
 
 $(document).ready(() => {
   // Show current notifications
@@ -77,8 +77,6 @@ $(document).ready(() => {
 
       reader.readAsDataURL(file)
     })
-
-  //
 
   // Form submit
   $('form[data-xhr]').on('submit', function (e) {

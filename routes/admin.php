@@ -57,7 +57,15 @@ Route::group(['as' => 'settings.', 'prefix' => '/settings'], function () {
     // Update settings
     Route::patch('/', [SettingsController::class, 'update'])->name('update');
     // Language settings page
-    Route::get('/languages', [LanguageController::class, 'index'])->name('languages.index');
-    // Update language settings
-    Route::patch('/languages', [LanguageController::class, 'update'])->name('languages.update');
+    Route::resource('/languages', LanguageController::class)->only(['index', 'store', 'update', 'destroy']);
+//    // Language settings page
+//    Route::get('/languages', [LanguageController::class, 'index'])->name('languages.index');
+//    // Install new language
+//    Route::post('/languages', [LanguageController::class, 'store'])->name('languages.store');
+//    // Update language settings
+//    Route::put('/languages', [LanguageController::class, 'update'])->name('languages.update');
+//    // Update language translation
+//    Route::patch('languages', [LanguageController::class, 'upgrade'])->name('languages.upgrade');
+//    // Remove language
+
 });

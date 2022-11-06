@@ -208,3 +208,41 @@ header {
     }
   }
 }
+
+.language-list-wrap {
+  position: relative;
+  width: 50%;
+
+  li {
+    background-color: white;
+    border: 1px solid $headline;
+    border-top: none;
+    position: relative;
+    text-align: center;
+
+    &:first-child {border-top: 1px solid $headline}
+
+    .language-list-name {
+      padding: 5px 20px;
+      text-align: center;
+    }
+
+    .language-list-move, .language-list-remove {
+      padding: 5px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .language-list-move {
+      cursor: grab;
+      left: 5px;
+      &:active {cursor: grabbing}
+    }
+
+    .language-list-remove {
+      cursor: pointer;
+      right: 5px;
+    }
+  }
+}

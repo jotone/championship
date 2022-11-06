@@ -43,10 +43,12 @@ class BasicMainController extends Controller
         return view($view, array_merge([
             'competition' => $this->competition,
             'messages'    => $messages,
-            'results'     => UserForm::with(['bets', 'user'])
-                ->where('competition_id', $this->competition->id)
-                ->orderBy('points', 'desc')
-                ->get(),
+            'results'     => !empty($this->competition)
+                ? UserForm::with(['bets', 'user'])
+                    ->where('competition_id', $this->competition->id)
+                    ->orderBy('points', 'desc')
+                    ->get()
+                : [],
             'setup'       => $this->settingsData(),
             // Competition team list
             'teams'       => $this->teamList()
