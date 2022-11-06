@@ -103,24 +103,44 @@ class HomeController extends BasicMainController
                         if ($bet->group->games_number == 8) {
                             // 1/8
                             switch ($match_scores) {
-                                case 12:$points += 4;break;
-                                case 13:$points += 6;break;
-                                case 14:$points += 8;break;
-                                case 15:$points += 9;break;
-                                case 16:$points += 10;break;
+                                case 12:
+                                    $points += 4;
+                                    break;
+                                case 13:
+                                    $points += 6;
+                                    break;
+                                case 14:
+                                    $points += 8;
+                                    break;
+                                case 15:
+                                    $points += 9;
+                                    break;
+                                case 16:
+                                    $points += 10;
+                                    break;
                             }
                         } else if ($bet->group->games_number == 4) {
                             // 1/4
                             switch ($match_scores) {
-                                case 6:$points += 4;break;
-                                case 7:$points += 6;break;
-                                case 8:$points += 8;break;
+                                case 6:
+                                    $points += 4;
+                                    break;
+                                case 7:
+                                    $points += 6;
+                                    break;
+                                case 8:
+                                    $points += 8;
+                                    break;
                             }
                         } else if ($bet->group->games_number == 2) {
                             // 1/2
                             switch ($match_scores) {
-                                case 3:$points += 6;break;
-                                case 4:$points += 8;break;
+                                case 3:
+                                    $points += 6;
+                                    break;
+                                case 4:
+                                    $points += 8;
+                                    break;
                             }
                         } else if ($bet->group->games_number == 1 && 4 == $match_scores) {
                             // Final
@@ -183,9 +203,15 @@ class HomeController extends BasicMainController
                         $game_id = md5($bet->game->id);
                         if (!isset($group_data[$bet->game->group_id]['games'][$game_id])) {
                             $group_data[$bet->game->group_id]['games'][$game_id] = [
-                                'host'  => $bet->game->hostTeam,
-                                'guest' => $bet->game->guestTeam,
-                                'score' => $bet->game->score,
+                                'host'  => [
+                                    'id'   => md5($bet->game->host_team),
+                                    'name' => $bet->game->hostTeam->ua
+                                ],
+                                'guest' => [
+                                    'id'   => md5($bet->game->guest_team),
+                                    'name' => $bet->game->guestTeam->ua
+                                ],
+                                'score' => $this->modifyScore($bet->game->score),
                                 'users' => []
                             ];
                         }
@@ -194,14 +220,12 @@ class HomeController extends BasicMainController
                             'id'     => md5($form->user_id),
                             'name'   => $form->user->name,
                             'points' => $points,
-                            'score'  => $bet->scores
+                            'score'  => $this->modifyScore($bet->scores)
                         ];
                     }
                 }
             }
         }
-
-//        dd($group_data[10]);
 
         return view('main.home.summary', [
             'groups'    => $group_data,
@@ -211,5 +235,19 @@ class HomeController extends BasicMainController
             // Settings
             'setup'     => $this->settingsData(),
         ]);
+    }
+
+    /**
+     * Set id values to md5
+     * @param array $score
+     * @return array
+     */
+    protected function modifyScore(array $score): array
+    {
+        $result = [];
+        foreach ($score as $id => $val) {
+            $result[md5($id)] = $val;
+        }
+        return $result;
     }
 }

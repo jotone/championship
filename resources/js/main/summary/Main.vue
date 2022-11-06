@@ -23,9 +23,9 @@
         <ul v-if="typeof group.games !== 'undefined'">
           <li v-for="(game, gameID) in group.games" class="group-games-list" :data-game="gameID">
             <div class="game-team-names">
-              <span>{{ game.host.ua }}</span>
+              <span :data-uuid="game.host.id">{{ game.host.name }}</span>
               <span>:</span>
-              <span>{{ game.guest.ua }}</span>
+              <span :data-uuid="game.guest.id">{{ game.guest.name }}</span>
             </div>
             <div class="game-score">
               <span>{{ game.score[game.host.id] }}</span>
@@ -75,7 +75,7 @@
             </div>
           </td>
         </tr>
-        <tr v-for="item in gameData" >
+        <tr v-for="item in gameData">
           <td
             v-for="user in users"
             :data-uuid="user.id"
@@ -84,15 +84,15 @@
             <div class="user-list-value">
               <div class="user-list-score">
                 <template
-                  v-if="typeof user.games[item] !== 'undefined'"
+                  v-if="typeof user.games[item.game] !== 'undefined'"
                 >
-                  <span>{{ objectToArray(user.games[item].score)[0] }}</span>
+                  <span>{{ user.games[item.game].score[item.host] }}</span>
                   <span>-</span>
-                  <span>{{ objectToArray(user.games[item].score)[1] }}</span>
+                  <span>{{ user.games[item.game].score[item.guest] }}</span>
                 </template>
               </div>
               <div class="user-list-points">
-                <span>{{ user.games[item].points }}</span>
+                <span>{{ user.games[item.game].points }}</span>
               </div>
             </div>
           </td>
@@ -146,7 +146,7 @@ export default {
   },
   methods: {
     expandBoxHeight() {
-      $('.expand-box').css({'height': ($('.participant-list-wrap').height() - 45) + 'px'})
+      $('.expand-box').css({'height': ($('.participant-list-wrap').height() - 50) + 'px'})
     },
     /**
      * View or hide user column
@@ -286,7 +286,11 @@ export default {
               throw new Error('No game set')
             }
             // Fill group games
-            typeof $(this).attr('data-game') !== 'undefined' && backbone.gameData[groupID].push($(this).attr('data-game'))
+            typeof $(this).attr('data-game') !== 'undefined' && backbone.gameData[groupID].push({
+              game: $(this).attr('data-game'),
+              host: $(this).find('.game-team-names span:first').attr('data-uuid'),
+              guest: $(this).find('.game-team-names span:last').attr('data-uuid')
+            })
             // Fill playoff games
             typeof $(this).attr('data-team') !== 'undefined' && backbone.teamData[groupID].push($(this).attr('data-team'))
           })
