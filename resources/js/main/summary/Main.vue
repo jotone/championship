@@ -116,14 +116,15 @@
         <tr v-for="(teamID, i) in teams">
           <td
             v-for="user in users"
-            :class="user.teamsByID[groupID].indexOf(teamID) > 0 ? 'green' : ''"
             :data-uuid="user.id"
             :data-points="user.teams[groupID].points"
             :style="`display: ${user.show ? 'table-cell' : 'none'}`"
+            :class="teams.indexOf(user.teams[groupID].teams[i].id) >= 0 ? 'green' : ''"
           >
+            <!--            -->
             <div class="user-list-value">
               <div v-if="typeof user.teams[groupID] !== 'undefined'" class="user-list-team">
-                {{ user.teams[groupID].teams[i] }}
+                {{ user.teams[groupID].teams[i].name }}
               </div>
             </div>
           </td>
@@ -145,9 +146,6 @@ export default {
     }
   },
   methods: {
-    expandBoxHeight() {
-      $('.expand-box').css({'height': ($('.participant-list-wrap').height() - 50) + 'px'})
-    },
     /**
      * View or hide user column
      * @param e
@@ -162,29 +160,10 @@ export default {
       }
     },
     /**
-     * Hide / show participant list
-     * @param e
-     */
-    hideUserBlock(e) {
-      const _this = $(e.target).closest('.show-block')
-      _this.toggleClass('active')
-      $('.participant-list-wrap, .game-list').toggleClass('active')
-      $('.expand-box').toggleClass('active')
-
-      $('.expand-box').hasClass('active') && this.expandBoxHeight()
-    },
-    /**
-     * Convert iterable object to array
-     * @param obj
-     * @returns {[]}
-     */
-    objectToArray: obj => Object.keys(obj).map((key) => obj[key]),
-    /**
-     * Get group name by it ID
-     * @param id
+     * Change height of Expand box
      * @returns {*|jQuery}
      */
-    getGroupName: id => $(`.games-list-wrap > ul > li[data-group="${id}"] .group-name`).text().trim(),
+    expandBoxHeight: () => $('.expand-box').css({'height': ($('.participant-list-wrap').height() - 50) + 'px'}),
     /**
      * Fill user object
      * @param {object} user
@@ -200,8 +179,7 @@ export default {
           show: !0,
           total: 0,
           games: {},
-          teams: {},
-          teamsByID: {}
+          teams: {}
         }
       }
 
@@ -214,10 +192,9 @@ export default {
         }
 
         this.users[user.id].teams[groupID] = {
-          teams: this.objectToArray(user.teams),
+          teams: this.objectToFlatArr(user.teams),
           points: user.points
         }
-        this.users[user.id].teamsByID[groupID] = Object.keys(user.teams)
       } else {
         // Group games
         this.users[user.id].games[gameID] = {
@@ -225,7 +202,43 @@ export default {
           points: user.points
         }
       }
-    }
+    },
+    /**
+     * Get group name by it ID
+     * @param id
+     * @returns {*|jQuery}
+     */
+    getGroupName: id => $(`.games-list-wrap > ul > li[data-group="${id}"] .group-name`).text().trim(),
+    /**
+     * Hide / show participant list
+     * @param e
+     */
+    hideUserBlock(e) {
+      const _this = $(e.target).closest('.show-block')
+      _this.toggleClass('active')
+      $('.participant-list-wrap, .game-list').toggleClass('active')
+      $('.expand-box').toggleClass('active')
+
+      $('.expand-box').hasClass('active') && this.expandBoxHeight()
+    },
+    /**
+     * Convert object of type id => value to {id:id, name: value}
+     * @param obj
+     * @returns {*[]}
+     */
+    objectToFlatArr: obj => {
+      let result = []
+      for (let i in obj) {
+        result.push({id: i, name: obj[i]})
+      }
+      return result;
+    },
+    /**
+     * Convert iterable object to array
+     * @param obj
+     * @returns {[]}
+     */
+    objectToArray: obj => Object.keys(obj).map((key) => obj[key])
   },
   beforeMount() {
     this.groups = JSON.parse(atob($('textarea[name="models"]').val().trim()))
