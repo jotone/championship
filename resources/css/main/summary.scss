@@ -9,15 +9,18 @@
   width: 315px;
 
   ul.participant-list-wrap {
+    align-items: flex-start;
     display: none;
-    min-height: 120px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    min-height: 200px;
     font-size: .875rem;
 
-    &.active {display: block}
+    &.active {display: flex}
 
     li {
       padding: 5px 0;
-      margin: 5px 0;
+      margin: 5px;
 
       label {
         align-items: center;
