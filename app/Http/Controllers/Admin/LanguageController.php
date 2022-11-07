@@ -96,14 +96,23 @@ class LanguageController extends BasicAdminController
     {
         $settings = Settings::whereIn('key', ['admin_lang', 'main_lang', 'lang_list'])->get()->keyBy('key');
 
-        $installed_langs = ['en'];
+        $installed_langs = ['en' => []];
         $folders = new DirectoryIterator(resource_path('lang'));
         foreach ($folders as $folder) {
             if ($folder->isDir() && !$folder->isDot()) {
                 $folder_name = $folder->getFilename();
-                if (!in_array($folder_name, $installed_langs)) {
-                    $installed_langs[] = $folder_name;
+                if ($folder_name != 'en') {
+                    $installed_langs[$folder_name] = [];
                 }
+
+                $inner = new DirectoryIterator($folder->getPathname());
+                foreach ($inner as $file) {
+                    if (!$file->isDir()) {
+                        $file_name = preg_replace('/\.php/', '', $file->getFilename());
+                        $installed_langs[$folder_name][] = $file_name;
+                    }
+                }
+                sort($installed_langs[$folder_name]);
             }
         }
 

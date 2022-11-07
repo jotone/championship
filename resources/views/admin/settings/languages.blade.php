@@ -5,8 +5,8 @@
 @endsection
 
 @section('scripts')
-  <script src="/js/admin/languages-form.js"></script>
   <script src="/js/admin/color-scheme.js"></script>
+  <script src="/js/admin/languages-form.js"></script>
 @endsection
 
 @section('content')
@@ -59,19 +59,19 @@
 
             <ul class="language-list-wrap sortable-list-wrap">
               @foreach($content['lang_list']->converted_value as $item)
-              <li>
-                <div class="language-list-move move-handle">
-                  <i class="fas fa-ellipsis-v"></i>
-                  <i class="fas fa-ellipsis-v"></i>
-                </div>
-                <div class="language-list-name">
-                  <span>{{ mb_ucfirst($langs[$item]) }}</span>
-                  <input name="lang_list[]" type="hidden" value="{{ $item }}">
-                </div>
-                <div class="language-list-remove">
-                  <i class="fas fa-times remove"></i>
-                </div>
-              </li>
+                <li>
+                  <div class="language-list-move move-handle">
+                    <i class="fas fa-ellipsis-v"></i>
+                    <i class="fas fa-ellipsis-v"></i>
+                  </div>
+                  <div class="language-list-name">
+                    <span>{{ mb_ucfirst($langs[$item]) }}</span>
+                    <input name="lang_list[]" type="hidden" value="{{ $item }}">
+                  </div>
+                  <div class="language-list-remove">
+                    <i class="fas fa-times remove"></i>
+                  </div>
+                </li>
               @endforeach
             </ul>
           </div>
@@ -100,7 +100,7 @@
             </label>
 
             <ul class="language-list-wrap">
-              @foreach($installed as $item)
+              @foreach($installed as $item => $data)
                 <li>
                   <div class="language-list-name">
                     <span>{{ mb_ucfirst($langs[$item]) }}</span>
@@ -129,18 +129,54 @@
         <fieldset class="col-100">
           <legend>Список перекладів</legend>
 
-          <div class="button-color-picker-wrap">
+          <div class="button-color-picker-wrap translations-form">
             <ul>
-              @foreach($installed as $item)
+              @foreach($installed as $item => $data)
                 <li data-show="{{ $item }}" @if($loop->first) class="active" @endif>
-                  <span>{{ mb_ucfirst($langs[$item]) }}</span>
+                  <a href="#">{{ mb_ucfirst($langs[$item]) }}</a>
                 </li>
               @endforeach
             </ul>
 
-            @foreach($installed as $item)
+            @foreach($installed as $item => $data)
               <div class="button-color-picker {{ $loop->first ? 'active' : '' }}" data-type="{{ $item }}">
-                {{ $item }}
+                <div class="translation-list-wrap">
+                  <ul class="file-list-wrap">
+                    @foreach($data as $file)
+                      <li @if($loop->first) class="active" @endif>
+                        <a href="#" data-file="{{ $file }}">{{ ucfirst($file) }}</a>
+                      </li>
+                    @endforeach
+                  </ul>
+
+                  <div class="translation-list col-100">
+                    <ul>
+                      <li>
+                        <label class="inline-caption col-100">
+                          <span class="left">YARRR:</span>
+
+                          <input class="form-input" name="blah">
+                        </label>
+                      </li>
+                      <li>
+                        <label class="inline-caption col-100">
+                          <span class="left">YARRR:</span>
+                        </label>
+
+                        <ul>
+                          <li>
+                            <label class="inline-caption col-100">
+                              <span class="left">YARRR:</span>
+
+                              <input class="form-input" name="blah">
+                            </label>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+
+                  </div>
+                </div>
               </div>
             @endforeach
           </div>

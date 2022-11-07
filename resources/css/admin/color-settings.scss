@@ -3,7 +3,9 @@
 .button-color-picker-wrap {
   max-width: 450px;
 
-  ul {
+  &.translations-form {max-width: 100%}
+
+  > ul {
     align-items: center;
     display: flex;
     justify-content: flex-start;
@@ -17,12 +19,20 @@
       text-align: center;
       width: 50%;
 
+      span, a {
+        color: $paragraph;
+        font-size: 1.25rem;
+        text-decoration: none;
+      }
+
       &:first-child {border-top-left-radius: 10px}
       &:last-child {border-top-right-radius: 10px}
 
-      &.active {background-color: $blue; color: white}
+      &.active {
+        background-color: $blue;
 
-      span {font-size: 1.25rem}
+        span, a {color: white}
+      }
     }
   }
 
@@ -94,5 +104,46 @@
     border: 1px solid #aaaaaa;
     padding: 8px 12px;
     text-align: center;
+  }
+}
+
+.translation-list-wrap {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  .file-list-wrap {
+    padding: 10px 5px;
+    position: relative;
+    width: 150px;
+
+    li {
+      a {
+        color: $paragraph;
+        display: block;
+        font-size: 1.25rem;
+        padding: 5px 0;
+        text-decoration: none;
+      }
+
+      &.active a {color: $headline; font-weight: bold}
+    }
+  }
+
+  .translation-list {
+    border: 1px solid $headline;
+    background-color: white;
+    padding: 10px 5px;
+    position: relative;
+    width: calc(100% - 200px);
+
+    .form-input {max-width: 100%; width: 100%}
+
+    > ul {
+      li {margin: 10px 0}
+
+      ul {margin-left: 50px}
+    }
   }
 }
