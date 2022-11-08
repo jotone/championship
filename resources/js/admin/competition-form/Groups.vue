@@ -204,9 +204,7 @@ export default {
         })
       )
     },
-    goto(href) {
-      return $('html').animate({scrollTop: href.offset().top - 65}, 500)
-    },
+    goto: href => $('html').animate({scrollTop: href.offset().top - 65}, 500),
     /**
      * Remove group
      * @param e
@@ -273,6 +271,23 @@ export default {
       this.addTeamPopup.wrap.find('input[name="searchSelect"]').val('')
       this.addTeamPopup.open()
     },
+    sortGamesAndTeams() {
+      for (let i = 0, n = this.groups.length; i < n; i++) {
+        let games = this.groups[i].games
+        let teams = this.groups[i].teams;
+
+        this.groups[i].teams = teams.sort((a, b) => {
+          if (a.score < b.score) return 1;
+          if (a.score > b.score) return -1;
+          return 0;
+        })
+        this.groups[i].games = games.sort((a, b) => {
+          if (a.start_at < b.start_at) return -1;
+          if (a.start_at > b.start_at) return 1;
+          return 0;
+        })
+      }
+    },
     /**
      * Swap host amd guest teams in match
      * @param e
@@ -332,23 +347,6 @@ export default {
         }
       }
       this.sortGamesAndTeams()
-    },
-    sortGamesAndTeams() {
-      for (let i = 0, n = this.groups.length; i < n; i++) {
-        let games = this.groups[i].games
-        let teams = this.groups[i].teams;
-
-        this.groups[i].teams = teams.sort((a, b) => {
-          if (a.score < b.score) return 1;
-          if (a.score > b.score) return -1;
-          return 0;
-        })
-        this.groups[i].games = games.sort((a, b) => {
-          if (a.start_at < b.start_at) return -1;
-          if (a.start_at > b.start_at) return 1;
-          return 0;
-        })
-      }
     }
   },
   beforeMount() {

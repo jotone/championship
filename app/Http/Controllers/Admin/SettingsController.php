@@ -185,7 +185,7 @@ class SettingsController extends BasicAdminController
                 FileHelper::recursiveRemove(public_path('/favicon'));
             }
 
-            return response($validation->errors()->all(), 422);
+            return response(['errors' => [$validation->errors()->all()]], 422);
         }
         // Update settings values
         foreach ($data as $key => $val) {

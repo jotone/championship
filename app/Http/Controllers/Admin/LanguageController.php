@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\BasicAdminController;
 use App\Models\Settings;
+use App\Traits\LanguageTrait;
 use DirectoryIterator;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -11,81 +12,7 @@ use PeterColes\Languages\LanguagesFacade;
 
 class LanguageController extends BasicAdminController
 {
-    /**
-     * Available language packages
-     * @var string[]
-     */
-    public $languages = [
-        'af',
-        'ar',
-        'az',
-        'be',
-        'bg',
-        'bn',
-        'bs',
-        'ca',
-        'cs',
-        'cy',
-        'da',
-        'de',
-        'el',
-        'en',
-        'es',
-        'et',
-        'eu',
-        'fa',
-        'fi',
-        'fr',
-        'gl',
-        'gu',
-        'he',
-        'hi',
-        'hr',
-        'hu',
-        'hy',
-        'id',
-        'is',
-        'it',
-        'ja',
-        'ka',
-        'kk',
-        'km',
-        'kn',
-        'ko',
-        'lt',
-        'lv',
-        'mk',
-        'mn',
-        'mr',
-        'ms',
-        'nb',
-        'ne',
-        'nl',
-        'nn',
-        'oc',
-        'pl',
-        'ps',
-        'pt',
-        'ro',
-        'ru',
-        'rw',
-        'sc',
-        'si',
-        'sk',
-        'sl',
-        'sq',
-        'sr',
-        'sv',
-        'sw',
-        'tg',
-        'th',
-        'tr',
-        'uk',
-        'ur',
-        'uz',
-        'vi',
-        'zh',
-    ];
+    use LanguageTrait;
 
     /**
      * Main settings page
@@ -119,7 +46,10 @@ class LanguageController extends BasicAdminController
         return $this->renderPage('admin.settings.languages', $request, [
             'content'   => $settings,
             'installed' => $installed_langs,
-            'langs'     => LanguagesFacade::lookup($this->languages, $settings['admin_lang']->value),
+            'langs'     => LanguagesFacade::lookup($this->language_list, $settings['admin_lang']->value),
+            'routes'    => [
+                'show' => route('api.languages.show', 0)
+            ],
             'title'     => 'Налаштування мови'
         ]);
     }

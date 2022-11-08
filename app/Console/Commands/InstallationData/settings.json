@@ -127,7 +127,7 @@
     {
       "caption": "Мови інтерфейсу доступні користувачу",
       "key": "lang_list",
-      "value": ["uk", "en", "pl", "ru"]
+      "value": ["uk", "en", "pl"]
     },
     {
       "caption": "Формат дати",

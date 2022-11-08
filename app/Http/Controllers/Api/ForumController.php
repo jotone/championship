@@ -95,7 +95,7 @@ class ForumController extends BasicApiController
         $validation = Validator::make($args, $rules);
 
         if ($validation->fails()) {
-            return response($validation->errors()->all(), 422);
+            return response(['errors' => [$validation->errors()->all()]], 422);
         }
 
         // Check img_url file exists

@@ -220,6 +220,8 @@ header {
     position: relative;
     text-align: center;
 
+    &.disabled {background-color: #4a4a4a}
+
     &:first-child {border-top: 1px solid $headline}
 
     .language-list-name {
@@ -227,7 +229,7 @@ header {
       text-align: center;
     }
 
-    .language-list-move, .language-list-remove {
+    .language-list-move, .language-list-remove, .language-list-add {
       padding: 5px;
       position: absolute;
       top: 50%;
@@ -240,9 +242,6 @@ header {
       &:active {cursor: grabbing}
     }
 
-    .language-list-remove {
-      cursor: pointer;
-      right: 5px;
-    }
+    .language-list-remove, .language-list-add {cursor: pointer; right: 5px}
   }
 }

@@ -4,13 +4,13 @@ namespace App\Console\Commands;
 
 use App\Models\{AdminMenu, CustomPage, Permission, Role, Settings, User};
 use App\Classes\FileHelper;
-use App\Traits\{PermissionsTrait, SettingsTrait};
+use App\Traits\{LanguageTrait, PermissionsTrait, SettingsTrait};
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
 class InstallApplication extends Command
 {
-    use PermissionsTrait, SettingsTrait;
+    use LanguageTrait, PermissionsTrait, SettingsTrait;
 
     /**
      * The name and signature of the console command.
@@ -137,27 +137,7 @@ class InstallApplication extends Command
             $language_list = Settings::where('key', 'lang_list')->first();
             // Create a package for all languages
             foreach ($language_list->converted_value as $lang) {
-                // Process language file data
-                foreach ($files['lang'] as $file_name => $data) {
-                    // Check if the language folder exists
-                    if (!is_dir(resource_path('lang/' . $lang))) {
-                        FileHelper::createFolder(resource_path('lang/' . $lang));
-                    }
-                    // Get translations for foreign languages
-                    $locale = $lang != 'en'
-                        ? json_decode(file_get_contents(base_path('vendor/laravel-lang/lang/locales/' . $lang . '/php.json')), 1)
-                        : [];
-                    // Generate language file content
-                    $new_file_content = '';
-                    foreach ($data as $key => $value) {
-                        $new_file_content .= $this->processContent($key, $value, $locale);
-                    }
-
-                    file_put_contents(
-                        resource_path('lang/' . $lang . '/' . $file_name . '.php'),
-                        '<?php' . "\n\n" . 'return [' . "\n" . $new_file_content . '];'
-                    );
-                }
+                $this->installLanguage($lang, $files['lang']);
             }
         });
 
@@ -182,33 +162,6 @@ class InstallApplication extends Command
             }
         });
         return 0;
-    }
-
-    /**
-     * Build lang file content
-     * @param string $key
-     * @param $value
-     * @param array $locale
-     * @param string $shift
-     * @return string
-     */
-    protected function processContent(string $key, $value, array $locale = [], string $shift = '    '): string
-    {
-        $result = '';
-        if (is_array($value)) {
-            $temp = '';
-            foreach ($value as $inner_key => $inner_value) {
-                $temp .= $this->processContent($inner_key, $inner_value, $locale, $shift . '    ');
-            }
-            $result .= "$shift'$key' => [\n$temp$shift],\n";
-        } else {
-            if (!empty($locale)) {
-                $value = $locale[$key];
-            }
-            $value = preg_replace('/\'/', '&apos;', $value);
-            $result .= "$shift'$key' => '$value',\n";
-        }
-        return $result;
     }
 
     /**

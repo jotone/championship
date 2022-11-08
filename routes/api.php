@@ -69,4 +69,5 @@ Route::resource('/forum-messages', ForumMessageController::class)->only(['update
 Route::resource('/pages', CustomPagesController::class)->except(['create', 'edit', 'show']);
 
 // Languages
+Route::patch('/languages/upgrade', [LanguageController::class, 'upgrade'])->name('languages.upgrade');
 Route::resource('/languages', LanguageController::class)->except(['index', 'create', 'edit']);

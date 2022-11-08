@@ -18,8 +18,8 @@
     - ~~Main Settings~~
     - ~~Color schemes~~
     - Languages
-      - View
-      - Save
+      - ~~View~~
+      - ~~Save~~
       - Apply
     - Pages
       - Registration (enable)
