@@ -88,12 +88,14 @@
 
               <select class="form-select" name="role_id">
                 @foreach($roles as $role)
-                  <option
-                    value="{{ $role->id }}"
-                    {{ (isset($model) && $role->id == $model->role_id) || (!isset($model) && $role->slug == 'regular') ? 'selected' : '' }}
-                  >
-                    {{ $role->name }}
-                  </option>
+                  @if($user->role->level <= $role->level)
+                    <option
+                      value="{{ $role->id }}"
+                      {{ (isset($model) && $role->id == $model->role_id) || (!isset($model) && $role->slug == 'regular') ? 'selected' : '' }}
+                    >
+                      {{ $role->name }}
+                    </option>
+                  @endif
                 @endforeach
               </select>
             </label>
@@ -113,7 +115,7 @@
         </fieldset>
       </div>
 
-      @if(isset($model) && $user->role->level <= $model->role->level)
+      @if((isset($model) && $user->role->level <= $model->role->level) || !isset($model))
         <div class="row">
           <button type="submit" class="btn success">
             Зберегти
