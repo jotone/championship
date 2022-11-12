@@ -33,7 +33,7 @@ class FileHelper
     protected static function removeExif(string $path)
     {
         //Open file with Image magick
-        $img = new \Imagick($path);
+        $img = new Imagick($path);
         //Save image ICC profiles
         $profiles = $img->getImageProfiles("icc");
         //Delete EXIF data
@@ -124,13 +124,14 @@ class FileHelper
     {
         // Check image side is greater than another
         if ($img->{$edge}() > $maxValue) {
+            $img->fitDown($img->width(), $img->height());
             // Image scale value
-            $scale = $img->{$edge}() / $maxValue;
+            /*$scale = $img->{$edge}() / $maxValue;
 
             // Scale both image sides
             $width = ceil($img->width() / $scale);
             $height = ceil($img->height() / $scale);
-            $img->resize($width, $height);
+            $img->resize($width, $height);*/
         }
     }
 

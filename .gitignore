@@ -5,7 +5,7 @@
 /public/favicon
 /public/images/header.*
 /public/images/logo.*
-/public/images/uploads
+/public/uploads
 /storage/*.key
 /storage/db
 /vendor
