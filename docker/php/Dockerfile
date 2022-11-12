@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     libmagickwand-dev
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-webp=/usr/include/ --with-jpeg=/usr/include/ && \
-docker-php-ext-install bcmath gd iconv intl mbstring pcntl mysqli pdo_mysql zip \
+docker-php-ext-install bcmath exif gd iconv intl mbstring mysqli pcntl pdo_mysql zip \
     && pecl install imagick && docker-php-ext-enable imagick
 
 RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer  --install-dir=/usr/local/bin && \

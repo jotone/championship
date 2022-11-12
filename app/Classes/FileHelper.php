@@ -33,7 +33,7 @@ class FileHelper
     protected static function removeExif(string $path)
     {
         //Open file with Image magick
-        $img = new Imagick($path);
+        $img = new \Imagick($path);
         //Save image ICC profiles
         $profiles = $img->getImageProfiles("icc");
         //Delete EXIF data
@@ -76,39 +76,41 @@ class FileHelper
         $filename = sprintf('%s.%s', $file_info['filename'], $ext);
         $file->move($path, $filename);
 
+
         if ($is_image) {
             $file_path = Str::finish($path, '/') . $filename;
-            self::removeExif($file_path);
 
             if (!empty($settings_key)) {
                 $settings = Settings::where('key', $settings_key)->first();
                 if ($settings) {
-                    $img = Image::make($file_path);
 
+                    $img = Image::make($file_path);
                     $edge = $img->width() >= $img->height() ? 'width' : 'height';
                     $size = $img->width() >= $img->height() ? 0 : 1;
 
                     // Resize image
                     if (!empty($settings->converted_value->resize)) {
                         self::resizeImage($edge, $settings->converted_value->resize[$size], $img);
-                        $img->save();
+                        $img->orientate()->save();
                     }
                     // Create large thumb
                     if (!empty($settings->converted_value->thumb_large)) {
                         self::resizeImage($edge, $settings->converted_value->thumb_large[$size], $img);
                         $folder = 'uploads/thumbs/' . $settings_key . '/large/';
                         FileHelper::createFolder(public_path($folder));
-                        $img->save(public_path($folder . $filename), 90);
+                        $img->orientate()->save(public_path($folder . $filename), 90);
                     }
                     // Create small thumb
                     if (!empty($settings->converted_value->thumb_small)) {
                         self::resizeImage($edge, $settings->converted_value->thumb_small[$size], $img);
                         $folder = 'uploads/thumbs/' . $settings_key . '/small/';
                         FileHelper::createFolder(public_path($folder));
-                        $img->save(public_path($folder . $filename), 90);
+                        $img->orientate()->save(public_path($folder . $filename), 90);
                     }
                 }
             }
+
+            self::removeExif($file_path);
         }
 
         return Str::finish(substr($path, strlen(public_path())), '/') . $filename;
@@ -124,14 +126,19 @@ class FileHelper
     {
         // Check image side is greater than another
         if ($img->{$edge}() > $maxValue) {
-            $img->fitDown($img->width(), $img->height());
             // Image scale value
-            /*$scale = $img->{$edge}() / $maxValue;
+            $scale = $img->{$edge}() / $maxValue;
 
             // Scale both image sides
             $width = ceil($img->width() / $scale);
             $height = ceil($img->height() / $scale);
-            $img->resize($width, $height);*/
+
+            $img->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            if ($height > $width) {
+                $img->rotate(90);
+            }
         }
     }
 
