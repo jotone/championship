@@ -63,15 +63,15 @@ class HomeController extends BasicMainController
         Session::remove('messages');
 
         $competition = Competition::with([
+            'teams',
             'userForms' => fn($q) => $q->with([
-                'bets' => fn($bet_query) => $bet_query->with([
-                    'group',
-                    'game' => fn($game_query) => $game_query->where('accept', true)
-                ])
+                'bets' => fn($bet_query) => $bet_query->with(['group', 'game'])
             ])
         ])->firstWhere('slug', 'world-cup-2022');
 
         $group_data = [];
+
+        $team = $competition->teams->first();
 
         foreach ($competition->userForms as $form) {
             foreach ($form->bets as $bet) {
@@ -86,61 +86,44 @@ class HomeController extends BasicMainController
                 if ($bet->group->stage > 0) {
                     $game = $bet->group->games()->where('accept', 1)->first();
 
-                    if ($game) {
-                        $game_teams = $game->entity::whereIn('id', $game->score ?? [])->get()
+                    $game_teams = $game
+                        ? $team->entity::whereIn('id', $game->score ?? [])->get()
                             ->map(function ($model) {
                                 $model->uuid = md5($model->id);
                                 return $model;
                             })
                             ->pluck('ua', 'uuid')
-                            ->toArray();
-                        $match_scores = count(array_intersect($bet->scores, $game->score));
-                        // Score multiplication value
-                        $mult = $bet->group->games_number > 2 ? 1 : 2;
+                            ->toArray()
+                        : [];
+                    $match_scores = $game ? count(array_intersect($bet->scores, $game->score)) : 0;
+                    // Score multiplication value
+                    $mult = $bet->group->games_number > 2 ? 1 : 2;
+
+                    if ($game && $game->accept) {
                         // Calculate user points
                         $points = $match_scores * $mult;
                         // Add bonus points
                         if ($bet->group->games_number == 8) {
                             // 1/8
                             switch ($match_scores) {
-                                case 12:
-                                    $points += 4;
-                                    break;
-                                case 13:
-                                    $points += 6;
-                                    break;
-                                case 14:
-                                    $points += 8;
-                                    break;
-                                case 15:
-                                    $points += 9;
-                                    break;
-                                case 16:
-                                    $points += 10;
-                                    break;
+                                case 12:$points += 4;break;
+                                case 13:$points += 6;break;
+                                case 14:$points += 8;break;
+                                case 15:$points += 9;break;
+                                case 16:$points += 10;break;
                             }
                         } else if ($bet->group->games_number == 4) {
                             // 1/4
                             switch ($match_scores) {
-                                case 6:
-                                    $points += 4;
-                                    break;
-                                case 7:
-                                    $points += 6;
-                                    break;
-                                case 8:
-                                    $points += 8;
-                                    break;
+                                case 6:$points += 4;break;
+                                case 7:$points += 6;break;
+                                case 8:$points += 8;break;
                             }
                         } else if ($bet->group->games_number == 2) {
                             // 1/2
                             switch ($match_scores) {
-                                case 3:
-                                    $points += 6;
-                                    break;
-                                case 4:
-                                    $points += 8;
-                                    break;
+                                case 3:$points += 6;break;
+                                case 4:$points += 8;break;
                             }
                         } else if ($bet->group->games_number == 1 && 4 == $match_scores) {
                             // Final
@@ -149,70 +132,75 @@ class HomeController extends BasicMainController
                             // Champion
                             $points += 6;
                         }
+                    } else {
+                        $points = 0;
+                    }
 
-                        if (!isset($group_data[$game->group_id]['playOff'])) {
-                            $group_data[$game->group_id]['playOff'] = [
-                                'game_id' => md5($game->id),
-                                'teams'   => $game_teams,
-                                'users'   => []
-                            ];
-                        }
-
-                        $group_data[$game->group_id]['playOff']['users'][] = [
-                            'id'     => md5($form->user_id),
-                            'name'   => $form->user->name,
-                            'points' => $points,
-                            'teams'  => $game->entity::whereIn('id', $bet->scores ?? [])->get()
-                                ->map(function ($model) {
-                                    $model->uuid = md5($model->id);
-                                    return $model;
-                                })
-                                ->pluck('ua', 'uuid')
-                                ->toArray()
+                    if (!isset($group_data[$bet->group->id]['playOff'])) {
+                        $group_data[$bet->group->id]['playOff'] = [
+                            'game_id' => $game ? md5($game->id) : null,
+                            'teams'   => $game_teams,
+                            'users'   => []
                         ];
                     }
+
+                    $group_data[$bet->group->id]['playOff']['users'][] = [
+                        'id'     => md5($form->user_id),
+                        'name'   => $form->user->name,
+                        'points' => $points,
+                        'teams'  => $team->entity::whereIn('id', $bet->scores ?? [])->get()
+                            ->map(function ($model) {
+                                $model->uuid = md5($model->id);
+                                return $model;
+                            })
+                            ->pluck('ua', 'uuid')
+                            ->toArray()
+                    ];
+
                 } else {
                     $points = 0;
                     if ($bet->game) {
                         $real = $bet->game->score;
                         $user = $bet->scores;
 
-                        // Calculate user points
-                        if (
-                            $real[$bet->game->host_team] == $user[$bet->game->host_team]
-                            && $real[$bet->game->guest_team] == $user[$bet->game->guest_team]
-                        ) {
-                            // If user guess Exact score
-                            $points = 3;
-                        } else if (
-                            // If user guess winner
-                            (
-                                $real[$bet->game->host_team] > $real[$bet->game->guest_team]
-                                && $user[$bet->game->host_team] > $user[$bet->game->guest_team]
-                            ) || (
-                                $real[$bet->game->host_team] < $real[$bet->game->guest_team]
-                                && $user[$bet->game->host_team] < $user[$bet->game->guest_team]
-                            ) || (
-                                $real[$bet->game->host_team] == $real[$bet->game->guest_team]
-                                && $user[$bet->game->host_team] == $user[$bet->game->guest_team]
-                            )
-                        ) {
-                            $points = 1;
+                        if ($bet->game->accept) {
+                            // Calculate user points
+                            if (
+                                $real[$bet->game->host_team] == $user[$bet->game->host_team]
+                                && $real[$bet->game->guest_team] == $user[$bet->game->guest_team]
+                            ) {
+                                // If user guess Exact score
+                                $points = 3;
+                            } else if (
+                                // If user guess winner
+                                (
+                                    $real[$bet->game->host_team] > $real[$bet->game->guest_team]
+                                    && $user[$bet->game->host_team] > $user[$bet->game->guest_team]
+                                ) || (
+                                    $real[$bet->game->host_team] < $real[$bet->game->guest_team]
+                                    && $user[$bet->game->host_team] < $user[$bet->game->guest_team]
+                                ) || (
+                                    $real[$bet->game->host_team] == $real[$bet->game->guest_team]
+                                    && $user[$bet->game->host_team] == $user[$bet->game->guest_team]
+                                )
+                            ) {
+                                $points = 1;
+                            }
                         }
 
                         $game_id = md5($bet->game->id);
                         if (!isset($group_data[$bet->game->group_id]['games'][$game_id])) {
                             $group_data[$bet->game->group_id]['games'][$game_id] = [
-                                'host'  => [
+                                'host'   => [
                                     'id'   => md5($bet->game->host_team),
                                     'name' => $bet->game->hostTeam->ua
                                 ],
-                                'guest' => [
+                                'guest'  => [
                                     'id'   => md5($bet->game->guest_team),
                                     'name' => $bet->game->guestTeam->ua
                                 ],
-                                'score' => $this->modifyScore($bet->game->score),
-                                'users' => []
+                                'score'  => $this->modifyScore($bet->game->score),
+                                'users'  => []
                             ];
                         }
 

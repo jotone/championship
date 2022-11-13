@@ -309,6 +309,12 @@ export default {
           })
         })
 
+        if (!!backbone.teamData && this.users.length) {
+          for (let groupID in this.users[0].teams) {
+            backbone.teamData[groupID] = this.objectToArray(this.users[0].teams[groupID].teams)
+          }
+        }
+
         this.backbone = backbone
 
         return {};
@@ -316,66 +322,87 @@ export default {
       // Wait until user-list table is filled
       .then(() => {
         const tableLoadInterval = setInterval(() => {
-          if ($('.user-list tbody tr').length) {
+          if ($('.user-list tbody tr').length && $('.games-list-wrap > ul').length) {
             clearInterval(tableLoadInterval)
             return ({})
           }
         }, 500)
       })
-      // Figure out user score points
-      .then(() => {
-        let totalGroupPoints = {}
-        let rowIndex = {
-          group: 0,
-          pos: 0
-        }
-        $('.user-list tbody tr.user-list-heading').each(function () {
-          const row = $(this)
-          $(this).nextAll('tr').each(function () {
-            if ($(this).hasClass('user-list-heading')) {
-              for (let userID in totalGroupPoints) {
-                row.find(`td[data-uuid="${userID}"] em`).text(totalGroupPoints[userID])
+      // Fix empty groups height
+      .then(() => $('.game-list ul').each(function () {
+        const listWrap = $(this)
+        if(!$(this).height()) {
+          const index = $(this).closest('li').index()
+
+          const row = $(`.user-list tbody tr.user-list-heading:eq(${index})`)
+
+          new Promise(resolve => {
+            let rowsCount = 0
+            row.nextAll('tr').each(function () {
+              if ($(this).hasClass('user-list-heading')) {
+                resolve(rowsCount)
+              } else {
+                rowsCount++
               }
-              rowIndex.group++
-              rowIndex.pos = 0
-              totalGroupPoints = {}
-              return false;
-            } else {
-              const gameWrap = $(`.games-list-wrap > ul > li:eq(${rowIndex.group}) li:eq(${rowIndex.pos}) .game-team-names`)
-              rowIndex.pos++;
+            })
+            resolve(rowsCount)
+          }).then(rowsCount => {
+            const colHeight = 1 + row.next('tr').height()
 
-              $(this).find('td').each(function () {
-                // Set game title to cell
-                if (gameWrap) {
-                  $(this).attr('title', gameWrap.text())
-                }
-                // Get user id
-                const userID = $(this).attr('data-uuid')
+            listWrap.css({height: (colHeight * rowsCount) + 'px'})
+          })
+        }
+      }))
+      // Figure out user score points
+      .then((totalGroupPoints = {}, rowIndex = {group: 0, pos: 0}) => $('.user-list tbody tr.user-list-heading').each(function () {
+        const row = $(this)
+        $(this).nextAll('tr').each(function () {
+          if ($(this).hasClass('user-list-heading')) {
+            for (let userID in totalGroupPoints) {
+              row.find(`td[data-uuid="${userID}"] em`).text(totalGroupPoints[userID])
+            }
+            // Increase group position
+            rowIndex.group++
+            // Reset positions number
+            rowIndex.pos = 0
+            // Reset group points value
+            totalGroupPoints = {}
+            return false;
+          } else {
+            const gameWrap = $(`.games-list-wrap > ul > li:eq(${rowIndex.group}) li:eq(${rowIndex.pos}) .game-team-names`)
+            rowIndex.pos++;
 
-                if (typeof userID !== 'undefined') {
-                  if ($(this).find('.user-list-points').length) {
-                    // User bet points
-                    const points = parseInt($(this).find('.user-list-points span').text().trim());
-                    // Cell background color
-                    const bgColorClass = points > 0 ? (points > 1 ? 'green' : 'yellow') : ''
-                    $(this).addClass(bgColorClass)
-                    // Total group user points
-                    totalGroupPoints[userID] = userID in totalGroupPoints
+            $(this).find('td').each(function () {
+              // Set game title to cell
+              if (gameWrap) {
+                $(this).attr('title', gameWrap.text())
+              }
+              // Get user id
+              const userID = $(this).attr('data-uuid')
+
+              if (typeof userID !== 'undefined') {
+                if ($(this).find('.user-list-points').length) {
+                  // User bet points
+                  const points = parseInt($(this).find('.user-list-points span').text().trim());
+                  // Cell background color
+                  const bgColorClass = points > 0 ? (points > 1 ? 'green' : 'yellow') : ''
+                  $(this).addClass(bgColorClass)
+                  // Total group user points
+                  totalGroupPoints[userID] = userID in totalGroupPoints
                       ? totalGroupPoints[userID] + points
                       : points
-                  } else {
-                    // Set playOff points
-                    const prevHeading = $(this).closest('tr').prev('.user-list-heading')
-                    if (prevHeading.length) {
-                      prevHeading.find(`td[data-uuid="${userID}"] em`).text($(this).attr('data-points'))
-                    }
+                } else {
+                  // Set playOff points
+                  const prevHeading = $(this).closest('tr').prev('.user-list-heading')
+                  if (prevHeading.length) {
+                    prevHeading.find(`td[data-uuid="${userID}"] em`).text($(this).attr('data-points'))
                   }
                 }
-              })
-            }
-          })
+              }
+            })
+          }
         })
-      })
+      }))
   }
 }
 </script>

@@ -108,7 +108,7 @@ class UsersController extends BasicApiController
      */
     public function update(User $user, Request $request): Response
     {
-        $args = $request->only(['name', 'email', 'img_url', 'password', 'confirmation', 'role_id']);
+        $args = $request->only(['name', 'email', 'img_url', 'password', 'confirmation', 'role_id', 'info']);
 
         if (auth('api')->user()->role->level > $user->role->level) {
             return response(['errors' => [
@@ -175,9 +175,9 @@ class UsersController extends BasicApiController
 
     /**
      * Remove user
-     *
      * @param User $user
      * @return Response
+     * @throws \Exception
      */
     public function destroy(User $user): Response
     {
