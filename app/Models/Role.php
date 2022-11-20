@@ -47,7 +47,7 @@ class Role extends Model
 
         static::deleting(function ($model) {
             $model->permissions()->get()->each(fn($entity) => $entity->delete());
-            $model->users()->get()->each(fn($entity) => $entity->role_id = null);
+            $model->users()->get()->each(fn($entity) => $entity->update(['role_id' => null]));
         });
     }
 }
