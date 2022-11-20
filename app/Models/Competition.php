@@ -72,6 +72,15 @@ class Competition extends Model
     }
 
     /**
+     * Server queue entities
+     * @return HasMany
+     */
+    public function queueItems(): HasMany
+    {
+        return $this->hasMany(ServerQueue::class, 'competition_id', 'id');
+    }
+
+    /**
      * Related teams
      *
      * @return HasManyThrough
@@ -100,6 +109,8 @@ class Competition extends Model
             $model->groups()->get()->each(fn($entity) => $entity->delete());
             // Remove user forms
             $model->userForms()->get()->each(fn($entity) => $entity->delete());
+            // Remvoe server queue entries
+            $model->queueItems()->get()->each(fn($entity) => $entity->delete());
         });
     }
 }

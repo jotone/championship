@@ -42,28 +42,30 @@ class ProcessServerQuery extends Command
             // Get user form bets
             foreach ($form->bets as $bet) {
                 // Group games score
-                if (!empty($bet->game_id) && $bet->game->accept) {
-                    // Host team score
-                    $host_score = [
-                        'real' => $bet->game->score[$bet->game->host_team],
-                        'user' => $bet->scores[$bet->game->host_team]
-                    ];
-                    // Guest team score
-                    $guest_score = [
-                        'real' => $bet->game->score[$bet->game->guest_team],
-                        'user' => $bet->scores[$bet->game->guest_team]
-                    ];
+                if ($bet->group->stage == 0) {
+                    if(!empty($bet->game_id) && $bet->game->accept){
+                        // Host team score
+                        $host_score = [
+                            'real' => $bet->game->score[$bet->game->host_team],
+                            'user' => $bet->scores[$bet->game->host_team]
+                        ];
+                        // Guest team score
+                        $guest_score = [
+                            'real' => $bet->game->score[$bet->game->guest_team],
+                            'user' => $bet->scores[$bet->game->guest_team]
+                        ];
 
-                    if ($host_score['real'] == $host_score['user'] && $guest_score['real'] == $guest_score['user']) {
-                        // If user guess Exact score
-                        $user_points += 3;
-                    } else if (
-                        // If user guess winner
-                        ($host_score['real'] > $guest_score['real'] && $host_score['user'] > $guest_score['user'])
-                        || ($host_score['real'] < $guest_score['real'] && $host_score['user'] < $guest_score['user'])
-                        || ($host_score['real'] == $guest_score['real'] && $host_score['user'] == $guest_score['user'])
-                    ) {
-                        $user_points += 1;
+                        if ($host_score['real'] == $host_score['user'] && $guest_score['real'] == $guest_score['user']) {
+                            // If user guess Exact score
+                            $user_points += 3;
+                        } else if (
+                            // If user guess winner
+                            ($host_score['real'] > $guest_score['real'] && $host_score['user'] > $guest_score['user'])
+                            || ($host_score['real'] < $guest_score['real'] && $host_score['user'] < $guest_score['user'])
+                            || ($host_score['real'] == $guest_score['real'] && $host_score['user'] == $guest_score['user'])
+                        ) {
+                            $user_points += 1;
+                        }
                     }
                 } else {
                     // Play off group games
@@ -77,6 +79,7 @@ class ProcessServerQuery extends Command
                     $mult = $bet->group->games_number > 2 ? 1 : 2;
                     // Calculate user points
                     $user_points += $match_scores * $mult;
+
                     // Add bonus points
                     if ($bet->group->games_number == 8) {
                         // 1/8
