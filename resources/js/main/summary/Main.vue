@@ -113,15 +113,14 @@
           </td>
         </tr>
 
-        <tr v-for="(teamID, i) in teams">
+        <tr v-for="(teamID, i) in teams" :data-i="JSON.stringify(teams)">
           <td
             v-for="user in users"
             :data-uuid="user.id"
             :data-points="user.teams[groupID].points"
             :style="`display: ${user.show ? 'table-cell' : 'none'}`"
-            :class="teams.indexOf(user.teams[groupID].teams[i].id) >= 0 ? 'green' : ''"
+            :class="typeof finalists[groupID] !== 'undefined' && finalists[groupID].indexOf(teamID.id) >= 0 ? 'green' : ''"
           >
-            <!--            -->
             <div class="user-list-value">
               <div v-if="typeof user.teams[groupID] !== 'undefined'" class="user-list-team">
                 {{ user.teams[groupID].teams[i].name }}
@@ -140,6 +139,7 @@ export default {
   data() {
     return {
       backbone: {},
+      finalists: {},
       height: 0,
       groups: {},
       users: {}
@@ -280,7 +280,7 @@ export default {
       .then(() => {
         this.expandBoxHeight()
 
-        let backbone = {
+        let finalists = {}, backbone = {
           gameData: {},
           teamData: {}
         };
@@ -292,6 +292,16 @@ export default {
           }
           if ($(this).find('li[data-game]').length) {
             backbone.gameData[groupID] = []
+          }
+
+          if ($(this).find('.game-teams-list').length) {
+            if (typeof finalists[groupID] === 'undefined') {
+              finalists[groupID] = []
+            }
+
+            $(this).find('.game-teams-list').each(function () {
+              finalists[groupID].push($(this).data('team'))
+            })
           }
 
           $(this).find('ul li').each(function () {
@@ -316,6 +326,7 @@ export default {
         }
 
         this.backbone = backbone
+        this.finalists = finalists
 
         return {};
       })
@@ -331,8 +342,8 @@ export default {
       // Fix empty groups height
       .then(() => $('.game-list ul').each(function () {
         const listWrap = $(this)
-        if(!$(this).height()) {
-          const index = $(this).closest('li').index()
+        if(listWrap.find('.game-teams-list').length || !listWrap.height()) {
+          const index = listWrap.closest('li').index()
 
           const row = $(`.user-list tbody tr.user-list-heading:eq(${index})`)
 
