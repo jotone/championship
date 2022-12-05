@@ -119,7 +119,7 @@
             :data-uuid="user.id"
             :data-points="user.teams[groupID].points"
             :style="`display: ${user.show ? 'table-cell' : 'none'}`"
-            :class="typeof finalists[groupID] !== 'undefined' && finalists[groupID].indexOf(teamID.id) >= 0 ? 'green' : ''"
+            :class="typeof finalists[groupID] !== 'undefined' && finalists[groupID].indexOf(user.teams[groupID].teams[i].id) >= 0 ? 'green' : ''"
           >
             <div class="user-list-value">
               <div v-if="typeof user.teams[groupID] !== 'undefined'" class="user-list-team">
