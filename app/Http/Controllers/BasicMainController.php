@@ -23,7 +23,7 @@ class BasicMainController extends Controller
             'groups' => fn($q) => $q->with([
                 'games' => fn($inner_query) => $inner_query->orderBy('start_at')
             ])->orderBy('stage')->orderBy('position'),
-            'teams'  => fn($q) => $q->orderBy('score')
+            'teams' => fn($q) => $q->orderBy('score')
         ])->firstWhere('slug', 'world-cup-2022');
     }
 
@@ -42,14 +42,16 @@ class BasicMainController extends Controller
 
         return view($view, array_merge([
             'competition' => $this->competition,
-            'messages'    => $messages,
-            'results'     => UserForm::with(['bets', 'user'])
-                ->where('competition_id', $this->competition->id)
-                ->orderBy('points', 'desc')
-                ->get(),
-            'setup'       => $this->settingsData(),
+            'messages' => $messages,
+            'results' => empty($this->competition)
+                ? []
+                : UserForm::with(['bets', 'user'])
+                    ->where('competition_id', $this->competition->id)
+                    ->orderBy('points', 'desc')
+                    ->get(),
+            'setup' => $this->settingsData(),
             // Competition team list
-            'teams'       => $this->teamList()
+            'teams' => $this->teamList()
         ], $share));
     }
 
