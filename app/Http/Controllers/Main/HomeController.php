@@ -67,7 +67,7 @@ class HomeController extends BasicMainController
             'userForms' => fn($q) => $q->with([
                 'bets' => fn($bet_query) => $bet_query->with(['group', 'game'])
             ])
-        ])->firstWhere('slug', 'world-cup-2022');
+        ])->first();
 
         $group_data = [];
 

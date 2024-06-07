@@ -93,8 +93,8 @@ class CompetitionController extends BasicApiController
         $competition->rounds = $args['rounds'];
         $competition->bg_color = $args['bg_color'][0] != '#' ? '#' . $args['bg_color'] : $args['bg_color'];
         $competition->text_color = $args['text_color'][0] != '#' ? '#' . $args['text_color'] : $args['text_color'];
-        $competition->start_at = $args['start_at'];
-        $competition->finish_at = $args['finish_at'];
+        $competition->start_at = $this->toCarbon($args['start_at']);
+        $competition->finish_at = $this->toCarbon($args['finish_at']);
 
         if ($modify >= 0) {
             for ($i = 0; $i < $modify; $i++) {
@@ -139,5 +139,45 @@ class CompetitionController extends BasicApiController
     public function destroy(Competition $competition): Response
     {
         return $this->defaultRemove($competition);
+    }
+
+    /**
+     * Convert a date to Carbon
+     *
+     * @param $date
+     * @param bool $strict
+     * @return ?Carbon
+     * @throws \Exception
+     */
+    protected function toCarbon($date, bool $strict = true): ?Carbon
+    {
+        if (is_int($date)) {
+            return Carbon::createFromTimestamp($date);
+        }
+
+        if ($date instanceof Carbon) {
+            return $date;
+        }
+
+        $time_formats = ['Y-m-d', 'j/M/Y', 'j/m/Y', 'Y/m/d', 'j n, Y', 'j M, Y', 'Y, m j', 'Y, M j', 'm.d.Y', 'm/d/Y'];
+
+        $formats = [];
+        foreach ($time_formats as $format) {
+            $formats[] = $format . ' H:i:s';
+            $formats[] = $format . ' H:i';
+            $formats[] = $format;
+        }
+
+        foreach ($formats as $format) {
+            if (Carbon::hasFormat($date, $format)) {
+                return Carbon::createFromFormat($format, $date);
+            }
+        }
+
+        if ($strict) {
+            throw new \Exception('Cannot parse date ' . $date);
+        } else {
+            return null;
+        }
     }
 }

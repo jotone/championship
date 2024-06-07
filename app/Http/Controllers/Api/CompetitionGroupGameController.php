@@ -131,9 +131,6 @@ class CompetitionGroupGameController extends BasicApiController
                 case 'accept':
                     $rules[$key] = ['required', 'numeric', 'min:0', 'max:1'];
                     $competition_group_game->$key = $val;
-
-                    // Set tasks to server queue
-                    $this->serverQueueAddTasks($competition_group_game->group->competition_id);
                     break;
                 case 'host_team':
                     $table = Country::class == $competition_group_game->entity ? 'countries' : 'teams';
@@ -161,6 +158,9 @@ class CompetitionGroupGameController extends BasicApiController
                     break;
             }
         }
+
+        // Set tasks to server queue
+        $this->serverQueueAddTasks($competition_group_game->group->competition_id);
 
         if (!empty($rules)) {
             $validator = Validator::make($args, $rules);
