@@ -118,7 +118,7 @@
                       <p>Дата створення: {{ $comment->created_at->translatedFormat('j/M/Y H:i') }}</p>
                     </div>
                     <div class="comment-text">
-                      {{ $comment->message }}
+                      {!! $comment->message !!}
                     </div>
                     <div class="comments-controls">
                       <a
