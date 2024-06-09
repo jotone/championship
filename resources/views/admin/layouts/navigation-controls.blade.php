@@ -10,11 +10,11 @@
     <button type="submit"><i class="fas fa-search"></i></button>
   </form>
 
-  <div class="per-page-wrap">
-    <select name="perPage" class="form-select">
-      @foreach([10, 25, 50, 100, 250] as $i)
-        <option value="{{ $i }}">{{ $i }}</option>
-      @endforeach
-    </select>
-  </div>
+{{--  <div class="per-page-wrap">--}}
+{{--    <select name="perPage" class="form-select">--}}
+{{--      @foreach([10, 25, 50, 100, 250] as $i)--}}
+{{--        <option value="{{ $i }}">{{ $i }}</option>--}}
+{{--      @endforeach--}}
+{{--    </select>--}}
+{{--  </div>--}}
 </div>

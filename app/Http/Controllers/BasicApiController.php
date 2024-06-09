@@ -41,7 +41,7 @@ class BasicApiController extends Controller
      * Default query number of limit items
      * @var int
      */
-    protected $take = 10;
+    protected $take = 25;
 
     /**
      * @param $content
