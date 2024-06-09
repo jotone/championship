@@ -2,7 +2,7 @@ header { background-color: {{ $data['top_menu_bg_color'] }} }
 
 header .login-form-menu ul li a, header .login-form-menu ul li span { color: {{ $data['top_menu_font_color'] }} }
 
-.login-form { background-color: {{ $data['login_form_bg_color'] }} }
+.login-form, .content-table tfoot tr { background-color: {{ $data['login_form_bg_color'] }} }
 
 .login-form .form-buttons a { color: {{ $data['login_form_font_color'] }} }
 

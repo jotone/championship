@@ -192,7 +192,9 @@ class User extends Authenticatable implements JWTSubject
 
         static::deleting(function ($model) {
             // remove user image
-            self::removeImage($model);
+            if ($model->img_url !== '/images/noname_big.jpg') {
+                self::removeImage($model);
+            }
             // Remove user forms
             $model->forms()->get()->each(fn($entity) => $entity->delete());
             // Remove related forum topics

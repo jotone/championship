@@ -162,9 +162,10 @@ export default {
           if (204 === response.status) {
             for (let i in this.stages) {
               if (groupID === this.stages[i][0].id) {
-                for (let j = 0, m = this.stages[i][0].games[0].score; j < m; j++) {
+                const score = this.stages[i][0].games[0].score;
+                for (let j = 0, m = score.length; j < m; j++) {
                   // Remove team from play-off
-                  id === parseInt(this.stages[i][0].games[0].score[j]) && this.stages[i][0].games[0].score.splice(j, 1)
+                  id === parseInt(score[j]) && score.splice(j, 1)
                 }
               }
             }
