@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix
   .styles('./node_modules/air-datepicker/air-datepicker.css', './public/css/air-datepicker.css')
+  .styles('./node_modules/jquery/dist/jquery.min.js', './public/js/jquery.js')
   // Admin
   .sass('./resources/css/reset.scss', './public/css')
   .sass('./resources/css/font-awesome/fontawesome.scss', './public/css')

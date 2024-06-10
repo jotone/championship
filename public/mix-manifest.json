@@ -29,5 +29,6 @@
     "/css/admin/color-settings.css": "/css/admin/color-settings.css",
     "/css/admin/competition.css": "/css/admin/competition.css",
     "/css/admin/app.css": "/css/admin/app.css",
-    "/css/air-datepicker.css": "/css/air-datepicker.css"
+    "/css/air-datepicker.css": "/css/air-datepicker.css",
+    "/js/jquery.js": "/js/jquery.js"
 }
