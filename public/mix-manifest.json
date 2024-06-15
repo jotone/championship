@@ -37,6 +37,7 @@
     "/js/ckeditor4/SECURITY.md": "/js/ckeditor4/SECURITY.md",
     "/js/ckeditor4/adapters/jquery.js": "/js/ckeditor4/adapters/jquery.js",
     "/js/ckeditor4/assets/ckeditor4.png": "/js/ckeditor4/assets/ckeditor4.png",
+    "/js/ckeditor4/bender-runner.config.json": "/js/ckeditor4/bender-runner.config.json",
     "/js/ckeditor4/bower.json": "/js/ckeditor4/bower.json",
     "/js/ckeditor4/ckeditor.js": "/js/ckeditor4/ckeditor.js",
     "/js/ckeditor4/composer.json": "/js/ckeditor4/composer.json",
