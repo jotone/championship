@@ -46,6 +46,7 @@ mix
   .js('./resources/js/main/profile.js','./public/js/profile.js')
   .js('./resources/js/main/results.js','./public/js/results.js')
   .js('./resources/js/main/user-form.js','./public/js/user-form.js')
+  .copyDirectory('./node_modules/ckeditor4/', './public/js/ckeditor4/')
 
   // Compilation Settings
   .options({
